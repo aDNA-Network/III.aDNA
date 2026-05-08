@@ -1,0 +1,90 @@
+module:
+  name: III-Improve
+  version: "1.0.0"
+  module_type: agent
+  description: >
+    Always-active third phase of the III pipeline. Converts the CalibratedReport
+    from introspect into a prioritized ImprovementTable with severity-ranked,
+    type-classified rows. Optionally calibrated by learning-store acceptance
+    rates. Emits ImprovementTable + VerificationResult for downstream human
+    approval. Pure module — never applies edits to the artifact.
+  execution:
+    runtime: claude
+    model: claude-opus-4-6
+    tier: L1
+    gpu_required: false
+    memory_mb: 1024
+    timeout_s: 60
+  inputs:
+    - name: calibrated_report
+      type: structured
+      description: >
+        Output of module_iii_introspect:
+        `{findings: Finding[], introspections: Introspection[],
+          graduation_candidates: []}`.
+      required: true
+    - name: learning_store_acceptance_rates
+      type: structured
+      description: >
+        Optional per-correction historical acceptance rates. When present,
+        used to calibrate severity — findings matching corrections with high
+        historical acceptance get higher proposed-fix confidence. Schema:
+        `{<correction_id>: {acceptance_rate: 0..1, n_observations: int}}`.
+      required: false
+  outputs:
+    - name: improvement_table
+      type: structured
+      description: >
+        Ordered rows:
+        `{#, finding_id, proposed_fix, priority: critical|high|medium|low,
+          type: correction|expansion|restructure|annotation,
+          voices_agreeing?, matched_correction_id?}`.
+        Sorted by priority descending, then by finding_id.
+    - name: verification_result
+      type: structured
+      description: >
+        `{review_state: INSPECTED|INTROSPECTED|IMPROVED, summary,
+          finding_counts: {critical, high, medium, low},
+          introspection_counts}`. ReviewState progresses through the lattice
+        chain (UNREVIEWED < INSPECTED < INTROSPECTED < IMPROVED).
+  config:
+    skill_ref: "how/skills/skill_iii_review.md"
+    lattice_ref: "what/lattices/lattice_iii_verification_oracle.lattice.yaml"
+    skill_section: "Step 3: IMPROVE"
+    severity_levels:
+      - critical
+      - high
+      - medium
+      - low
+    type_taxonomy:
+      - correction
+      - expansion
+      - restructure
+      - annotation
+    output_format: "ImprovementTable + VerificationResult"
+    apply_edits: false
+  dependencies:
+    - skill_iii_review
+    - lattice_iii_verification_oracle
+    - module_iii_introspect
+  fair:
+    license: "Apache-2.0"
+    keywords:
+      - improve
+      - improvement table
+      - severity calibration
+      - verification result
+      - iii loop
+      - agent module
+    provenance: >
+      Decomposed from skill_iii_review.md Step 3 during III.aDNA Campaign A
+      MA-3 (2026-05-08).
+  federation:
+    shareable: true
+    source_instance: III.aDNA
+    discoverable: true
+    version_policy: minor
+  migration_provenance:
+    previous_home: "lattice-labs (composite via module_iii_semantic_reviewer)"
+    migrated: 2026-05-08
+    migration_mission: campaign_a_iii_genesis MA-3

@@ -1,0 +1,110 @@
+module:
+  name: III-Dispatch
+  version: "1.0.0"
+  module_type: agent
+  description: >
+    Object-type dispatcher for the III review pipeline. Resolves which domain
+    packs to load, which INSPECT modalities to activate, and which review depth
+    to use, given an artifact path + the lattice's pack/depth/frontmatter
+    assignment maps. Always the first module in any III cycle. Pure: does not
+    load packs or corrections itself — emits an InspectionConfig the skill uses
+    to orchestrate downstream invocation.
+  execution:
+    runtime: claude
+    model: claude-opus-4-6
+    tier: L1
+    gpu_required: false
+    memory_mb: 1024
+    timeout_s: 30
+  inputs:
+    - name: artifact
+      type: path
+      description: >
+        Path to the document being reviewed. Module reads frontmatter and a
+        modality-signal scan; full body inspection is the inspect_* modules' job.
+      required: true
+    - name: lattice_dispatch_config
+      type: structured
+      description: >
+        The `dispatch.config` block from
+        `what/lattices/lattice_iii_verification_oracle.lattice.yaml`:
+        pack_assignment globs, depth_assignment globs, frontmatter_dispatch
+        type maps, and modality_signals. Passed by the orchestrating skill
+        (modules are pure — no direct lattice reads).
+      required: true
+    - name: queue_entry
+      type: structured
+      description: >
+        Pre-assigned entry from `~/.claude/iii_review_queue.json` (optional).
+        When present, queue values for `packs`, `depth`, `modalities` win over
+        path/frontmatter resolution but lose to `user_overrides`.
+      required: false
+    - name: corrections_store_paths
+      type: structured
+      description: >
+        `{canonical: <III.aDNA jsonl path>, local: <consumer-vault jsonl path>}`.
+        Pointers only — dispatch reports a non-graduated entry COUNT, it does
+        not load entries. Loading happens at injection sites (text_inspect,
+        introspect) per the lattice's corrections_store injection_points.
+      required: true
+    - name: user_overrides
+      type: config
+      description: >
+        Optional `{packs?, depth?, modalities?}` map from the operator. Highest
+        priority — wins over queue, path, and frontmatter resolution.
+      required: false
+  outputs:
+    - name: inspection_config
+      type: structured
+      description: >
+        Resolved configuration:
+        `{packs: [<pack_id>...], depth: shallow|standard|deep,
+          modalities: {text: always, code: active|inactive,
+                       visual: active|inactive, data: active|inactive},
+          corrections_count: int, dispatch_source: queue|path|frontmatter|fallback|user}`.
+        Consumed by the skill to bind pack inputs for the inspect_* modules.
+    - name: dispatch_report
+      type: structured
+      description: >
+        Single-line provenance string for operator + audit log:
+        "Dispatched via <source>: packs [<list>], depth [<level>],
+         modalities [<list>], corrections (<N> items)".
+  config:
+    skill_ref: "how/skills/skill_iii_review.md"
+    lattice_ref: "what/lattices/lattice_iii_verification_oracle.lattice.yaml"
+    skill_section: "Step 0: DISPATCH"
+    resolution_priority:
+      - user_overrides
+      - queue_entry
+      - path_glob
+      - frontmatter_type
+      - fallback_core
+    modalities:
+      text_inspect: always
+      code_inspect: conditional
+      visual_inspect: conditional
+      data_inspect: conditional
+    output_format: "InspectionConfig + DispatchReport"
+  dependencies:
+    - skill_iii_review
+    - lattice_iii_verification_oracle
+  fair:
+    license: "Apache-2.0"
+    keywords:
+      - dispatch
+      - iii loop
+      - pack assignment
+      - modality routing
+      - agent module
+    provenance: >
+      Decomposed from skill_iii_review.md Step 0 + module_iii_semantic_reviewer
+      Phase 1 (DISPATCH) during III.aDNA Campaign A MA-3 (2026-05-08).
+  federation:
+    shareable: true
+    source_instance: III.aDNA
+    discoverable: true
+    version_policy: minor
+  migration_provenance:
+    previous_home: "lattice-labs (composite via module_iii_semantic_reviewer)"
+    migrated: 2026-05-08
+    migration_mission: campaign_a_iii_genesis MA-3

@@ -1,6 +1,6 @@
 lattice:
   name: iii_verification_oracle
-  version: "1.1.0"
+  version: "1.2.0"
   lattice_type: skill
   description: >
     III Review as a composable semantic verification oracle. Accepts documents
@@ -49,6 +49,7 @@ lattice:
 
     - id: dispatch
       type: module
+      ref: "what/modules/module_iii_dispatch.module.yaml"
       description: >
         Object-type dispatcher. Reads document metadata and content signals
         to determine: (1) which domain packs to load, (2) which INSPECT
@@ -128,6 +129,7 @@ lattice:
 
     - id: text_inspect
       type: module
+      ref: "what/modules/module_iii_inspect_text.module.yaml"
       description: >
         Core text inspection — adversarial precision check. Reads document
         with Five Traps + domain pack traps + learning store corrections.
@@ -140,6 +142,7 @@ lattice:
 
     - id: code_inspect
       type: module
+      ref: "what/modules/module_iii_inspect_code.module.yaml"
       description: >
         Code reference verification. Extracts function names, file paths,
         CLI commands, and API endpoints from document claims. Verifies
@@ -153,6 +156,7 @@ lattice:
 
     - id: visual_inspect
       type: module
+      ref: "what/modules/module_iii_inspect_visual.module.yaml"
       description: >
         Visual inspection via Gemini describe_image. Checks label accuracy,
         completeness, consistency with textual claims, and misleading
@@ -165,6 +169,7 @@ lattice:
 
     - id: data_inspect
       type: module
+      ref: "what/modules/module_iii_inspect_data.module.yaml"
       description: >
         Structured data validation. Reads referenced YAML, JSON, JSONL,
         CSV files. Checks schema consistency, value range violations,
@@ -176,6 +181,7 @@ lattice:
 
     - id: introspect
       type: module
+      ref: "what/modules/module_iii_introspect.module.yaml"
       description: >
         Structural pattern analysis on merged findings. Seven checks:
         confidence gradient, analogy vs argument, structural completeness,
@@ -195,6 +201,7 @@ lattice:
 
     - id: improve
       type: module
+      ref: "what/modules/module_iii_improve.module.yaml"
       description: >
         Converts findings + introspection into a prioritized improvement
         table with severity ratings. Informed by learning store acceptance
@@ -207,13 +214,34 @@ lattice:
       type: process
       description: >
         Human approval gate. User reviews improvement table, accepts or
-        rejects each proposed change. Acceptance/rejection feeds back
-        into learning store calibration. Non-automatable — the human
-        gate prevents oscillation in self-improvement cycles.
+        rejects each proposed change. Acceptance/rejection feeds the
+        accumulate module for learning-store calibration. Non-automatable —
+        the human gate prevents oscillation in self-improvement cycles.
       config:
         trigger: "always"
         required: true
-        outputs_to: ["corrections_store", "reviewed_output"]
+        outputs_to: ["accumulate", "reviewed_output"]
+
+    - id: accumulate
+      type: module
+      ref: "what/modules/module_iii_accumulate.module.yaml"
+      description: >
+        Post-approval learning-store writer. Walks user accept/reject
+        decisions, increments frequencies on matched recurring patterns,
+        appends new pattern entries with frequency=1, skips one-off factual
+        errors. Surfaces graduation candidates (frequency >= 3 AND
+        acceptance >= 80%) for the ADR-003 ceremony. Writes only to the
+        consumer-vault local store; canonical store is read-only outside
+        graduation.
+      config:
+        write_policy:
+          canonical_store: read_only
+          local_store: append_only
+        graduation_thresholds:
+          frequency_min: 3
+          acceptance_rate_min: 0.80
+        governs_adr: "ADR-003"
+        output_format: "LearningStoreDelta + GraduationSignals"
 
     - id: reviewed_output
       type: module
@@ -286,8 +314,12 @@ lattice:
       label: "improvement table for approval"
 
     - from: human_review
+      to: accumulate
+      label: "improvement decisions (accept/reject per row)"
+
+    - from: accumulate
       to: corrections_store
-      label: "acceptance/rejection → calibration update"
+      label: "corrections jsonl delta (consumer-local store; canonical via graduation only)"
 
     - from: human_review
       to: reviewed_output
@@ -326,3 +358,25 @@ lattice:
     previous_home: lattice-labs/what/lattices/skills/lattice_iii_verification_oracle.lattice.yaml
     migrated: 2026-05-08
     migration_mission: campaign_a_iii_genesis MA-1
+
+  ma3_changelog:
+    version_bump: "1.1.0 → 1.2.0"
+    date: 2026-05-08
+    mission: campaign_a_iii_genesis MA-3
+    additions:
+      - "Added `accumulate` module node (post-approval learning-store writer)"
+      - "Added edge human_review → accumulate (improvement decisions)"
+      - "Added edge accumulate → corrections_store (jsonl delta to consumer-local store)"
+    rewires:
+      - "Removed direct edge human_review → corrections_store (now flows through accumulate)"
+    module_refs_added:
+      - "Each module node now declares `ref:` pointing at its `.module.yaml` file (where applicable)"
+    rationale: >
+      Per CLAUDE.md project map and §Module Architecture diagram, the III
+      pipeline includes 8 modules ending with `accumulate`. The pre-MA-3
+      lattice modeled accumulation as a side-effect edge from human_review
+      directly to corrections_store. MA-3 promotes accumulation to a proper
+      typed-IO aDNA module and rewires the edge through it. ADR-003
+      governance (canonical = read-only outside graduation, local =
+      append-only) is now expressed in the lattice node config rather than
+      implicit in the human_review process.

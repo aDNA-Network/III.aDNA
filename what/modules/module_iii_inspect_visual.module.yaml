@@ -1,0 +1,98 @@
+module:
+  name: III-Inspect-Visual
+  version: "1.0.0"
+  module_type: agent
+  description: >
+    Conditional visual modality of the III INSPECT phase. For each image
+    referenced by the artifact, calls describe_image with an III-calibrated
+    prompt and cross-references the description against the artifact's textual
+    claims. Flags label/number mismatches, misleading presentation, and
+    accessibility gaps. Activates when dispatch flags image_references. Pure
+    module — describe_image handle passed in by the skill.
+  execution:
+    runtime: claude
+    model: claude-opus-4-6
+    tier: L1
+    gpu_required: false
+    memory_mb: 2048
+    timeout_s: 240
+  inputs:
+    - name: image_references
+      type: path
+      description: >
+        Array of image paths referenced by the artifact (embedded markdown
+        images, screenshot paths, diagram links). Resolved by dispatch's
+        modality-signal scan and passed in by the skill.
+      required: true
+    - name: artifact_textual_claims
+      type: structured
+      description: >
+        Per-image excerpts of the artifact's textual claims: labels named in
+        prose, counts asserted, status indicators referenced, narrative
+        captions. Module diffs `describe_image` output against these.
+      required: true
+    - name: inspection_config
+      type: structured
+      description: >
+        Output of module_iii_dispatch. Module asserts
+        `modalities.visual == active`.
+      required: true
+    - name: inspect_procedures_pack
+      type: context_pack
+      description: >
+        Modality 3 (Visual) section of
+        `what/context/core_domain_packs/context_iii_inspect_procedures.md`:
+        describe_image prompt template, cross-reference checks, severity
+        calibration. Skill-loaded.
+      required: true
+    - name: tool_handles
+      type: config
+      description: >
+        `{describe_image: mcp__gemini-image__describe_image}`. Module requests
+        image description through this handle; never directly invokes the
+        MCP tool (purity).
+      required: true
+  outputs:
+    - name: visual_findings
+      type: structured
+      description: >
+        `Finding[]` with F-VIS-NNN prefix. Per-finding:
+        `{id, image_ref, claim, image_description_excerpt, issue, severity, mismatch_type?}`.
+  config:
+    skill_ref: "how/skills/skill_iii_review.md"
+    lattice_ref: "what/lattices/lattice_iii_verification_oracle.lattice.yaml"
+    skill_section: "Step 1: INSPECT (Visual modality)"
+    procedures_section: "context_iii_inspect_procedures.md §Modality 3: Visual Inspect"
+    finding_prefix: "F-VIS"
+    conditional: true
+    trigger: "inspection_config.modalities.visual == active"
+    severity_calibration:
+      label_mismatch: high
+      number_mismatch: high
+      misleading_presentation: medium
+      accessibility_gap: low
+    output_format: "Finding[]"
+  dependencies:
+    - skill_iii_review
+    - lattice_iii_verification_oracle
+    - module_iii_dispatch
+  fair:
+    license: "Apache-2.0"
+    keywords:
+      - visual inspect
+      - image cross-reference
+      - label accuracy
+      - iii loop
+      - agent module
+    provenance: >
+      Decomposed from skill_iii_review.md Step 1 + context_iii_inspect_procedures.md
+      Modality 3 during III.aDNA Campaign A MA-3 (2026-05-08).
+  federation:
+    shareable: true
+    source_instance: III.aDNA
+    discoverable: true
+    version_policy: minor
+  migration_provenance:
+    previous_home: "lattice-labs (composite via module_iii_semantic_reviewer)"
+    migrated: 2026-05-08
+    migration_mission: campaign_a_iii_genesis MA-3

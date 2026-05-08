@@ -4,7 +4,17 @@ module_ref: module_iii_semantic_reviewer
 created: 2026-04-04
 updated: 2026-05-08
 last_edited_by: agent_stanley
-status: active
+status: composite_reference
+supersedes_by:
+  - module_iii_dispatch
+  - module_iii_inspect_text
+  - module_iii_inspect_code
+  - module_iii_inspect_visual
+  - module_iii_inspect_data
+  - module_iii_introspect
+  - module_iii_improve
+  - module_iii_accumulate
+ma3_decomposition: 2026-05-08
 tags:
   - module
   - agent-module
@@ -13,6 +23,7 @@ tags:
   - multi-voice
   - web-design
   - siteforge
+  - composite-reference
 fair:
   findable:
     keywords:
@@ -42,6 +53,23 @@ migration_provenance:
 
 # Module: III Semantic Reviewer
 
+> ⚠️ **COMPOSITE REFERENCE — superseded by 8 decomposed modules (MA-3, 2026-05-08).** This file is preserved as a backward-compatible reference for consumers still pointing at `module_iii_semantic_reviewer`. The III pipeline is now expressed as 8 typed, pure aDNA modules wired by `what/lattices/lattice_iii_verification_oracle.lattice.yaml`:
+>
+> | Phase | Module | Lattice node |
+> |-------|--------|--------------|
+> | DISPATCH | [`module_iii_dispatch`](module_iii_dispatch.md) | `dispatch` |
+> | INSPECT (text) | [`module_iii_inspect_text`](module_iii_inspect_text.md) | `text_inspect` |
+> | INSPECT (code) | [`module_iii_inspect_code`](module_iii_inspect_code.md) | `code_inspect` |
+> | INSPECT (visual) | [`module_iii_inspect_visual`](module_iii_inspect_visual.md) | `visual_inspect` |
+> | INSPECT (data) | [`module_iii_inspect_data`](module_iii_inspect_data.md) | `data_inspect` |
+> | INTROSPECT | [`module_iii_introspect`](module_iii_introspect.md) | `introspect` |
+> | IMPROVE | [`module_iii_improve`](module_iii_improve.md) | `improve` |
+> | ACCUMULATE | [`module_iii_accumulate`](module_iii_accumulate.md) | `accumulate` |
+>
+> **For new integrations**: federate against the 8 modules + lattice. **For existing SiteForge-style consumers**: keep pointing at this composite; it documents the *web-design + multi-voice* application of the pipeline (Voice Critic, Design, UX, SEO, Brand voices) which is a SiteForge-side composition pattern, not a III.aDNA core module. The web-design voice orchestration belongs in `SiteForge.aDNA/iii/` via consumer wrapper (Campaign B MB-2).
+>
+> ---
+>
 > Agent module that runs the III (Inspect/Introspect/Improve) review loop on generated websites, applying web_design domain traps and multi-voice reviewer orchestration. Complements Playwright's mechanical validation with semantic quality assessment. **Canonical home: III.aDNA**; SiteForge-specific integration details (lattice node placement, sibling modules) belong in SiteForge.aDNA via consumer wrapper.
 
 ## Specification

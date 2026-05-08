@@ -1,0 +1,95 @@
+module:
+  name: III-Inspect-Data
+  version: "1.0.0"
+  module_type: agent
+  description: >
+    Conditional data modality of the III INSPECT phase. Reads referenced
+    YAML/JSON/JSONL/CSV files, validates schema, computes claim-relevant
+    statistics, and cross-checks against the artifact's prose claims. Critical
+    severity for prose↔data statistical mismatches. Activates when dispatch
+    flags data_references. Pure module.
+  execution:
+    runtime: claude
+    model: claude-opus-4-6
+    tier: L1
+    gpu_required: false
+    memory_mb: 2048
+    timeout_s: 180
+  inputs:
+    - name: data_file_references
+      type: path
+      description: >
+        Array of data file paths (YAML, JSON, JSONL, CSV) referenced by the
+        artifact. Resolved by dispatch's modality-signal scan.
+      required: true
+    - name: artifact_data_claims
+      type: structured
+      description: >
+        Per-file extracted claims: `{summary_statistics, example_records,
+        record_counts, schema_descriptions}`. Module diffs computed values
+        against these.
+      required: true
+    - name: inspection_config
+      type: structured
+      description: >
+        Output of module_iii_dispatch. Module asserts
+        `modalities.data == active`.
+      required: true
+    - name: inspect_procedures_pack
+      type: context_pack
+      description: >
+        Modality 4 (Data) section of
+        `what/context/core_domain_packs/context_iii_inspect_procedures.md`:
+        schema validation procedure, prose-data cross-reference checks,
+        severity calibration. Skill-loaded.
+      required: true
+    - name: tool_handles
+      type: config
+      description: >
+        `{read: Read}` for parsing data files. Module requests reads through
+        this handle (purity).
+      required: true
+  outputs:
+    - name: data_findings
+      type: structured
+      description: >
+        `Finding[]` with F-DATA-NNN prefix. Per-finding:
+        `{id, file_ref, claim, actual_value, issue, severity,
+          mismatch_type: statistic|schema|count|example|quality}`.
+  config:
+    skill_ref: "how/skills/skill_iii_review.md"
+    lattice_ref: "what/lattices/lattice_iii_verification_oracle.lattice.yaml"
+    skill_section: "Step 1: INSPECT (Data modality)"
+    procedures_section: "context_iii_inspect_procedures.md §Modality 4: Data Inspect"
+    finding_prefix: "F-DATA"
+    conditional: true
+    trigger: "inspection_config.modalities.data == active"
+    severity_calibration:
+      prose_data_statistic_mismatch: critical
+      schema_inconsistency: high
+      missing_optional_field: low
+    output_format: "Finding[]"
+  dependencies:
+    - skill_iii_review
+    - lattice_iii_verification_oracle
+    - module_iii_dispatch
+  fair:
+    license: "Apache-2.0"
+    keywords:
+      - data inspect
+      - schema validation
+      - prose-data crosscheck
+      - iii loop
+      - agent module
+    provenance: >
+      Decomposed from skill_iii_review.md Step 1 + context_iii_inspect_procedures.md
+      Modality 4 during III.aDNA Campaign A MA-3 (2026-05-08).
+  federation:
+    shareable: true
+    source_instance: III.aDNA
+    discoverable: true
+    version_policy: minor
+  migration_provenance:
+    previous_home: "lattice-labs (composite via module_iii_semantic_reviewer)"
+    migrated: 2026-05-08
+    migration_mission: campaign_a_iii_genesis MA-3

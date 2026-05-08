@@ -1,0 +1,99 @@
+module:
+  name: III-Inspect-Text
+  version: "1.0.0"
+  module_type: agent
+  description: >
+    Always-on text modality of the III INSPECT phase. Reads document body with
+    adversarial precision, applies the Five Traps + dispatched domain pack traps
+    + learning-store corrections (passed by the skill as typed inputs), and
+    emits `Finding[]` with F-TEXT-NNN prefix. Pure module — never opens pack or
+    correction files directly.
+  execution:
+    runtime: claude
+    model: claude-opus-4-6
+    tier: L1
+    gpu_required: false
+    memory_mb: 2048
+    timeout_s: 120
+  inputs:
+    - name: artifact_content
+      type: structured
+      description: >
+        Parsed document: {frontmatter, sections[], raw_body}. The skill reads
+        the artifact path resolved by dispatch and passes content as structured
+        input (modules are pure).
+      required: true
+    - name: inspection_config
+      type: structured
+      description: >
+        The `inspection_config` emitted by module_iii_dispatch. Module uses
+        `depth` for review thoroughness and asserts `modalities.text == always`.
+      required: true
+    - name: inspect_procedures_pack
+      type: context_pack
+      description: >
+        The Modality 1 (Text) section of
+        `what/context/core_domain_packs/context_iii_inspect_procedures.md`:
+        Five Traps, confidence tag system, finding output format, and the
+        five operational checks (factual_accuracy, logical_chains, precision,
+        completeness, confidence). Passed by the skill — module never reads
+        the file directly.
+      required: true
+    - name: domain_packs
+      type: context_pack
+      description: >
+        Array of domain-specific trap packs selected by dispatch (e.g.
+        `context_iii_domain_packs_web_design`,
+        `context_iii_whitepaper_communication`,
+        `context_iii_vault_maintenance`). Empty array allowed when only `core`
+        was selected.
+      required: true
+    - name: corrections_subset
+      type: structured
+      description: >
+        Non-graduated entries from `iii_corrections_canonical.jsonl` and the
+        consumer-local store, prioritized by frequency. Each entry:
+        `{id, trap, pattern, description, example, frequency, accepted}`.
+      required: true
+  outputs:
+    - name: text_findings
+      type: structured
+      description: >
+        `Finding[]` with F-TEXT-NNN prefix. Per-finding shape:
+        `{id, location, claim, issue, severity: critical|high|medium|low, trap?, matched_correction_id?}`.
+        Merges into the introspect module's input via the lattice edge.
+  config:
+    skill_ref: "how/skills/skill_iii_review.md"
+    lattice_ref: "what/lattices/lattice_iii_verification_oracle.lattice.yaml"
+    skill_section: "Step 1: INSPECT (Text modality)"
+    procedures_section: "context_iii_inspect_procedures.md §Modality 1: Text Inspect"
+    finding_prefix: "F-TEXT"
+    severity_calibration:
+      confidence_inflation_weight: 0.4
+    output_format: "Finding[]"
+  dependencies:
+    - skill_iii_review
+    - lattice_iii_verification_oracle
+    - module_iii_dispatch
+  fair:
+    license: "Apache-2.0"
+    keywords:
+      - text inspect
+      - five traps
+      - precision review
+      - confidence calibration
+      - iii loop
+      - agent module
+    provenance: >
+      Decomposed from skill_iii_review.md Step 1 + context_iii_inspect_procedures.md
+      Modality 1 + module_iii_semantic_reviewer Phase 2 (text branch) during
+      III.aDNA Campaign A MA-3 (2026-05-08).
+  federation:
+    shareable: true
+    source_instance: III.aDNA
+    discoverable: true
+    version_policy: minor
+  migration_provenance:
+    previous_home: "lattice-labs (composite via module_iii_semantic_reviewer)"
+    migrated: 2026-05-08
+    migration_mission: campaign_a_iii_genesis MA-3

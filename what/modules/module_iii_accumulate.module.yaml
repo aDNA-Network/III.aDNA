@@ -1,0 +1,126 @@
+module:
+  name: III-Accumulate
+  version: "1.0.0"
+  module_type: agent
+  description: >
+    Post-approval phase of the III pipeline. Walks user accept/reject decisions
+    on the ImprovementTable and writes a LearningStoreDelta to the consumer-vault
+    local corrections store: increments frequencies on matched recurring patterns,
+    appends new pattern entries with frequency=1, skips one-off factual errors.
+    Surfaces graduation signals (frequency >= 3 AND acceptance >= 80%) for the
+    ADR-003 ceremony. Never writes to the canonical store. Pure module — file
+    writes happen via tool_handles passed in by the skill.
+  execution:
+    runtime: claude
+    model: claude-opus-4-6
+    tier: L1
+    gpu_required: false
+    memory_mb: 1024
+    timeout_s: 60
+  inputs:
+    - name: improvement_decisions
+      type: structured
+      description: >
+        Array of per-row decisions from human_review:
+        `{finding_id, decision: accept|reject, decision_rationale?}`.
+      required: true
+    - name: findings
+      type: structured
+      description: >
+        Original `Finding[]` for pattern extraction. Module classifies each
+        finding as recurring-pattern vs one-off based on the trap/pattern
+        fields and the prose of `issue` — only recurring patterns qualify
+        for accumulation.
+      required: true
+    - name: learning_store_schema_pack
+      type: context_pack
+      description: >
+        `what/context/core_domain_packs/context_iii_learning_store.md`.
+        Provides the entry schema (id, trap, pattern, description, example,
+        source_review, source_finding, frequency, accepted, graduated,
+        graduated_to, created), the lifecycle protocol, and the canonical-vs-
+        local write rules. Skill-loaded.
+      required: true
+    - name: consumer_local_store_path
+      type: path
+      description: >
+        Path to the consumer-vault's local corrections store
+        (`<consumer_vault>/iii/what/context/<vault>_iii_corrections_local.jsonl`).
+        Module emits ops targeting this path; the skill applies the writes.
+      required: true
+    - name: canonical_store_path
+      type: path
+      description: >
+        Read-only — `III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl`.
+        Used for the match check. Module never emits a write op against this
+        path; canonical entries arrive via Stanley-gated graduation only
+        (ADR-003).
+      required: true
+    - name: tool_handles
+      type: config
+      description: >
+        `{read: Read, write_append: Write}` for jsonl read + append-only write.
+        Module emits ops; skill performs the actual filesystem writes
+        (purity rule).
+      required: true
+  outputs:
+    - name: corrections_jsonl_delta
+      type: structured
+      description: >
+        Operation list:
+        `[{op: append|update_frequency|update_acceptance,
+           entry_id?, new_entry?, target_path}]`.
+        Applied by the skill against `consumer_local_store_path`.
+    - name: graduation_signals
+      type: structured
+      description: >
+        Subset of (post-delta) local-store entries meeting
+        `frequency >= 3` AND `acceptance_rate >= 80%`. Each:
+        `{correction_id, pattern, frequency, acceptance_rate,
+          recommended_target: domain_pack|canonical_store}`.
+    - name: accumulate_report
+      type: structured
+      description: >
+        `{n_appended, n_updated, n_skipped_one_offs, n_graduation_candidates,
+          target_store}`.
+  config:
+    skill_ref: "how/skills/skill_iii_review.md"
+    lattice_ref: "what/lattices/lattice_iii_verification_oracle.lattice.yaml"
+    skill_section: "Step 3b: ACCUMULATE"
+    schema_section: "context_iii_learning_store.md (entry schema + lifecycle)"
+    write_policy:
+      canonical_store: read_only
+      local_store: append_only
+    graduation_thresholds:
+      frequency_min: 3
+      acceptance_rate_min: 0.80
+    one_off_filter: true
+    governs_adr: "ADR-003"
+    output_format: "LearningStoreDelta + GraduationSignals"
+  dependencies:
+    - skill_iii_review
+    - lattice_iii_verification_oracle
+    - module_iii_improve
+    - context_iii_learning_store
+  fair:
+    license: "Apache-2.0"
+    keywords:
+      - accumulate
+      - learning store
+      - corrections jsonl
+      - graduation candidates
+      - adr-003
+      - iii loop
+      - agent module
+    provenance: >
+      Decomposed from skill_iii_review.md Step 3b + context_iii_learning_store.md
+      lifecycle protocol during III.aDNA Campaign A MA-3 (2026-05-08).
+  federation:
+    shareable: true
+    source_instance: III.aDNA
+    discoverable: true
+    version_policy: minor
+  migration_provenance:
+    previous_home: "lattice-labs (composite via module_iii_semantic_reviewer)"
+    migrated: 2026-05-08
+    migration_mission: campaign_a_iii_genesis MA-3

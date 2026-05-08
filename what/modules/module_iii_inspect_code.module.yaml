@@ -1,0 +1,100 @@
+module:
+  name: III-Inspect-Code
+  version: "1.0.0"
+  module_type: agent
+  description: >
+    Conditional code modality of the III INSPECT phase. Extracts code references
+    (function names, file paths, CLI commands, API endpoints, config keys) from
+    document prose, verifies existence against peer codebases via Grep/Glob,
+    and checks signature drift / behavior change / stale versions. Activates
+    when dispatch flags code_references in the artifact. Pure module — tool
+    handles passed in by the skill.
+  execution:
+    runtime: claude
+    model: claude-opus-4-6
+    tier: L1
+    gpu_required: false
+    memory_mb: 2048
+    timeout_s: 180
+  inputs:
+    - name: artifact_content
+      type: structured
+      description: >
+        Parsed document. Module extracts code-shaped tokens (function names,
+        paths, CLI invocations) from prose and code blocks for verification.
+      required: true
+    - name: inspection_config
+      type: structured
+      description: >
+        Output of module_iii_dispatch. Asserts `modalities.code == active`.
+        Carries depth — at `deep` depth, module checks signature changes since
+        document write date (frontmatter `updated`); at `standard`, only
+        existence + current signature.
+      required: true
+    - name: inspect_procedures_pack
+      type: context_pack
+      description: >
+        Modality 2 (Code) section of
+        `what/context/core_domain_packs/context_iii_inspect_procedures.md`:
+        reference extraction taxonomy, verification procedure, severity
+        calibration. Skill-loaded; module never reads pack file directly.
+      required: true
+    - name: codebase_roots
+      type: path
+      description: >
+        Array of repository roots to verify references against. Typically
+        `[lattice-protocol/, latlab/, adna/, <current_vault>/]`. Passed by
+        skill from the workspace map.
+      required: true
+    - name: tool_handles
+      type: config
+      description: >
+        Handles for the verification tools: `{agent_explore, grep, glob}`.
+        Module requests verification calls through these handles rather than
+        invoking filesystem tools directly (purity).
+      required: true
+  outputs:
+    - name: code_findings
+      type: structured
+      description: >
+        `Finding[]` with F-CODE-NNN prefix. Per-finding:
+        `{id, reference, ref_type: file|function|cli|endpoint|config,
+          location, issue, severity, expected?, actual?, source_repo?}`.
+  config:
+    skill_ref: "how/skills/skill_iii_review.md"
+    lattice_ref: "what/lattices/lattice_iii_verification_oracle.lattice.yaml"
+    skill_section: "Step 1: INSPECT (Code modality)"
+    procedures_section: "context_iii_inspect_procedures.md §Modality 2: Code Inspect"
+    finding_prefix: "F-CODE"
+    conditional: true
+    trigger: "inspection_config.modalities.code == active"
+    severity_calibration:
+      broken_path: high
+      deleted_function: high
+      changed_signature: medium
+      stale_version: low
+    output_format: "Finding[]"
+  dependencies:
+    - skill_iii_review
+    - lattice_iii_verification_oracle
+    - module_iii_dispatch
+  fair:
+    license: "Apache-2.0"
+    keywords:
+      - code inspect
+      - reference verification
+      - signature drift
+      - iii loop
+      - agent module
+    provenance: >
+      Decomposed from skill_iii_review.md Step 1 + context_iii_inspect_procedures.md
+      Modality 2 during III.aDNA Campaign A MA-3 (2026-05-08).
+  federation:
+    shareable: true
+    source_instance: III.aDNA
+    discoverable: true
+    version_policy: minor
+  migration_provenance:
+    previous_home: "lattice-labs (composite via module_iii_semantic_reviewer)"
+    migrated: 2026-05-08
+    migration_mission: campaign_a_iii_genesis MA-3

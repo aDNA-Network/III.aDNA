@@ -1,15 +1,33 @@
 module:
   name: III-Semantic-Reviewer
   version: "1.0.0"
-  module_type: agent
+  module_type: composite_reference
+  status: composite_reference
+  supersedes_by:
+    - module_iii_dispatch
+    - module_iii_inspect_text
+    - module_iii_inspect_code
+    - module_iii_inspect_visual
+    - module_iii_inspect_data
+    - module_iii_introspect
+    - module_iii_improve
+    - module_iii_accumulate
+  ma3_decomposition: 2026-05-08
   description: >
-    Semantic quality layer for SiteForge pipeline. Runs the III (Inspect/Introspect/Improve)
-    review loop on generated website content and code, applying domain-specific web_design
-    traps and multi-voice reviewer orchestration. Complements Playwright's mechanical
-    validation — Playwright asks "does it build? does it render?", III asks "is the copy
-    honest? is the design coherent? does it match the brand?" Maps to the
-    iii_semantic_reviewer node in the partner_website_scaffold lattice (SiteForge.aDNA
-    consumer-side; this module's canonical home is III.aDNA).
+    COMPOSITE REFERENCE (superseded MA-3 2026-05-08). The III pipeline is now
+    expressed as 8 typed, pure aDNA modules (see `supersedes_by`) wired by
+    `what/lattices/lattice_iii_verification_oracle.lattice.yaml`. This file is
+    retained for SiteForge-style consumers pointing at the composite name; the
+    multi-voice orchestration documented here (Voice Critic, Design, UX, SEO,
+    Brand) is a consumer-side composition pattern, not an III.aDNA core module —
+    it belongs in `SiteForge.aDNA/iii/` via consumer wrapper (Campaign B MB-2).
+    .
+    Original description: Semantic quality layer for SiteForge pipeline. Runs
+    the III review loop on generated website content and code, applying
+    domain-specific web_design traps and multi-voice reviewer orchestration.
+    Complements Playwright's mechanical validation — Playwright asks "does it
+    build? does it render?", III asks "is the copy honest? is the design
+    coherent? does it match the brand?"
   execution:
     runtime: claude
     model: claude-opus-4-6

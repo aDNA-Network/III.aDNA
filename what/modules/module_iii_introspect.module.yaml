@@ -1,0 +1,113 @@
+module:
+  name: III-Introspect
+  version: "1.0.0"
+  module_type: agent
+  description: >
+    Always-active second phase of the III pipeline. Lifts analysis from
+    individual claims to structural patterns by running 7 checks on the merged
+    Finding[] from active inspect modules: confidence_gradient, analogy_vs_argument,
+    structural_completeness, meta_patterns, argumentation_structure,
+    denominator_check, corrections_pattern_match. Emits Introspection[] and a
+    CalibratedReport; surfaces graduation candidates. Pure module.
+  execution:
+    runtime: claude
+    model: claude-opus-4-6
+    tier: L1
+    gpu_required: false
+    memory_mb: 2048
+    timeout_s: 180
+  inputs:
+    - name: merged_findings
+      type: structured
+      description: >
+        Concatenation of `Finding[]` from all active inspect modules
+        (text/code/visual/data). Modality prefix preserved on each finding ID.
+      required: true
+    - name: introspect_checks_pack
+      type: context_pack
+      description: >
+        `what/context/core_domain_packs/context_iii_introspect_checks.md` —
+        formal definitions of the 7 checks. All checks load together (~1500
+        token budget); they form a coherent pass and cannot be selectively
+        omitted. Skill-loaded.
+      required: true
+    - name: corrections_store
+      type: structured
+      description: >
+        Full canonical + consumer-local entries for check 2g
+        (`corrections_pattern_match`). Frequency + acceptance fields used to
+        surface graduation candidates. Read-only at this stage; writes happen
+        in module_iii_accumulate.
+      required: true
+    - name: artifact_metadata
+      type: structured
+      description: >
+        Frontmatter + section structure of the original artifact. Needed by
+        structural_completeness and argumentation_structure checks for
+        document-level reasoning shape.
+      required: true
+  outputs:
+    - name: introspections
+      type: structured
+      description: >
+        `Introspection[]` — one entry per check:
+        `{check_id, output: <check-specific shape>, severity, observations}`.
+        Per the lattice's introspect node `output_format: "Introspection[]"`.
+    - name: calibrated_report
+      type: structured
+      description: >
+        Bundled report consumed by module_iii_improve:
+        `{findings: Finding[], introspections: Introspection[],
+          graduation_candidates: []}`.
+    - name: graduation_candidates
+      type: structured
+      description: >
+        Subset of corrections meeting `frequency >= 3` AND
+        `acceptance_rate >= 80%`. Flagged for ADR-003 ceremony — Stanley-gated
+        promotion to canonical store / domain pack trap.
+  config:
+    skill_ref: "how/skills/skill_iii_review.md"
+    lattice_ref: "what/lattices/lattice_iii_verification_oracle.lattice.yaml"
+    skill_section: "Step 2: INTROSPECT"
+    checks_section: "context_iii_introspect_checks.md (all 7 checks)"
+    checks:
+      - confidence_gradient
+      - analogy_vs_argument
+      - structural_completeness
+      - meta_patterns
+      - argumentation_structure
+      - denominator_check
+      - corrections_pattern_match
+    graduation_thresholds:
+      frequency_min: 3
+      acceptance_rate_min: 0.80
+    output_format: "Introspection[]"
+  dependencies:
+    - skill_iii_review
+    - lattice_iii_verification_oracle
+    - module_iii_inspect_text
+    - module_iii_inspect_code
+    - module_iii_inspect_visual
+    - module_iii_inspect_data
+  fair:
+    license: "Apache-2.0"
+    keywords:
+      - introspect
+      - structural pattern analysis
+      - confidence gradient
+      - meta-patterns
+      - corrections pattern match
+      - iii loop
+      - agent module
+    provenance: >
+      Decomposed from skill_iii_review.md Step 2 + context_iii_introspect_checks.md
+      during III.aDNA Campaign A MA-3 (2026-05-08).
+  federation:
+    shareable: true
+    source_instance: III.aDNA
+    discoverable: true
+    version_policy: minor
+  migration_provenance:
+    previous_home: "lattice-labs (composite via module_iii_semantic_reviewer)"
+    migrated: 2026-05-08
+    migration_mission: campaign_a_iii_genesis MA-3

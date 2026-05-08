@@ -5,6 +5,7 @@ skill_type: agent
 created: 2026-04-01
 updated: 2026-05-08
 ma2_wikilink_rebase: 2026-05-08
+ma3_module_composition: 2026-05-08
 status: active
 category: review
 trigger: "When reviewing any document that makes technical, mathematical, or architectural claims for precision, reasoning quality, and completeness"
@@ -26,6 +27,8 @@ migration_provenance:
 ---
 
 # Skill: III Review (Inspect / Introspect / Improve)
+
+> **Module composition** (MA-3 2026-05-08): this skill orchestrates 8 typed, pure aDNA modules wired by [[what/lattices/lattice_iii_verification_oracle|lattice_iii_verification_oracle.lattice.yaml]] (v1.2.0): `module_iii_dispatch` → {`module_iii_inspect_text`, `module_iii_inspect_code`, `module_iii_inspect_visual`, `module_iii_inspect_data`} → `module_iii_introspect` → `module_iii_improve` → (human approval gate) → `module_iii_accumulate`. Modules live at `what/modules/`. Per CLAUDE.md standing rule §3, modules are pure — this skill loads domain packs + corrections and binds them as typed inputs to each module; modules never read pack files directly.
 
 ## Overview
 
