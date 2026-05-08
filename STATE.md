@@ -4,7 +4,7 @@ created: 2026-05-07
 updated: 2026-05-08
 status: active
 last_edited_by: agent_stanley
-last_session: session_stanley_20260508_iii_adna_ma3_module_decomposition
+last_session: session_stanley_20260508_iii_adna_ma4_airlock_v0_1_0
 tags: [state, governance]
 ---
 
@@ -12,7 +12,7 @@ tags: [state, governance]
 
 ## Current Phase
 
-**Campaign A: Genesis + Foundation — Phase 2 MA-3 COMPLETE; MA-4 NEXT**
+**Campaign A: Genesis + Foundation — DG-A CLOSED 9/9 — Campaign A WIND-DOWN; Campaigns B + C ready to open**
 
 MA-0 (vault bootstrap, CLAUDE.md, MANIFEST, STATE, 4 ADRs, AIRLOCK.md v0.1) closed
 2026-05-07 (commits `4df4d9b`, `a28045b`).
@@ -49,13 +49,27 @@ edge `human_review → corrections_store` rewired through `accumulate`; all 8 mo
 nodes now carry `ref:` pointing at their `.module.yaml` file. Skill annotated with
 "Module composition" callout + frontmatter `ma3_module_composition: 2026-05-08`.
 
+MA-4 (Airlock + v0.1.0) closed 2026-05-08: `how/airlock/AIRLOCK.md` elevated
+from v0.1 stub to v0.1.0 reference implementation. Frontmatter status flipped
+`stub` → `reference_implementation`; Path Selection matrix added upfront so an
+external agent self-routes in one read; each of the 5 entry paths (A text,
+B web/visual, C code, D video, E vault maintenance) gained Use Cases / Out of
+Scope / Expected Output / Context Budget — recipe "Load in order" lists kept
+verbatim. Anti-regression section "What v0.1.0 does NOT cover" makes the
+v0.1.0/v0.2 boundary explicit: entry paths (covered) vs. cross-vault request
+patterns (deferred to Campaign C MC-1 per the on-file VideoForge proposal at
+`who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`).
+Until v0.2 ships, cross-vault requests use the coord-memo fallback (worked
+example: CanvasForge VideoForge→Carly+Herb deck memo). Initial annotated
+git tag `v0.1.0` cut at MA-4 closure commit — first III.aDNA release.
+
 ## Campaigns
 
 | Campaign | Goal | Phase | Status |
 |----------|------|-------|--------|
-| **Campaign A: Genesis** | Fork, identity, content migration, module architecture | P0-P2 | **P2 IN PROGRESS — MA-4 next** |
-| **Campaign B: Federation** | Wire iii/ consumer wrappers across all vaults | P1-P3 | Pending DG-A |
-| **Campaign C: Airlock** | Formalize airlock standard + propagate to major vaults | P1-P2 | Pending DG-A (overlaps B) |
+| **Campaign A: Genesis** | Fork, identity, content migration, module architecture, airlock v0.1.0 | P0-P2 | **✅ COMPLETE 2026-05-08 — DG-A CLOSED 9/9** |
+| **Campaign B: Federation** | Wire iii/ consumer wrappers across all vaults | P1-P3 | **READY TO OPEN** (DG-A unblocked) |
+| **Campaign C: Airlock** | Formalize airlock standard v0.2 + propagate to major vaults | P1-P2 | **READY TO OPEN** (DG-A unblocked; can overlap B) |
 
 ## Campaign A Mission Queue
 
@@ -65,7 +79,7 @@ nodes now carry `ref:` pointing at their `.module.yaml` file. Skill annotated wi
 | MA-1: Core migration | skill_iii_review, module, lattice + corrections.jsonl head-start migrated; stubs added | 1 sess | ✅ **COMPLETE 2026-05-08** |
 | MA-2: Domain pack migration | 7 core domain pack .md files migrated to core_domain_packs/ | 1 sess | ✅ **COMPLETE 2026-05-08** |
 | MA-3: Module decomposition | 8 module .md + .module.yaml files authored | 1 sess | ✅ **COMPLETE 2026-05-08** |
-| MA-4: Airlock + v0.1.0 | AIRLOCK.md reference implementation; initial git tag | 0.5 sess | **NEXT** |
+| MA-4: Airlock + v0.1.0 | AIRLOCK.md reference implementation; initial git tag | 0.5 sess | ✅ **COMPLETE 2026-05-08** |
 
 ## DG-A Gate Criteria
 
@@ -76,10 +90,10 @@ nodes now carry `ref:` pointing at their `.module.yaml` file. Skill annotated wi
 - [x] corrections.jsonl canonical upstream operational (MA-1 ✅, head-start scope)
 - [x] All 7 core domain packs at canonical paths (MA-2 ✅, KINN carved out as consumer-specific)
 - [x] 8 module files present in what/modules/ (MA-3 ✅; legacy `module_iii_semantic_reviewer` rebranded composite_reference)
-- [ ] how/airlock/AIRLOCK.md implemented (5 entry paths) (MA-4 — NEXT; partial via v0.1 stub from MA-0)
-- [ ] Initial git tag v0.1.0 (MA-4)
+- [x] how/airlock/AIRLOCK.md implemented (5 entry paths) (MA-4 ✅; reference implementation v0.1.0 with Path Selection matrix + per-path enrichment + anti-regression section)
+- [x] Initial git tag v0.1.0 (MA-4 ✅; annotated tag at MA-4 closure commit)
 
-**DG-A scorecard: 7/9 green** (was 6/9 before MA-3).
+**DG-A scorecard: 9/9 green — DG-A CLOSED 2026-05-08.**
 
 ## What's Working
 
@@ -96,10 +110,12 @@ nodes now carry `ref:` pointing at their `.module.yaml` file. Skill annotated wi
 - 8 composable III modules live at `what/modules/` (`module_iii_dispatch`, `_inspect_text`, `_inspect_code`, `_inspect_visual`, `_inspect_data`, `_introspect`, `_improve`, `_accumulate`) — typed I/O matching lattice contract; pure (pack content arrives as typed input)
 - Lattice `lattice_iii_verification_oracle.lattice.yaml` v1.2.0: all 8 module nodes carry `ref:` pointing at their `.module.yaml`; `accumulate` node added; ADR-003 write-policy expressed in node config rather than implicit in `human_review`
 - Legacy `module_iii_semantic_reviewer.{md,yaml}` rebranded `status: composite_reference` with redirect banner to the 8 decomposed modules — preserves backward-compat for SiteForge consumers pointing at the composite (multi-voice orchestration is consumer-side, lands in `SiteForge.aDNA/iii/` at Campaign B MB-2)
+- `how/airlock/AIRLOCK.md` v0.1.0 reference implementation: `status: reference_implementation`, Path Selection matrix routes external agents in one read, 5 entry paths (A text / B web+visual / C code / D video / E vault maintenance) each with Use Cases / Out of Scope / Expected Output / Context Budget, anti-regression section "What v0.1.0 does NOT cover" defers cross-vault request patterns to v0.2 / Campaign C MC-1
+- Initial annotated git tag `v0.1.0` cut at MA-4 closure commit — first III.aDNA release; pre-federation baseline for consumer wrappers in Campaign B
 
 ## Blockers
 
-None currently. MA-4 (Airlock + v0.1.0) is the final critical-path mission to DG-A close.
+None currently. **DG-A is CLOSED.** Campaigns B (Federation) and C (Airlock Standard v0.2) are unblocked and ready to open.
 
 ## Risk Register
 
@@ -118,58 +134,72 @@ None currently. MA-4 (Airlock + v0.1.0) is the final critical-path mission to DG
 - Graduation candidates: C-003 (freq=?, acceptance=?), C-009 (freq=?, acceptance=?)
 - lattice-labs operational copy (`iii_corrections.jsonl`, md5 `dde2cbd8...`) remains in place until MB-1 retires it via the `lattice-labs/iii/` consumer wrapper
 
-## Latest Direction — 2026-05-08 (post-MA-3)
+## Latest Direction — 2026-05-08 (post-MA-4 — DG-A CLOSED)
 
-MA-3 closed. 8 composable III modules live at canonical paths
-(`module_iii_dispatch`, `_inspect_text`, `_inspect_code`, `_inspect_visual`,
-`_inspect_data`, `_introspect`, `_improve`, `_accumulate` — 16 new files).
-Typed I/O matches lattice contract names (`Finding[]`, `Introspection[]`,
-`ImprovementTable + VerificationResult`, `LearningStoreDelta + GraduationSignals`).
-Modules are pure (per CLAUDE.md §3): pack and corrections content arrives as
-typed `context_pack` inputs; modules never read pack files directly. Legacy
-`module_iii_semantic_reviewer.{md,yaml}` rebranded `status: composite_reference`
-with banner redirect to the 8 decomposed modules. Lattice yaml bumped 1.1.0 →
-1.2.0: `accumulate` node added (was previously a side-effect edge from
-`human_review`); each of the 8 module nodes now carries `ref:` pointing at its
-`.module.yaml`; ADR-003 write-policy (canonical = read-only outside graduation,
-local = append-only) now expressed in lattice node config rather than implicit
-in the human_review process. Skill `skill_iii_review.md` annotated with a
-"Module composition" callout (frontmatter: `ma3_module_composition: 2026-05-08`).
+MA-4 closed. `how/airlock/AIRLOCK.md` elevated stub → v0.1.0 reference
+implementation. Frontmatter status flipped `stub` → `reference_implementation`.
+**Path Selection matrix** added upfront: a 5-row decision table (artifact ×
+profile → path) lets an external agent self-route in one read instead of
+skimming 5 path sections. Each of the 5 entry paths (A text, B web/visual, C
+code, D video, E vault maintenance) gained four uniform additions: **Use Cases**
+(2–4 concrete examples), **Out of Scope** (pointers to the right path),
+**Expected Output** (the typed-IO triple `Finding[]` → `Introspection[]` →
+`ImprovementTable + VerificationResult`, plus optional `LearningStoreDelta`),
+**Context Budget** (rough file count). The "Load in order" recipes from the
+v0.1 stub were preserved verbatim — the recipes were already correct.
 
-**Verification**: 9 .md + 9 .module.yaml in `what/modules/`; all yamls parse;
-all 8 lattice module nodes resolve `ref:` to existing files; all 8 modules
-mentioned in the skill; `output_format` declared on every module's `config:`.
+The new **"What v0.1.0 does NOT cover"** section makes the v0.1.0/v0.2 boundary
+explicit. v0.1.0 covers entry (inbound, pull-based, agent enters this vault to
+run the loop). v0.2 will add request patterns (bidirectional, ephemeral, two
+agents handshake across vault boundaries — schema, status, idempotency). Until
+v0.2 ships, cross-vault requests use the **coord-memo fallback**, with the
+canonical worked example pointed at `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`.
+The inbound VideoForge proposal (`who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`)
+is cited in the section as the v0.2 spec input.
 
-**Next session: MA-4 — Airlock + v0.1.0.** Implement `how/airlock/AIRLOCK.md`
-reference standard (5 entry paths minimum); fold in inbound VideoForge findings
-where applicable (see Campaign C coord memo below) only if non-blocking; otherwise
-keep MA-4 tight to v0.1.0 readiness. Cut initial git tag `v0.1.0` to close DG-A.
+**Initial annotated git tag `v0.1.0` cut at MA-4 closure commit** — first
+III.aDNA release. Pre-federation baseline for Campaign B consumer wrappers.
 
-### Open follow-ups (non-blocking for MA-4)
+**Verification**: AIRLOCK.md frontmatter shows `status: reference_implementation`
++ `version: "0.1.0"`; all 5 `### Path` headers present; anti-regression section
+present with both v0.2 and Campaign C MC-1 references; STATE.md DG-A scorecard
+shows 9/9; campaign tracker MA-4 row ✅; `git tag -l` shows `v0.1.0`.
 
-1. **`reviewed_output` lattice node**: declared `type: module` since pre-MA-3 but
-   has no `ref:` (no module file at `what/modules/`). Either author a 9th module
-   `module_iii_reviewed_output.{md,yaml}` (apply approved edits to the artifact)
-   or retype `reviewed_output` as `process` (matching `human_review`). Stanley
-   call. Out of scope for MA-3 strict-8-module count.
-2. **Multi-voice orchestration in `module_iii_semantic_reviewer.md` body**: the
-   composite documents Voice Critic / Design / UX / SEO / Brand voices — these
-   are SiteForge consumer-side composition patterns. Per the rebrand banner
-   they belong in `SiteForge.aDNA/iii/` via consumer wrapper at Campaign B MB-2.
-   No action in III.aDNA core.
+**DG-A CLOSED 9/9.** Campaigns B (Federation, consumer wrappers) and C
+(Airlock Standard v0.2) are unblocked and ready to open. Next session is at
+Stanley's discretion: open Campaign B (priority recommendation: MB-1
+lattice-labs `iii/` wrapper retires the operational corrections.jsonl per
+ADR-003 — the only critical-path consumer migration), open Campaign C, or
+queue both with C following the VideoForge findings.
+
+### Carry-forward follow-ups (Campaign B planning input)
+
+The four follow-ups from MA-3 close did not require action in MA-4. They
+remain on the books for Campaign B planning:
+
+1. **`reviewed_output` lattice node**: declared `type: module` since pre-MA-3
+   but has no `ref:` (no module file at `what/modules/`). Either author a 9th
+   module `module_iii_reviewed_output.{md,yaml}` (apply approved edits to the
+   artifact) or retype `reviewed_output` as `process` (matching `human_review`).
+   Stanley call.
+2. **Multi-voice orchestration** in the rebranded
+   `module_iii_semantic_reviewer.md` composite_reference body: SiteForge
+   consumer-side composition pattern. Lands in `SiteForge.aDNA/iii/` via
+   consumer wrapper at Campaign B MB-2. No action in III.aDNA core.
 3. **`core_domain_packs/AGENTS.md`** referenced by `context_iii_learning_store.md`
-   wikilink `[[what/context/core_domain_packs/AGENTS|...]]` does not exist
-   (carried forward from MA-2 AAR follow-up). Author or remove the wikilink.
-4. **`skill_canvas_iii_review.md` placement** (carried from MA-2 AAR): currently
-   at lattice-labs, listed in CLAUDE.md project map as III.aDNA-canonical, but
-   is CanvasForge-coupled. Likely belongs in `CanvasForge.aDNA/iii/` consumer
-   wrapper. Decision deferred to Campaign B planning.
+   wikilink does not exist. Author or remove the wikilink during Campaign B
+   vault-hygiene pass.
+4. **`skill_canvas_iii_review.md` placement**: currently at lattice-labs, listed
+   in CLAUDE.md project map as III.aDNA-canonical, but is CanvasForge-coupled.
+   Likely belongs in `CanvasForge.aDNA/iii/` consumer wrapper. Decision deferred
+   to Campaign B planning.
 
 ### Inbound coordination — Campaign C / Airlock Standard v0.2
 
-`who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md` (committed
-`1bf3074`, separate from MA-2). Inbound from VideoForge.aDNA (proposing persona:
-Iris). 5 cross-forge request-pattern gaps in current `AIRLOCK.md` v0.1.0. Not
-blocking MA-4 v0.1.0 ship; queued for Campaign C (Airlock Standard, currently
-pending DG-A). Argus reads + responds when Campaign C opens; MA-4's AIRLOCK.md
-implementation should at minimum NOT contradict the v0.2 direction (anti-regression).
+`who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`
+(committed `1bf3074`). Inbound from VideoForge.aDNA (Iris). 5 cross-forge
+request-pattern gaps surfaced by exercising AIRLOCK.md v0.1.0 against a
+real cross-forge commission. **MA-4's AIRLOCK.md cited and acknowledged the
+proposal in its anti-regression section** — the v0.1.0 release is consistent
+with the proposed v0.2 direction. Argus reads + responds when Campaign C
+opens (now unblocked).
