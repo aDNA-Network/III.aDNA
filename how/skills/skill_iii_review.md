@@ -4,6 +4,7 @@ lattice_type: skill
 skill_type: agent
 created: 2026-04-01
 updated: 2026-05-08
+ma2_wikilink_rebase: 2026-05-08
 status: active
 category: review
 trigger: "When reviewing any document that makes technical, mathematical, or architectural claims for precision, reasoning quality, and completeness"
@@ -75,7 +76,7 @@ Run active modalities as determined by DISPATCH. All modalities produce findings
 | **Visual** (conditional) | Image refs in document | Label accuracy, consistency with text, misleading presentation |
 | **Data** (conditional) | Data file refs in document | Schema consistency, statistics vs prose, data quality |
 
-For full procedures, trap definitions, and output format, see [[what/context/iii_domain_packs/context_iii_inspect_procedures|INSPECT Procedures Reference]].
+For full procedures, trap definitions, and output format, see [[what/context/core_domain_packs/context_iii_inspect_procedures|INSPECT Procedures Reference]].
 
 ### Step 2: INTROSPECT — How's the Reasoning Structured?
 
@@ -85,7 +86,7 @@ Lift from individual claims to structural patterns. Run all 7 checks on merged f
 
 Check 2g creates a feedback loop: INSPECT finds patterns → ACCUMULATE stores them → INTROSPECT matches against them. Flag graduation candidates (frequency ≥ 3, acceptance ≥ 80%).
 
-For formal check definitions, see [[what/context/iii_domain_packs/context_iii_introspect_checks|INTROSPECT Checks Reference]].
+For formal check definitions, see [[what/context/core_domain_packs/context_iii_introspect_checks|INTROSPECT Checks Reference]].
 
 ### Step 3: IMPROVE — What Changes Are Needed?
 
@@ -186,7 +187,7 @@ INTROSPECT (Step 2) runs on the merged findings list from all sources — modali
 
 ## Integration Points
 
-- **Learning store** (`iii_corrections_canonical.jsonl`): Patterns injected at INSPECT, updated at ACCUMULATE. Schema: [[what/context/iii_domain_packs/context_iii_learning_store|learning store reference]] (pack migration in MA-2 will move to `core_domain_packs/`).
+- **Learning store** (`iii_corrections_canonical.jsonl`): Patterns injected at INSPECT, updated at ACCUMULATE. Schema: [[what/context/core_domain_packs/context_iii_learning_store|learning store reference]].
 - **VaaS verification oracle** ([[what/lattices/lattice_iii_verification_oracle|lattice YAML]]): III as a composable semantic verification node.
 - **Quality gates**: ADR review, PRD/RFC pipeline (stages 02-03), mission closeout, lattice validation.
 - **Context quality audit** (`skill_context_quality_audit.md`): III as part of broader audit workflows.
@@ -198,7 +199,7 @@ Developed during Zeta-aDNA campaign_zeta_genesis M00 (Context Ingestion & Resear
 
 ## Related
 
-- **INSPECT Procedures**: [[what/context/iii_domain_packs/context_iii_inspect_procedures|INSPECT modality reference]] (will rebase to `core_domain_packs/` in MA-2)
+- **INSPECT Procedures**: [[what/context/core_domain_packs/context_iii_inspect_procedures|INSPECT modality reference]]
 - **Skills Protocol**: `how/skills/AGENTS.md`
 - **Context Quality Rubric**: `what/docs/context_quality_rubric.md`
 - **Context Quality Audit**: `how/skills/skill_context_quality_audit.md`
