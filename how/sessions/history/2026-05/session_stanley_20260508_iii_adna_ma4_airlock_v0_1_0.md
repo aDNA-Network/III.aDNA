@@ -54,7 +54,8 @@ tags: [session, airlock, ma-4, release, v0_1_0, dg_a_close]
 - 2026-05-08 — Session AAR authored (this file).
 - 2026-05-08 — Verification PASS (frontmatter / 5 Path headers / anti-regression section / DG-A 9/9 / campaign tracker / smoke test).
 - 2026-05-08 — MA-3 session archived to `how/sessions/history/2026-05/` after closure commit.
-- 2026-05-08 — Closure commit + annotated tag `v0.1.0` cut.
+- 2026-05-08 — Closure commit `1628793` + annotated tag `v0.1.0` (object `7f32799`) cut.
+- 2026-05-08 — Campaign A wind-down: III.aDNA published to `LatticeProtocol/III.aDNA` (private); `main` + tag `v0.1.0` pushed; commit-hash backfill applied to STATE.md + this AAR; session archived to `how/sessions/history/2026-05/`.
 
 ## Deliverables
 
@@ -80,7 +81,7 @@ tags: [session, airlock, ma-4, release, v0_1_0, dg_a_close]
 - `how/sessions/active/session_stanley_20260508_iii_adna_ma4_airlock_v0_1_0.md` — this file (new)
 - `how/sessions/active/session_stanley_20260508_iii_adna_ma3_module_decomposition.md` — moved to `how/sessions/history/2026-05/`
 
-**Git tag**: annotated `v0.1.0` at MA-4 closure commit (release message: III.aDNA v0.1.0 — DG-A close: Argus persona, 8 modules, 7 core domain packs, 26-entry learning store, AIRLOCK.md reference standard).
+**Git tag**: annotated `v0.1.0` (tag object `7f32799`) at MA-4 closure commit `1628793` (release message: III.aDNA v0.1.0 — DG-A close: Argus persona, 8 modules, 7 core domain packs, 26-entry learning store, AIRLOCK.md reference standard). Pushed to `LatticeProtocol/III.aDNA` (private) at wind-down.
 
 ## Verification Results
 
@@ -96,8 +97,9 @@ tags: [session, airlock, ma-4, release, v0_1_0, dg_a_close]
 | STATE.md DG-A scorecard 9/9 line | present | present | ✅ |
 | Campaign A tracker MA-4 row → ✅ COMPLETE | yes | yes | ✅ |
 | Campaign A tracker frontmatter `status: completed` | yes | yes | ✅ |
-| `git tag -l v0.1.0` returns the tag | yes | yes (post-tag) | ✅ |
-| Tag points at MA-4 closure commit | yes | yes (post-tag) | ✅ |
+| `git tag -l v0.1.0` returns the tag | yes | yes (annotated, object `7f32799`) | ✅ |
+| Tag points at MA-4 closure commit | yes | yes (`1628793`) | ✅ |
+| Pushed to `LatticeProtocol/III.aDNA` (private) | yes | yes (`main` + tag `v0.1.0` at wind-down) | ✅ |
 | Smoke test — Path A "Load in order" files exist at canonical paths | 4/4 (excl. optional consumer extension) | 4/4 (skill, inspect_procedures, introspect_checks, corrections.jsonl all present) | ✅ |
 
 ## SITREP

@@ -12,7 +12,9 @@ tags: [state, governance]
 
 ## Current Phase
 
-**Campaign A: Genesis + Foundation — DG-A CLOSED 9/9 — Campaign A WIND-DOWN; Campaigns B + C ready to open**
+**Campaign A: Genesis + Foundation — DG-A CLOSED 9/9 — Campaign A WOUND DOWN 2026-05-08; Campaigns B + C ready to open**
+
+> **Wind-down note** (2026-05-08): MA-4 closure commit `1628793` + annotated tag `v0.1.0` pushed to `LatticeProtocol/III.aDNA` (private). MA-4 session archived to `how/sessions/history/2026-05/`. **No active session in flight** — `how/sessions/active/` is empty. Next session opens fresh; recommended next mission: Campaign B MB-1 (lattice-labs `iii/` consumer wrapper — retires the operational corrections.jsonl per ADR-003). See "Fresh-session boot" at the bottom of this file for the boot recipe.
 
 MA-0 (vault bootstrap, CLAUDE.md, MANIFEST, STATE, 4 ADRs, AIRLOCK.md v0.1) closed
 2026-05-07 (commits `4df4d9b`, `a28045b`).
@@ -49,7 +51,9 @@ edge `human_review → corrections_store` rewired through `accumulate`; all 8 mo
 nodes now carry `ref:` pointing at their `.module.yaml` file. Skill annotated with
 "Module composition" callout + frontmatter `ma3_module_composition: 2026-05-08`.
 
-MA-4 (Airlock + v0.1.0) closed 2026-05-08: `how/airlock/AIRLOCK.md` elevated
+MA-4 (Airlock + v0.1.0) closed 2026-05-08 (III.aDNA commit `1628793`,
+annotated tag `v0.1.0` at object `7f32799`, pushed `LatticeProtocol/III.aDNA`):
+`how/airlock/AIRLOCK.md` elevated
 from v0.1 stub to v0.1.0 reference implementation. Frontmatter status flipped
 `stub` → `reference_implementation`; Path Selection matrix added upfront so an
 external agent self-routes in one read; each of the 5 entry paths (A text,
@@ -157,8 +161,9 @@ canonical worked example pointed at `~/lattice/CanvasForge.aDNA/who/coordination
 The inbound VideoForge proposal (`who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`)
 is cited in the section as the v0.2 spec input.
 
-**Initial annotated git tag `v0.1.0` cut at MA-4 closure commit** — first
-III.aDNA release. Pre-federation baseline for Campaign B consumer wrappers.
+**Initial annotated git tag `v0.1.0` cut at MA-4 closure commit `1628793`** —
+first III.aDNA release. Pre-federation baseline for Campaign B consumer
+wrappers. Pushed to `LatticeProtocol/III.aDNA` (private) 2026-05-08.
 
 **Verification**: AIRLOCK.md frontmatter shows `status: reference_implementation`
 + `version: "0.1.0"`; all 5 `### Path` headers present; anti-regression section
@@ -203,3 +208,32 @@ real cross-forge commission. **MA-4's AIRLOCK.md cited and acknowledged the
 proposal in its anti-regression section** — the v0.1.0 release is consistent
 with the proposed v0.2 direction. Argus reads + responds when Campaign C
 opens (now unblocked).
+
+### Fresh-session boot
+
+For the next agent that opens this vault — the recipe to confirm wind-down
+state and pick up cleanly:
+
+1. **Read this STATE.md from the top.** Current Phase block + Wind-down note
+   (lines 13–17) summarize the closed gate and zero-active-session posture.
+2. **Confirm DG-A 9/9** in §"DG-A Gate Criteria" — every box checked.
+3. **Confirm `how/sessions/active/` is empty** (`ls how/sessions/active/`).
+   Empty = no in-flight work. If a stray file appears, read its frontmatter:
+   if `status: completed`, archive to `how/sessions/history/2026-05/`; if
+   `status: in_progress`, that session was interrupted and resuming it takes
+   priority over opening a new mission.
+4. **Choose campaign opening order.** Two are unblocked:
+   - **Campaign B (Federation)** — recommended next. Critical-path: **MB-1
+     lattice-labs `iii/` consumer wrapper** retires the operational
+     `iii_corrections.jsonl` per ADR-003. Other consumer wrappers (SiteForge,
+     VideoForge, CanvasForge, wga) follow MB-1 and can sequence independently.
+   - **Campaign C (Airlock Standard v0.2)** — authors
+     `what/artifacts/iii_airlock_standard_spec.md` formalizing entry paths
+     (existing v0.1.0 content) + cross-vault request patterns (per the
+     on-file VideoForge proposal at `who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`).
+     Less time-pressure since v0.1.0 is shipped.
+5. **Carry-forward follow-ups** (above) feed Campaign B planning, not
+   Campaign C — keep them with B.
+6. **Open a session file.** Use `how/templates/template_session.md` (or
+   the established MA-N session pattern in `how/sessions/history/2026-05/`)
+   and create the new session at `how/sessions/active/`.
