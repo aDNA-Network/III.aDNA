@@ -139,3 +139,45 @@ ADR-003 (canonical/local split) beyond pure path rebases. Original content descr
 a single in-place corrections file that predates ADR-003. The update brings the
 pack current with the ratified architecture. Documented in the pack's
 `migration_provenance` block and the MA-2 stub at lattice-labs.
+
+### Architecture confirmed (Stanley 2026-05-08)
+
+III is **one aDNA vault, one context graph**. The 8 MA-3 modules live as 8 files
+inside `III.aDNA/what/modules/` — NOT as 8 separate aDNA projects. "Composable"
+means each module is a typed-IO aDNA primitive (per ADR-001) wired by
+`what/lattices/lattice_iii_verification_oracle.lattice.yaml`; consumers (other
+vaults) federate to III.aDNA as a single source via their `iii/` wrapper and pick
+which subset of modules to invoke through the lattice. Module boundaries are
+units of decomposition WITHIN III.aDNA — not vault boundaries.
+
+### MA-3 jump-start — module source mapping
+
+Each future module decomposes from existing canonical content already at III.aDNA.
+The work is partition + typing, not authorship from scratch.
+
+| Module | Primary source (already at III.aDNA) | Notes |
+|--------|--------------------------------------|-------|
+| `module_iii_dispatch` | `how/skills/skill_iii_review.md` Step 0 | Path/frontmatter/queue dispatch; loads no domain packs (skill orchestrates) |
+| `module_iii_inspect_text` | skill Step 1 + `core_domain_packs/context_iii_inspect_procedures.md` Modality 1 | Always-on text modality |
+| `module_iii_inspect_code` | skill Step 1 + inspect_procedures Modality 2 | Conditional |
+| `module_iii_inspect_visual` | skill Step 1 + inspect_procedures Modality 3 | Conditional |
+| `module_iii_inspect_data` | skill Step 1 + inspect_procedures Modality 4 | Conditional |
+| `module_iii_introspect` | skill Step 2 + `core_domain_packs/context_iii_introspect_checks.md` (7 checks) | Operates on merged inspect findings |
+| `module_iii_improve` | skill Step 3 | Findings → ranked change orders |
+| `module_iii_accumulate` | skill Step 3b + `core_domain_packs/context_iii_learning_store.md` (post-MA-2 ADR-003 doctrine) | Writes to consumer-vault local store; canonical via graduation ceremony |
+
+Existing `what/modules/module_iii_semantic_reviewer.{md,yaml}` (MA-1 migration)
+is the legacy composite. MA-3 closeout decision: retire it OR rebrand as a
+backward-compat composite reference that loads the 8 decomposed modules.
+
+Module boundary rule (ADR-001): modules are pure. Domain pack loading happens in
+the skill, not in modules. `module_iii_inspect_text` does NOT read packs — it
+receives them as typed input from dispatch.
+
+### Inbound coordination — Campaign C / Airlock Standard v0.2
+
+`who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md` (committed
+`1bf3074`, separate from MA-2). Inbound from VideoForge.aDNA (proposing persona:
+Iris). 5 cross-forge request-pattern gaps in current `AIRLOCK.md` v0.1.0. Not
+blocking MA-3; queued for Campaign C (Airlock Standard, currently pending DG-A).
+Argus reads + responds when Campaign C opens.

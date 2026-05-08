@@ -52,7 +52,7 @@ Verification approach: source body content (post-frontmatter) must be byte-ident
 
 ## Deliverables
 
-### III.aDNA (commit pending — to be recorded post-commit)
+### III.aDNA (commit `9982ead`)
 - `what/context/core_domain_packs/context_iii_inspect_procedures.md` — 7848 bytes (NEW; wikilinks rebased)
 - `what/context/core_domain_packs/context_iii_introspect_checks.md` — 4643 bytes (NEW; wikilinks rebased)
 - `what/context/core_domain_packs/context_iii_learning_store.md` — 10146 bytes (NEW; wikilinks rebased + ADR-003 alignment)
@@ -67,7 +67,7 @@ Verification approach: source body content (post-frontmatter) must be byte-ident
 - `how/sessions/history/2026-05/session_stanley_20260507_iii_adna_genesis.md` — archived from active/
 - `how/sessions/history/2026-05/session_stanley_20260508_iii_adna_ma1_core_migration.md` — archived from active/
 
-### lattice-labs (commit pending — to be recorded post-commit)
+### lattice-labs (commit `9499fdc1`, pushed to origin/main)
 - 7 forward `[MIGRATED]` stubs at source paths (replacing originals):
   - `what/context/iii_domain_packs/context_iii_inspect_procedures.md` (43 lines)
   - `what/context/iii_domain_packs/context_iii_introspect_checks.md` (40 lines)
