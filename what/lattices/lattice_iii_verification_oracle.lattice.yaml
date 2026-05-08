@@ -1,0 +1,328 @@
+lattice:
+  name: iii_verification_oracle
+  version: "1.1.0"
+  lattice_type: skill
+  description: >
+    III Review as a composable semantic verification oracle. Accepts documents
+    or artifacts as input, applies adversarial precision checking (INSPECT),
+    structural pattern analysis (INTROSPECT), and produces VerificationResults
+    with ReviewState progression. Integrates with VaaS-style verification
+    pipelines as a semantic quality gate — complementing factual verification
+    (citation accuracy) with reasoning verification (logical validity,
+    confidence calibration, completeness).
+
+  execution:
+    mode: reasoning
+    runtime: local
+    tier: L1
+
+  nodes:
+    - id: document_input
+      type: dataset
+      description: >
+        Input artifact(s) to review. Accepts any document type: markdown,
+        YAML, code files, images, structured data. The dispatch node
+        determines which inspection modalities to apply.
+      config:
+        dataset_class: artifact
+        accepted_types:
+          - markdown
+          - yaml
+          - python
+          - image
+          - jsonl
+          - csv
+
+    - id: corrections_store
+      type: dataset
+      ref: "what/context/core_domain_packs/iii_corrections_canonical.jsonl"
+      description: >
+        Learning store — accumulated failure patterns from prior reviews.
+        Injected at dispatch and inspect nodes to bias review toward
+        known recurring patterns. Analogous to VaaS corrections list.
+        Canonical upstream lives in III.aDNA; consumer vaults maintain
+        local downstream forks per ADR-003 (graduation ceremony).
+      config:
+        dataset_class: corrections
+        injection_points: ["dispatch", "text_inspect"]
+        version_policy: append_only
+
+    - id: dispatch
+      type: module
+      description: >
+        Object-type dispatcher. Reads document metadata and content signals
+        to determine: (1) which domain packs to load, (2) which INSPECT
+        modalities to activate, (3) review depth (shallow/standard/deep).
+        Analogous to VaaS tiered model dispatch (Sonnet vs Haiku by rarity).
+      config:
+        pack_assignment:
+          # Engineering domain
+          "what/decisions/adr_*": ["core", "engineering"]
+          "what/lattices/*": ["core", "engineering"]
+          "how/skills/skill_*": ["core", "engineering"]
+          "what/modules/*": ["core", "engineering"]
+          # Strategy domain
+          "how/campaigns/**/campaign_*": ["core", "strategy"]
+          "how/missions/mission_*": ["core", "strategy"]
+          "who/roadmap/*": ["core", "strategy"]
+          # Mathematics domain
+          "what/context/zeta_*/**": ["core", "mathematics"]
+          # Vault maintenance domain
+          "how/doctrine/*": ["core", "vault_maintenance"]
+          "how/STATE*.md": ["core", "vault_maintenance"]
+          # Web design / SiteForge domain
+          "*/site/src/**/*.astro": ["core", "web_design"]
+          "*/site/src/**/*.ts": ["core", "web_design", "engineering"]
+          "*/site/src/**/*.css": ["core", "web_design"]
+          "*/site/src/content/**": ["core", "web_design"]
+          "how/campaigns/campaign_siteforge/**": ["core", "web_design", "strategy"]
+          # General context
+          "what/context/*": ["core"]
+          # Fallback
+          "*": ["core"]
+        depth_assignment:
+          "what/decisions/adr_*": "deep"
+          "how/doctrine/*": "deep"
+          "who/governance/*": "deep"
+          "what/lattices/*": "standard"
+          "how/campaigns/**/campaign_*": "standard"
+          "how/skills/skill_*": "standard"
+          "what/context/*": "standard"
+          "how/missions/mission_*": "standard"
+          "*/site/src/pages/*": "standard"
+          "*/site/src/layouts/*": "standard"
+          "*/site/src/utils/*": "standard"
+          "*/site/src/components/**": "shallow"
+          "*/site/src/content/**": "shallow"
+          "*": "shallow"
+        frontmatter_dispatch:
+          type_to_packs:
+            adr: ["core", "engineering"]
+            decision: ["core", "engineering"]
+            skill: ["core", "engineering"]
+            lattice: ["core", "engineering"]
+            module: ["core", "engineering"]
+            campaign: ["core", "strategy"]
+            plan: ["core", "strategy"]
+            doctrine: ["core", "vault_maintenance"]
+            state_summary: ["core", "vault_maintenance"]
+            context_guide: ["core"]
+            astro_component: ["core", "web_design"]
+            web_content: ["core", "web_design"]
+            web_page: ["core", "web_design"]
+          type_to_depth:
+            adr: "deep"
+            doctrine: "deep"
+            governance: "deep"
+            skill: "standard"
+            campaign: "standard"
+            plan: "standard"
+            context_guide: "standard"
+            web_page: "standard"
+            astro_component: "shallow"
+            web_content: "shallow"
+        modality_signals:
+          code_references: "code_inspect"
+          image_references: "visual_inspect"
+          data_references: "data_inspect"
+
+    - id: text_inspect
+      type: module
+      description: >
+        Core text inspection — adversarial precision check. Reads document
+        with Five Traps + domain pack traps + learning store corrections.
+        Categorizes claims by factual accuracy, logical chains, precision,
+        completeness, and confidence calibration. Always active.
+      config:
+        always_active: true
+        traps: "core + dispatched domain packs + corrections"
+        output_format: "Finding[]"
+
+    - id: code_inspect
+      type: module
+      description: >
+        Code reference verification. Extracts function names, file paths,
+        CLI commands, and API endpoints from document claims. Verifies
+        each reference exists in the codebase via Grep/Glob. Flags
+        deleted references, renamed functions, changed signatures.
+      config:
+        conditional: true
+        trigger: "code_references detected in document"
+        tools: ["Agent", "Grep", "Glob"]
+        output_format: "Finding[]"
+
+    - id: visual_inspect
+      type: module
+      description: >
+        Visual inspection via Gemini describe_image. Checks label accuracy,
+        completeness, consistency with textual claims, and misleading
+        presentation in screenshots, diagrams, and UI mockups.
+      config:
+        conditional: true
+        trigger: "image_references detected in document"
+        tools: ["mcp__gemini-image__describe_image"]
+        output_format: "Finding[]"
+
+    - id: data_inspect
+      type: module
+      description: >
+        Structured data validation. Reads referenced YAML, JSON, JSONL,
+        CSV files. Checks schema consistency, value range violations,
+        and completeness against document claims.
+      config:
+        conditional: true
+        trigger: "data_references detected in document"
+        output_format: "Finding[]"
+
+    - id: introspect
+      type: module
+      description: >
+        Structural pattern analysis on merged findings. Seven checks:
+        confidence gradient, analogy vs argument, structural completeness,
+        meta-patterns, argumentation structure, denominator check,
+        corrections pattern match (against learning store).
+        Modality-agnostic — operates on the common Finding format.
+      config:
+        checks:
+          - confidence_gradient
+          - analogy_vs_argument
+          - structural_completeness
+          - meta_patterns
+          - argumentation_structure
+          - denominator_check
+          - corrections_pattern_match
+        output_format: "Introspection[]"
+
+    - id: improve
+      type: module
+      description: >
+        Converts findings + introspection into a prioritized improvement
+        table with severity ratings. Informed by learning store acceptance
+        rates for calibration. Produces the final VerificationResult.
+      config:
+        severity_levels: ["critical", "high", "medium", "low"]
+        output_format: "ImprovementTable + VerificationResult"
+
+    - id: human_review
+      type: process
+      description: >
+        Human approval gate. User reviews improvement table, accepts or
+        rejects each proposed change. Acceptance/rejection feeds back
+        into learning store calibration. Non-automatable — the human
+        gate prevents oscillation in self-improvement cycles.
+      config:
+        trigger: "always"
+        required: true
+        outputs_to: ["corrections_store", "reviewed_output"]
+
+    - id: reviewed_output
+      type: module
+      description: >
+        Apply approved improvements to the input document. Update
+        frontmatter. Produce final ReviewState and VerificationReport.
+      config:
+        output_format: "VerificationReport"
+        review_state_progression:
+          - UNREVIEWED
+          - INSPECTED
+          - INTROSPECTED
+          - IMPROVED
+
+  edges:
+    - from: document_input
+      to: dispatch
+      label: "raw artifact + metadata"
+
+    - from: corrections_store
+      to: dispatch
+      label: "known patterns (pack selection hints)"
+
+    - from: corrections_store
+      to: text_inspect
+      label: "corrections injection (check these patterns)"
+
+    - from: dispatch
+      to: text_inspect
+      label: "document + loaded packs + depth"
+
+    - from: dispatch
+      to: code_inspect
+      label: "code claims (conditional)"
+
+    - from: dispatch
+      to: visual_inspect
+      label: "image refs (conditional)"
+
+    - from: dispatch
+      to: data_inspect
+      label: "data refs (conditional)"
+
+    - from: text_inspect
+      to: introspect
+      label: "text findings"
+
+    - from: code_inspect
+      to: introspect
+      label: "code findings (if active)"
+
+    - from: visual_inspect
+      to: introspect
+      label: "visual findings (if active)"
+
+    - from: data_inspect
+      to: introspect
+      label: "data findings (if active)"
+
+    - from: introspect
+      to: improve
+      label: "merged findings + introspection patterns"
+
+    - from: corrections_store
+      to: introspect
+      label: "pattern match reference"
+
+    - from: improve
+      to: human_review
+      label: "improvement table for approval"
+
+    - from: human_review
+      to: corrections_store
+      label: "acceptance/rejection → calibration update"
+
+    - from: human_review
+      to: reviewed_output
+      label: "approved improvements"
+
+    - from: document_input
+      to: reviewed_output
+      label: "original document (for applying edits)"
+
+  fair:
+    license: "Apache-2.0"
+    creators: ["Lattice Labs"]
+    keywords:
+      - semantic_verification
+      - quality_review
+      - confidence_calibration
+      - adversarial_inspection
+      - self_improving
+      - learning_store
+    provenance: >
+      III Review system originated in Zeta-aDNA campaign for mathematical
+      document review (2026-04-01). Evolved to general-purpose verification
+      oracle during campaign_iii_evolution (2026-04-03). Learning store
+      design inspired by VaaS corrections list (Sabharwal, Patel et al.).
+      Canonical home migrated to III.aDNA on 2026-05-08 (Campaign A MA-1).
+
+  federation:
+    shareable: true
+    discoverable: true
+    source_instance: "iii_adna_canonical"
+    parent_lattice: ""
+    version_policy: minor
+    extracted_nodes: []
+
+  migration_provenance:
+    previous_home: lattice-labs/what/lattices/skills/lattice_iii_verification_oracle.lattice.yaml
+    migrated: 2026-05-08
+    migration_mission: campaign_a_iii_genesis MA-1

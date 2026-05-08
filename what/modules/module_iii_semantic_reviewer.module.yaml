@@ -1,0 +1,121 @@
+module:
+  name: III-Semantic-Reviewer
+  version: "1.0.0"
+  module_type: agent
+  description: >
+    Semantic quality layer for SiteForge pipeline. Runs the III (Inspect/Introspect/Improve)
+    review loop on generated website content and code, applying domain-specific web_design
+    traps and multi-voice reviewer orchestration. Complements Playwright's mechanical
+    validation — Playwright asks "does it build? does it render?", III asks "is the copy
+    honest? is the design coherent? does it match the brand?" Maps to the
+    iii_semantic_reviewer node in the partner_website_scaffold lattice (SiteForge.aDNA
+    consumer-side; this module's canonical home is III.aDNA).
+  execution:
+    runtime: claude
+    model: claude-opus-4-6
+    tier: L1
+    gpu_required: false
+    memory_mb: 4096
+    timeout_s: 300
+  inputs:
+    - name: quality_gate_report
+      type: structured
+      description: >
+        JSON report from quality_gate_validator. Provides mechanical gate results as
+        context — III knows which gates passed/failed and can correlate semantic issues
+        with mechanical symptoms. Required for cross-layer pattern detection.
+      required: true
+    - name: content_files
+      type: path
+      description: >
+        Path to generated content files (Astro pages, content collections, markdown).
+        All files under src/pages/ and src/content/ in the generated Astro project.
+        Text and code INSPECT modalities run against these.
+      required: true
+    - name: code_files
+      type: path
+      description: >
+        Path to generated code files (Astro components, layouts, utilities, config).
+        All files under src/components/, src/layouts/, src/utils/, and astro.config.mjs.
+        Code INSPECT modality verifies Astro 6 API usage and design token discipline.
+      required: true
+    - name: evidence_screenshots
+      type: path
+      description: >
+        Path to Gate 8 (Brand) and Gate 9 (Responsive) evidence screenshots from
+        quality_gate_validator. Visual INSPECT modality reviews these for design
+        coherence, visual hierarchy, and brand alignment.
+      required: true
+    - name: branding_config
+      type: config
+      description: >
+        Entity branding configuration (branding.json or equivalent). Used by the
+        Brand Alignment voice to verify visual identity adherence. Optional — when
+        absent, Brand Alignment voice checks for generic design patterns only.
+      required: false
+  outputs:
+    - name: semantic_review_report
+      type: structured
+      description: >
+        Comprehensive review report containing: dispatch configuration (packs, depth,
+        modalities), all findings from INSPECT (text + code + visual + multi-voice),
+        INTROSPECT meta-patterns, and IMPROVE prioritized table. JSON format with
+        sections mirroring the III loop stages.
+    - name: findings_list
+      type: structured
+      description: >
+        Flat list of all findings with voice-prefixed IDs (F-VCRIT-001, F-DESIGN-001,
+        F-UX-001, F-SEO-001, F-BRAND-001 for standard voices; F-TEXT-NNN, F-CODE-NNN,
+        F-VISUAL-NNN for modality findings). Each finding: id, severity, location,
+        description, proposed_fix, voice_source.
+    - name: improvement_table
+      type: structured
+      description: >
+        Prioritized improvement recommendations from IMPROVE phase. Merges findings
+        across all voices and modalities. Cross-voice escalation: findings flagged by
+        3+ voices are elevated to Critical. JSON array of {finding_id, proposed_fix,
+        priority, type, voices_agreeing}.
+  config:
+    skill_ref: "how/skills/skill_iii_review.md"
+    lattice_ref: "what/lattices/lattice_iii_verification_oracle.lattice.yaml"
+    domain_packs:
+      required: [core, web_design]
+      optional: [engineering]
+    reviewer_registry: "<consumer_vault>/iii/what/context/<vault>_siteforge_reviewers.yaml"
+    corrections_store: "what/context/core_domain_packs/iii_corrections_canonical.jsonl"
+    review_depth: standard
+    modalities:
+      text_inspect: always
+      code_inspect: always
+      visual_inspect: always
+      data_inspect: conditional
+    cross_voice_escalation:
+      threshold: 3
+      escalation_severity: critical
+  dependencies:
+    - skill_iii_review
+    - lattice_iii_verification_oracle
+    - context_iii_domain_packs_core
+    - context_iii_domain_packs_web_design
+    - siteforge_reviewers   # consumer-vault-provided; loaded via federation_ref
+  fair:
+    license: "Apache-2.0"
+    keywords:
+      - semantic review
+      - iii loop
+      - web design
+      - multi-voice
+      - content quality
+      - agent module
+      - siteforge
+    provenance: "SiteForge Campaign M11, Lattice Protocol (2026); canonical home migrated to III.aDNA 2026-05-08 (MA-1)"
+  federation:
+    shareable: true
+    source_instance: III.aDNA
+    discoverable: true
+    version_policy: minor
+  _migration_version: "iii-adna-1.0"
+  migration_provenance:
+    previous_home: lattice-labs/what/modules/module_iii_semantic_reviewer.module.yaml
+    migrated: 2026-05-08
+    migration_mission: campaign_a_iii_genesis MA-1
