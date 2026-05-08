@@ -12,9 +12,16 @@ tags: [state, governance]
 
 ## Current Phase
 
-**Campaign A: Genesis + Foundation — Phase 0 MA-0 IN PROGRESS**
+**Campaign A: Genesis + Foundation — Phase 1 MA-1 COMPLETE; MA-2 NEXT**
 
-Vault bootstrapped from aDNA template. CLAUDE.md, MANIFEST.md, STATE.md authored. ADRs 000-003 being drafted. Core content migration (MA-1, MA-2) queued. Module architecture (MA-3) and airlock implementation (MA-4) follow.
+MA-0 (vault bootstrap, CLAUDE.md, MANIFEST, STATE, 4 ADRs, AIRLOCK.md v0.1) closed
+2026-05-07 (commits `4df4d9b`, `a28045b`).
+
+MA-1 (core system migration) closed 2026-05-08 (III.aDNA commit `f2374af`,
+lattice-labs commit `f889ea71` pushed): canonical skill, module .md/.yaml,
+lattice .yaml, and `iii_corrections_canonical.jsonl` (md5 verified) landed in
+III.aDNA. lattice-labs originals replaced with `[MIGRATED]` stubs + MIGRATION_NOTE.md
+sibling for the corrections.jsonl (which stays operational until MB-1).
 
 ## Campaigns
 
@@ -28,22 +35,23 @@ Vault bootstrapped from aDNA template. CLAUDE.md, MANIFEST.md, STATE.md authored
 
 | Mission | Goal | Est. | Status |
 |---------|------|------|--------|
-| MA-0: Fork + Identity | Vault created, CLAUDE.md/MANIFEST/STATE/ADRs authored | 1 sess | **IN PROGRESS** |
-| MA-1: Core migration | skill_iii_review, module, lattice migrated; lattice-labs stubs added | 1 sess | queued |
-| MA-2: Domain pack migration | 7 core packs + corrections.jsonl migrated | 1 sess | queued |
+| MA-0: Fork + Identity | Vault created, CLAUDE.md/MANIFEST/STATE/ADRs authored | 1 sess | ✅ **COMPLETE 2026-05-07** |
+| MA-1: Core migration | skill_iii_review, module, lattice + corrections.jsonl head-start migrated; stubs added | 1 sess | ✅ **COMPLETE 2026-05-08** |
+| MA-2: Domain pack migration | 7 core domain pack .md files migrated to core_domain_packs/ | 1 sess | **NEXT** |
 | MA-3: Module decomposition | 8 module .md + .module.yaml files authored | 1-2 sess | queued |
 | MA-4: Airlock + v0.1.0 | AIRLOCK.md reference implementation; initial git tag | 0.5 sess | queued |
 
 ## DG-A Gate Criteria
 
-- [ ] CLAUDE.md authored with Argus identity + full architecture
-- [ ] ADRs 000-003 ratified (Stanley approval)
-- [ ] Core skill + module + lattice migrated from lattice-labs
-- [ ] All 7 domain packs + corrections.jsonl at canonical paths
-- [ ] 8 module files present in what/modules/
-- [ ] how/airlock/AIRLOCK.md implemented (5 entry paths)
-- [ ] lattice-labs forward stubs in place (active campaigns unblocked)
-- [ ] Initial git tag v0.1.0
+- [x] CLAUDE.md authored with Argus identity + full architecture (MA-0 ✅)
+- [x] ADRs 000-003 ratified (Stanley approval) (MA-0 ✅)
+- [x] Core skill + module + lattice migrated from lattice-labs (MA-1 ✅)
+- [x] lattice-labs forward stubs in place (active campaigns unblocked) (MA-1 ✅)
+- [x] corrections.jsonl canonical upstream operational (MA-1 ✅, head-start scope)
+- [ ] All 7 domain packs at canonical paths (MA-2 — NEXT)
+- [ ] 8 module files present in what/modules/ (MA-3)
+- [ ] how/airlock/AIRLOCK.md implemented (5 entry paths) (MA-4 — partial via v0.1 stub from MA-0)
+- [ ] Initial git tag v0.1.0 (MA-4)
 
 ## What's Working
 
@@ -51,7 +59,10 @@ Vault bootstrapped from aDNA template. CLAUDE.md, MANIFEST.md, STATE.md authored
 - CLAUDE.md v1.0 authored (Argus persona, Framework.aDNA category, consumer pattern)
 - MANIFEST.md authored (project identity, active consumer table, entry points)
 - STATE.md authored (this file)
-- ADR directory structure created
+- ADRs 000-003 ratified at `what/decisions/`
+- Core III canonical files live at III.aDNA (skill, module, lattice, corrections.jsonl)
+- lattice-labs forward stubs in place; active campaigns continue uninterrupted (whitepaper_iii_deep_review at 7/25 cycles, kinn_branding_iii at 50/100)
+- corrections.jsonl canonical upstream operational; consumer-vault local store pattern ready (per ADR-003)
 
 ## Blockers
 
@@ -74,6 +85,21 @@ None currently. MA-1 (core migration) is the critical path to DG-A.
 - Graduation candidates: C-003 (freq=?, acceptance=?), C-009 (freq=?, acceptance=?)
 - Canonical path (post-MA-2): `what/context/core_domain_packs/iii_corrections_canonical.jsonl`
 
-## Latest Direction — 2026-05-07
+## Latest Direction — 2026-05-08
 
-Executing Campaign A MA-0. Next session: MA-1 core system migration (skill + module + lattice from lattice-labs).
+MA-1 closed (corrections.jsonl head-start included per Stanley directive). Both
+vaults committed; lattice-labs pushed.
+
+**Next session: MA-2 — Domain pack migration.** Move 7 .md files from
+`lattice-labs/what/context/iii_domain_packs/` (and `iii_vault_maintenance/`) to
+`III.aDNA/what/context/core_domain_packs/`:
+1. `context_iii_inspect_procedures.md`
+2. `context_iii_introspect_checks.md`
+3. `context_iii_learning_store.md` (schema + protocol)
+4. `context_iii_domain_packs_web_design.md`
+5. `context_iii_whitepaper_communication.md`
+6. `context_iii_kinn_branding.md`
+7. `context_iii_canvas_visual.md`
+8. `context_iii_vault_maintenance.md` (currently in `iii_vault_maintenance/`)
+
+Replace lattice-labs originals with forward stubs; rebase wikilinks in `skill_iii_review.md` (already at III.aDNA) to drop the deferred-during-MA-1 path placeholders. Remove path warnings in `skill_iii_review.md` once packs land.

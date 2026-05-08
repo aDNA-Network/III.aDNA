@@ -31,9 +31,9 @@ Bootstrap III.aDNA as a standalone Framework.aDNA project, migrate all core syst
 
 | Mission | Objective | Sessions | Status |
 |---------|-----------|----------|--------|
-| **MA-0** | Fork + identity: vault creation, CLAUDE.md, MANIFEST, STATE, ADRs 000-003 | 1 | IN PROGRESS |
-| **MA-1** | Core migration: skill_iii_review, module, lattice from lattice-labs; stubs added | 1 | queued |
-| **MA-2** | Domain pack migration: 7 packs + corrections.jsonl to canonical paths | 1 | queued |
+| **MA-0** | Fork + identity: vault creation, CLAUDE.md, MANIFEST, STATE, ADRs 000-003 | 1 | ✅ COMPLETE 2026-05-07 |
+| **MA-1** | Core migration: skill + module + lattice + corrections.jsonl head-start; stubs in lattice-labs | 1 | ✅ COMPLETE 2026-05-08 |
+| **MA-2** | Domain pack migration: 7 .md packs to canonical core_domain_packs/ | 1 | NEXT |
 | **MA-3** | Module decomposition: 8 module .md + .module.yaml files | 1-2 | queued |
 | **MA-4** | Airlock reference implementation + v0.1.0 tag | 0.5 | queued |
 
@@ -52,9 +52,9 @@ MA-0 → MA-1 → MA-2 → [DG-A gate, only after MA-3 + MA-4 complete] → Camp
 
 | Phase | Name | Status |
 |-------|------|--------|
-| P0 | Bootstrap | IN PROGRESS |
-| P1 | Content Migration | queued |
-| P2 | Module Architecture + Airlock | queued |
+| P0 | Bootstrap (MA-0) | ✅ COMPLETE 2026-05-07 |
+| P1 | Content Migration (MA-1, MA-2) | ⚙ IN PROGRESS — MA-1 done; MA-2 next |
+| P2 | Module Architecture + Airlock (MA-3, MA-4) | queued |
 
 ## AAR (on completion)
 <!-- Template: how/templates/template_aar_lightweight.md -->
