@@ -4,7 +4,7 @@ created: 2026-05-07
 updated: 2026-05-08
 status: active
 last_edited_by: agent_stanley
-last_session: session_stanley_20260508_iii_adna_ma4_airlock_v0_1_0
+last_session: session_stanley_20260508_iii_adna_mb1_lattice_labs_wrapper
 tags: [state, governance]
 ---
 
@@ -12,9 +12,9 @@ tags: [state, governance]
 
 ## Current Phase
 
-**Campaign A: Genesis + Foundation — DG-A CLOSED 9/9 — Campaign A WOUND DOWN 2026-05-08; Campaigns B + C ready to open**
+**Campaign B: Federation — P1 IN-FLIGHT (MB-1 ✅ 2026-05-08) — Campaign C: Airlock Standard v0.2 — P1 OPEN (no missions executed yet, awaiting bandwidth)**
 
-> **Wind-down note** (2026-05-08): MA-4 closure commit `1628793` + annotated tag `v0.1.0` pushed to `LatticeProtocol/III.aDNA` (private). MA-4 session archived to `how/sessions/history/2026-05/`. **No active session in flight** — `how/sessions/active/` is empty. Next session opens fresh; recommended next mission: Campaign B MB-1 (lattice-labs `iii/` consumer wrapper — retires the operational corrections.jsonl per ADR-003). See "Fresh-session boot" at the bottom of this file for the boot recipe.
+> **MB-1 closure note** (2026-05-08): Both Campaign B and Campaign C charters authored at `how/campaigns/campaign_b_iii_federation/` and `how/campaigns/campaign_c_airlock_standard/`. MB-1 (lattice-labs `iii/` consumer wrapper) executed in-session: wrapper at `~/lattice/lattice-labs/iii/CLAUDE.md` (federation_ref pinned at III.aDNA `v0.1.0`, commit `1628793`); local store seeded empty at `~/lattice/lattice-labs/iii/what/context/lattice_labs_iii_learning_store.jsonl`; operational `~/lattice/lattice-labs/what/context/iii_domain_packs/iii_corrections.jsonl` truncated to 0 bytes; lattice-labs/CLAUDE.md gained Standing Rule #12 routing III review through the new wrapper; wikilink sweep across active campaigns clean.
 
 MA-0 (vault bootstrap, CLAUDE.md, MANIFEST, STATE, 4 ADRs, AIRLOCK.md v0.1) closed
 2026-05-07 (commits `4df4d9b`, `a28045b`).
@@ -71,11 +71,34 @@ git tag `v0.1.0` cut at MA-4 closure commit — first III.aDNA release.
 
 | Campaign | Goal | Phase | Status |
 |----------|------|-------|--------|
-| **Campaign A: Genesis** | Fork, identity, content migration, module architecture, airlock v0.1.0 | P0-P2 | **✅ COMPLETE 2026-05-08 — DG-A CLOSED 9/9** |
-| **Campaign B: Federation** | Wire iii/ consumer wrappers across all vaults | P1-P3 | **READY TO OPEN** (DG-A unblocked) |
-| **Campaign C: Airlock** | Formalize airlock standard v0.2 + propagate to major vaults | P1-P2 | **READY TO OPEN** (DG-A unblocked; can overlap B) |
+| **Campaign A: Genesis** | Fork, identity, content migration, module architecture, airlock v0.1.0 | P0-P2 | ✅ COMPLETE 2026-05-08 — DG-A CLOSED 9/9 |
+| **Campaign B: Federation** | Wire iii/ consumer wrappers across all vaults | **P1 IN-FLIGHT** | **OPEN 2026-05-08** — MB-1 ✅; MB-2..MB-8 pending |
+| **Campaign C: Airlock** | Formalize airlock standard v0.2 + propagate to major vaults | **P1 OPEN** | **OPEN 2026-05-08** — charter authored; MC-1..MC-5 pending; parallel-eligible with B |
 
-## Campaign A Mission Queue
+## Campaign B Mission Queue (active)
+
+| Mission | Goal | Est. | Status |
+|---------|------|------|--------|
+| MB-1: lattice-labs wrapper | Retire operational corrections.jsonl per ADR-003; lattice-labs/CLAUDE.md III routing | 1 sess | ✅ **COMPLETE 2026-05-08** |
+| MB-2: SiteForge wrapper | Multi-voice orchestration absorbed (MA-3 carry-forward #2) | 1 sess | pending |
+| MB-3: VideoForge wrapper | ADR-006 bridge resolved | 1 sess | pending |
+| MB-4: CanvasForge wrapper | Relocate `skill_canvas_iii_review.md` (MA-3 carry-forward #4) | 1 sess | pending |
+| MB-5: wga wrapper | Standard wrapper; minimal extensions | 0.5 sess | pending |
+| MB-6: adna template | `skill_iii_setup.md` + workspace CLAUDE.md note | 0.5 sess | pending |
+| MB-7: vault hygiene | 4 carry-forwards + 2 Plan-agent findings + KINN relocation | 0.5 sess | pending |
+| MB-8: LPWhitepaper wrapper | Gap surfaced during MB-1 wikilink sweep | 1 sess | pending |
+
+## Campaign C Mission Queue (open, no missions executed yet)
+
+| Mission | Goal | Est. | Status |
+|---------|------|------|--------|
+| MC-1: Standard spec | `iii_airlock_standard_spec.md` (entry paths + cross-vault request patterns) | 1 sess | pending |
+| MC-2: Request schema | YAML payload schema canonicalized | 0.5 sess | pending |
+| MC-3: AIRLOCK.md v0.2 | + handshake reply-comment template | 1 sess | pending |
+| MC-4: Substrate enforcement | `secrets_handled` preflight + `idempotency_key` contract | 1 sess | pending |
+| MC-5: Validation | Re-exercise VideoForge → CanvasForge against v0.2; flip proposal status | 0.5 sess | pending |
+
+## Campaign A Mission Queue (closed, historical reference)
 
 | Mission | Goal | Est. | Status |
 |---------|------|------|--------|
@@ -108,8 +131,8 @@ git tag `v0.1.0` cut at MA-4 closure commit — first III.aDNA release.
 - ADRs 000-003 ratified at `what/decisions/`
 - Core III canonical files live at III.aDNA (skill, module, lattice, corrections.jsonl)
 - 7 canonical core domain packs live at `what/context/core_domain_packs/`: inspect_procedures, introspect_checks, learning_store, web_design, whitepaper_communication, canvas_visual, vault_maintenance (all carry `migration_provenance` provenance)
-- lattice-labs forward stubs in place; active campaigns continue uninterrupted (whitepaper_iii_deep_review at 7/25 cycles, kinn_branding_iii at 50/100)
-- corrections.jsonl canonical upstream operational; consumer-vault local store pattern ready (per ADR-003)
+- lattice-labs forward stubs in place; active campaigns continue uninterrupted — at MB-1 close 2026-05-08 only `campaign_kinn_branding_iii` (50/100) is actively writing at lattice-labs (`campaign_whitepaper_iii_deep_review` migrated to LPWhitepaper.aDNA 2026-04-17; `campaign_canvas_visual_command` superseded by CanvasForge.aDNA M-Cleanup-06 cutover 2026-05-04)
+- corrections.jsonl canonical upstream operational; **lattice-labs `iii/` consumer wrapper live (MB-1 ✅ 2026-05-08)** — federation_ref pinned at v0.1.0, local store seeded empty, operational pre-migration jsonl retired (truncated to 0 bytes); MB-2..MB-8 wrappers pending
 - skill_iii_review.md wikilinks all resolve to canonical core_domain_packs/ paths; no remaining `iii_domain_packs/` references
 - 8 composable III modules live at `what/modules/` (`module_iii_dispatch`, `_inspect_text`, `_inspect_code`, `_inspect_visual`, `_inspect_data`, `_introspect`, `_improve`, `_accumulate`) — typed I/O matching lattice contract; pure (pack content arrives as typed input)
 - Lattice `lattice_iii_verification_oracle.lattice.yaml` v1.2.0: all 8 module nodes carry `ref:` pointing at their `.module.yaml`; `accumulate` node added; ADR-003 write-policy expressed in node config rather than implicit in `human_review`
@@ -119,121 +142,50 @@ git tag `v0.1.0` cut at MA-4 closure commit — first III.aDNA release.
 
 ## Blockers
 
-None currently. **DG-A is CLOSED.** Campaigns B (Federation) and C (Airlock Standard v0.2) are unblocked and ready to open.
+None currently. **DG-A CLOSED 9/9.** Campaign B is OPEN P1 IN-FLIGHT (MB-1 ✅; MB-2..MB-8 pending). Campaign C is OPEN P1, no missions executed yet.
 
 ## Risk Register
 
-| # | Risk | Sev | Mitigation |
-|---|------|-----|------------|
-| R1 | Active lattice-labs campaigns break during migration | HIGH | Forward stubs before any file moves |
-| R2 | Consumer version drift | MED | ADR-002 version policy; minor-bump review gate |
-| R3 | VideoForge ADR-006 bridge complexity | MED | ADR-006 stays in VideoForge; III.aDNA provides core only |
-| R4 | iii_corrections.jsonl canonical ownership | MED | ADR-003 graduation ceremony protocol |
-| R5 | aDNA template is public repo — additive changes only | MED | MB-5 last in Campaign B; PR if needed |
+Campaign-A risks (R1-R5) have been absorbed into the per-campaign registers in `campaign_b_iii_federation.md` (5 risks) and `campaign_c_airlock_standard.md` (4 risks). R1 (active lattice-labs campaigns break during wrapper migration) carried forward into Campaign B as the wikilink-sweep mitigation pattern (proven at MB-1 close).
 
 ## Learning Store Status
 
-- Canonical entries: 26 (live at `what/context/core_domain_packs/iii_corrections_canonical.jsonl`, md5 `dde2cbd8...`)
+- Canonical entries: 26 (live at `what/context/core_domain_packs/iii_corrections_canonical.jsonl`, md5 `dde2cbd88c0b45956fb22285a2a0f856`)
 - Graduated to domain packs: 5 (C-001 projective_claim_as_fact, C-002 aspiration_as_current_capability, C-005 + 2 more)
 - Graduation candidates: C-003 (freq=?, acceptance=?), C-009 (freq=?, acceptance=?)
-- lattice-labs operational copy (`iii_corrections.jsonl`, md5 `dde2cbd8...`) remains in place until MB-1 retires it via the `lattice-labs/iii/` consumer wrapper
+- lattice-labs operational pre-migration copy (`iii_corrections.jsonl` at `what/context/iii_domain_packs/`) **retired at MB-1 2026-05-08** (truncated to 0 bytes); lattice-labs local downstream fork now lives at `~/lattice/lattice-labs/iii/what/context/lattice_labs_iii_learning_store.jsonl` (empty; populated by future review cycles per ADR-003 §2)
+- Two vestigial campaign-scoped JSONLs remain at lattice-labs (whitepaper breadcrumb 13 144 B + canvas_visual breadcrumb 659 B) — disposition deferred to Campaign B charter MB-7
+- Schema reconciliation against ADR-003 §4 deferred to MB-7 (Plan-agent finding (a))
 
-## Latest Direction — 2026-05-08 (post-MA-4 — DG-A CLOSED)
+## Latest Direction — 2026-05-08 (Campaigns B + C opened; MB-1 ✅)
 
-MA-4 closed. `how/airlock/AIRLOCK.md` elevated stub → v0.1.0 reference
-implementation. Frontmatter status flipped `stub` → `reference_implementation`.
-**Path Selection matrix** added upfront: a 5-row decision table (artifact ×
-profile → path) lets an external agent self-route in one read instead of
-skimming 5 path sections. Each of the 5 entry paths (A text, B web/visual, C
-code, D video, E vault maintenance) gained four uniform additions: **Use Cases**
-(2–4 concrete examples), **Out of Scope** (pointers to the right path),
-**Expected Output** (the typed-IO triple `Finding[]` → `Introspection[]` →
-`ImprovementTable + VerificationResult`, plus optional `LearningStoreDelta`),
-**Context Budget** (rough file count). The "Load in order" recipes from the
-v0.1 stub were preserved verbatim — the recipes were already correct.
+Three things landed in this session:
 
-The new **"What v0.1.0 does NOT cover"** section makes the v0.1.0/v0.2 boundary
-explicit. v0.1.0 covers entry (inbound, pull-based, agent enters this vault to
-run the loop). v0.2 will add request patterns (bidirectional, ephemeral, two
-agents handshake across vault boundaries — schema, status, idempotency). Until
-v0.2 ships, cross-vault requests use the **coord-memo fallback**, with the
-canonical worked example pointed at `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`.
-The inbound VideoForge proposal (`who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`)
-is cited in the section as the v0.2 spec input.
+**Campaign B charter authored** at `how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md`. 8-mission queue (MB-1 lattice-labs ✅; MB-2 SiteForge; MB-3 VideoForge; MB-4 CanvasForge; MB-5 wga; MB-6 adna template + workspace CLAUDE.md note; MB-7 vault hygiene incl. canonical jsonl schema reconciliation against ADR-003 §4 + vestigial campaign-scoped JSONLs at frozen breadcrumb directories; **MB-8 LPWhitepaper.aDNA wrapper** — surfaced during MB-1 wikilink sweep). 5-risk register. P1 → P2 (parallel-eligible wrappers) → P3 (template + closeout) phase plan.
 
-**Initial annotated git tag `v0.1.0` cut at MA-4 closure commit `1628793`** —
-first III.aDNA release. Pre-federation baseline for Campaign B consumer
-wrappers. Pushed to `LatticeProtocol/III.aDNA` (private) 2026-05-08.
+**Campaign C charter authored** at `how/campaigns/campaign_c_airlock_standard/campaign_c_airlock_standard.md`. 5-mission queue seeded directly from the on-file VideoForge proposal at `who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md` (5 specific gaps in v0.1.0). MC-1..MC-5 → DG-C gate + annotated `v0.2.0` tag. Parallel-eligible with Campaign B; lower priority since v0.1.0 is shipped.
 
-**Verification**: AIRLOCK.md frontmatter shows `status: reference_implementation`
-+ `version: "0.1.0"`; all 5 `### Path` headers present; anti-regression section
-present with both v0.2 and Campaign C MC-1 references; STATE.md DG-A scorecard
-shows 9/9; campaign tracker MA-4 row ✅; `git tag -l` shows `v0.1.0`.
+**MB-1 executed**:
+1. `~/lattice/lattice-labs/iii/CLAUDE.md` authored — federation_ref pinned at III.aDNA `v0.1.0` (commit `1628793`); declares all 7 core packs + 8 modules + the v1.2.0 oracle lattice; `local_extensions` for the in-place KINN pack and the new local store
+2. `~/lattice/lattice-labs/iii/what/context/lattice_labs_iii_learning_store.jsonl` seeded empty (per ADR-003 §2; ACCUMULATE writes target this file)
+3. Pre-migration operational `~/lattice/lattice-labs/what/context/iii_domain_packs/iii_corrections.jsonl` truncated to 0 bytes; canonical `dde2cbd88c0b45956fb22285a2a0f856` md5 re-verified unchanged at the III.aDNA upstream
+4. `~/lattice/lattice-labs/CLAUDE.md` gained Standing Rule #12 (III review via wrapper; mirrors CanvasForge precedent at rule 11)
+5. `~/lattice/lattice-labs/what/context/iii_domain_packs/MIGRATION_NOTE.md` Stage 3 closure entry added
 
-**DG-A CLOSED 9/9.** Campaigns B (Federation, consumer wrappers) and C
-(Airlock Standard v0.2) are unblocked and ready to open. Next session is at
-Stanley's discretion: open Campaign B (priority recommendation: MB-1
-lattice-labs `iii/` wrapper retires the operational corrections.jsonl per
-ADR-003 — the only critical-path consumer migration), open Campaign C, or
-queue both with C following the VideoForge findings.
+**Wikilink sweep result** (MB-1 verification gate): zero broken III wikilinks across all three previously-named consumer campaigns. Important sweep finding — only `campaign_kinn_branding_iii` (50/100 cycles) is actively writing at lattice-labs. `campaign_whitepaper_iii_deep_review` migrated to LPWhitepaper.aDNA on 2026-04-17 (commit `234ed8b`); `campaign_canvas_visual_command` was superseded by CanvasForge.aDNA at M-Cleanup-06 cutover 2026-05-04. Two vestigial campaign-scoped JSONLs remain (whitepaper breadcrumb 13 144 B + canvas_visual breadcrumb 659 B); MB-7 disposes.
 
-### Carry-forward follow-ups (Campaign B planning input)
+**No git tag bump**. MB-1 touched no III.aDNA core; v0.1.0 stays. Plan-agent's recommended schema-backfill patch bump → MB-7 (vault hygiene closeout).
 
-The four follow-ups from MA-3 close did not require action in MA-4. They
-remain on the books for Campaign B planning:
+### Carry-forwards
 
-1. **`reviewed_output` lattice node**: declared `type: module` since pre-MA-3
-   but has no `ref:` (no module file at `what/modules/`). Either author a 9th
-   module `module_iii_reviewed_output.{md,yaml}` (apply approved edits to the
-   artifact) or retype `reviewed_output` as `process` (matching `human_review`).
-   Stanley call.
-2. **Multi-voice orchestration** in the rebranded
-   `module_iii_semantic_reviewer.md` composite_reference body: SiteForge
-   consumer-side composition pattern. Lands in `SiteForge.aDNA/iii/` via
-   consumer wrapper at Campaign B MB-2. No action in III.aDNA core.
-3. **`core_domain_packs/AGENTS.md`** referenced by `context_iii_learning_store.md`
-   wikilink does not exist. Author or remove the wikilink during Campaign B
-   vault-hygiene pass.
-4. **`skill_canvas_iii_review.md` placement**: currently at lattice-labs, listed
-   in CLAUDE.md project map as III.aDNA-canonical, but is CanvasForge-coupled.
-   Likely belongs in `CanvasForge.aDNA/iii/` consumer wrapper. Decision deferred
-   to Campaign B planning.
+The four MA-3 follow-ups + the two Plan-agent findings (canonical jsonl schema drift; vestigial campaign-scoped JSONLs) have moved out of STATE.md and into Campaign B charter MB-7. Single owner. Don't carry them in this file going forward.
 
-### Inbound coordination — Campaign C / Airlock Standard v0.2
+### Fresh-session boot (post-MB-1)
 
-`who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`
-(committed `1bf3074`). Inbound from VideoForge.aDNA (Iris). 5 cross-forge
-request-pattern gaps surfaced by exercising AIRLOCK.md v0.1.0 against a
-real cross-forge commission. **MA-4's AIRLOCK.md cited and acknowledged the
-proposal in its anti-regression section** — the v0.1.0 release is consistent
-with the proposed v0.2 direction. Argus reads + responds when Campaign C
-opens (now unblocked).
+For the next agent that opens this vault:
 
-### Fresh-session boot
-
-For the next agent that opens this vault — the recipe to confirm wind-down
-state and pick up cleanly:
-
-1. **Read this STATE.md from the top.** Current Phase block + Wind-down note
-   (lines 13–17) summarize the closed gate and zero-active-session posture.
-2. **Confirm DG-A 9/9** in §"DG-A Gate Criteria" — every box checked.
-3. **Confirm `how/sessions/active/` is empty** (`ls how/sessions/active/`).
-   Empty = no in-flight work. If a stray file appears, read its frontmatter:
-   if `status: completed`, archive to `how/sessions/history/2026-05/`; if
-   `status: in_progress`, that session was interrupted and resuming it takes
-   priority over opening a new mission.
-4. **Choose campaign opening order.** Two are unblocked:
-   - **Campaign B (Federation)** — recommended next. Critical-path: **MB-1
-     lattice-labs `iii/` consumer wrapper** retires the operational
-     `iii_corrections.jsonl` per ADR-003. Other consumer wrappers (SiteForge,
-     VideoForge, CanvasForge, wga) follow MB-1 and can sequence independently.
-   - **Campaign C (Airlock Standard v0.2)** — authors
-     `what/artifacts/iii_airlock_standard_spec.md` formalizing entry paths
-     (existing v0.1.0 content) + cross-vault request patterns (per the
-     on-file VideoForge proposal at `who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`).
-     Less time-pressure since v0.1.0 is shipped.
-5. **Carry-forward follow-ups** (above) feed Campaign B planning, not
-   Campaign C — keep them with B.
-6. **Open a session file.** Use `how/templates/template_session.md` (or
-   the established MA-N session pattern in `how/sessions/history/2026-05/`)
-   and create the new session at `how/sessions/active/`.
+1. **Read this STATE.md from the top.** Current Phase block + MB-1 closure note summarize where Campaign B and Campaign C stand.
+2. **Confirm `how/sessions/active/` is empty** (`ls how/sessions/active/`). MB-1 session moved to `how/sessions/history/2026-05/` at closeout.
+3. **Choose next mission.** Campaign B has the most queued execution-ready missions; recommendation order: **MB-2 SiteForge** (multi-voice orchestration is the most architecturally meaningful absorption among MB-2..MB-5) → **MB-4 CanvasForge** (relocates `skill_canvas_iii_review.md`; closes MA-3 carry-forward #4) → **MB-3 VideoForge** (ADR-006 bridge nuance) → **MB-5 wga** (lightweight) → **MB-8 LPWhitepaper** → **MB-6 adna template** (depends on ≥ 2 wrappers in flight to validate the pattern) → **MB-7 vault hygiene** → **DG-B**.
+4. **Campaign C** is parallel-eligible. Lower priority unless cross-vault request patterns become blocking; MC-1 is the natural opener.
+5. **Open a session file** using the MB-1 pattern at `how/sessions/history/2026-05/session_stanley_20260508_iii_adna_mb1_lattice_labs_wrapper.md`.
