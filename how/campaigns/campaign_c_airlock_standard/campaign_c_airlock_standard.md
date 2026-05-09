@@ -2,7 +2,7 @@
 type: campaign
 campaign_id: campaign_c_airlock_standard
 title: "Campaign C: Airlock Standard v0.2 + Cross-Vault Request Patterns"
-status: open
+status: in_flight
 created: 2026-05-08
 updated: 2026-05-08
 last_edited_by: agent_stanley
@@ -42,7 +42,7 @@ The VideoForge → CanvasForge memo at `~/lattice/CanvasForge.aDNA/who/coordinat
 
 ## DG-C Criteria
 
-- [ ] **MC-1**: `what/artifacts/iii_airlock_standard_spec.md` authored — codifies entry paths (existing v0.1.0 content) + cross-vault request patterns (VideoForge findings); status `reference_implementation`; version `0.2.0`
+- [x] **MC-1**: `what/artifacts/iii_airlock_standard_spec.md` authored — codifies entry paths (existing v0.1.0 content) + cross-vault request patterns (VideoForge findings); status `reference_implementation`; version `0.2.0` ✅ **2026-05-08**
 - [ ] **MC-2**: Request payload YAML schema canonicalized at `what/artifacts/iii_airlock_request_schema.yaml` (or chosen path); validated against the VideoForge → CanvasForge worked example
 - [ ] **MC-3**: `how/airlock/AIRLOCK.md` bumped v0.1.0 → v0.2.0; reply-comment template authored at `how/templates/template_cross_vault_request_reply.md` (handshake — Gap 2)
 - [ ] **MC-4**: Substrate-enforcement preflight rules documented for `secrets_handled` (Gap 4) + `idempotency_key` contract (Gap 5); receiver-side dedup logic specified
@@ -54,7 +54,7 @@ The VideoForge → CanvasForge memo at `~/lattice/CanvasForge.aDNA/who/coordinat
 
 | Mission | Objective | Sessions | Status |
 |---------|-----------|----------|--------|
-| **MC-1** | Author `iii_airlock_standard_spec.md` (entry paths + cross-vault request patterns) | 1 | pending |
+| **MC-1** | Author `iii_airlock_standard_spec.md` (entry paths + cross-vault request patterns) | 1 | ✅ **COMPLETE 2026-05-08** |
 | **MC-2** | Request payload YAML schema; canonical location; worked-example validation | 0.5 | pending |
 | **MC-3** | AIRLOCK.md v0.1.0 → v0.2.0; handshake reply-comment template | 1 | pending |
 | **MC-4** | Substrate enforcement: `secrets_handled` preflight (Gap 4) + `idempotency_key` (Gap 5) | 1 | pending |
@@ -81,7 +81,7 @@ MC-1 (spec) → MC-2 (schema) → MC-3 (AIRLOCK.md v0.2 + reply-comment template
 
 | Phase | Name | Missions | Status |
 |-------|------|----------|--------|
-| **P1** | Standard authoring | MC-1, MC-2 | pending |
+| **P1** | Standard authoring | MC-1, MC-2 | **IN-FLIGHT** — MC-1 ✅ 2026-05-08; MC-2 pending |
 | **P2** | Reference implementation + substrate | MC-3, MC-4 | pending |
 | **P3** | Validation + ship | MC-5, DG-C gate, v0.2.0 tag | pending |
 
@@ -89,9 +89,9 @@ MC-1 (spec) → MC-2 (schema) → MC-3 (AIRLOCK.md v0.2 + reply-comment template
 
 The MA-4 AIRLOCK.md v0.1.0 anti-regression section ("What v0.1.0 does NOT cover") makes three commitments to v0.2 that this campaign must honor:
 
-1. **Cross-vault request patterns will land in v0.2 / Campaign C MC-1.** ✅ Tracked at MC-1 + MC-2.
-2. **Until v0.2 ships, cross-vault requests use the coord-memo fallback** with the canonical worked example pointed at the CanvasForge memo. ⏳ Holds until MC-3 ship.
-3. **The VideoForge proposal will be cited and acknowledged in v0.2 spec authoring.** ✅ Tracked at MC-1 (spec body) + MC-5 (status flip).
+1. **Cross-vault request patterns will land in v0.2 / Campaign C MC-1.** ✅ **DELIVERED 2026-05-08** — `what/artifacts/iii_airlock_standard_spec.md` v0.2.0 §4 codifies cross-vault request schema (initiation, handshake, payload, secrets, idempotency) absorbing all 5 VF gaps.
+2. **Until v0.2 ships, cross-vault requests use the coord-memo fallback** with the canonical worked example pointed at the CanvasForge memo. ⏳ Holds until MC-3 ship (AIRLOCK.md v0.2.0).
+3. **The VideoForge proposal will be cited and acknowledged in v0.2 spec authoring.** ✅ **DELIVERED 2026-05-08** — spec §8.2 + §8.3 acknowledge proposal in full; all 5 gaps absorbed (no gap deferred); proposal status flipped `open → accepted` at MC-1 close.
 
 ## AAR
 <!-- Template: how/templates/template_aar_lightweight.md — populate at DG-C closure -->
