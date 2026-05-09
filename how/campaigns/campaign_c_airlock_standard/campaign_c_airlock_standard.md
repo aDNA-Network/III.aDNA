@@ -6,7 +6,7 @@ status: in_flight
 created: 2026-05-08
 updated: 2026-05-08
 last_edited_by: agent_stanley
-phase: P1
+phase: P2
 predecessor: campaign_a_iii_genesis
 parallel_eligible_with: campaign_b_iii_federation
 inbound_proposal: who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md
@@ -43,7 +43,7 @@ The VideoForge → CanvasForge memo at `~/lattice/CanvasForge.aDNA/who/coordinat
 ## DG-C Criteria
 
 - [x] **MC-1**: `what/artifacts/iii_airlock_standard_spec.md` authored — codifies entry paths (existing v0.1.0 content) + cross-vault request patterns (VideoForge findings); status `reference_implementation`; version `0.2.0` ✅ **2026-05-08**
-- [ ] **MC-2**: Request payload YAML schema canonicalized at `what/artifacts/iii_airlock_request_schema.yaml` (or chosen path); validated against the VideoForge → CanvasForge worked example
+- [x] **MC-2**: Request payload YAML schema canonicalized at `what/artifacts/iii_airlock_request_schema.yaml` — JSON Schema Draft 2020-12 in YAML form; validated mechanically (9/9 checks) + walked against VideoForge → CanvasForge worked example (correctly non-conformant per spec §5.2 — pre-v0.2 authoring; gap documented in schema header) ✅ **2026-05-08**
 - [ ] **MC-3**: `how/airlock/AIRLOCK.md` bumped v0.1.0 → v0.2.0; reply-comment template authored at `how/templates/template_cross_vault_request_reply.md` (handshake — Gap 2)
 - [ ] **MC-4**: Substrate-enforcement preflight rules documented for `secrets_handled` (Gap 4) + `idempotency_key` contract (Gap 5); receiver-side dedup logic specified
 - [ ] **MC-5**: VideoForge → CanvasForge request re-exercised against v0.2 schema; deltas captured vs the v0.1.0 ad-hoc execution; zero regression confirmed
@@ -55,7 +55,7 @@ The VideoForge → CanvasForge memo at `~/lattice/CanvasForge.aDNA/who/coordinat
 | Mission | Objective | Sessions | Status |
 |---------|-----------|----------|--------|
 | **MC-1** | Author `iii_airlock_standard_spec.md` (entry paths + cross-vault request patterns) | 1 | ✅ **COMPLETE 2026-05-08** |
-| **MC-2** | Request payload YAML schema; canonical location; worked-example validation | 0.5 | pending |
+| **MC-2** | Request payload YAML schema; canonical location; worked-example validation | 0.5 | ✅ **COMPLETE 2026-05-08** |
 | **MC-3** | AIRLOCK.md v0.1.0 → v0.2.0; handshake reply-comment template | 1 | pending |
 | **MC-4** | Substrate enforcement: `secrets_handled` preflight (Gap 4) + `idempotency_key` (Gap 5) | 1 | pending |
 | **MC-5** | Re-exercise VideoForge → CanvasForge against v0.2; capture deltas; flip proposal status | 0.5 | pending |
@@ -81,7 +81,7 @@ MC-1 (spec) → MC-2 (schema) → MC-3 (AIRLOCK.md v0.2 + reply-comment template
 
 | Phase | Name | Missions | Status |
 |-------|------|----------|--------|
-| **P1** | Standard authoring | MC-1, MC-2 | **IN-FLIGHT** — MC-1 ✅ 2026-05-08; MC-2 pending |
+| **P1** | Standard authoring | MC-1, MC-2 | ✅ **COMPLETE 2026-05-08** — MC-1 ✅; MC-2 ✅ |
 | **P2** | Reference implementation + substrate | MC-3, MC-4 | pending |
 | **P3** | Validation + ship | MC-5, DG-C gate, v0.2.0 tag | pending |
 

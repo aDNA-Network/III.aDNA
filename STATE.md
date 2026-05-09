@@ -4,7 +4,7 @@ created: 2026-05-07
 updated: 2026-05-08
 status: active
 last_edited_by: agent_stanley
-last_session: session_stanley_20260508_iii_adna_mc1_airlock_standard_spec
+last_session: session_stanley_20260508_iii_adna_mc2_request_schema
 tags: [state, governance]
 ---
 
@@ -12,7 +12,9 @@ tags: [state, governance]
 
 ## Current Phase
 
-**Campaign B: Federation — P1 IN-FLIGHT (MB-1 ✅ 2026-05-08) — Campaign C: Airlock Standard v0.2 — P1 IN-FLIGHT (MC-1 ✅ 2026-05-08)**
+**Campaign B: Federation — P1 IN-FLIGHT (MB-1 ✅ 2026-05-08) — Campaign C: Airlock Standard v0.2 — P1 ✅ COMPLETE; P2 OPEN (MC-1 ✅ + MC-2 ✅ 2026-05-08)**
+
+> **MC-2 closure note** (2026-05-08): Campaign C P1 closed. `what/artifacts/iii_airlock_request_schema.yaml` authored (JSON Schema Draft 2020-12 in YAML form) — 9/9 mechanical validation checks pass (`Draft202012Validator.check_schema` clean; required-minimum positive + 4 negative-path tests + closed-shape constraint typo + secret-name pattern enforcement all pass). Required-minimum (`type: cross_vault_request` + `artifact_request.{spec_path, output_sink}`) enforced exactly per spec §4.3. Open at root + `artifact_request` (consumer-extension friendly); closed on substrate-critical sub-objects (`constraints`, `secrets_handled`). Worked example at `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` correctly non-conforms (top-level `type: coordination` not `cross_vault_request`; `spec_path`/`output_sink` body-promoted) — both gaps expected per spec §5.2 (pre-v0.2 authoring) and documented in schema header. Spec forward-references resolved (`defers_schema_to` frontmatter comment + §4.3 prose + §7.2 row + §7.3 bullet 1 — patch-level edits, no version bump). Campaign C charter MC-2 row + DG-C MC-2 box + P1 phase row flipped; charter frontmatter `phase: P1 → P2`. P2 (MC-3 + MC-4) now open.
 
 > **MB-1 closure note** (2026-05-08): Both Campaign B and Campaign C charters authored at `how/campaigns/campaign_b_iii_federation/` and `how/campaigns/campaign_c_airlock_standard/`. MB-1 (lattice-labs `iii/` consumer wrapper) executed in-session: wrapper at `~/lattice/lattice-labs/iii/CLAUDE.md` (federation_ref pinned at III.aDNA `v0.1.0`, commit `1628793`); local store seeded empty at `~/lattice/lattice-labs/iii/what/context/lattice_labs_iii_learning_store.jsonl`; operational `~/lattice/lattice-labs/what/context/iii_domain_packs/iii_corrections.jsonl` truncated to 0 bytes; lattice-labs/CLAUDE.md gained Standing Rule #12 routing III review through the new wrapper; wikilink sweep across active campaigns clean.
 
@@ -73,7 +75,7 @@ git tag `v0.1.0` cut at MA-4 closure commit — first III.aDNA release.
 |----------|------|-------|--------|
 | **Campaign A: Genesis** | Fork, identity, content migration, module architecture, airlock v0.1.0 | P0-P2 | ✅ COMPLETE 2026-05-08 — DG-A CLOSED 9/9 |
 | **Campaign B: Federation** | Wire iii/ consumer wrappers across all vaults | **P1 IN-FLIGHT** | **OPEN 2026-05-08** — MB-1 ✅; MB-2..MB-8 pending |
-| **Campaign C: Airlock** | Formalize airlock standard v0.2 + propagate to major vaults | **P1 IN-FLIGHT** | **OPEN 2026-05-08** — MC-1 ✅; MC-2..MC-5 pending; parallel-eligible with B |
+| **Campaign C: Airlock** | Formalize airlock standard v0.2 + propagate to major vaults | **P1 ✅ → P2 OPEN** | **OPEN 2026-05-08** — MC-1 ✅; MC-2 ✅; MC-3..MC-5 pending; parallel-eligible with B |
 
 ## Campaign B Mission Queue (active)
 
@@ -88,12 +90,12 @@ git tag `v0.1.0` cut at MA-4 closure commit — first III.aDNA release.
 | MB-7: vault hygiene | 4 carry-forwards + 2 Plan-agent findings + KINN relocation | 0.5 sess | pending |
 | MB-8: LPWhitepaper wrapper | Gap surfaced during MB-1 wikilink sweep | 1 sess | pending |
 
-## Campaign C Mission Queue (P1 in-flight)
+## Campaign C Mission Queue (P1 closed; P2 open)
 
 | Mission | Goal | Est. | Status |
 |---------|------|------|--------|
 | MC-1: Standard spec | `iii_airlock_standard_spec.md` (entry paths + cross-vault request patterns) | 1 sess | ✅ **COMPLETE 2026-05-08** |
-| MC-2: Request schema | YAML payload schema canonicalized | 0.5 sess | pending |
+| MC-2: Request schema | YAML payload schema canonicalized at `what/artifacts/iii_airlock_request_schema.yaml`; 9/9 mechanical validation checks; worked-example walk | 0.5 sess | ✅ **COMPLETE 2026-05-08** |
 | MC-3: AIRLOCK.md v0.2 | + handshake reply-comment template | 1 sess | pending |
 | MC-4: Substrate enforcement | `secrets_handled` preflight + `idempotency_key` contract | 1 sess | pending |
 | MC-5: Validation | Re-exercise VideoForge → CanvasForge against v0.2; flip proposal status | 0.5 sess | pending |
@@ -142,7 +144,7 @@ git tag `v0.1.0` cut at MA-4 closure commit — first III.aDNA release.
 
 ## Blockers
 
-None currently. **DG-A CLOSED 9/9.** Campaign B is OPEN P1 IN-FLIGHT (MB-1 ✅; MB-2..MB-8 pending). Campaign C is OPEN P1 IN-FLIGHT (MC-1 ✅; MC-2..MC-5 pending).
+None currently. **DG-A CLOSED 9/9.** Campaign B is OPEN P1 IN-FLIGHT (MB-1 ✅; MB-2..MB-8 pending). Campaign C is OPEN — P1 ✅ COMPLETE (MC-1 ✅; MC-2 ✅); P2 OPEN (MC-3..MC-4 pending); P3 pending (MC-5 + DG-C gate + `v0.2.0` tag).
 
 ## Risk Register
 
@@ -156,6 +158,49 @@ Campaign-A risks (R1-R5) have been absorbed into the per-campaign registers in `
 - lattice-labs operational pre-migration copy (`iii_corrections.jsonl` at `what/context/iii_domain_packs/`) **retired at MB-1 2026-05-08** (truncated to 0 bytes); lattice-labs local downstream fork now lives at `~/lattice/lattice-labs/iii/what/context/lattice_labs_iii_learning_store.jsonl` (empty; populated by future review cycles per ADR-003 §2)
 - Two vestigial campaign-scoped JSONLs remain at lattice-labs (whitepaper breadcrumb 13 144 B + canvas_visual breadcrumb 659 B) — disposition deferred to Campaign B charter MB-7
 - Schema reconciliation against ADR-003 §4 deferred to MB-7 (Plan-agent finding (a))
+
+## Latest Direction — 2026-05-08 (MC-2 ✅; Campaign C P1 closed; P2 open)
+
+**MC-2 executed**. `what/artifacts/iii_airlock_request_schema.yaml` authored as JSON Schema Draft 2020-12 expressed in YAML form (per spec §4.3 + §7.2 "validator-friendly YAML" language). Top-level `required: [type, artifact_request]` + nested `artifact_request.required: [spec_path, output_sink]` enforce required-minimum exactly per spec §4.3. Open at root + `artifact_request` (`additionalProperties: true`) for consumer-extension friendliness; closed on substrate-critical sub-objects (`constraints`, `secrets_handled` use `additionalProperties: false`). Five schema extensions (`x-body-sections`, `x-lifecycle-transitions`, `x-handshake-profiles`, `x-required-minimum`, `x-worked-example`) capture markdown-body shape, valid state transitions, profile selection rules, smallest-valid-memo example, and worked-example conformance note.
+
+**Mechanical validation** — 9/9 checks pass:
+1. `Draft202012Validator.check_schema` clean — schema is valid JSON Schema 2020-12.
+2. Required-minimum memo (`type` + `artifact_request.spec_path` + `artifact_request.output_sink`) validates.
+3. Negative: missing top-level `type` rejected.
+4. Negative: missing `artifact_request.spec_path` rejected.
+5. Negative: invalid `status` enum rejected.
+6. Full conformant memo with all optional blocks (`constraints`, `secrets_handled`, `idempotency_key`, `forbidden_registers`, etc.) validates.
+7. Novel `artifact_request.type` value (`notebook`) accepted (open string by design; documented examples include the 6 known kinds).
+8. Closed-shape typo (`constraints.max_revsions` instead of `max_revisions`) rejected by `additionalProperties: false`.
+9. Secret name pattern enforced (UPPER_SNAKE_CASE only in `secrets_handled.needed`).
+
+**Worked-example walk** — CanvasForge memo at `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` correctly fails validation with two non-conformances:
+1. Top-level `type: coordination` — should be `cross_vault_request` for v0.2 conformance.
+2. `spec_path`/`output_sink` body-promoted (under § "What CanvasForge Receives" body sections) — should be nested under frontmatter `artifact_request` object.
+
+Both gaps expected per spec §5.2 "additive-deltas" clause (worked example pre-dates v0.2). Schema header documents both gaps; the worked example is evidence of *shape* and not a v0.2 conformance test case. Any new v0.2-era memo following spec §4.3 frontmatter passes the schema (proven by check #6).
+
+**Spec forward-references resolved** — patch-level edits, no spec version bump (v0.2.0 stays):
+- Frontmatter `defers_schema_to: ... # MC-2 (pending)` → `# authored MC-2 2026-05-08`
+- §4.3 prose "(authored at MC-2; pending)" → "(authored at MC-2 2026-05-08; JSON Schema Draft 2020-12 expressed in YAML form)"
+- §7.2 row 7 status flipped to "MC-2 ✅ 2026-05-08"
+- §7.3 forward-reference list updated: "Three sections originally cited deliverables that did not yet exist; one is now resolved (MC-2), two remain pending (MC-4)"
+
+**Campaign C charter updated**: MC-2 mission row + DG-C MC-2 box flipped ✅; P1 phase row in Phase Plan flipped ✅ COMPLETE; charter frontmatter `phase: P1 → P2`.
+
+**No git tag bump**. v0.1.0 stays. Annotated `v0.2.0` tag still waits for MC-3 close (per charter Critical Path) — that's where AIRLOCK.md text actually shifts to v0.2.
+
+### Fresh-session boot (post-MC-2)
+
+For the next agent that opens this vault:
+
+1. **Read this STATE.md from the top.** Current Phase + MC-2 closure note summarize where Campaigns B and C stand. Campaign C P1 is closed; P2 (MC-3 + MC-4) is the active phase.
+2. **Confirm `how/sessions/active/` is empty**. MC-2 session moved to `how/sessions/history/2026-05/` at closeout.
+3. **Choose next mission.** Two parallel-eligible queues:
+   - **Campaign B** (federation): **MB-2 SiteForge** (most architecturally meaningful — multi-voice orchestration absorption) → MB-4 CanvasForge → MB-3 VideoForge → MB-5 wga → MB-8 LPWhitepaper → MB-6 adna template (after ≥ 2 wrappers in flight) → MB-7 vault hygiene → DG-B.
+   - **Campaign C** (airlock standard): **MC-3 AIRLOCK.md v0.2.0 + reply-comment template** (next; cuts the annotated `v0.2.0` tag at close — main reward gate; 1 sess) → MC-4 substrate enforcement (1 sess) → MC-5 validation (0.5 sess) → DG-C.
+4. **Recommended next**: **MC-3** (now unblocked by MC-2 schema; cuts `v0.2.0` git tag at close — meaningful release-grade milestone) OR **MB-2** (largest architectural value in flight). Either advances a P1/P2 phase. Stanley signals.
+5. **Open a session file** using the MC-2 / MC-1 / MB-1 pattern at `how/sessions/active/session_stanley_<YYYYMMDD>_iii_adna_<mission>_<descriptor>.md`.
 
 ## Latest Direction — 2026-05-08 (MC-1 ✅; Campaign C P1 in-flight)
 
@@ -178,17 +223,9 @@ Campaign-A risks (R1-R5) have been absorbed into the per-campaign registers in `
 
 **No git tag bump**. MC-1 ships the spec at version `0.2.0` in frontmatter; the annotated `v0.2.0` git tag waits for MC-3 closure (per charter Critical Path) — that's where AIRLOCK.md text actually shifts to v0.2.
 
-### Fresh-session boot (post-MC-1)
+### Fresh-session boot (post-MC-1) — superseded by post-MC-2 boot block above
 
-For the next agent that opens this vault:
-
-1. **Read this STATE.md from the top.** Current Phase + MC-1 closure note summarize where Campaigns B and C stand.
-2. **Confirm `how/sessions/active/` is empty**. MC-1 session moved to `how/sessions/history/2026-05/` at closeout.
-3. **Choose next mission.** Two parallel-eligible queues:
-   - **Campaign B** (federation): **MB-2 SiteForge** (most architecturally meaningful — multi-voice orchestration absorption) → MB-4 CanvasForge → MB-3 VideoForge → MB-5 wga → MB-8 LPWhitepaper → MB-6 adna template (after ≥ 2 wrappers in flight) → MB-7 vault hygiene → DG-B.
-   - **Campaign C** (airlock standard): **MC-2 schema** (next; canonical YAML at `what/artifacts/iii_airlock_request_schema.yaml`; 0.5 sess) → MC-3 AIRLOCK.md v0.2.0 + reply-comment template (1 sess; cuts `v0.2.0` git tag) → MC-4 substrate enforcement (1 sess) → MC-5 validation (0.5 sess) → DG-C.
-4. **Recommended next**: **MC-2** (small, sequential dependency for MC-3, low cognitive load) OR **MB-2** (largest architectural value in flight). Either advances a P1 phase. Stanley signals.
-5. **Open a session file** using the MC-1 / MB-1 pattern at `how/sessions/active/session_stanley_<YYYYMMDD>_iii_adna_<mission>_<descriptor>.md`.
+(Original post-MC-1 boot guidance retained as historical reference; the post-MC-2 boot block is the current authority.)
 
 ## Latest Direction — 2026-05-08 (Campaigns B + C opened; MB-1 ✅)
 

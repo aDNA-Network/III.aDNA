@@ -10,7 +10,7 @@ governs: how/airlock/AIRLOCK.md
 predecessor_version: "0.1.0"
 inbound_proposal: who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md
 worked_example: ~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md
-defers_schema_to: what/artifacts/iii_airlock_request_schema.yaml  # MC-2 (pending)
+defers_schema_to: what/artifacts/iii_airlock_request_schema.yaml  # authored MC-2 2026-05-08
 defers_substrate_to: MC-4 substrate enforcement (pending)
 covers: [entry_paths, cross_vault_request_patterns]
 authoring_mission: MC-1
@@ -176,7 +176,7 @@ A handshake is the receiver's acknowledgement that the request was seen, accepte
 
 ### §4.3 Payload schema — Gap 3
 
-A cross-vault request memo conforms to the schema below. The canonical machine-readable schema (YAML) lives at `what/artifacts/iii_airlock_request_schema.yaml` (authored at MC-2; pending). This section is the human-readable contract.
+A cross-vault request memo conforms to the schema below. The canonical machine-readable schema (YAML) lives at `what/artifacts/iii_airlock_request_schema.yaml` (authored at MC-2 2026-05-08; JSON Schema Draft 2020-12 expressed in YAML form). This section is the human-readable contract.
 
 #### Frontmatter
 
@@ -375,13 +375,13 @@ This versioning policy refines [ADR-002 §3](../decisions/adr_002_consumer_feder
 | Async batched requests (one memo, many artifacts shipped over time) | v0.3+ | No present-day worked example; scaling concern only |
 | Substrate-enforcement *implementation* (preflight scripts, idempotency cache code) | MC-4 | This spec carries the contract; MC-4 carries the implementation guidance |
 | Reply-comment template for handshake | MC-3 | This spec carries the field requirements; MC-3 ships the template at `how/templates/template_cross_vault_request_reply.md` |
-| Machine-readable YAML schema | MC-2 | This spec carries the human-readable shape; MC-2 ships the validator-friendly YAML at `what/artifacts/iii_airlock_request_schema.yaml` |
+| Machine-readable YAML schema | MC-2 ✅ 2026-05-08 | This spec carries the human-readable shape; MC-2 shipped the validator-friendly YAML at `what/artifacts/iii_airlock_request_schema.yaml` (JSON Schema Draft 2020-12) |
 
 ### §7.3 Forward-references in this spec
 
-Three sections cite deliverables that do not yet exist as of v0.2.0 ship:
+Three sections originally cited deliverables that did not yet exist at v0.2.0 ship; one is now resolved (MC-2), two remain pending (MC-4):
 
-- §4.3 cites `what/artifacts/iii_airlock_request_schema.yaml` — pending at MC-2.
+- §4.3 cites `what/artifacts/iii_airlock_request_schema.yaml` — **authored at MC-2 2026-05-08; live link**.
 - §4.4 cites "implementation guidance authored at MC-4" — pending.
 - §4.5 cites "implementation guidance authored at MC-4" — pending.
 
