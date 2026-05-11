@@ -1,7 +1,7 @@
 ---
 type: cross_vault_request
 title: "Cross-Vault Request: VideoForge → III.aDNA — `iii/` Wrapper Authored; Proposed as MB-3 Input"
-status: open
+status: closed
 direction: outbound (III.aDNA receives)
 requesting_vault: VideoForge.aDNA
 requesting_persona: iris
@@ -12,7 +12,7 @@ created: "2026-05-11"
 updated: "2026-05-11"
 priority: medium
 deadline: pre-VideoForge-Phase-6-close (no calendar urgency; weeks-of-flexibility; Argus may schedule alongside MB-2 SiteForge wrapper review)
-audit_id: pending
+audit_id: session_stanley_20260511_iii_adna_mb3_videoforge_wrapper
 artifact_request:
   type: framework_consumer_wrapper_review
   spec_path: /Users/stanley/lattice/VideoForge.aDNA/iii/
@@ -231,8 +231,66 @@ This memo is therefore the canonical handshake — neither pre-empting Argus's a
 - v0.1 worked example (cross-vault request shape; non-conformant by design per schema `x-worked-example`): `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`
 - v0.1 airlock-findings precedent (VideoForge → III.aDNA outbound; absorbed in v0.2.0): `~/lattice/III.aDNA/who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`
 
+## Acceptance (2026-05-11)
+
+- **Status**: accepted
+- **Audit ID**: `session_stanley_20260511_iii_adna_mb3_videoforge_wrapper`
+- **ETA**: same-session-2026-05-11 (acceptance → rendering → shipped → closed all completing in the same MB-3 ratification session; no calendar deadline applied)
+- **Reserved capacity**: 1 session — already in flight (Campaign B P2 MB-3; parallel-eligible with MC-4 substrate enforcement)
+- **Input validation**:
+  - `jsonschema.validate(memo frontmatter, iii_airlock_request_schema.yaml)` → **0 errors** (Draft 2020-12; `Draft202012Validator.check_schema` clean; required-minimum `type: cross_vault_request` + `artifact_request.{spec_path, output_sink}` all present; `secrets_handled.needed: []` + `idempotency_key` + `constraints.{max_revisions, human_gate_required}` all parse)
+  - `artifact_request.spec_path` (`/Users/stanley/lattice/VideoForge.aDNA/iii/`) → **EXISTS** (4 files confirmed: `CLAUDE.md` 114 lines + `MANIFEST.md` 78 lines + `what/context/videoforge_iii_domain_pack.md` 148 lines + `what/context/videoforge_iii_learning_store.jsonl` 0 bytes)
+  - `artifact_request.output_sink` (this memo) → **EXISTS**
+  - `artifact_request.type: framework_consumer_wrapper_review` — new kind; schema `examples` list is open-by-design (schema line 167-170); accepted under that clause. If a second instance appears (likely SiteForge MB-2 retroactive ratification or a future Platform.aDNA federation), propose adding to canonical examples via Channel C v0.X bump per coord memo §2.3.
+- **Secret presence**: N/A — `secrets_handled.needed: []`; review operates on filed vault content only; nothing crosses the airlock boundary
+- **Idempotency check**: key `videoforge_iii_wrapper_mb_3_v0_2_pinned` — **first instance**; no duplicate in last 30 days (no prior coord memo carries this key; `idempotency_key` field introduced at MC-2 2026-05-08, so the search window is 3 days end-to-end and unambiguous)
+- **Preconditions** (all satisfied):
+  - III.aDNA `v0.2.0` tag live and points at commit `246124d` (annotated tag object `5cd210e`; verified `git rev-parse v0.2.0^{commit}`) — wrapper's `pinned_at_commit: "246124d"` exact match
+  - Canonical learning store `iii_corrections_canonical.jsonl` md5 invariant at `dde2cbd88c0b45956fb22285a2a0f856` (re-verified post-audit; canonical content untouched)
+  - All 4 wrapper files present and well-formed per audit checklist (federation_ref schema; pack selectivity; bridge_pack model; graduation statement; learning store 0-byte first-write shape)
+  - Campaign B R3 risk mitigation language ("MB-3 wrapper points at it via `local_extensions`") sanctions the new `kind: bridge_pack` discriminator — no ADR-002 amendment required at acceptance time
+- **Next state transition**: → `rendering` on completion of this reply (III.aDNA-side artifact updates: MANIFEST.md row 66 + Campaign B charter MB-3/DG-B/R3/Phase Plan + STATE.md Current Phase/Latest Direction/What's Working/mission queue/Blockers). On completion of those updates → `shipped` → `closed` (same-session per ETA).
+
+### Acceptance — audit findings (full pass)
+
+| # | Audit check | Result | Evidence |
+|---|---|---|---|
+| 1 | `federation_ref` ADR-002 §1 required fields present | ✅ pass | `source_vault`, `source_skill`, `version`, `version_policy`, `packs_used`, `local_extensions` all present at `iii/CLAUDE.md:25-57`; optional `source_path`, `pinned_at_commit`, `pinned_at`, `modules_used`, `lattice`, `lattice_version` match SiteForge MB-2 shape |
+| 2 | Pin commit resolves to `v0.2.0` tag | ✅ pass | `git rev-parse v0.2.0^{commit}` → `246124d4176a564df0df2823d6d3bbeba51f9d0a`; wrapper pin `246124d` is exact (cleaner than MB-2 SiteForge's `04ae724` post-tag pin) |
+| 3 | `version_policy` semantics | ✅ pass | `minor` per ADR-002 §3 (review on minor bump; patch transparent) |
+| 4 | Packs selectivity | ✅ pass | 5 of 7 canonical (inspect_procedures + introspect_checks + learning_store + web_design + vault_maintenance); justification at this memo §3.4 sound (no whitepaper-style outputs; canvas substrate via `presentationforge/`; no KINN) |
+| 5 | Modules — all 8 consumed | ✅ pass | dispatch / inspect_text / inspect_visual / inspect_data / inspect_code / introspect / improve / accumulate; matches MB-2 |
+| 6 | Lattice version | ✅ pass | `v1.2.0` (MA-3 8-node post-decomposition lattice; current) |
+| 7 | Bridge_pack model sanctioned by R3 mitigation | ✅ pass | Verbatim from III.aDNA STATE.md:80 — "ADR-006 stays in VideoForge; MB-3 wrapper points at it via `local_extensions`" |
+| 8 | Graduation statement preserves modality-agnostic core | ✅ pass | `not_graduating_to_canonical: true` with rationale per ADR-002 §6 at `videoforge_iii_domain_pack.md` frontmatter + § 8 |
+| 9 | Learning store first-write shape | ✅ pass | `videoforge_iii_learning_store.jsonl` is 0 bytes per ADR-003 §2 |
+| 10 | Bridge_pack content quality | ✅ pass | 8-section pack — Pack Identity / Bridge Rationale / 19-Operation Catalog (pointer-only) / III Dispatch Bridge / Delta-Inspection Rules / Auto-Fail Forced Operations / Video-Pipeline-Specific Traps / Graduation Statement; pointer-only catalog avoids duplicating ADR 006 authority |
+| 11 | Memo frontmatter validates against canonical schema | ✅ pass | 0 jsonschema errors (Draft 2020-12); all required-minimum + optional fields type-correct |
+| 12 | Canonical content untouched | ✅ pass | Upstream `iii_corrections_canonical.jsonl` md5 unchanged; no canonical packs / modules / lattices / ADRs / skills modified |
+
+### Acceptance — observations (non-gating; recorded for VideoForge / III.aDNA carry-forwards)
+
+These do NOT violate any current ADR and do NOT block MB-3 absorption. Recorded as **observations**, not revision requests, per the spec §4.1 / §4.2 acceptance protocol.
+
+1. **VideoForge `CLAUDE.md` Standing Rule 9** ("III is default, not optional") covers the substrate intent but does not yet route explicitly through the `iii/` wrapper (analogue to lattice-labs Rule 12 / SiteForge Standing Order 7 / CanvasForge Rule 11). **Owner**: VideoForge-side authoring (Iris / M_3_R Session 2 close-out or M_3_02 opener). Argus does not edit VideoForge governance per boundary discipline.
+2. **VideoForge `CLAUDE.md` project-map block** should list `iii/` as a directory entry (mirrors SiteForge MB-2 project-map line 63 update pattern). **Owner**: VideoForge-side authoring. Out of scope for MB-3 III.aDNA-side.
+3. **New `kind: bridge_pack` `local_extensions` discriminator** — first instance in any consumer wrapper. ADR-002 §1 permits any `local_extensions:` entry (open shape), and Campaign B R3 mitigation language explicitly sanctions the bridge pattern. If a second `bridge_pack` instance lands (RareHarness federation candidate; potential Spacemacs / CanvasForge / wga uses), surface to a future ADR-002 amendment OR a new ADR registering canonical `kind` values (recommended: defer to MB-7 vault-hygiene closeout where ADR-003 §4 schema reconciliation also lives).
+
+### Acceptance — closure implications (per spec §4.1 + this memo §6)
+
+On acceptance flip (this commit):
+
+- **MB-3 mission flips to ✅ complete** in `~/lattice/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md` (mission table row + DG-B box).
+- **Campaign B Risk R3** flips from `MED — open` to `MED — MITIGATED 2026-05-11` in the same charter; mitigation language ("MB-3 wrapper points at it via `local_extensions`") materialized.
+- **`III.aDNA/MANIFEST.md` Active Consumers row 66** updates from `MB-3 (pending; will pin against v0.2.0)` → `**MB-3 ✅ 2026-05-11**` with full pin / pack / extension manifest.
+- **`III.aDNA/STATE.md`** gains a new § "Latest Direction — 2026-05-11 (MB-3 ✅)" block + Current Phase / mission queue / What's Working / Blockers + frontmatter update.
+- **No git tag bump** — MB-3 touches no III.aDNA core (only registers + this coord memo + session file). `v0.2.0` stays the right pin for newcomer consumers.
+
 ## 10. Status Log
 
 | Date | Status | Note |
 |------|--------|------|
 | 2026-05-11 | open | Filed by VideoForge (Iris) at M_3_R Session 2 close; wrapper authored at `VideoForge.aDNA/iii/` (4 files); pinned at v0.2.0 commit `246124d`; ADR 006 bridge pack via `local_extensions`. Awaiting Argus acceptance per spec §4.1. |
+| 2026-05-11 | open → accepted | Argus (III.aDNA) accepted at MB-3 ratification session `session_stanley_20260511_iii_adna_mb3_videoforge_wrapper`. 12/12 audit checks pass (federation_ref schema; pin commit `246124d` exact against `v0.2.0` tag; packs selectivity 5/7; all 8 modules; lattice v1.2.0; bridge_pack model sanctioned by R3 mitigation; graduation statement; learning store 0 bytes; bridge_pack content quality; jsonschema 0 errors; canonical content untouched). `audit_id` assigned `session_stanley_20260511_iii_adna_mb3_videoforge_wrapper`. Three optional observations recorded (VideoForge Standing Rule routing; project-map listing; new `bridge_pack` kind documentation) — non-gating VideoForge-side / future-ADR carry-forwards. Advancing to `rendering` for III.aDNA-side artifact updates. |
+| 2026-05-11 | accepted → rendering → shipped | III.aDNA-side artifact updates landed: `MANIFEST.md` row 66 flipped (VideoForge `MB-3 ✅ 2026-05-11`; v0.2.0 pin commit `246124d`; 5/7 packs + 8 modules + 2 local_extensions); Campaign B charter (DG-B MB-3 box checked; mission table row ✅ COMPLETE 2026-05-11; R3 risk row `MITIGATED 2026-05-11`; Phase Plan P2 note updated; frontmatter `updated` + new `mb3_closed: 2026-05-11`); STATE.md (Current Phase summary includes MB-3 ✅; new § Latest Direction — 2026-05-11 (MB-3 ✅) block; What's Working bullet added; Campaign B mission queue row flipped; Blockers unchanged; frontmatter `updated` + `last_session`). Wrapper now appears as ratified in all III.aDNA registers. |
+| 2026-05-11 | shipped → closed | MB-3 absorption complete. No revisions requested (12/12 audit checks pass; observations recorded as non-gating VideoForge-side carry-forwards, not revision requests). Frontmatter `status: closed`. Strengthens Campaign C MC-5 validation case — first inbound (III.aDNA-receiving) v0.2 cross-vault request to traverse the full lifecycle `open → accepted → rendering → shipped → closed` end-to-end, exercising the reply-comment template (full-profile) once. |

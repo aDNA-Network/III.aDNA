@@ -10,6 +10,7 @@ phase: P2
 mb1_open: 2026-05-08
 mb1_closed: 2026-05-08
 mb2_closed: 2026-05-10
+mb3_closed: 2026-05-11
 predecessor: campaign_a_iii_genesis
 inbound_findings: []
 tags: [campaign, federation, consumer_wrappers, iii]
@@ -29,7 +30,7 @@ Campaign A: Genesis & Foundation — DG-A CLOSED 2026-05-08 9/9. v0.1.0 tag at c
 
 - [ ] **MB-1**: lattice-labs `iii/CLAUDE.md` live; operational `iii_corrections.jsonl` retired; lattice-labs/CLAUDE.md III routing in place; wikilink sweep across whitepaper_iii_deep_review (10 missions) + kinn_branding_iii + canvas_visual_command shows zero unresolved III references
 - [x] **MB-2**: SiteForge `iii/CLAUDE.md` live; multi-voice orchestration (MA-3 carry-forward #2) absorbed as consumer-side composition pattern in SiteForge wrapper — ✅ COMPLETE 2026-05-10 (`SiteForge.aDNA/iii/CLAUDE.md` authored; federation_ref pinned at `v0.2.0` commit `04ae724`; `siteforge_reviewers.yaml` 5-voice registry declared as `local_extensions.reviewer_registry` per `module_iii_semantic_reviewer.md` lines 56-69 contract; pre-migration `iii_corrections.jsonl` truncated + local `context_iii_domain_packs_web_design.md` retired as `[MIGRATED]` stub; two SiteForge lattice yamls rerouted; SiteForge Standing Order 7 added)
-- [ ] **MB-3**: VideoForge `iii/CLAUDE.md` live; ADR-006 bridge contract resolved (R3 risk closed)
+- [x] **MB-3**: VideoForge `iii/CLAUDE.md` live; ADR-006 bridge contract resolved (R3 risk closed) — ✅ COMPLETE 2026-05-11 (VideoForge-authored wrapper at `VideoForge.aDNA/iii/` ratified by Argus via `coord_2026_05_11_videoforge_iii_wrapper_authoring`; audit_id `session_stanley_20260511_iii_adna_mb3_videoforge_wrapper`; 12/12 audit checks pass; pin commit `246124d` exact against `v0.2.0` tag; bridge_pack via `local_extensions` materializes the R3 mitigation language; III.aDNA core stays modality-agnostic per ADR-002 §6; first inbound v0.2 cross-vault request to traverse full lifecycle `open → accepted → rendering → shipped → closed`)
 - [ ] **MB-4**: CanvasForge `iii/CLAUDE.md` live; `skill_canvas_iii_review.md` relocated from lattice-labs to CanvasForge wrapper (MA-3 carry-forward #4)
 - [ ] **MB-5**: wga `iii/CLAUDE.md` live
 - [ ] **MB-6**: `skill_iii_setup.md` published to adna base template (PR if needed); workspace `~/lattice/CLAUDE.md` "Forge Ecosystem" section updated to note `iii/` wrapper convention
@@ -43,7 +44,7 @@ Campaign A: Genesis & Foundation — DG-A CLOSED 2026-05-08 9/9. v0.1.0 tag at c
 |---------|-----------|----------|--------|
 | **MB-1** | lattice-labs `iii/` wrapper; retire operational corrections.jsonl per ADR-003; lattice-labs/CLAUDE.md III routing | 1 | ✅ **COMPLETE 2026-05-08** |
 | **MB-2** | SiteForge `iii/` wrapper; multi-voice orchestration absorbed (MA-3 carry-forward #2) | 1 | ✅ **COMPLETE 2026-05-10** |
-| **MB-3** | VideoForge `iii/` wrapper; ADR-006 bridge resolved | 1 | pending |
+| **MB-3** | VideoForge `iii/` wrapper; ADR-006 bridge resolved | 1 | ✅ **COMPLETE 2026-05-11** |
 | **MB-4** | CanvasForge `iii/` wrapper; relocate `skill_canvas_iii_review.md` (MA-3 carry-forward #4) | 1 | pending |
 | **MB-5** | wga `iii/` wrapper | 0.5 | pending |
 | **MB-6** | `skill_iii_setup.md` in adna template + workspace CLAUDE.md note | 0.5 | pending |
@@ -79,7 +80,7 @@ Two findings surfaced during MB-1 plan validation, scoped *out* of MB-1 to keep 
 |---|------|-----|------------|
 | R1 | Active lattice-labs campaigns break during wrapper migration | HIGH | Wikilink sweep on each wrapper close; pause closure if any unresolved; MA-1/MA-2 forward-stub pattern preserved |
 | R2 | Consumer version drift over time | MED | ADR-002 §3 minor-bump review policy; consumer agent reads CHANGELOG diff before updating pinned version |
-| R3 | VideoForge ADR-006 bridge complexity | MED | Per ADR-002 §6 III.aDNA does not absorb consumer-specific bridges; ADR-006 stays in VideoForge; MB-3 wrapper points at it via `local_extensions` |
+| R3 | VideoForge ADR-006 bridge complexity | MED — **MITIGATED 2026-05-11** | Per ADR-002 §6 III.aDNA does not absorb consumer-specific bridges; ADR-006 stays in VideoForge; MB-3 wrapper points at it via `local_extensions`. **Materialized**: VideoForge `iii/` wrapper ratified at MB-3 closure 2026-05-11 carries `local_extensions: [{kind: bridge_pack, path: videoforge_iii_domain_pack.md}, ...]`; the bridge pack is pointer-only (no ADR-006 content duplication), carries `not_graduating_to_canonical: true` per ADR-002 §6, and was sanctioned by this risk-row mitigation language verbatim (cited at `iii/CLAUDE.md:53` rationale field). III.aDNA core remains modality-agnostic. |
 | R4 | Canonical jsonl schema reconciliation surfaces unresolved questions | LOW | Deferred to MB-7; v0.1.0 pin remains stable; consumer wrappers depend on path semantics, not field-name semantics |
 | R5 | aDNA template is public repo — additive changes only for MB-6 | MED | MB-6 last in campaign; PR if upstream-incompatible |
 
@@ -88,7 +89,7 @@ Two findings surfaced during MB-1 plan validation, scoped *out* of MB-1 to keep 
 | Phase | Name | Missions | Status |
 |-------|------|----------|--------|
 | **P1** | Critical-path migration | MB-1 | ✅ **COMPLETE 2026-05-08** |
-| **P2** | Forge-consumer wrappers (parallel-eligible) | MB-2, MB-3, MB-4, MB-5 | 🟡 IN-FLIGHT 2026-05-10 — MB-2 ✅; MB-3..MB-5 pending |
+| **P2** | Forge-consumer wrappers (parallel-eligible) | MB-2, MB-3, MB-4, MB-5 | 🟡 IN-FLIGHT 2026-05-11 — MB-2 ✅; MB-3 ✅; MB-4..MB-5 pending |
 | **P3** | Template + closeout | MB-6, MB-7, MB-8, DG-B gate | pending |
 
 ## AAR
