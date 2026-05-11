@@ -1,10 +1,10 @@
 ---
 type: state
 created: 2026-05-07
-updated: 2026-05-08
+updated: 2026-05-10
 status: active
 last_edited_by: agent_stanley
-last_session: session_stanley_20260508_iii_adna_mc2_request_schema
+last_session: session_stanley_20260510_iii_adna_mc3_airlock_v0_2_reference_impl
 tags: [state, governance]
 ---
 
@@ -12,7 +12,9 @@ tags: [state, governance]
 
 ## Current Phase
 
-**Campaign B: Federation — P1 IN-FLIGHT (MB-1 ✅ 2026-05-08) — Campaign C: Airlock Standard v0.2 — P1 ✅ COMPLETE; P2 OPEN (MC-1 ✅ + MC-2 ✅ 2026-05-08)**
+**Campaign B: Federation — P1 IN-FLIGHT (MB-1 ✅ 2026-05-08) — Campaign C: Airlock Standard v0.2 — P2 partial (MC-1 ✅ + MC-2 ✅ 2026-05-08; MC-3 ✅ 2026-05-10; MC-4 pending). Annotated `v0.2.0` tag cut at MC-3 closure.**
+
+> **MC-3 closure note** (2026-05-10): Campaign C P2 partial — MC-3 ships the operational reference instance for Airlock Standard v0.2.0. `how/airlock/AIRLOCK.md` bumped v0.1.0 → v0.2.0 (frontmatter `version: "0.2.0"`, `covers: [entry_paths, cross_vault_request_patterns]`, `governed_by: what/artifacts/iii_airlock_standard_spec.md`, `absorbs_proposal: who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`); new Surface Selection table routes Entry vs Request before path selection; new § Cross-Vault Requests section routes the v0.2 surface (where the memo lives, required-minimum payload, 8-state lifecycle, lightweight vs full handshake profiles, secrets, idempotency, worked example) — all by pointer at spec §4 and schema extensions, not prose duplication; 5 entry paths preserved verbatim against `v0.1.0` tag (Path A–E Profile/Use cases/Out of scope/Expected output/Context budget/Load in order blocks byte-identical); "What v0.2.0 does NOT cover" anti-regression replaces the v0.1.0 deferral block — now lists v0.3+ deferrals from spec §7.2 (`proposed/` channel, multi-vault transactional, async batched, executable substrate). Reply-comment template authored at `how/templates/template_cross_vault_request_reply.md` (Acceptance full-profile per spec §4.2 field requirements; lightweight-profile descriptive note; Rejection variants with 7-value reason enum; Status Log row update). Spec patch edits (no version bump): §7.2 row 6 flipped ✅ MC-3 2026-05-10; §7.3 forward-reference list expanded from "three originally cited / one resolved / two pending" to "four originally cited / three resolved (MC-2, MC-3 template, MC-3 AIRLOCK.md bump) / two pending (MC-4 × 2)"; §8.4 reference-instance row updated from "v0.1.0 ships; v0.2.0 bump at MC-3" to "v0.2.0 — bumped at MC-3 2026-05-10". VideoForge proposal flipped `accepted → absorbed` (frontmatter + Status Log row date populated with full-paragraph MC-3 closure note). Campaign C charter: DG-C MC-3 box ✅ + tag-cut box ✅ + proposal-status box ✅ (closed pending MC-5); mission table MC-3 row ✅ COMPLETE 2026-05-10; Phase Plan P2 row marked partial (MC-3 ✅; MC-4 pending); Promises section Promise 2 (coord-memo fallback) flipped RETIRED. Annotated `v0.2.0` git tag cut at MC-3 closure commit (first release-grade tag since `v0.1.0` MA-4 close). No remote push yet — Stanley pushes when ready.
 
 > **MC-2 closure note** (2026-05-08): Campaign C P1 closed. `what/artifacts/iii_airlock_request_schema.yaml` authored (JSON Schema Draft 2020-12 in YAML form) — 9/9 mechanical validation checks pass (`Draft202012Validator.check_schema` clean; required-minimum positive + 4 negative-path tests + closed-shape constraint typo + secret-name pattern enforcement all pass). Required-minimum (`type: cross_vault_request` + `artifact_request.{spec_path, output_sink}`) enforced exactly per spec §4.3. Open at root + `artifact_request` (consumer-extension friendly); closed on substrate-critical sub-objects (`constraints`, `secrets_handled`). Worked example at `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` correctly non-conforms (top-level `type: coordination` not `cross_vault_request`; `spec_path`/`output_sink` body-promoted) — both gaps expected per spec §5.2 (pre-v0.2 authoring) and documented in schema header. Spec forward-references resolved (`defers_schema_to` frontmatter comment + §4.3 prose + §7.2 row + §7.3 bullet 1 — patch-level edits, no version bump). Campaign C charter MC-2 row + DG-C MC-2 box + P1 phase row flipped; charter frontmatter `phase: P1 → P2`. P2 (MC-3 + MC-4) now open.
 
@@ -75,7 +77,7 @@ git tag `v0.1.0` cut at MA-4 closure commit — first III.aDNA release.
 |----------|------|-------|--------|
 | **Campaign A: Genesis** | Fork, identity, content migration, module architecture, airlock v0.1.0 | P0-P2 | ✅ COMPLETE 2026-05-08 — DG-A CLOSED 9/9 |
 | **Campaign B: Federation** | Wire iii/ consumer wrappers across all vaults | **P1 IN-FLIGHT** | **OPEN 2026-05-08** — MB-1 ✅; MB-2..MB-8 pending |
-| **Campaign C: Airlock** | Formalize airlock standard v0.2 + propagate to major vaults | **P1 ✅ → P2 OPEN** | **OPEN 2026-05-08** — MC-1 ✅; MC-2 ✅; MC-3..MC-5 pending; parallel-eligible with B |
+| **Campaign C: Airlock** | Formalize airlock standard v0.2 + propagate to major vaults | **P2 partial** | **OPEN 2026-05-08** — MC-1 ✅; MC-2 ✅; **MC-3 ✅ 2026-05-10** (AIRLOCK.md v0.2.0 + reply-comment template + `v0.2.0` git tag); MC-4 + MC-5 pending; parallel-eligible with B |
 
 ## Campaign B Mission Queue (active)
 
@@ -90,15 +92,15 @@ git tag `v0.1.0` cut at MA-4 closure commit — first III.aDNA release.
 | MB-7: vault hygiene | 4 carry-forwards + 2 Plan-agent findings + KINN relocation | 0.5 sess | pending |
 | MB-8: LPWhitepaper wrapper | Gap surfaced during MB-1 wikilink sweep | 1 sess | pending |
 
-## Campaign C Mission Queue (P1 closed; P2 open)
+## Campaign C Mission Queue (P1 ✅; P2 partial — MC-3 ✅; MC-4 pending)
 
 | Mission | Goal | Est. | Status |
 |---------|------|------|--------|
 | MC-1: Standard spec | `iii_airlock_standard_spec.md` (entry paths + cross-vault request patterns) | 1 sess | ✅ **COMPLETE 2026-05-08** |
 | MC-2: Request schema | YAML payload schema canonicalized at `what/artifacts/iii_airlock_request_schema.yaml`; 9/9 mechanical validation checks; worked-example walk | 0.5 sess | ✅ **COMPLETE 2026-05-08** |
-| MC-3: AIRLOCK.md v0.2 | + handshake reply-comment template | 1 sess | pending |
+| MC-3: AIRLOCK.md v0.2 | + handshake reply-comment template + annotated `v0.2.0` git tag | 1 sess | ✅ **COMPLETE 2026-05-10** |
 | MC-4: Substrate enforcement | `secrets_handled` preflight + `idempotency_key` contract | 1 sess | pending |
-| MC-5: Validation | Re-exercise VideoForge → CanvasForge against v0.2; flip proposal status | 0.5 sess | pending |
+| MC-5: Validation | Re-exercise VideoForge → CanvasForge against v0.2; flip proposal status `absorbed → closed` | 0.5 sess | pending |
 
 ## Campaign A Mission Queue (closed, historical reference)
 
@@ -139,12 +141,13 @@ git tag `v0.1.0` cut at MA-4 closure commit — first III.aDNA release.
 - 8 composable III modules live at `what/modules/` (`module_iii_dispatch`, `_inspect_text`, `_inspect_code`, `_inspect_visual`, `_inspect_data`, `_introspect`, `_improve`, `_accumulate`) — typed I/O matching lattice contract; pure (pack content arrives as typed input)
 - Lattice `lattice_iii_verification_oracle.lattice.yaml` v1.2.0: all 8 module nodes carry `ref:` pointing at their `.module.yaml`; `accumulate` node added; ADR-003 write-policy expressed in node config rather than implicit in `human_review`
 - Legacy `module_iii_semantic_reviewer.{md,yaml}` rebranded `status: composite_reference` with redirect banner to the 8 decomposed modules — preserves backward-compat for SiteForge consumers pointing at the composite (multi-voice orchestration is consumer-side, lands in `SiteForge.aDNA/iii/` at Campaign B MB-2)
-- `how/airlock/AIRLOCK.md` v0.1.0 reference implementation: `status: reference_implementation`, Path Selection matrix routes external agents in one read, 5 entry paths (A text / B web+visual / C code / D video / E vault maintenance) each with Use Cases / Out of Scope / Expected Output / Context Budget, anti-regression section "What v0.1.0 does NOT cover" defers cross-vault request patterns to v0.2 / Campaign C MC-1
-- Initial annotated git tag `v0.1.0` cut at MA-4 closure commit — first III.aDNA release; pre-federation baseline for consumer wrappers in Campaign B
+- `how/airlock/AIRLOCK.md` v0.2.0 reference implementation (bumped at MC-3 2026-05-10): `status: reference_implementation`, `covers: [entry_paths, cross_vault_request_patterns]`, `governed_by: what/artifacts/iii_airlock_standard_spec.md`; Surface Selection routes Entry vs Request before path selection; § Entry Paths carries the 5 v0.1.0 entry paths verbatim (zero text drift); § Cross-Vault Requests routes the v0.2 surface (where the memo lives, required-minimum payload, lifecycle states, handshake profiles, secrets, idempotency, reply-comment template, worked example) — all by pointer at spec §4 and schema extensions; "What v0.2.0 does NOT cover" anti-regression lists v0.3+ deferrals (`proposed/` channel, multi-vault transactional, async batched, executable substrate)
+- Reply-comment template `how/templates/template_cross_vault_request_reply.md` (MC-3 deliverable): Acceptance full-profile fenced block per spec §4.2 field requirements (status / audit_id / eta / reserved_capacity / input validation / secret presence names-only / idempotency check / preconditions / next state); lightweight-profile descriptive note (no fenced block; skipped under that profile); Rejection fenced block with 7-value reason enum; Status Log row update guidance
+- Annotated git tags: `v0.1.0` cut at MA-4 closure (Campaign A baseline); **`v0.2.0` cut at MC-3 closure (2026-05-10)** — AIRLOCK.md v0.2.0 + reply-comment template + spec forward-references resolved + VideoForge proposal absorbed; first cross-vault-request-capable release
 
 ## Blockers
 
-None currently. **DG-A CLOSED 9/9.** Campaign B is OPEN P1 IN-FLIGHT (MB-1 ✅; MB-2..MB-8 pending). Campaign C is OPEN — P1 ✅ COMPLETE (MC-1 ✅; MC-2 ✅); P2 OPEN (MC-3..MC-4 pending); P3 pending (MC-5 + DG-C gate + `v0.2.0` tag).
+None currently. **DG-A CLOSED 9/9.** Campaign B is OPEN P1 IN-FLIGHT (MB-1 ✅; MB-2..MB-8 pending). Campaign C is OPEN — P1 ✅ COMPLETE (MC-1 ✅; MC-2 ✅); **P2 partial** (MC-3 ✅ 2026-05-10; MC-4 pending); P3 pending (MC-5 + DG-C gate). Annotated `v0.2.0` git tag cut at MC-3 closure — does not gate further missions.
 
 ## Risk Register
 
@@ -158,6 +161,34 @@ Campaign-A risks (R1-R5) have been absorbed into the per-campaign registers in `
 - lattice-labs operational pre-migration copy (`iii_corrections.jsonl` at `what/context/iii_domain_packs/`) **retired at MB-1 2026-05-08** (truncated to 0 bytes); lattice-labs local downstream fork now lives at `~/lattice/lattice-labs/iii/what/context/lattice_labs_iii_learning_store.jsonl` (empty; populated by future review cycles per ADR-003 §2)
 - Two vestigial campaign-scoped JSONLs remain at lattice-labs (whitepaper breadcrumb 13 144 B + canvas_visual breadcrumb 659 B) — disposition deferred to Campaign B charter MB-7
 - Schema reconciliation against ADR-003 §4 deferred to MB-7 (Plan-agent finding (a))
+
+## Latest Direction — 2026-05-10 (MC-3 ✅; AIRLOCK.md v0.2.0 + `v0.2.0` git tag)
+
+**MC-3 executed**. Three release-grade deliverables landed in this session:
+
+1. **`how/airlock/AIRLOCK.md` bumped v0.1.0 → v0.2.0**. Frontmatter rewritten: `version: "0.2.0"`, `covers: [entry_paths, cross_vault_request_patterns]`, `governed_by: what/artifacts/iii_airlock_standard_spec.md`, `absorbs_proposal: who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`. Body restructured: new Surface Selection table sits above Path Selection (Entry vs Request vs out-of-scope federation); § Entry Paths preserves the 5 v0.1.0 entry paths byte-identical against the `v0.1.0` tag (Profile / Use cases / Out of scope / Expected output / Context budget / Load in order blocks reproduced verbatim — zero text drift, per spec §3.3 reference-instance contract); new § Cross-Vault Requests is operational pointers (1–3 sentences per subsection: what / where / required-minimum payload / 8-state lifecycle / lightweight vs full handshake profiles / secrets / idempotency / reply-comment template / worked example); § Version Contract updated for v0.2.0 minor-bump semantics (additive surfaces, no v0.1 path removed); "What v0.2.0 does NOT cover" replaces the v0.1.0 anti-regression block — lists v0.3+ deferrals from spec §7.2 (`proposed/` channel; multi-vault transactional; async batched; executable substrate enforcement).
+
+2. **Reply-comment template authored** at `how/templates/template_cross_vault_request_reply.md`. Three sections: Acceptance reply (full-profile fenced markdown block carrying status / audit_id / eta / reserved_capacity / input validation / secret presence names-only / idempotency check / preconditions / next state — exactly spec §4.2 field requirements); Acceptance under lightweight-profile (descriptive note; no fenced block; explains why the section is empty under that profile and when upgrading to full is mandatory); Rejection reply (fenced block with 7-value reason enum: validation_failed | missing_secret: <NAME> | scope_mismatch | lattice_incompatible | budget_ceiling_exceeded | over_capacity_no_queue | other). Status Log row update guidance follows.
+
+3. **Spec patch edits (no version bump)**: §7.2 row 6 "Reply-comment template for handshake | MC-3" flipped status to ✅ 2026-05-10 with body pointer to canonical template path; §7.3 forward-reference list expanded from "three originally cited / one resolved / two pending" to "four originally cited / three resolved (MC-2, MC-3 template, MC-3 AIRLOCK.md bump) / two pending (MC-4 × 2)"; §8.4 reference-instance row updated from "v0.1.0 ships; v0.2.0 bump at MC-3" to "v0.2.0 — bumped at MC-3 2026-05-10". Spec frontmatter `version: "0.2.0"` unchanged (patch-level per §6.1).
+
+**VideoForge proposal flipped `accepted → absorbed`** at `who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`. Frontmatter status + updated date; Status Log row 3 ("(pending) | absorbed") populated with today's date and full closure paragraph naming AIRLOCK.md v0.2.0 ship, template canonical path, spec forward-reference resolution, and tag-cut. Row 4 ("(pending) | closed") still pending — reserved for MC-5 validation re-exercise.
+
+**Campaign C charter updated**: DG-C MC-3 box ✅ + tag-cut box ✅ + proposal-status box ✅ ("`closed` pending MC-5"); mission table MC-3 row ✅ COMPLETE 2026-05-10; Phase Plan P2 row marked partial ("MC-3 ✅; MC-4 pending"); P3 row noted "`v0.2.0` git tag already cut at MC-3 close"; Promises section Promise 2 (coord-memo fallback) flipped RETIRED ("how/airlock/AIRLOCK.md v0.2.0 routes cross-vault requests via § Cross-Vault Requests; the spec §4 contract is now operational"); Promise 3 status appended `accepted → absorbed at MC-3`.
+
+**Annotated `v0.2.0` git tag cut** at MC-3 closure commit (per Campaign C charter Critical Path + STATE.md post-MC-2 boot recommendation). First cross-vault-request-capable III.aDNA release. No remote push yet — Stanley pushes when ready (the v0.1.0 release went to `LatticeProtocol/III.aDNA`; v0.2.0 will follow the same path).
+
+### Fresh-session boot (post-MC-3)
+
+For the next agent that opens this vault:
+
+1. **Read this STATE.md from the top.** Current Phase + MC-3 closure note summarize where Campaigns B and C stand. Campaign C P2 is partial (MC-3 ✅; MC-4 pending). `v0.2.0` git tag is cut.
+2. **Confirm `how/sessions/active/` is empty**. MC-3 session moves to `how/sessions/history/2026-05/` at closeout.
+3. **Choose next mission.** Two parallel-eligible queues:
+   - **Campaign B** (federation): **MB-2 SiteForge wrapper** (largest architectural value — multi-voice orchestration absorption from MA-3 carry-forward #2). MB-2 pins federation against `v0.2.0` (the freshly cut tag) rather than `v0.1.0`, locking SiteForge into the cross-vault request surface from day one. → MB-4 CanvasForge → MB-3 VideoForge → MB-5 wga → MB-8 LPWhitepaper → MB-6 adna template → MB-7 vault hygiene → DG-B.
+   - **Campaign C** (airlock standard): **MC-4 Substrate enforcement** (closes Campaign C P2 — preflight script structure for `secrets_handled` per spec §4.4; idempotency cache mechanics + 30-day archive-search performance per spec §4.5; 1 sess) → MC-5 validation (re-exercise VideoForge → CanvasForge against v0.2 schema; capture deltas; flip proposal `absorbed → closed`; 0.5 sess) → DG-C gate.
+4. **Recommended next**: **MB-2** (largest architectural value in flight; pins consumers against fresh `v0.2.0`) OR **MC-4** (closes Campaign C P2 cleanly so only MC-5 validation remains before DG-C). Either advances a P-phase. Stanley signals.
+5. **Open a session file** using the MC-3 / MC-2 / MC-1 / MB-1 pattern at `how/sessions/active/session_stanley_<YYYYMMDD>_iii_adna_<mission>_<descriptor>.md`.
 
 ## Latest Direction — 2026-05-08 (MC-2 ✅; Campaign C P1 closed; P2 open)
 
@@ -190,17 +221,9 @@ Both gaps expected per spec §5.2 "additive-deltas" clause (worked example pre-d
 
 **No git tag bump**. v0.1.0 stays. Annotated `v0.2.0` tag still waits for MC-3 close (per charter Critical Path) — that's where AIRLOCK.md text actually shifts to v0.2.
 
-### Fresh-session boot (post-MC-2)
+### Fresh-session boot (post-MC-2) — superseded by post-MC-3 boot block above
 
-For the next agent that opens this vault:
-
-1. **Read this STATE.md from the top.** Current Phase + MC-2 closure note summarize where Campaigns B and C stand. Campaign C P1 is closed; P2 (MC-3 + MC-4) is the active phase.
-2. **Confirm `how/sessions/active/` is empty**. MC-2 session moved to `how/sessions/history/2026-05/` at closeout.
-3. **Choose next mission.** Two parallel-eligible queues:
-   - **Campaign B** (federation): **MB-2 SiteForge** (most architecturally meaningful — multi-voice orchestration absorption) → MB-4 CanvasForge → MB-3 VideoForge → MB-5 wga → MB-8 LPWhitepaper → MB-6 adna template (after ≥ 2 wrappers in flight) → MB-7 vault hygiene → DG-B.
-   - **Campaign C** (airlock standard): **MC-3 AIRLOCK.md v0.2.0 + reply-comment template** (next; cuts the annotated `v0.2.0` tag at close — main reward gate; 1 sess) → MC-4 substrate enforcement (1 sess) → MC-5 validation (0.5 sess) → DG-C.
-4. **Recommended next**: **MC-3** (now unblocked by MC-2 schema; cuts `v0.2.0` git tag at close — meaningful release-grade milestone) OR **MB-2** (largest architectural value in flight). Either advances a P1/P2 phase. Stanley signals.
-5. **Open a session file** using the MC-2 / MC-1 / MB-1 pattern at `how/sessions/active/session_stanley_<YYYYMMDD>_iii_adna_<mission>_<descriptor>.md`.
+(Original post-MC-2 boot guidance retained as historical reference; the post-MC-3 boot block is the current authority.)
 
 ## Latest Direction — 2026-05-08 (MC-1 ✅; Campaign C P1 in-flight)
 

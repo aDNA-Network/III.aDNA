@@ -1,25 +1,38 @@
 ---
 type: airlock
-version: "0.1.0"
+version: "0.2.0"
 status: reference_implementation
 created: 2026-05-07
-updated: 2026-05-08
+updated: 2026-05-10
 last_edited_by: agent_stanley
-closes_dg_a_criterion: airlock_5_entry_paths
-covers: entry_paths
-defers_to_v0_2: cross_vault_request_patterns
-inbound_findings: who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md
+governed_by: what/artifacts/iii_airlock_standard_spec.md
+covers: [entry_paths, cross_vault_request_patterns]
+absorbs_proposal: who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md
 ---
 
 # III.aDNA Airlock
 
-> If you are an external agent entering this vault from another context graph, start here. This file maps your profile and purpose to the minimum-viable context loading recipe. Do not load more than your entry path specifies — keep context budgets tight.
+> If you are an external agent entering this vault from another context graph, start here. This file maps your profile and purpose to the minimum-viable context loading recipe. v0.2.0 routes two surfaces: **entry** (you come into this vault to read context and do work locally) and **cross-vault request** (you ask an agent in this vault to do work and ship results back to you). Pick a surface first via § Surface Selection, then route within that surface. Do not load more than your path or surface specifies — keep context budgets tight.
 
 ## What is III.aDNA?
 
 The Inspect / Introspect / Improve quality improvement framework. A modular loop for finding, calibrating, and fixing quality issues in any artifact type (text, code, visual, data). Consumable by any vault via a lightweight `iii/` consumer wrapper.
 
-## Path Selection
+## Surface Selection
+
+Pick the surface that matches what you are doing. Multi-modal sessions (you both run III locally AND commission an artifact) pick a surface per interaction, not per session.
+
+| What you are doing | Surface |
+|--------------------|---------|
+| Coming into III.aDNA to read context and do work locally (e.g., run III review on an artifact, audit a vault, study the modules) | **Entry** — see § Entry Paths |
+| Asking an agent in III.aDNA to do work and ship results back to your vault | **Request** — see § Cross-Vault Requests |
+| Federating against III.aDNA at wrapper-creation time (one-time pin) | Out of scope here — see `what/decisions/adr_002_consumer_federation_contract.md` |
+
+Spec reference: `what/artifacts/iii_airlock_standard_spec.md` §2 (Two Surfaces — decision matrix + surface comparison).
+
+---
+
+## Entry Paths
 
 Use this matrix to self-route in one read. Pick the row that matches your artifact, then jump to the named path below.
 
@@ -31,11 +44,7 @@ Use this matrix to self-route in one read. Pick the row that matches your artifa
 | Video file, transcript, VideoForge operation-catalog entry | VideoForge agent | **D** |
 | Whole vault — staleness, orphans, frontmatter drift, broken wikilinks | Vault custodian / org-vault hygiene sweep | **E** |
 
-If no row matches, drop to "Can't find what you need?" at the bottom of this file. Multi-modal artifacts (e.g., a whitepaper that ships with code snippets) usually run multiple passes — pick the dominant modality first, then a secondary pass on the others. Cross-vault *request* patterns (you want another vault to do work for you, not to enter this one to do work) are out of scope for v0.1.0 — see "What v0.1.0 does NOT cover" below.
-
-## Entry Paths
-
----
+If no row matches, drop to "Can't find what you need?" at the bottom of this file. Multi-modal artifacts (e.g., a whitepaper that ships with code snippets) usually run multiple passes — pick the dominant modality first, then a secondary pass on the others. If your task is to commission another vault to do work for you, you are on the wrong surface — go back to § Surface Selection and pick **Request**.
 
 ### Path A — Text Improvement (whitepaper, ADR, context file, mission doc)
 
@@ -188,39 +197,79 @@ If no row matches, drop to "Can't find what you need?" at the bottom of this fil
 
 ---
 
-## Version Contract
+## Cross-Vault Requests
 
-This airlock is valid for III.aDNA **v0.1.0** (pre-federation baseline). Your consumer wrapper's `federation_ref` version pin determines which version of these files you load.
+A cross-vault request is the inverse direction of an entry path: you stay in your vault and ask an agent in this vault to do work and ship results back to you. The full contract is in the standard spec; this section routes you to the canonical artifacts.
 
-**On minor version bump** (v0.1 → v0.2 → ...): re-read this AIRLOCK.md to check for updated entry-path file lists before proceeding. The v0.2 addition of cross-vault *request* patterns (see "What v0.1.0 does NOT cover" below) is additive and does not invalidate the v0.1.0 entry paths — your existing recipes still work.
+**What this is**. Bidirectional, ephemeral, two-vault handshake. One memo on disk, in the receiving vault's `who/coordination/`, that both sides update through the lifecycle. Full contract: `what/artifacts/iii_airlock_standard_spec.md` §4.
 
-**On patch bump** (v0.1.0 → v0.1.1): no review required; patch bumps cover typo and clarity fixes that don't change file paths or recipes.
+**Where the request lives**. Receiving vault's `who/coordination/` directory, filename pattern:
 
-**Canonical path changes since v0.1.0**: none (initial version).
+```
+who/coordination/coord_<YYYY_MM_DD>_<requesting_vault>_requests_<artifact>.md
+```
+
+The receiving vault is the gatekeeper; the memo is its intake record. (Spec §4.1.)
+
+**Required-minimum payload**. Three fields conform: `type: cross_vault_request`, `artifact_request.spec_path`, `artifact_request.output_sink`. Everything else is optional and shaped by the work being commissioned. Full machine-readable contract: `what/artifacts/iii_airlock_request_schema.yaml` (JSON Schema Draft 2020-12 in YAML form). (Spec §4.3.)
+
+**Lifecycle states** (frontmatter `status`):
+
+`open → accepted → rendering → shipped → closed` (happy path)
+`open → rejected` (receiver declines)
+`open → cancelled` (requester withdraws before pickup)
+`accepted → queued → rendering` (receiver over-capacity but accepting)
+
+Valid transitions enumerated in `iii_airlock_request_schema.yaml` `x-lifecycle-transitions`. (Spec §4.1.)
+
+**Handshake profiles**. Lightweight (default) — states `open → shipped → closed`; the receiver's first reply is the shipped notification. Use for occasional ad-hoc 2-forge requests with no calendar urgency. Full — full state set; required when the receiver is in active rendering/serving mode, calendar deadlines apply, or `priority` is `high`/`urgent`. Profile rules: schema `x-handshake-profiles`. Field requirements: spec §4.2. The receiver MAY upgrade lightweight to full; MAY NOT downgrade a high/urgent request to lightweight.
+
+**Reply-comment template**. Receiver appends an Acceptance or Rejection section to the memo at pickup: `how/templates/template_cross_vault_request_reply.md`.
+
+**Secrets**. The `secrets_handled` frontmatter block specifies cross-vault secret delegation (`needed`, `passthrough`, `not_passed`). Receiver MUST verify presence of every `needed` name at acceptance and reject with `missing_secret: <NAME>` if absent. Names-only audit; never log values. Full contract: spec §4.4.
+
+**Idempotency**. Optional `idempotency_key` enables 30-day dedup on the receiver side. On match (and `force_new: false`), the receiver replies with `duplicate_of: <existing_memo_path>` and links the prior `audit_id`; the new memo flips `cancelled`. Recommended key convention: `<requesting_vault_short>_<artifact_kind>_<version_or_iteration>`. Full contract: spec §4.5.
+
+**Worked example**. VideoForge's commission of the Carly + Herb sprint onboarding deck from CanvasForge: `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`. Authored against the v0.1.0 coord-memo fallback; conforms to v0.2 with two additive deltas documented in spec §5.2 (`secrets_handled` block addable retroactively; `idempotency_key` field optional).
 
 ---
 
-## What v0.1.0 does NOT cover
+## Version Contract
 
-The five entry paths above describe **inbound agent entry** — an external agent comes into III.aDNA's context graph to run a quality-improvement loop. v0.1.0 deliberately does not formalize **cross-vault request patterns** — the case where Vault A's agent commissions Vault B's agent to do work for Vault A (e.g., "VideoForge requests CanvasForge build a partner-onboarding deck"). The two are different shapes:
+This airlock is v0.2.0. Your consumer wrapper's `federation_ref` version pin determines which version of these files you load.
 
-- **Entry** (covered here): inbound, pull-based, agent reads context and runs the loop locally.
-- **Request** (deferred to v0.2): bidirectional, ephemeral, two agents handshake across vault boundaries with status, schema, and idempotency.
+**On minor version bump** (v0.2 → v0.3 → ...): re-read this AIRLOCK.md to check for updated entry-path file lists, new surfaces, or new lifecycle states before proceeding. Minor bumps are additive — your existing recipes and request memos remain valid.
 
-Until v0.2 ships, cross-vault requests use the **coord-memo fallback**: file a memo at the receiving vault's `who/coordination/coord_<date>_<requesting_vault>_requests_<artifact>.md`. The canonical worked example is `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` (8-section structure: TL;DR / Context / Receives / Doesn't Receive / Constraints / Acceptance / Rollback / Why memo).
+**On patch bump** (v0.2.0 → v0.2.1): no review required; patch bumps cover typo and clarity fixes that don't change file paths, recipes, or schemas.
 
-**v0.2 spec authorship is queued for Campaign C MC-1**: `what/artifacts/iii_airlock_standard_spec.md` will formalize both entry paths *and* request patterns. The inbound proposal — VideoForge.aDNA's exercise of v0.1.0 producing 5 specific gaps (request-initiation ceremony, handshake, payload schema, secret delegation, idempotency) — is on file at `who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`.
+**On major bump** (v0.x → v1.0): reserved for breaking changes (entry-path removal, required-field reshape, lifecycle-state semantics change). Each consumer wrapper makes an explicit human decision before updating its pin.
 
-If you arrive in v0.1.0 expecting a request pattern: file a coord memo at the receiving vault following the worked example above. v0.2 will define the schema retroactively; existing memos remain valid evidence.
+**Canonical path changes since v0.1.0**: none (entry paths preserved verbatim; cross-vault request section is purely additive). The standard policy is detailed in spec §6 (versioning policy) and `what/decisions/adr_002_consumer_federation_contract.md` §3 (federation-pin review rules).
+
+---
+
+## What v0.2.0 does NOT cover
+
+v0.2.0 covers two surfaces — inbound entry (§ Entry Paths) and cross-vault requests (§ Cross-Vault Requests). The following surfaces are deliberately deferred per spec §7.2:
+
+- **`proposed/` channel for proposal triage** (deferred to v0.3+). When III.aDNA wires a `proposed/` channel (pattern source: VideoForge ADR-005 RLHF), incoming standard proposals migrate there. Until then, structured proposals land in `who/coordination/` as the fallback.
+- **Multi-vault transactional requests** (deferred to v0.3+). One requester, multiple receivers, atomic ship. No present-day worked example; design speculative.
+- **Async batched requests** (deferred to v0.3+). One memo, many artifacts shipped over time. No present-day worked example; scaling concern only.
+- **Executable substrate enforcement** (Campaign C MC-4, then a future Platform.aDNA for runtime). v0.2 carries the normative contracts in spec §4.4 (secrets preflight) and §4.5 (idempotency dedup); MC-4 will author implementation guidance (preflight script structure, cache mechanics, archive-search performance). The first executable enforcement lands when a Platform.aDNA integration (e.g., RareHarness) consumes the standard at runtime.
+
+If you arrive at a surface not covered here: file a coord memo at the receiving vault following the spec §4 request pattern; v0.3+ will define the missing schema retroactively, and your memo remains valid evidence.
 
 ---
 
 ## Can't find what you need?
 
-If your use case doesn't match any entry path above, open `how/skills/skill_iii_review.md` directly — it is the authoritative procedure. Entry paths here are convenience recipes, not gatekeepers.
+If your use case doesn't match an entry path AND doesn't fit the cross-vault request pattern, open `how/skills/skill_iii_review.md` directly — it is the authoritative procedure for the loop. Entry paths here are convenience recipes, not gatekeepers.
 
-To add a new entry path (for a new consumer profile), submit a PR to III.aDNA or open a mission in the `how/campaigns/campaign_a_iii_genesis/` tracker.
+To add a new entry path (for a new consumer profile), submit a PR to III.aDNA conformant to spec §3.1 (entry-path schema). Acceptance criteria for promoting a consumer-side path to a core entry path: the profile applies to ≥ 2 unrelated consumers; the `Load in order` list cites at least one III.aDNA core pack. (Spec §3.4.)
 
 ---
 
-*Standard spec*: `what/artifacts/iii_airlock_standard_spec.md` (MC-1, Campaign C — to be authored)
+*Standard spec*: `what/artifacts/iii_airlock_standard_spec.md` (v0.2.0; governs this file)
+*Request schema*: `what/artifacts/iii_airlock_request_schema.yaml` (v0.2.0; JSON Schema Draft 2020-12 in YAML form)
+*Reply-comment template*: `how/templates/template_cross_vault_request_reply.md`
+*Absorbs proposal*: `who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`

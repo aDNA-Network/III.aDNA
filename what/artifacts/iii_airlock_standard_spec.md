@@ -4,7 +4,7 @@ title: "III.aDNA Airlock Standard"
 version: "0.2.0"
 status: reference_implementation
 created: 2026-05-08
-updated: 2026-05-08
+updated: 2026-05-10
 last_edited_by: agent_stanley
 governs: how/airlock/AIRLOCK.md
 predecessor_version: "0.1.0"
@@ -374,18 +374,20 @@ This versioning policy refines [ADR-002 §3](../decisions/adr_002_consumer_feder
 | Multi-vault transactional requests (one requester, multiple receivers, atomic ship) | v0.3+ | No present-day worked example; design speculative |
 | Async batched requests (one memo, many artifacts shipped over time) | v0.3+ | No present-day worked example; scaling concern only |
 | Substrate-enforcement *implementation* (preflight scripts, idempotency cache code) | MC-4 | This spec carries the contract; MC-4 carries the implementation guidance |
-| Reply-comment template for handshake | MC-3 | This spec carries the field requirements; MC-3 ships the template at `how/templates/template_cross_vault_request_reply.md` |
+| Reply-comment template for handshake | MC-3 ✅ 2026-05-10 | Authored at `how/templates/template_cross_vault_request_reply.md` (Acceptance full-profile + Rejection variants; profile-selection rules cross-linked to schema `x-handshake-profiles`) |
 | Machine-readable YAML schema | MC-2 ✅ 2026-05-08 | This spec carries the human-readable shape; MC-2 shipped the validator-friendly YAML at `what/artifacts/iii_airlock_request_schema.yaml` (JSON Schema Draft 2020-12) |
 
 ### §7.3 Forward-references in this spec
 
-Three sections originally cited deliverables that did not yet exist at v0.2.0 ship; one is now resolved (MC-2), two remain pending (MC-4):
+Four sections originally cited deliverables that did not yet exist at v0.2.0 ship; three are now resolved (MC-2, MC-3 reply-comment template, MC-3 AIRLOCK.md v0.2.0 bump), two remain pending (MC-4 substrate implementation guidance × 2):
 
 - §4.3 cites `what/artifacts/iii_airlock_request_schema.yaml` — **authored at MC-2 2026-05-08; live link**.
 - §4.4 cites "implementation guidance authored at MC-4" — pending.
 - §4.5 cites "implementation guidance authored at MC-4" — pending.
+- §7.2 row "Reply-comment template for handshake" cites `how/templates/template_cross_vault_request_reply.md` — **authored at MC-3 2026-05-10; live link**.
+- §8.4 row "Reference instance (entry paths): `how/airlock/AIRLOCK.md` (v0.1.0 ships; v0.2.0 bump at MC-3)" — **bumped at MC-3 2026-05-10**; AIRLOCK.md now carries `version: "0.2.0"` and routes both surfaces (entry + cross-vault request) per §3 and §4.
 
-A consumer agent encountering these forward-references during a v0.2.0 session SHOULD treat the contracts (the prose in §4.3–§4.5) as normative even when the cited file is absent. The cited files become live links as Campaign C progresses; the contracts do not change between MC-1 close and MC-5 close.
+A consumer agent encountering the remaining forward-references (§4.4, §4.5 → MC-4) during a v0.2.0 session SHOULD treat the contracts (the prose in §4.4–§4.5) as normative even when the cited implementation guidance is absent. The cited files become live links as Campaign C progresses; the contracts do not change between MC-1 close and MC-5 close.
 
 ---
 
@@ -408,7 +410,7 @@ This spec accepts the VideoForge proposal in full. All 5 gaps absorbed; no gap d
 ### §8.4 Cross-references
 
 - Campaign C charter: `how/campaigns/campaign_c_airlock_standard/campaign_c_airlock_standard.md`
-- Reference instance (entry paths): `how/airlock/AIRLOCK.md` (v0.1.0 ships; v0.2.0 bump at MC-3)
+- Reference instance (entry + request surfaces): `how/airlock/AIRLOCK.md` (v0.2.0 — bumped at MC-3 2026-05-10)
 - Reference instance (cross-vault request, worked example): `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`
 - Inbound proposal: `who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`
 - Federation-pin policy: `what/decisions/adr_002_consumer_federation_contract.md` §3

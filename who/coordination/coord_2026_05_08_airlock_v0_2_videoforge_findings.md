@@ -1,7 +1,7 @@
 ---
 type: coordination
 title: "Airlock Standard v0.2 Proposal — VideoForge Findings (Cross-Forge Request Patterns)"
-status: accepted
+status: absorbed
 direction: inbound (III.aDNA receives)
 proposing_vault: VideoForge.aDNA
 proposing_persona: iris
@@ -9,7 +9,7 @@ receiving_vault: III.aDNA
 receiving_persona: argus_panoptes
 proposing_agent: agent_stanley
 created: 2026-05-08
-updated: 2026-05-08
+updated: 2026-05-10
 priority: low
 deadline: III.aDNA Campaign C (Airlock Standard) open
 relates_to: III.aDNA/how/airlock/AIRLOCK.md v0.1.0
@@ -203,5 +203,5 @@ III.aDNA does not have a `proposed/` channel yet (per STATE.md — Campaign A MA
 |------|--------|------|
 | 2026-05-08 | open | Filed as input for III.aDNA Campaign C (Airlock Standard) when opens; no calendar urgency |
 | 2026-05-08 | accepted | Campaign C MC-1 absorbs all 5 gaps in `what/artifacts/iii_airlock_standard_spec.md` v0.2.0 (§4.1–§4.5 map 1:1 to Gaps 1–5); proposal sequencing adopted verbatim as MC-1..MC-5 mission queue |
-| (pending) | absorbed | Reserved for MC-3 (AIRLOCK.md v0.2.0 ship) — by then the spec is implemented in the reference instance and the proposal's recommendations are operational |
+| 2026-05-10 | absorbed | MC-3 ✅ — `how/airlock/AIRLOCK.md` bumped v0.1.0 → v0.2.0 (Surface Selection + Cross-Vault Requests sections; 5 entry paths preserved verbatim; v0.2.0 anti-regression block lists v0.3+ deferrals). Reply-comment template authored at `how/templates/template_cross_vault_request_reply.md` (Acceptance full-profile + Rejection variants per spec §4.1, §4.2). Spec §7.2 + §7.3 forward-references resolved at patch level. Annotated `v0.2.0` git tag cut at MC-3 closure commit. All 5 gaps now operational in the reference instance. |
 | (pending) | closed | Reserved for MC-5 (validation) — re-exercise VideoForge → CanvasForge pattern under v0.2; flip status; annotate cross-link to spec |
