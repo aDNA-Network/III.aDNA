@@ -2,7 +2,7 @@
 type: manifest
 role: project
 created: 2026-05-07
-updated: 2026-05-10
+updated: 2026-05-11
 last_edited_by: agent_stanley
 tags: [manifest, governance, iii, framework]
 ---
@@ -62,7 +62,7 @@ III.aDNA/
 | Vault | Wrapper | Packs used | Status |
 |-------|---------|-----------|--------|
 | `lattice-labs` | `lattice-labs/iii/` | whitepaper, kinn_branding, vault_maintenance, canvas_visual | **MB-1 ✅ 2026-05-08** — pinned at `v0.1.0` (commit `1628793`); consumer-side review pending v0.2.0 minor bump per ADR-002 §3 |
-| `SiteForge.aDNA` | `SiteForge.aDNA/iii/` | web_design | MB-2 (pending; will pin against `v0.2.0`) |
+| `SiteForge.aDNA` | `SiteForge.aDNA/iii/` | inspect_procedures, introspect_checks, learning_store, web_design, vault_maintenance | **MB-2 ✅ 2026-05-10** — pinned at `v0.2.0` (commit `04ae724`); 5/7 canonical packs; all 8 modules; 2 local_extensions (reviewer_registry → in-place `siteforge_reviewers.yaml` 5-voice registry; learning_store_local seeded empty) |
 | `VideoForge.aDNA` | `VideoForge.aDNA/iii/` | web_design, + ADR-006 extension | MB-3 (pending; will pin against `v0.2.0`) |
 | `CanvasForge.aDNA` | `CanvasForge.aDNA/iii/` | canvas_visual | MB-4 (pending; will pin against `v0.2.0`) |
 | `wga.aDNA` | `wga.aDNA/iii/` | whitepaper, educational_content (stub) | MB-5 (pending; will pin against `v0.2.0`) |

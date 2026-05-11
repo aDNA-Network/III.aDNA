@@ -4,10 +4,12 @@ campaign_id: campaign_b_iii_federation
 title: "Campaign B: III.aDNA Ecosystem Federation"
 status: open
 created: 2026-05-08
-updated: 2026-05-08
+updated: 2026-05-11
 last_edited_by: agent_stanley
-phase: P1
+phase: P2
 mb1_open: 2026-05-08
+mb1_closed: 2026-05-08
+mb2_closed: 2026-05-10
 predecessor: campaign_a_iii_genesis
 inbound_findings: []
 tags: [campaign, federation, consumer_wrappers, iii]
@@ -26,7 +28,7 @@ Campaign A: Genesis & Foundation — DG-A CLOSED 2026-05-08 9/9. v0.1.0 tag at c
 ## DG-B Criteria
 
 - [ ] **MB-1**: lattice-labs `iii/CLAUDE.md` live; operational `iii_corrections.jsonl` retired; lattice-labs/CLAUDE.md III routing in place; wikilink sweep across whitepaper_iii_deep_review (10 missions) + kinn_branding_iii + canvas_visual_command shows zero unresolved III references
-- [ ] **MB-2**: SiteForge `iii/CLAUDE.md` live; multi-voice orchestration (MA-3 carry-forward #2) absorbed as consumer-side composition pattern in SiteForge wrapper
+- [x] **MB-2**: SiteForge `iii/CLAUDE.md` live; multi-voice orchestration (MA-3 carry-forward #2) absorbed as consumer-side composition pattern in SiteForge wrapper — ✅ COMPLETE 2026-05-10 (`SiteForge.aDNA/iii/CLAUDE.md` authored; federation_ref pinned at `v0.2.0` commit `04ae724`; `siteforge_reviewers.yaml` 5-voice registry declared as `local_extensions.reviewer_registry` per `module_iii_semantic_reviewer.md` lines 56-69 contract; pre-migration `iii_corrections.jsonl` truncated + local `context_iii_domain_packs_web_design.md` retired as `[MIGRATED]` stub; two SiteForge lattice yamls rerouted; SiteForge Standing Order 7 added)
 - [ ] **MB-3**: VideoForge `iii/CLAUDE.md` live; ADR-006 bridge contract resolved (R3 risk closed)
 - [ ] **MB-4**: CanvasForge `iii/CLAUDE.md` live; `skill_canvas_iii_review.md` relocated from lattice-labs to CanvasForge wrapper (MA-3 carry-forward #4)
 - [ ] **MB-5**: wga `iii/CLAUDE.md` live
@@ -39,8 +41,8 @@ Campaign A: Genesis & Foundation — DG-A CLOSED 2026-05-08 9/9. v0.1.0 tag at c
 
 | Mission | Objective | Sessions | Status |
 |---------|-----------|----------|--------|
-| **MB-1** | lattice-labs `iii/` wrapper; retire operational corrections.jsonl per ADR-003; lattice-labs/CLAUDE.md III routing | 1 | 🟡 OPEN 2026-05-08 |
-| **MB-2** | SiteForge `iii/` wrapper; multi-voice orchestration absorbed (MA-3 carry-forward #2) | 1 | pending |
+| **MB-1** | lattice-labs `iii/` wrapper; retire operational corrections.jsonl per ADR-003; lattice-labs/CLAUDE.md III routing | 1 | ✅ **COMPLETE 2026-05-08** |
+| **MB-2** | SiteForge `iii/` wrapper; multi-voice orchestration absorbed (MA-3 carry-forward #2) | 1 | ✅ **COMPLETE 2026-05-10** |
 | **MB-3** | VideoForge `iii/` wrapper; ADR-006 bridge resolved | 1 | pending |
 | **MB-4** | CanvasForge `iii/` wrapper; relocate `skill_canvas_iii_review.md` (MA-3 carry-forward #4) | 1 | pending |
 | **MB-5** | wga `iii/` wrapper | 0.5 | pending |
@@ -85,9 +87,9 @@ Two findings surfaced during MB-1 plan validation, scoped *out* of MB-1 to keep 
 
 | Phase | Name | Missions | Status |
 |-------|------|----------|--------|
-| **P1** | Critical-path migration | MB-1 | 🟡 IN-FLIGHT 2026-05-08 |
-| **P2** | Forge-consumer wrappers (parallel-eligible) | MB-2, MB-3, MB-4, MB-5 | pending |
-| **P3** | Template + closeout | MB-6, MB-7, DG-B gate | pending |
+| **P1** | Critical-path migration | MB-1 | ✅ **COMPLETE 2026-05-08** |
+| **P2** | Forge-consumer wrappers (parallel-eligible) | MB-2, MB-3, MB-4, MB-5 | 🟡 IN-FLIGHT 2026-05-10 — MB-2 ✅; MB-3..MB-5 pending |
+| **P3** | Template + closeout | MB-6, MB-7, MB-8, DG-B gate | pending |
 
 ## AAR
 <!-- Template: how/templates/template_aar_lightweight.md — populate at DG-B closure -->

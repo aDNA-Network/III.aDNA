@@ -1,10 +1,10 @@
 ---
 type: state
 created: 2026-05-07
-updated: 2026-05-10
+updated: 2026-05-11
 status: active
 last_edited_by: agent_stanley
-last_session: session_stanley_20260510_iii_adna_mc3_airlock_v0_2_reference_impl
+last_session: session_stanley_20260510_iii_adna_mb2_siteforge_wrapper
 tags: [state, governance]
 ---
 
@@ -12,7 +12,9 @@ tags: [state, governance]
 
 ## Current Phase
 
-**Campaign B: Federation — P1 IN-FLIGHT (MB-1 ✅ 2026-05-08) — Campaign C: Airlock Standard v0.2 — P2 partial (MC-1 ✅ + MC-2 ✅ 2026-05-08; MC-3 ✅ 2026-05-10; MC-4 pending). Annotated `v0.2.0` tag cut at MC-3 closure.**
+**Campaign B: Federation — P2 IN-FLIGHT (MB-1 ✅ 2026-05-08; MB-2 ✅ 2026-05-10; MB-3..MB-8 pending) — Campaign C: Airlock Standard v0.2 — P2 partial (MC-1 ✅ + MC-2 ✅ 2026-05-08; MC-3 ✅ 2026-05-10; MC-4 pending). Annotated `v0.2.0` tag cut at MC-3 closure.**
+
+> **MB-2 closure note** (2026-05-10): Campaign B P2 opened. `~/lattice/SiteForge.aDNA/iii/CLAUDE.md` authored — federation_ref pinned at III.aDNA `v0.2.0` (commit `04ae724`); 5 of 7 canonical packs declared (web_design primary; `whitepaper_communication` + `canvas_visual` intentionally omitted as out-of-scope for web archetype work — § "Packs out of scope (intentionally)" documents the boundary); all 8 modules; 2 `local_extensions` (`kind: reviewer_registry` pointing at in-place `~/lattice/SiteForge.aDNA/what/context/siteforge/siteforge_reviewers.yaml` — MA-3 carry-forward #2 absorbed per `module_iii_semantic_reviewer.md` lines 56-69 explicit landing-site citation; `kind: learning_store_local` pointing at empty new `~/lattice/SiteForge.aDNA/iii/what/context/siteforge_iii_learning_store.jsonl`). Multi-voice orchestration (5 voices: Voice Critic / Design / UX / SEO / Brand Alignment with `cross_voice_threshold: 3` escalation) stays at established SiteForge path — three in-flight references (`skill_quality_validation.md`, `lattice_partner_website_scaffold.lattice.yaml`, `lattice_quality_validation.lattice.yaml`) hardcode it; wrapper formalizes the pointer without forcing relocation (mirrors MB-1 KINN pack decision). Pre-migration operational `iii_corrections.jsonl` at `SiteForge.aDNA/what/context/iii_domain_packs/` truncated to 0 bytes (canonical md5 `dde2cbd88c0b45956fb22285a2a0f856` re-verified unchanged); pre-migration local web_design pack replaced with `[MIGRATED]` forward-pointer stub (diff against canonical confirmed zero substantive trap-content drift — only stale `updated:` frontmatter and old wikilinks); sibling `MIGRATION_NOTE.md` authored at SiteForge documenting Stage 3 closure. Two SiteForge lattice yamls (`lattice_partner_website_scaffold.lattice.yaml:163` + `skills/lattice_quality_validation.lattice.yaml:57`) updated — `corrections_store` paths rerouted to wrapper-managed local store. SiteForge.aDNA/CLAUDE.md gained Standing Order 7 (III review via wrapper; mirrors lattice-labs Rule 12 / CanvasForge Rule 11); project-map line annotated; Context-Loading Quality line repointed at wrapper. Wikilink sweep clean — all `iii_corrections` / `iii_domain_packs` / `context_iii_domain_packs_web_design` hits accounted for; design-doc references at `sf_m14_context_graft_design.md` (lines 97, 185, 187, 188, 235, 236, 244) + `sf_m14_learning_loop_design.md` (lines 24, 25, 39, 48, 75, 87) survive stub redirect, flagged for Campaign B MB-7 disposition per the new `MIGRATION_NOTE.md`. No git tag bump (MB-2 touches no III.aDNA core; `v0.2.0` stays). Campaign B charter MB-2 row + DG-B box flipped ✅; MANIFEST.md Active Consumers SiteForge row updated.
 
 > **MC-3 closure note** (2026-05-10): Campaign C P2 partial — MC-3 ships the operational reference instance for Airlock Standard v0.2.0. `how/airlock/AIRLOCK.md` bumped v0.1.0 → v0.2.0 (frontmatter `version: "0.2.0"`, `covers: [entry_paths, cross_vault_request_patterns]`, `governed_by: what/artifacts/iii_airlock_standard_spec.md`, `absorbs_proposal: who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`); new Surface Selection table routes Entry vs Request before path selection; new § Cross-Vault Requests section routes the v0.2 surface (where the memo lives, required-minimum payload, 8-state lifecycle, lightweight vs full handshake profiles, secrets, idempotency, worked example) — all by pointer at spec §4 and schema extensions, not prose duplication; 5 entry paths preserved verbatim against `v0.1.0` tag (Path A–E Profile/Use cases/Out of scope/Expected output/Context budget/Load in order blocks byte-identical); "What v0.2.0 does NOT cover" anti-regression replaces the v0.1.0 deferral block — now lists v0.3+ deferrals from spec §7.2 (`proposed/` channel, multi-vault transactional, async batched, executable substrate). Reply-comment template authored at `how/templates/template_cross_vault_request_reply.md` (Acceptance full-profile per spec §4.2 field requirements; lightweight-profile descriptive note; Rejection variants with 7-value reason enum; Status Log row update). Spec patch edits (no version bump): §7.2 row 6 flipped ✅ MC-3 2026-05-10; §7.3 forward-reference list expanded from "three originally cited / one resolved / two pending" to "four originally cited / three resolved (MC-2, MC-3 template, MC-3 AIRLOCK.md bump) / two pending (MC-4 × 2)"; §8.4 reference-instance row updated from "v0.1.0 ships; v0.2.0 bump at MC-3" to "v0.2.0 — bumped at MC-3 2026-05-10". VideoForge proposal flipped `accepted → absorbed` (frontmatter + Status Log row date populated with full-paragraph MC-3 closure note). Campaign C charter: DG-C MC-3 box ✅ + tag-cut box ✅ + proposal-status box ✅ (closed pending MC-5); mission table MC-3 row ✅ COMPLETE 2026-05-10; Phase Plan P2 row marked partial (MC-3 ✅; MC-4 pending); Promises section Promise 2 (coord-memo fallback) flipped RETIRED. Annotated `v0.2.0` git tag cut at MC-3 closure commit (first release-grade tag since `v0.1.0` MA-4 close). No remote push yet — Stanley pushes when ready.
 
@@ -76,7 +78,7 @@ git tag `v0.1.0` cut at MA-4 closure commit — first III.aDNA release.
 | Campaign | Goal | Phase | Status |
 |----------|------|-------|--------|
 | **Campaign A: Genesis** | Fork, identity, content migration, module architecture, airlock v0.1.0 | P0-P2 | ✅ COMPLETE 2026-05-08 — DG-A CLOSED 9/9 |
-| **Campaign B: Federation** | Wire iii/ consumer wrappers across all vaults | **P1 IN-FLIGHT** | **OPEN 2026-05-08** — MB-1 ✅; MB-2..MB-8 pending |
+| **Campaign B: Federation** | Wire iii/ consumer wrappers across all vaults | **P2 IN-FLIGHT** | **OPEN 2026-05-08** — MB-1 ✅; **MB-2 ✅ 2026-05-10**; MB-3..MB-8 pending |
 | **Campaign C: Airlock** | Formalize airlock standard v0.2 + propagate to major vaults | **P2 partial** | **OPEN 2026-05-08** — MC-1 ✅; MC-2 ✅; **MC-3 ✅ 2026-05-10** (AIRLOCK.md v0.2.0 + reply-comment template + `v0.2.0` git tag); MC-4 + MC-5 pending; parallel-eligible with B |
 
 ## Campaign B Mission Queue (active)
@@ -84,7 +86,7 @@ git tag `v0.1.0` cut at MA-4 closure commit — first III.aDNA release.
 | Mission | Goal | Est. | Status |
 |---------|------|------|--------|
 | MB-1: lattice-labs wrapper | Retire operational corrections.jsonl per ADR-003; lattice-labs/CLAUDE.md III routing | 1 sess | ✅ **COMPLETE 2026-05-08** |
-| MB-2: SiteForge wrapper | Multi-voice orchestration absorbed (MA-3 carry-forward #2) | 1 sess | pending |
+| MB-2: SiteForge wrapper | Multi-voice orchestration absorbed (MA-3 carry-forward #2) | 1 sess | ✅ **COMPLETE 2026-05-10** |
 | MB-3: VideoForge wrapper | ADR-006 bridge resolved | 1 sess | pending |
 | MB-4: CanvasForge wrapper | Relocate `skill_canvas_iii_review.md` (MA-3 carry-forward #4) | 1 sess | pending |
 | MB-5: wga wrapper | Standard wrapper; minimal extensions | 0.5 sess | pending |
@@ -136,7 +138,7 @@ git tag `v0.1.0` cut at MA-4 closure commit — first III.aDNA release.
 - Core III canonical files live at III.aDNA (skill, module, lattice, corrections.jsonl)
 - 7 canonical core domain packs live at `what/context/core_domain_packs/`: inspect_procedures, introspect_checks, learning_store, web_design, whitepaper_communication, canvas_visual, vault_maintenance (all carry `migration_provenance` provenance)
 - lattice-labs forward stubs in place; active campaigns continue uninterrupted — at MB-1 close 2026-05-08 only `campaign_kinn_branding_iii` (50/100) is actively writing at lattice-labs (`campaign_whitepaper_iii_deep_review` migrated to LPWhitepaper.aDNA 2026-04-17; `campaign_canvas_visual_command` superseded by CanvasForge.aDNA M-Cleanup-06 cutover 2026-05-04)
-- corrections.jsonl canonical upstream operational; **lattice-labs `iii/` consumer wrapper live (MB-1 ✅ 2026-05-08)** — federation_ref pinned at v0.1.0, local store seeded empty, operational pre-migration jsonl retired (truncated to 0 bytes); MB-2..MB-8 wrappers pending
+- corrections.jsonl canonical upstream operational; **lattice-labs `iii/` consumer wrapper live (MB-1 ✅ 2026-05-08)** — federation_ref pinned at v0.1.0, local store seeded empty, operational pre-migration jsonl retired; **SiteForge.aDNA `iii/` consumer wrapper live (MB-2 ✅ 2026-05-10)** — federation_ref pinned at v0.2.0 (commit `04ae724`); 5 of 7 packs; all 8 modules; 2 local_extensions (reviewer_registry pointing at in-place `siteforge_reviewers.yaml` 5-voice multi-voice registry — MA-3 carry-forward #2 absorbed; learning_store_local seeded empty); pre-migration `iii_corrections.jsonl` + local `context_iii_domain_packs_web_design.md` retired (truncate + `[MIGRATED]` stub); `MIGRATION_NOTE.md` documents Stage 3 closure; two SiteForge lattice yamls rerouted to wrapper-managed local store; SiteForge.aDNA Standing Order 7 added; MB-3..MB-8 wrappers pending
 - skill_iii_review.md wikilinks all resolve to canonical core_domain_packs/ paths; no remaining `iii_domain_packs/` references
 - 8 composable III modules live at `what/modules/` (`module_iii_dispatch`, `_inspect_text`, `_inspect_code`, `_inspect_visual`, `_inspect_data`, `_introspect`, `_improve`, `_accumulate`) — typed I/O matching lattice contract; pure (pack content arrives as typed input)
 - Lattice `lattice_iii_verification_oracle.lattice.yaml` v1.2.0: all 8 module nodes carry `ref:` pointing at their `.module.yaml`; `accumulate` node added; ADR-003 write-policy expressed in node config rather than implicit in `human_review`
@@ -147,7 +149,7 @@ git tag `v0.1.0` cut at MA-4 closure commit — first III.aDNA release.
 
 ## Blockers
 
-None currently. **DG-A CLOSED 9/9.** Campaign B is OPEN P1 IN-FLIGHT (MB-1 ✅; MB-2..MB-8 pending). Campaign C is OPEN — P1 ✅ COMPLETE (MC-1 ✅; MC-2 ✅); **P2 partial** (MC-3 ✅ 2026-05-10; MC-4 pending); P3 pending (MC-5 + DG-C gate). Annotated `v0.2.0` git tag cut at MC-3 closure — does not gate further missions.
+None currently. **DG-A CLOSED 9/9.** Campaign B is OPEN **P2 IN-FLIGHT** (MB-1 ✅ 2026-05-08; **MB-2 ✅ 2026-05-10**; MB-3..MB-8 pending). Campaign C is OPEN — P1 ✅ COMPLETE (MC-1 ✅; MC-2 ✅); **P2 partial** (MC-3 ✅ 2026-05-10; MC-4 pending); P3 pending (MC-5 + DG-C gate). Annotated `v0.2.0` git tag cut at MC-3 closure — does not gate further missions; MB-2 pins SiteForge against it.
 
 ## Risk Register
 
@@ -159,8 +161,35 @@ Campaign-A risks (R1-R5) have been absorbed into the per-campaign registers in `
 - Graduated to domain packs: 5 (C-001 projective_claim_as_fact, C-002 aspiration_as_current_capability, C-005 + 2 more)
 - Graduation candidates: C-003 (freq=?, acceptance=?), C-009 (freq=?, acceptance=?)
 - lattice-labs operational pre-migration copy (`iii_corrections.jsonl` at `what/context/iii_domain_packs/`) **retired at MB-1 2026-05-08** (truncated to 0 bytes); lattice-labs local downstream fork now lives at `~/lattice/lattice-labs/iii/what/context/lattice_labs_iii_learning_store.jsonl` (empty; populated by future review cycles per ADR-003 §2)
+- SiteForge operational pre-migration copy (`iii_corrections.jsonl` at `what/context/iii_domain_packs/`) **retired at MB-2 2026-05-10** (truncated from 19 entries / 10 561 bytes to 0 bytes); all 5 SiteForge-originated correction entries (C-012..C-016, all WGA M10/M11 review work) already exist upstream at canonical — no data loss; SiteForge local downstream fork now at `~/lattice/SiteForge.aDNA/iii/what/context/siteforge_iii_learning_store.jsonl` (empty)
 - Two vestigial campaign-scoped JSONLs remain at lattice-labs (whitepaper breadcrumb 13 144 B + canvas_visual breadcrumb 659 B) — disposition deferred to Campaign B charter MB-7
 - Schema reconciliation against ADR-003 §4 deferred to MB-7 (Plan-agent finding (a))
+
+## Latest Direction — 2026-05-10 (MB-2 ✅; SiteForge iii/ wrapper live; Campaign B P2 opened)
+
+**MB-2 executed**. Three release-grade deliverables landed in this session:
+
+1. **`~/lattice/SiteForge.aDNA/iii/CLAUDE.md`** authored — second consumer wrapper after MB-1 lattice-labs reference; first to pin against the freshly-cut `v0.2.0` tag, locking SiteForge into the cross-vault request surface from day one. `federation_ref` declares: `source_vault: III.aDNA`; `version: "0.2.0"`; `pinned_at_commit: "04ae724"` (MC-3 wind-down); `version_policy: minor`; 5 of 7 canonical packs (`inspect_procedures`, `introspect_checks`, `learning_store`, `domain_packs_web_design`, `vault_maintenance` — `whitepaper_communication` + `canvas_visual` intentionally omitted as out-of-scope, documented in § "Packs out of scope (intentionally)"); all 8 modules; lattice `v1.2.0`; 2 `local_extensions` — (1) `kind: reviewer_registry` pointing at in-place `~/lattice/SiteForge.aDNA/what/context/siteforge/siteforge_reviewers.yaml` (5-voice multi-voice orchestration: Voice Critic / Design / UX / SEO / Brand Alignment; `cross_voice_threshold: 3` escalation rule; rationale section cites `module_iii_semantic_reviewer.md` lines 56-69 as the explicit landing-site contract for MA-3 carry-forward #2), (2) `kind: learning_store_local` pointing at empty new `~/lattice/SiteForge.aDNA/iii/what/context/siteforge_iii_learning_store.jsonl`. Wrapper mirrors MB-1's structural pattern (federation_ref block + Active consumers table + Local extensions explained + Routing notes + Cross-References) with SiteForge-specific deltas.
+
+2. **Pre-migration operational artifacts retired** at `~/lattice/SiteForge.aDNA/what/context/iii_domain_packs/`. `iii_corrections.jsonl` (19 entries / 10 561 bytes; SiteForge-side operational learning store; subset of canonical 26-entry upstream) truncated to 0 bytes — canonical md5 `dde2cbd88c0b45956fb22285a2a0f856` re-verified unchanged before and after. All 5 SiteForge-originated entries (C-012 brand_color_dual_role, C-013 nested_interactive_elements, C-014 missing_structured_data_on_generated_pages, C-015 hardcoded_entity_strings, C-016 inline_data_instead_of_collection — all WGA M10/M11 review work) already exist upstream; **no data loss**. Local stale-fork `context_iii_domain_packs_web_design.md` replaced with `[MIGRATED]` forward-pointer stub — diff against canonical confirmed zero substantive trap-content drift (only stale `updated: 2026-04-04` frontmatter and old `iii_domain_packs/` wikilinks). Sibling `MIGRATION_NOTE.md` authored documenting Stage 3 closure (mirrors lattice-labs MB-1 pattern).
+
+3. **SiteForge governance updates** — `SiteForge.aDNA/CLAUDE.md` gained **Standing Order 7** (III review via wrapper; mirrors lattice-labs Rule 12 / CanvasForge Rule 11); project-map line 63 annotated (`iii_domain_packs/` flagged `[MIGRATED] Stage 3`; new `iii/` directory entry added); Context-Loading Quality line 95 repointed at wrapper. Two SiteForge lattice yamls updated — `~/lattice/SiteForge.aDNA/what/lattices/lattice_partner_website_scaffold.lattice.yaml:163` + `~/lattice/SiteForge.aDNA/what/lattices/skills/lattice_quality_validation.lattice.yaml:57` — `corrections_store:` paths rerouted from pre-migration path to wrapper-managed local store. Wikilink sweep clean — all `iii_corrections` / `iii_domain_packs` / `context_iii_domain_packs_web_design` hits resolved (design-doc references at `sf_m14_context_graft_design.md` lines 97, 185, 187, 188, 235, 236, 244 + `sf_m14_learning_loop_design.md` lines 24, 25, 39, 48, 75, 87 survive stub redirect — flagged for Campaign B MB-7 disposition per the new `MIGRATION_NOTE.md`).
+
+**Campaign B charter updated**: MB-2 row ✅ COMPLETE 2026-05-10; DG-B MB-2 box ✅; Phase Plan P2 row marked partial (MB-2 ✅; MB-3..MB-5 pending); campaign phase frontmatter `phase: P1 → P2`. MANIFEST.md Active Consumers SiteForge row updated to **MB-2 ✅ 2026-05-10** with `v0.2.0` (commit `04ae724`) pin.
+
+**No git tag bump**. MB-2 touches no III.aDNA core (only STATE.md + Campaign B charter + MANIFEST.md + session file in this repo; wrapper itself lives in SiteForge.aDNA repo). `v0.2.0` stays — still the right pin for newcomer consumers.
+
+### Fresh-session boot (post-MB-2)
+
+For the next agent that opens this vault:
+
+1. **Read this STATE.md from the top.** Current Phase + MB-2 closure note summarize where Campaign B (P2 in-flight) and Campaign C (P2 partial) stand. `v0.2.0` git tag is cut and now has a second consumer pinned against it.
+2. **Confirm `how/sessions/active/` is empty**. MB-2 session moves to `how/sessions/history/2026-05/` at closeout.
+3. **Choose next mission.** Two parallel-eligible queues:
+   - **Campaign B** (federation): **MB-3 VideoForge wrapper** (resolves ADR-006 bridge contract; R3 risk closes; 1 sess) → MB-4 CanvasForge → MB-5 wga → MB-8 LPWhitepaper → MB-6 adna template → MB-7 vault hygiene → DG-B. OR **MB-4 CanvasForge wrapper** (relocates `skill_canvas_iii_review.md` from lattice-labs to CanvasForge wrapper; MA-3 carry-forward #4; 1 sess).
+   - **Campaign C** (airlock standard): **MC-4 Substrate enforcement** (closes Campaign C P2 — preflight script structure for `secrets_handled` per spec §4.4; idempotency cache mechanics + 30-day archive-search performance per spec §4.5; 1 sess) → MC-5 validation → DG-C gate.
+4. **Recommended next**: **MB-3 VideoForge** (closes the largest open R3 risk in Campaign B and resolves ADR-006 bridge ambiguity; pairs naturally with MB-2's v0.2 pin so VideoForge can act as a cross-vault request originator immediately) OR **MC-4** (closes Campaign C P2 cleanly so only MC-5 validation remains before DG-C). Either advances a P-phase. Stanley signals.
+5. **Open a session file** using the MB-2 / MC-3 / MB-1 pattern at `how/sessions/active/session_stanley_<YYYYMMDD>_iii_adna_<mission>_<descriptor>.md`.
 
 ## Latest Direction — 2026-05-10 (MC-3 ✅; AIRLOCK.md v0.2.0 + `v0.2.0` git tag)
 
