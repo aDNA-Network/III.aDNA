@@ -56,8 +56,8 @@ III.aDNA/
 │   ├── sessions/                      # active/ + history/
 │   ├── skills/
 │   │   ├── skill_iii_review.md        # Core III review skill (DISPATCH → INSPECT → INTROSPECT → IMPROVE)
-│   │   ├── skill_iii_setup.md         # Consumer onboarding skill (add iii/ wrapper to a new vault)
-│   │   └── skill_canvas_iii_review.md # CanvasForge-specific III variant
+│   │   └── skill_iii_setup.md         # Consumer onboarding skill (add iii/ wrapper to a new vault)
+│   │   # NOTE: skill_canvas_iii_review.md is consumer-side (CanvasForge.aDNA/how/skills/) — registered as `kind: local_skill` in CanvasForge.aDNA/iii/CLAUDE.md per MB-4 (2026-05-11). Not an III.aDNA-canonical skill.
 │   ├── templates/                     # Inherited + III-specific templates
 │   └── backlog/
 ├── what/

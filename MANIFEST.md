@@ -4,6 +4,7 @@ role: project
 created: 2026-05-07
 updated: 2026-05-11
 mb3_closed: 2026-05-11
+mb4_closed: 2026-05-11
 last_edited_by: agent_stanley
 tags: [manifest, governance, iii, framework]
 ---
@@ -65,7 +66,7 @@ III.aDNA/
 | `lattice-labs` | `lattice-labs/iii/` | whitepaper, kinn_branding, vault_maintenance, canvas_visual | **MB-1 ✅ 2026-05-08** — pinned at `v0.1.0` (commit `1628793`); consumer-side review pending v0.2.0 minor bump per ADR-002 §3 |
 | `SiteForge.aDNA` | `SiteForge.aDNA/iii/` | inspect_procedures, introspect_checks, learning_store, web_design, vault_maintenance | **MB-2 ✅ 2026-05-10** — pinned at `v0.2.0` (commit `04ae724`); 5/7 canonical packs; all 8 modules; 2 local_extensions (reviewer_registry → in-place `siteforge_reviewers.yaml` 5-voice registry; learning_store_local seeded empty) |
 | `VideoForge.aDNA` | `VideoForge.aDNA/iii/` | inspect_procedures, introspect_checks, learning_store, web_design, vault_maintenance, + ADR-006 bridge_pack | **MB-3 ✅ 2026-05-11** — pinned at `v0.2.0` (commit `246124d` — exact tag commit; annotated tag object `5cd210e`); 5/7 canonical packs; all 8 modules; lattice v1.2.0; 2 `local_extensions` (`bridge_pack` → `videoforge_iii_domain_pack.md` / ADR 006 bridge satisfying Campaign B R3 mitigation; `learning_store_local` → `videoforge_iii_learning_store.jsonl` seeded empty); ratified via `coord_2026_05_11_videoforge_iii_wrapper_authoring` (audit_id `session_stanley_20260511_iii_adna_mb3_videoforge_wrapper`; 12/12 audit checks pass; first inbound v0.2 cross-vault request to traverse full lifecycle `open → accepted → rendering → shipped → closed`) |
-| `CanvasForge.aDNA` | `CanvasForge.aDNA/iii/` | canvas_visual | MB-4 (pending; will pin against `v0.2.0`) |
+| `CanvasForge.aDNA` | `CanvasForge.aDNA/iii/` | inspect_procedures, introspect_checks, learning_store, web_design, vault_maintenance, + canvas-visual `bridge_pack` (10-trap CanvasForge-resident; supersedes upstream 8-trap canonical) | **MB-4 ✅ 2026-05-11** — pinned at `v0.2.0` (commit `246124d` — exact tag commit); 5/7 canonical packs (`canvas_visual` deliberately omitted, superseded by bridge_pack); all 8 modules; lattice v1.2.0; 3 `local_extensions` (`bridge_pack` → `what/context/iii/context_iii_canvas_visual.md` 10-trap pack, `not_graduating_to_canonical: true`, 2 M00 deltas may graduate independently; `local_skill` → in-place `how/skills/skill_canvas_iii_review.md` 5-voice review skill — Visual Critic / Narrative / Accessibility / Comic Consistency / Template Detector — already at canonical location since M-Cleanup-04 wave 3 2026-05-04; `learning_store_local` → new `iii/what/context/canvasforge_iii_learning_store.jsonl` seeded empty); closes MA-3 carry-forward #4 via governance registration (physical move already completed at M-Cleanup-04); downstream-safe — SS/CC `presentationforge/` + `graphicnovelforge/` wrappers don't reference `iii/`, `what/context/iii/`, `how/skills/`, or `CanvasForge.aDNA/CLAUDE.md` Standing Orders |
 | `wga.aDNA` | `wga.aDNA/iii/` | whitepaper, educational_content (stub) | MB-5 (pending; will pin against `v0.2.0`) |
 | `LPWhitepaper.aDNA` | `LPWhitepaper.aDNA/iii/` | whitepaper | MB-8 (pending; gap surfaced during MB-1 wikilink sweep) |
 
