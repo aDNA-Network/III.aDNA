@@ -1,6 +1,6 @@
 lattice:
   name: iii_verification_oracle
-  version: "1.2.0"
+  version: "1.2.1"
   lattice_type: skill
   description: >
     III Review as a composable semantic verification oracle. Accepts documents
@@ -244,10 +244,16 @@ lattice:
         output_format: "LearningStoreDelta + GraduationSignals"
 
     - id: reviewed_output
-      type: module
+      type: process
       description: >
         Apply approved improvements to the input document. Update
         frontmatter. Produce final ReviewState and VerificationReport.
+        Retyped module → process at MB-7 (2026-05-12) to match the
+        `human_review` precedent: like human_review this is a state
+        transition driven by an external actor (the document's editor
+        applying the approved improvements), not a composable III
+        module. No `module_iii_reviewed_output.{md,yaml}` file exists or
+        will be authored.
       config:
         output_format: "VerificationReport"
         review_state_progression:

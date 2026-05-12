@@ -160,6 +160,6 @@ This forms a bounded chain lattice with `sup(a,b) = max(a,b)`, mirroring VaaS's 
 ## Related
 
 - [[how/skills/skill_iii_review|III Review Skill]] — the procedure that reads and writes corrections
-- [[what/context/core_domain_packs/AGENTS|III Domain Packs]] — graduation target for high-frequency corrections
+- `what/context/core_domain_packs/` — graduation target for high-frequency corrections (the canonical domain packs live in this directory; see the per-pack file naming `context_iii_<domain>.md`)
 - [[what/context/vaas_review/context_vaas_technical_review|VaaS Technical Review]] — corrections list design pattern (Section 2.3)
 - [[what/lattices/lattice_iii_verification_oracle|III Verification Oracle Lattice]] — composable VaaS node definition

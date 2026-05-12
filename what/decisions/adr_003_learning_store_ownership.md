@@ -4,9 +4,13 @@ adr_id: "003"
 title: Learning Store Ownership — canonical upstream, per-vault forks, graduation ceremony
 status: ratified
 created: 2026-05-07
-updated: 2026-05-07
+updated: 2026-05-12
 last_edited_by: agent_stanley
 signed_by: Stanley (Chief Steward)
+amendments:
+  - date: 2026-05-12
+    mission: campaign_b_iii_federation MB-7
+    summary: §4 schema aligned with live canonical jsonl (field names + boolean acceptance)
 tags: [adr, learning-store, corrections, graduation, iii]
 ---
 
@@ -61,24 +65,32 @@ All entries (canonical and local) follow this schema:
 ```jsonl
 {
   "id": "C-NNN",
+  "trap": "confidence | structure | brand | ...",
   "pattern": "snake_case_pattern_name",
   "description": "One-line description of the error pattern",
-  "signal": "How to detect this pattern during INSPECT",
-  "fix": "Standard correction approach",
+  "example": "Concrete worked example from a real review",
+  "source_review": "Review name / report ID where first surfaced",
+  "source_finding": "Finding ID (e.g., F-TEXT-004)",
   "frequency": 3,
-  "total_reviews": 4,
-  "acceptance_rate": 0.75,
+  "accepted": true,
   "graduated": false,
-  "graduated_from": null,
-  "trap_pack": "core | web_design | whitepaper | ...",
+  "graduated_to": "core | <pack_name> | null",
   "created": "YYYY-MM-DD",
-  "last_seen": "YYYY-MM-DD"
+  "graduated_date": "YYYY-MM-DD (present iff graduated:true)"
 }
 ```
 
+**Field semantics**:
+- `trap` — the trap category (canonical-pack-level grouping). Predates and supersedes the spec'd `trap_pack` field name.
+- `accepted` is **boolean**, not a numeric rate. A correction is `accepted: true` if the user accepted the IMPROVE phase's suggested fix in the originating review cycle. Cross-session acceptance accumulation is not currently captured at the schema level.
+- `graduated_to` records the **target pack** the correction promoted into (typically `"core"` for canonical-store entries that have been folded into a domain pack). Predates and supersedes the spec'd `graduated_from` direction. Provenance (which consumer originally surfaced the correction) is captured at graduation ceremony time via the PR / commit message, not a schema field.
+- `source_review` + `source_finding` provide forensic provenance; both populate at correction creation.
+
+Consumer local stores follow the same schema. Loading protocol (ADR-002 §4): canonical ≤ 50 entries + local ≤ 20 entries; pattern-name conflicts resolved local-wins.
+
 ### 5. Pre-migration entries (C-001 through C-026)
 
-The 26 entries migrated from lattice-labs are the founding canonical set. Their `graduated_from` field is set to `lattice-labs` for provenance. The 5 already-graduated entries (C-001, C-002, C-005 + 2) retain `graduated: true`. Graduation candidates C-003 and C-009 are flagged for review at MA-2.
+The 26 entries migrated from lattice-labs are the founding canonical set. Provenance to `lattice-labs` is captured in the per-entry `migration_provenance` block in each pack's `[MIGRATED]` stub plus the canonical store's `iii_corrections_canonical.jsonl` md5 invariant (`dde2cbd88c0b45956fb22285a2a0f856`). The 5 already-graduated entries (C-001, C-002, C-005 + 2 more — see entries with `graduated: true` + `graduated_date` populated) retain their `graduated_to: "core"` value. Graduation candidates C-003 and C-009 remain flagged.
 
 ### 6. Domain pack graduation (separate from corrections graduation)
 
@@ -91,3 +103,9 @@ When a correction pattern becomes pervasive enough to be part of a domain pack's
 - ACCUMULATE step (module_iii_accumulate) checks both canonical and local on load; appends only to local
 - Graduation detection runs automatically in ACCUMULATE; graduation ceremony is user-gated
 - Patch version bumps to III.aDNA on each canonical graduation
+
+## Amendment History
+
+| Date | Mission | Amendment summary |
+|------|---------|-------------------|
+| 2026-05-12 | campaign_b_iii_federation MB-7 | §4 correction-entry schema aligned with the live canonical jsonl (md5 `dde2cbd88c0b45956fb22285a2a0f856` invariant preserved). Pre-amendment §4 specified `trap_pack` / `acceptance_rate` (numeric) / `graduated_from` (consumer-provenance direction); live entries since the founding C-001..C-026 import used `trap` / `accepted` (boolean) / `graduated_to` (target-pack direction). The drift was a documentation-vs-implementation gap from the Campaign A MA-1 head-start migration; the live shape was always the operational schema. Amendment aligns ADR §4 to live without rewriting any jsonl. §5 prose updated to drop the `graduated_from: lattice-labs` reference (the field never existed in canonical) and point to the canonical md5 invariant instead.
