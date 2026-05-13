@@ -6,6 +6,7 @@ updated: 2026-05-12
 mb3_closed: 2026-05-11
 mb4_closed: 2026-05-11
 mb5_closed: 2026-05-11
+mb6_closed: 2026-05-12
 mb7_closed: 2026-05-12
 last_edited_by: agent_stanley
 tags: [manifest, governance, iii, framework]
