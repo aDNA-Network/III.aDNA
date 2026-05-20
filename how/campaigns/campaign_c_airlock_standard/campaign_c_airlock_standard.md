@@ -4,9 +4,10 @@ campaign_id: campaign_c_airlock_standard
 title: "Campaign C: Airlock Standard v0.2 + Cross-Vault Request Patterns"
 status: in_flight
 created: 2026-05-08
-updated: 2026-05-10
-last_edited_by: agent_stanley
-phase: P2
+updated: 2026-05-13
+last_edited_by: agent_argus
+phase: P2_complete
+mc4_closed: 2026-05-13
 predecessor: campaign_a_iii_genesis
 parallel_eligible_with: campaign_b_iii_federation
 inbound_proposal: who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md
@@ -45,7 +46,7 @@ The VideoForge → CanvasForge memo at `~/lattice/CanvasForge.aDNA/who/coordinat
 - [x] **MC-1**: `what/artifacts/iii_airlock_standard_spec.md` authored — codifies entry paths (existing v0.1.0 content) + cross-vault request patterns (VideoForge findings); status `reference_implementation`; version `0.2.0` ✅ **2026-05-08**
 - [x] **MC-2**: Request payload YAML schema canonicalized at `what/artifacts/iii_airlock_request_schema.yaml` — JSON Schema Draft 2020-12 in YAML form; validated mechanically (9/9 checks) + walked against VideoForge → CanvasForge worked example (correctly non-conformant per spec §5.2 — pre-v0.2 authoring; gap documented in schema header) ✅ **2026-05-08**
 - [x] **MC-3**: `how/airlock/AIRLOCK.md` bumped v0.1.0 → v0.2.0; reply-comment template authored at `how/templates/template_cross_vault_request_reply.md` (handshake — Gap 2) ✅ **2026-05-10**
-- [ ] **MC-4**: Substrate-enforcement preflight rules documented for `secrets_handled` (Gap 4) + `idempotency_key` contract (Gap 5); receiver-side dedup logic specified
+- [x] **MC-4**: Substrate-enforcement preflight rules documented for `secrets_handled` (Gap 4) + `idempotency_key` contract (Gap 5); receiver-side dedup logic specified ✅ **2026-05-13** — `what/artifacts/iii_airlock_substrate_implementation.md` authored (490 lines, one artifact covering both gaps per MC-2/MC-3 separate-artifact precedent); §2 secrets_preflight (preflight script structure + bash/python sketches + error-message conventions + fully-specified audit-log JSONL schema with `event_type: secrets_preflight` discriminator + boundary-integrity rules + sample acceptance/rejection records coordinated with MC-5); §3 idempotency_key dedup (canonical archive-search filter predicate + 30-day window semantics with 4-tier clock-source fallback + cache structure with optional rebuildable `.idempotency_index.jsonl` + performance profile table with ≤200ms SLA + force_new override audit semantics + dual-purpose audit-log JSONL with `event_type: idempotency_check` discriminator + 3 sample records); §4 reply-comment template integration cites MC-3 template slots; §5 cross-refs. Spec §4.4 line 261 + §4.5 line 282 forward-references resolved patch-level (no version bump); spec §7.2 row 4 flipped ✅; §7.3 forward-refs list updated ("five resolved / one pending — MC-5 validation"); §8.4 cross-references gain substrate-implementation row. AIRLOCK.md line 258 patched (forward-reference resolved; no version bump on AIRLOCK.md — `0.2.0` stays). Documentation-grade per R3; no executable runtime in v0.2. No git tag bump (additive disposition matches MB-6/MB-7/MB-8 precedent); `v0.2.0` commit `246124d` annotated tag object `5cd210e` remain the production pin. Canonical jsonl md5 `dde2cbd88c0b45956fb22285a2a0f856` invariant preserved.
 - [ ] **MC-5**: VideoForge → CanvasForge request re-exercised against v0.2 schema; deltas captured vs the v0.1.0 ad-hoc execution; zero regression confirmed
 - [x] Annotated git tag `v0.2.0` cut at MC-3 closure ✅ **2026-05-10**
 - [x] VideoForge proposal status flipped `open` → `accepted` → `absorbed` in `coord_2026_05_08_airlock_v0_2_videoforge_findings.md` ✅ **2026-05-10** — `closed` pending MC-5 validation
@@ -57,7 +58,7 @@ The VideoForge → CanvasForge memo at `~/lattice/CanvasForge.aDNA/who/coordinat
 | **MC-1** | Author `iii_airlock_standard_spec.md` (entry paths + cross-vault request patterns) | 1 | ✅ **COMPLETE 2026-05-08** |
 | **MC-2** | Request payload YAML schema; canonical location; worked-example validation | 0.5 | ✅ **COMPLETE 2026-05-08** |
 | **MC-3** | AIRLOCK.md v0.1.0 → v0.2.0; handshake reply-comment template | 1 | ✅ **COMPLETE 2026-05-10** |
-| **MC-4** | Substrate enforcement: `secrets_handled` preflight (Gap 4) + `idempotency_key` (Gap 5) | 1 | pending |
+| **MC-4** | Substrate enforcement: `secrets_handled` preflight (Gap 4) + `idempotency_key` (Gap 5) | 1 | ✅ **COMPLETE 2026-05-13** |
 | **MC-5** | Re-exercise VideoForge → CanvasForge against v0.2; capture deltas; flip proposal status | 0.5 | pending |
 
 Sequence is the VideoForge proposal's "Suggested v0.2 Mission Sequencing" verbatim — Argus may reorder during execution; current order is recommendation, not contract.
@@ -82,8 +83,8 @@ MC-1 (spec) → MC-2 (schema) → MC-3 (AIRLOCK.md v0.2 + reply-comment template
 | Phase | Name | Missions | Status |
 |-------|------|----------|--------|
 | **P1** | Standard authoring | MC-1, MC-2 | ✅ **COMPLETE 2026-05-08** — MC-1 ✅; MC-2 ✅ |
-| **P2** | Reference implementation + substrate | MC-3, MC-4 | **partial** — MC-3 ✅ 2026-05-10 (AIRLOCK.md v0.2.0 + reply-comment template + `v0.2.0` git tag); MC-4 pending |
-| **P3** | Validation + ship | MC-5, DG-C gate | pending — `v0.2.0` git tag already cut at MC-3 close |
+| **P2** | Reference implementation + substrate | MC-3, MC-4 | ✅ **COMPLETE 2026-05-13** — MC-3 ✅ 2026-05-10 (AIRLOCK.md v0.2.0 + reply-comment template + `v0.2.0` git tag); MC-4 ✅ 2026-05-13 (`iii_airlock_substrate_implementation.md` 490 lines + spec patches + AIRLOCK.md line-258 patch; no tag bump) |
+| **P3** | Validation + ship | MC-5, DG-C gate | pending — `v0.2.0` git tag at MC-3 close remains the production pin; MC-5 + DG-C gate are the only remaining Campaign C items |
 
 ## What v0.1.0 → v0.2 Promises
 

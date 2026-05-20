@@ -258,7 +258,7 @@ secrets_handled:
 1. **Minimize passthrough**: prefer `not_passed` (receiver provisions independently) over `passthrough` (requester transmits).
 2. **Document expectations**: the `not_passed` field is a one-line human-readable statement of what does NOT cross — not a suppression list.
 
-**Implementation guidance** (preflight script structure, error-message conventions, audit-log schema): authored at MC-4 (substrate enforcement; pending). The contract above is normative regardless of implementation maturity.
+**Implementation guidance** is canonicalized at `what/artifacts/iii_airlock_substrate_implementation.md` §2 (authored at MC-4 close 2026-05-13 — preflight script structure, error-message conventions, audit-log schema). The contract above is normative regardless of implementation maturity.
 
 **ADR cross-reference**: VideoForge ADR 003 §D2 names env-var passthrough as the consumer-side substrate for single-vault federation; v0.2 generalizes that pattern to cross-vault.
 
@@ -279,7 +279,7 @@ force_new: false
 3. **Allow override**: if `force_new: true`, the receiver opens a fresh session normally; the duplicate is logged but not blocked.
 4. **No-key fallthrough**: if `idempotency_key` is absent, no dedup is performed; behaviour matches v0.1.0 (every memo is independent).
 
-**Implementation guidance** (cache structure, 30-day window mechanics, archive-search performance): authored at MC-4. The contract above is normative.
+**Implementation guidance** is canonicalized at `what/artifacts/iii_airlock_substrate_implementation.md` §3 (authored at MC-4 close 2026-05-13 — cache structure, 30-day window mechanics, archive-search performance). The contract above is normative.
 
 **Scaling rationale**: Low-priority for the current 2-forge workspace; matters when ≥ 5 forges with concurrent activity could double-file requests.
 
@@ -373,21 +373,23 @@ This versioning policy refines [ADR-002 §3](../decisions/adr_002_consumer_feder
 | Cross-graph federation pin negotiation (consumer ↔ forge initial federation) | ADR-002; sf_forge_pattern_spec.md | Out of airlock scope; airlock governs traffic, federation governs pinning |
 | Multi-vault transactional requests (one requester, multiple receivers, atomic ship) | v0.3+ | No present-day worked example; design speculative |
 | Async batched requests (one memo, many artifacts shipped over time) | v0.3+ | No present-day worked example; scaling concern only |
-| Substrate-enforcement *implementation* (preflight scripts, idempotency cache code) | MC-4 | This spec carries the contract; MC-4 carries the implementation guidance |
+| Substrate-enforcement *implementation* (preflight scripts, idempotency cache code) | MC-4 ✅ 2026-05-13 | Implementation guidance shipped at `what/artifacts/iii_airlock_substrate_implementation.md` §2 + §3 (documentation-grade per R3; executable runtime deferred to a future Platform.aDNA integration) |
 | Reply-comment template for handshake | MC-3 ✅ 2026-05-10 | Authored at `how/templates/template_cross_vault_request_reply.md` (Acceptance full-profile + Rejection variants; profile-selection rules cross-linked to schema `x-handshake-profiles`) |
 | Machine-readable YAML schema | MC-2 ✅ 2026-05-08 | This spec carries the human-readable shape; MC-2 shipped the validator-friendly YAML at `what/artifacts/iii_airlock_request_schema.yaml` (JSON Schema Draft 2020-12) |
 
 ### §7.3 Forward-references in this spec
 
-Four sections originally cited deliverables that did not yet exist at v0.2.0 ship; three are now resolved (MC-2, MC-3 reply-comment template, MC-3 AIRLOCK.md v0.2.0 bump), two remain pending (MC-4 substrate implementation guidance × 2):
+Five sections originally cited deliverables that did not yet exist at v0.2.0 ship; all five are now resolved (MC-2, MC-3 reply-comment template, MC-3 AIRLOCK.md v0.2.0 bump, MC-4 substrate implementation guidance × 2). One pending forward-reference remains (MC-5 validation):
 
 - §4.3 cites `what/artifacts/iii_airlock_request_schema.yaml` — **authored at MC-2 2026-05-08; live link**.
-- §4.4 cites "implementation guidance authored at MC-4" — pending.
-- §4.5 cites "implementation guidance authored at MC-4" — pending.
+- §4.4 cites "implementation guidance authored at MC-4" — **resolved at MC-4 close 2026-05-13**; live link to `what/artifacts/iii_airlock_substrate_implementation.md` §2.
+- §4.5 cites "implementation guidance authored at MC-4" — **resolved at MC-4 close 2026-05-13**; live link to `what/artifacts/iii_airlock_substrate_implementation.md` §3.
 - §7.2 row "Reply-comment template for handshake" cites `how/templates/template_cross_vault_request_reply.md` — **authored at MC-3 2026-05-10; live link**.
 - §8.4 row "Reference instance (entry paths): `how/airlock/AIRLOCK.md` (v0.1.0 ships; v0.2.0 bump at MC-3)" — **bumped at MC-3 2026-05-10**; AIRLOCK.md now carries `version: "0.2.0"` and routes both surfaces (entry + cross-vault request) per §3 and §4.
 
-A consumer agent encountering the remaining forward-references (§4.4, §4.5 → MC-4) during a v0.2.0 session SHOULD treat the contracts (the prose in §4.4–§4.5) as normative even when the cited implementation guidance is absent. The cited files become live links as Campaign C progresses; the contracts do not change between MC-1 close and MC-5 close.
+Remaining open forward-reference: **MC-5 validation** — re-exercise of the VideoForge → CanvasForge worked example against the v0.2 schema; flips the inbound-proposal status `absorbed → closed` at `who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`. Spec contracts are unchanged across MC-5; this is execution validation, not contract authoring.
+
+A consumer agent reading this spec at v0.2.0 SHOULD treat the contracts (the prose in §4.4–§4.5) as normative. All cited implementation files are live as of MC-4 close.
 
 ---
 
@@ -410,7 +412,8 @@ This spec accepts the VideoForge proposal in full. All 5 gaps absorbed; no gap d
 ### §8.4 Cross-references
 
 - Campaign C charter: `how/campaigns/campaign_c_airlock_standard/campaign_c_airlock_standard.md`
-- Reference instance (entry + request surfaces): `how/airlock/AIRLOCK.md` (v0.2.0 — bumped at MC-3 2026-05-10)
+- Reference instance (entry + request surfaces): `how/airlock/AIRLOCK.md` (v0.2.0 — bumped at MC-3 2026-05-10; substrate-enforcement forward-reference at line 258 resolved at MC-4 close 2026-05-13)
+- Substrate implementation guidance: `what/artifacts/iii_airlock_substrate_implementation.md` (v0.2.0 — authored at MC-4 2026-05-13; resolves §4.4 + §4.5 forward-references)
 - Reference instance (cross-vault request, worked example): `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`
 - Inbound proposal: `who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`
 - Federation-pin policy: `what/decisions/adr_002_consumer_federation_contract.md` §3
