@@ -1,12 +1,19 @@
 ---
 type: backlog_idea
-status: proposed
+status: adopted
 priority: medium
 created: 2026-05-20
+updated: 2026-05-20
+adopted_at: 2026-05-20
+adopted_into: how/skills/skill_session_close_ceremony.md
+adopted_at_commit:   # populated post-commit; see DG-C carry-forward interstitial close 2026-05-20
 last_edited_by: agent_argus
 filed_from: what/artifacts/mc4_5_alignment_recon_dossier.md §7 AAR Follow-up
-tags: [backlog, skill, session_close, closure_ceremony, mc4_drift_lesson, dg_c_carry_forward, campaign_d_candidate, hygiene]
+tags: [backlog, skill, session_close, closure_ceremony, mc4_drift_lesson, dg_c_carry_forward, hygiene, adopted]
 ---
+
+> **ADOPTED 2026-05-20** — promoted from backlog idea to canonical skill at `how/skills/skill_session_close_ceremony.md` via the DG-C carry-forward interstitial session (`session_stanley_20260520_iii_adna_skill_session_close_ceremony`). Per §Sequencing default ("DG-C carry-forward — keeps the lesson tightly bound to its origin and lands the mitigation before any Campaign D high-velocity work begins"), the skill landed BEFORE Campaign D charter opens. The interstitial itself executes the new 7-step protocol verbatim on its own session-close (the MC-4.5 self-reference pattern), making it the first canonical application of the skill it authors.
+
 
 # Idea: `skill_session_close_ceremony.md`
 

@@ -43,6 +43,8 @@ Every agent session MUST create a session file before modifying project files.
 6. Set `status: completed` and `completed: {ISO_TIMESTAMP}`
 7. Move file from `sessions/active/` to `sessions/history/YYYY-MM/`
 
+> **Operational elaboration**: the executable 7-step close recipe (with bash snippets, verification checks, and anti-patterns) lives at [`../skills/skill_session_close_ceremony.md`](../skills/skill_session_close_ceremony.md) — adopted 2026-05-20 as DG-C carry-forward #1. Use that skill when closing a mission, objective, DG gate, or planning-class interstitial. This AGENTS.md block remains the high-level protocol description; the skill is the procedural mitigation against the MC-4 7-day disk-vs-git drift surfaced at MC-4.5.
+
 ### Tier 2 — Full (opt-in for shared config edits)
 
 Use Tier 2 **only when** editing shared configs (governance files, plugin configs) or performing project-wide bulk operations.
