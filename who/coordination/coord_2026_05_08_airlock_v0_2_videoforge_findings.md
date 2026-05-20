@@ -1,7 +1,7 @@
 ---
 type: coordination
 title: "Airlock Standard v0.2 Proposal — VideoForge Findings (Cross-Forge Request Patterns)"
-status: absorbed
+status: closed
 direction: inbound (III.aDNA receives)
 proposing_vault: VideoForge.aDNA
 proposing_persona: iris
@@ -9,7 +9,7 @@ receiving_vault: III.aDNA
 receiving_persona: argus_panoptes
 proposing_agent: agent_stanley
 created: 2026-05-08
-updated: 2026-05-10
+updated: 2026-05-20
 priority: low
 deadline: III.aDNA Campaign C (Airlock Standard) open
 relates_to: III.aDNA/how/airlock/AIRLOCK.md v0.1.0
@@ -204,4 +204,4 @@ III.aDNA does not have a `proposed/` channel yet (per STATE.md — Campaign A MA
 | 2026-05-08 | open | Filed as input for III.aDNA Campaign C (Airlock Standard) when opens; no calendar urgency |
 | 2026-05-08 | accepted | Campaign C MC-1 absorbs all 5 gaps in `what/artifacts/iii_airlock_standard_spec.md` v0.2.0 (§4.1–§4.5 map 1:1 to Gaps 1–5); proposal sequencing adopted verbatim as MC-1..MC-5 mission queue |
 | 2026-05-10 | absorbed | MC-3 ✅ — `how/airlock/AIRLOCK.md` bumped v0.1.0 → v0.2.0 (Surface Selection + Cross-Vault Requests sections; 5 entry paths preserved verbatim; v0.2.0 anti-regression block lists v0.3+ deferrals). Reply-comment template authored at `how/templates/template_cross_vault_request_reply.md` (Acceptance full-profile + Rejection variants per spec §4.1, §4.2). Spec §7.2 + §7.3 forward-references resolved at patch level. Annotated `v0.2.0` git tag cut at MC-3 closure commit. All 5 gaps now operational in the reference instance. |
-| (pending) | closed | Reserved for MC-5 (validation) — re-exercise VideoForge → CanvasForge pattern under v0.2; flip status; annotate cross-link to spec |
+| 2026-05-20 | closed | **MC-5 ✅** — VideoForge → CanvasForge worked example re-exercised against v0.2 schema by inspection; 16/16 §5.1 coverage map rows conform; 2 additive deltas confirmed (`secrets_handled` retrofit + `idempotency_key` retrofit); 4 enumerable v0.2-vs-v0.1.0 deltas documented at §4 of `what/artifacts/mc5_validation_videoforge_canvasforge_v0_2.md`; substrate-impl §2.5 + §3.6 sample records 5/5 schema-conformant + dimensionally coherent. **Zero regression confirmed**. DG-C 9/9 green at MC-5 close. Campaign C complete end-to-end. No version bump (additive disposition matches MB-6/MB-7/MB-8/MC-4/DG-B precedent); `v0.2.0` commit `246124d` / tag object `5cd210e` remain the production pin. |

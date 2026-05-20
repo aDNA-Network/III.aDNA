@@ -2,7 +2,7 @@
 type: manifest
 role: project
 created: 2026-05-07
-updated: 2026-05-13
+updated: 2026-05-20
 mb3_closed: 2026-05-11
 mb4_closed: 2026-05-11
 mb5_closed: 2026-05-11
@@ -10,7 +10,11 @@ mb6_closed: 2026-05-12
 mb7_closed: 2026-05-12
 mb8_closed: 2026-05-12
 dg_b_closed: 2026-05-12
-mc4_closed: 2026-05-13
+mc4_closed: 2026-05-13   # disk-state; retroactive git commit landed 2026-05-20 at c8ce621
+mc4_git_retroactive_close_commit: c8ce621
+mc4_5_closed: 2026-05-20   # planning-class interstitial alignment recon
+mc5_closed: 2026-05-20   # VideoForge → CanvasForge re-exercised against v0.2; zero regression confirmed
+dg_c_closed: 2026-05-20   # Campaign C: Airlock Standard v0.2 complete end-to-end 9/9
 last_edited_by: agent_argus
 tags: [manifest, governance, iii, framework]
 ---
@@ -82,6 +86,7 @@ III.aDNA/
 |-----|------|----------------|---------|
 | `v0.1.0` | 2026-05-08 | `1628793` (MA-4) | Campaign A genesis baseline — AIRLOCK.md reference implementation (5 entry paths: A text / B web+visual / C code / D video / E vault maintenance); Path Selection matrix; anti-regression block deferring cross-vault request patterns to v0.2. Initial publication to `LatticeProtocol/III.aDNA`. |
 | `v0.2.0` | 2026-05-10 | `246124d` (MC-3) | Airlock Standard v0.2.0 reference instance — adds cross-vault request surface (spec §4 + JSON Schema Draft 2020-12 request schema + Acceptance/Rejection reply-comment template); 5 v0.1.0 entry paths preserved byte-identical against `v0.1.0` tag; VideoForge proposal (5 gaps) absorbed in full; first cross-vault-request-capable release. |
+| `v0.2.0` (campaign closure) | 2026-05-20 | (no new tag) | **Campaign C: Airlock Standard v0.2 ✅ CLOSED 2026-05-20 9/9** — MC-4 substrate-implementation guidance (490 lines; §2 secrets_preflight + §3 idempotency_key dedup); MC-4.5 alignment recon interstitial (planning-class single-session; LL.aDNA Phase 3+4 + LN.aDNA pc_01 Phase A federation substrate landscape survey + 9-stub AIRLOCK.md ecosystem inventory + MC-5 scope decision tree + 3 Campaign D candidates sketched); MC-5 validation (`what/artifacts/mc5_validation_videoforge_canvasforge_v0_2.md`; 16/16 §5.1 coverage map rows conform + 2 additive deltas + 5/5 substrate-impl sample records; zero regression confirmed); inbound VideoForge proposal `absorbed → closed`; DG-C scorecard 9/9 green; AAR populated inline. **No tag bump** (additive disposition matches MB-6/MB-7/MB-8/MC-4/DG-B precedent); `v0.2.0` (commit `246124d`, annotated tag object `5cd210e`) remains the production pin. Spec / schema / AIRLOCK.md / substrate-implementation / reply-template versions all unchanged. Canonical learning store md5 `dde2cbd88c0b45956fb22285a2a0f856` invariant preserved. |
 
 Future releases follow ADR-002 §3 and airlock spec §6: patch transparent (no consumer review); minor consumer-reviewed (additive only); major reserved for v1.0 breaking changes (explicit human decision per consumer).
 
