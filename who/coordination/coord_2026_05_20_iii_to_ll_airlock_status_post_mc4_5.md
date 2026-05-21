@@ -62,4 +62,4 @@ When fired, `status: draft → ready` (operator review pass) → `status: ready 
 
 ## Firing record
 
-**Fired at Campaign D charter ratification 2026-05-21T00:50Z** (operator-frame 2026-05-20; commit pending — populated at session close). Operator pre-committed `draft → sent` direct (no `ready` intermediate) at AskUserQuestion gate in this charter session. See `~/lattice/III.aDNA/how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md` §Inbound Signals + §Outbound coord fired at charter. `ack_at:` awaits LL Berthier session-touch.
+**Fired at Campaign D charter ratification 2026-05-21T00:50Z** (operator-frame 2026-05-20; commit `67a0936`). Operator pre-committed `draft → sent` direct (no `ready` intermediate) at AskUserQuestion gate in this charter session. See `~/lattice/III.aDNA/how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md` §Inbound Signals + §Outbound coord fired at charter. `ack_at:` awaits LL Berthier session-touch.
