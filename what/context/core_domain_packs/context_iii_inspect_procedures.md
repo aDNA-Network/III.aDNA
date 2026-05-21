@@ -1,10 +1,10 @@
 ---
 type: context_guide
 created: 2026-04-03
-updated: 2026-05-08
-token_estimate: ~1500
-last_edited_by: agent_stanley
-tags: [context_guide, iii-review, inspect, modalities, traps, procedures]
+updated: 2026-05-21
+token_estimate: ~1600
+last_edited_by: agent_argus
+tags: [context_guide, iii-review, inspect, modalities, traps, procedures, pack_delta_c_028, vfl_002_graduated]
 banner: "who/assets/banners/banner_context_guide.jpg"
 icon: search
 migration_provenance:
@@ -106,6 +106,14 @@ Finding [ID]: [Short title]
 4. Produce `Finding[]` with F-CODE prefix for each broken, renamed, or inaccurate reference
 
 **Severity calibration**: Broken file paths and deleted functions are High. Changed signatures are Medium. Stale version references are Low.
+
+### Static trap — `spec_verbatim_port_to_code` (C-028; graduated from VideoForge VFL-002 at MD-B2 2026-05-21)
+
+- **Pattern**: vault-side substrate (specs, ADRs, pattern docs in markdown) is ported into code as canonical runtime source-of-truth via copy-faithful constants. The code becomes a verbatim mirror of substrate content. **Risk class**: substrate drift — if the spec amends without parallel code update, runtime silently disagrees with documented intent.
+- **Detection signature** (during INSPECT-Code Modality 2 procedure): code-side files contain large constant tables, enums, or rule sets whose values trace 1:1 to a markdown spec section (typically a `§N` reference or a wikilink). Look for: `R1-R12` register lists hardcoded into Python; `T1-T11` template constants; threshold matrices that match table rows in a `spec_*.md` file character-for-character; doctrine-rule comments that quote spec prose verbatim.
+- **Domain-generality** (per VFL proposal §4): observed in VideoForge `register_definitions.py` ↔ `spec_register_compliance.md`, `hook_definitions.py` ↔ `spec_hook_detection.md`, `heuristic_rules.py` ↔ `spec_engagement_prediction.md`. Applies identically to lattice-labs policy.md → lattice-protocol policies/*.py; wga curriculum.md → wga-buildpack/curriculum/*.py; RareArchive standards.md → rare-archive/schemas/*.py Pydantic; WilhelmAI ADR-002 attribution rules → siteforge wrapper strings (already verified in MP0-7 close). The pattern is **substrate-to-code transit with a drift-risk class**, not a video-specific shape.
+- **Substrate-canonical mitigation**: Standing Rule 12-equivalent **dual-filing requirement** — every spec amendment that touches values hardcoded in code MUST land a paired code-side update in the same mission (or explicit deferral note citing the next mission that will close the drift). Add an INSPECT-Code drift-check step: when a `spec_*.md` file is touched, grep code for the file's `§` anchors and verify each port still matches. Flag any port that has diverged as severity `medium` (silent runtime/intent disagreement); flag missing dual-filing as severity `high`.
+- **Governance**: ADR-003 §6 (Domain pack graduation) + ADR-007 §1 stage PACK_DELTA_LANDED. Canonical entry: C-028 in `iii_corrections_canonical.jsonl`.
 
 ---
 

@@ -3,11 +3,11 @@ type: context_guide
 topic: iii_domain_packs
 subtopic: introspect_checks
 created: 2026-04-03
-updated: 2026-05-08
-context_version: "1.0"
-token_estimate: ~500
-last_edited_by: agent_stanley
-tags: [context, iii-review, introspect, checks, reasoning, pattern-matching]
+updated: 2026-05-21
+context_version: "1.1"
+token_estimate: ~550
+last_edited_by: agent_argus
+tags: [context, iii-review, introspect, checks, reasoning, pattern-matching, pack_delta_c_027, vfl_001_graduated]
 banner: "who/assets/banners/banner_context_guide.jpg"
 icon: search
 migration_provenance:
@@ -44,6 +44,14 @@ Formal definitions for all 7 INTROSPECT checks used in Step 2 of the [[how/skill
 - **Question**: Does the document address failure modes and map dependencies?
 - **What to flag**: Missing forward/backward connections, unaddressed risks, absent dependency maps
 - **Output**: Completeness assessment with gap inventory
+
+#### 2c.i Static trap — `producer_consumer_pair_unwired` (C-027; graduated from VideoForge VFL-001 at MD-B2 2026-05-21)
+
+- **Pattern**: a producer module emits a structured field per spec, but no consumer aggregator yet reads it. The field exists at the producer's output boundary; downstream wiring lands in a later phase.
+- **Detection signature**: emitted field appears in the producer's typed output without a corresponding `read_by:` / `consumer_uses:` declaration anywhere in the same artifact-class graph (mission lattice, ADR consequence map, or runtime lattice yaml).
+- **Domain-generality** (per VFL proposal §3): observed in VideoForge across 3 separate scorer missions (M_3_02 RegisterCoherenceScorer + M_3_03 HookStrengthScorer + M_3_04 EngagementScorer); applies identically to SiteForge archetype-lattice-emits-quality-scores / CanvasForge per-canvas VR1–VR5 scoring / RareArchive FAIR-fields-without-search-aggregator / wga course-module-learning-outcomes-without-curriculum-aggregator. The pattern is **temporal coordination failure across phase boundaries**, not a video-specific shape.
+- **Substrate-canonical mitigation**: track as F-INTROSPECT finding with severity `low` (the field is not broken, just unconsumed); attach a Phase-N forward-link tag naming the consumer module that will wire it; require the Phase-N mission's deliverable list to explicitly enumerate the wiring as a closed-loop deliverable. Closes the producer-consumer pair across phase boundary without forcing premature consumer authoring.
+- **Governance**: ADR-003 §6 (Domain pack graduation) + ADR-007 §1 stage PACK_DELTA_LANDED. Canonical entry: C-027 in `iii_corrections_canonical.jsonl`.
 
 ### 2d. Meta-Patterns
 

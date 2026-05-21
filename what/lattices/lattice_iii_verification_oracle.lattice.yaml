@@ -1,6 +1,6 @@
 lattice:
   name: iii_verification_oracle
-  version: "1.2.2"
+  version: "1.2.3"
   lattice_type: skill
   description: >
     III Review as a composable semantic verification oracle. Accepts documents
@@ -241,7 +241,9 @@ lattice:
           frequency_min: 3
           acceptance_rate_min: 0.80
         governs_adrs: ["ADR-003", "ADR-005", "ADR-007"]
+        adr_003_section_coverage: ["§3 standard ceremony", "§3.5 lifecycle scoping (added MD-B1)", "§3.6 elevated-scrutiny queue (added MD-B2; ≥50 cross-fork frequency + ≥2-vault evidence)"]
         correction_lifecycle_transitions_emitted: ["SIGNAL_CAPTURED", "CORRECTION_TRACKED", "GRADUATION_CANDIDATE"]  # per ADR-007 §1; downstream graduation transitions are governance-ceremony-fired
+        elevated_scrutiny_signal_emit_policy: "additive — SHOULD emit per ADR-003 §3.6 when cross-fork frequency for any pattern reaches ≥50; cross-fork aggregation mechanism scaffold lands at MD-B4 or later (this 1.2.3 patch only canonicalizes the emit-policy field; the aggregator implementation is a substrate enhancement out of scope at MD-B2)"
         output_format: "LearningStoreDelta + GraduationSignals"
 
     - id: reviewed_output
@@ -407,3 +409,37 @@ lattice:
       lives at the spec + ADR level; the lattice yaml gains only the
       governance-trail annotations naming what its already-shipped accumulate
       node has been doing operationally since MA-3.
+
+  mb2_changelog:
+    version_bump: "1.2.2 → 1.2.3"
+    date: 2026-05-21
+    mission: campaign_d_federation_adaptive_loop MD-B2
+    additions:
+      - "accumulate node config: new `adr_003_section_coverage` field naming all 3 ADR-003 sections governing the node (§3 standard ceremony + §3.5 lifecycle scoping (MD-B1) + §3.6 elevated-scrutiny queue (MD-B2))"
+      - "accumulate node config: new `elevated_scrutiny_signal_emit_policy` field — SHOULD emit `elevated_scrutiny_signal` when cross-fork frequency for any pattern reaches ≥50 per ADR-003 §3.6; aggregator implementation deferred to MD-B4 or later (this patch only canonicalizes the emit-policy declaration)"
+    rewires: []
+    module_refs_added: []
+    canonical_jsonl_md5_rotation:
+      before: "dde2cbd88c0b45956fb22285a2a0f856"
+      after: "5adb0dfa38d9224649c3b2cba83852ae"
+      trigger: "ADR-003 §3 graduation ceremony for VFL-001 + VFL-002 → canonical C-027 + C-028 at MD-B2 close (first canonical md5 rotation since founding C-001..C-026 import)"
+    pack_delta_landed:
+      C-027: "context_iii_introspect_checks.md Check 2c.i — `producer_consumer_pair_unwired`"
+      C-028: "context_iii_inspect_procedures.md Modality 2 Code Inspect Static trap — `spec_verbatim_port_to_code`"
+    rationale: >
+      Patch-level bump (1.2.2 → 1.2.3) carrying additive governance-trail
+      annotations only — no node added, no edge added, no semantic change to
+      module IO or lattice topology. The MD-B2 ratification of ADR-003 §3.6
+      (≥50 corrections elevated-scrutiny queue) is declared at the accumulate
+      node config via the new `adr_003_section_coverage` and
+      `elevated_scrutiny_signal_emit_policy` fields. Per ADR-002 §3 (consumer
+      review on minor bump), patches stay transparent to consumers; the 6
+      consumer wrappers (lattice-labs/iii at v0.1.0; 5 others at v0.2.0)
+      remain at their current pins through this 1.2.3 patch. MD-B2's
+      operational work — canonical jsonl append (C-027 + C-028) + md5
+      rotation + PACK_DELTA_LANDED static traps in context_iii_introspect_checks.md
+      and context_iii_inspect_procedures.md + VideoForge local store update —
+      lives at the corrections store + pack + consumer-fork level; the lattice
+      yaml gains only the governance-trail annotations confirming what its
+      already-shipped accumulate node will be doing once cross-fork aggregation
+      lands at MD-B4 or later.

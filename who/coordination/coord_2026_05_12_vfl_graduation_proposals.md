@@ -1,7 +1,7 @@
 ---
 type: cross_vault_request
 title: "Cross-Vault Request: VideoForge → III.aDNA — VFL-001 + VFL-002 Graduation Proposals (ADR-003 § 3 ceremony)"
-status: open
+status: closed
 direction: outbound (III.aDNA receives)
 requesting_vault: VideoForge.aDNA
 requesting_persona: iris
@@ -9,7 +9,15 @@ receiving_vault: III.aDNA
 receiving_persona: argus_panoptes
 requesting_agent: agent_stanley
 created: "2026-05-12"
-updated: "2026-05-12"
+updated: "2026-05-21"
+closed_at: "2026-05-21T08:07:12Z"
+closed_at_mission: campaign_d_federation_adaptive_loop MD-B2
+disposition: accept_both
+canonical_ids_assigned: ["C-027", "C-028"]
+reply_memo: ~/lattice/III.aDNA/who/coordination/reply_2026_05_21_iii_to_videoforge_vfl_graduation_ratified.md
+lifecycle_path: ["open", "accepted", "absorbed", "closed"]
+canonical_md5_before: "dde2cbd88c0b45956fb22285a2a0f856"
+canonical_md5_after: "5adb0dfa38d9224649c3b2cba83852ae"
 priority: medium
 deadline: pre-VideoForge-Phase-4-open (no calendar urgency; weeks-of-flexibility; Argus may schedule alongside III.aDNA Campaign C queue absorption)
 audit_id: session_M_3_04_2026_05_12_iii_adna_vfl_graduation
@@ -180,3 +188,10 @@ All three are acceptable to VideoForge. No calendar urgency.
 - **M_3_04 session file**: `~/lattice/VideoForge.aDNA/how/sessions/active/session_M_3_04_2026_05_12.md` (archived to `history/2026-05/` at Session 2 close)
 - **Predecessor coord memo (MB-3 wrapper request)**: `coord_2026_05_11_videoforge_iii_wrapper_authoring.md` (status: open)
 - **Predecessor coord memo (airlock-v0.2 findings)**: `coord_2026_05_08_airlock_v0_2_videoforge_findings.md` (status: closed)
+
+## 10. Status Log
+
+| Date | Transition | Note |
+|------|-----------|------|
+| 2026-05-12 | open | Memo filed by Iris at VideoForge M_3_04 close; awaiting Argus + Stanley co-ratification per ADR-003 §3 ceremony. No calendar urgency; pickup alongside III.aDNA Campaign C absorption when scheduling permits. |
+| 2026-05-21 | open → accepted → absorbed → closed | Argus + Stanley co-ratified VFL-001 + VFL-002 graduation at MD-B2 close. Disposition per VFL proposal §8 option (a) accept_both. Canonical IDs assigned: **C-027** (`producer_consumer_pair_unwired`, trap `forward_link`) + **C-028** (`spec_verbatim_port_to_code`, trap `meta_pattern`). Canonical jsonl md5 rotated `dde2cbd88c0b45956fb22285a2a0f856` → `5adb0dfa38d9224649c3b2cba83852ae` — **first rotation since founding C-001..C-026 import**. PACK_DELTA_LANDED transitions fired same session per operator gate at MD-B2 plan ratification: C-027 → `~/lattice/III.aDNA/what/context/core_domain_packs/context_iii_introspect_checks.md` Check 2c.i Static trap; C-028 → `~/lattice/III.aDNA/what/context/core_domain_packs/context_iii_inspect_procedures.md` Modality 2 Code Inspect Static trap. VideoForge local store updated: VFL-001 + VFL-002 `graduated: true`, `graduated_to: "core"`, `graduation_candidate: false`; ad-hoc fields normalized under `rlhf_consumer_namespace.videoforge.*` per ADR-005 §3 + spec §3.4 worked example (`last_updated`, `graduation_proposal_filed`, `graduation_proposal_path`, `graduation_note` re-homed); new `rlhf_consumer_namespace.videoforge.graduated_to_canonical_id` field added pointing at C-027 / C-028. Reply memo: `who/coordination/reply_2026_05_21_iii_to_videoforge_vfl_graduation_ratified.md`. ADR-003 amended (§3.6 added — ≥50 corrections elevated-scrutiny queue with ≥2-vault evidence requirement; §5 graduation count 3 → 5). MD-B1 spec forward-references §3.4 / §7.2 / §7.3 resolved this commit. VFL-003 + VFL-004 untouched per VFL proposal §5 (not graduation candidates at this close). All 3 ADR-007 §1 CorrectionLifecycle transitions (GRADUATION_PROPOSED → GRADUATION_RATIFIED → PACK_DELTA_LANDED) fired single-session per operator gate. |

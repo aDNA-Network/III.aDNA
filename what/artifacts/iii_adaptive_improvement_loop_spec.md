@@ -4,7 +4,7 @@ title: "III.aDNA Adaptive-Improvement Loop Standard"
 version: "0.3.0"
 status: reference_implementation
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-21
 last_edited_by: agent_argus
 governs: the named III adaptive-improvement loop; per-finding RLHF signal capture; per-pack quality measurement; correction-lifecycle state machine
 runtime_substrate: what/lattices/lattice_iii_verification_oracle.lattice.yaml  # v1.2.2 post-MD-B1
@@ -246,6 +246,8 @@ Post-ADR-005 normalized shape (additive only; no field rename or removal):
 
 ADR-005 §5 clause 5 specifies no retroactive backfill is required; this normalization happens on the next ACCUMULATE cycle that touches VFL-001, OR at the MD-B2 graduation ceremony, whichever fires first.
 
+> **MD-B2 resolution note (2026-05-21)**: VFL-001 + VFL-002 graduated at MD-B2 close to canonical IDs C-027 + C-028. The post-graduation canonical-only shape (carried in `iii_corrections_canonical.jsonl` lines 27 + 28) honors ADR-005 §3 rule 5 — top-level `rlhf_signal_type` + `rlhf_session_id` + `rlhf_captured_at` only; no `rlhf_consumer_namespace.*` fields cross to canonical. The VideoForge local store entries (still at `~/lattice/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl`) carry the normalized consumer-namespace fields (`rlhf_consumer_namespace.videoforge.last_updated`, `.graduation_proposal_filed`, `.graduation_proposal_path`, `.graduated_to_canonical_id`, `.graduation_note`) — this §3.4 illustrative shape is now realized in production. Canonical md5 rotated `dde2cbd88c0b45956fb22285a2a0f856` → `5adb0dfa38d9224649c3b2cba83852ae` (first rotation since founding C-001..C-026 import). See `~/lattice/III.aDNA/who/coordination/reply_2026_05_21_iii_to_videoforge_vfl_graduation_ratified.md` for ratification record.
+
 ### §3.5 Backward-compatibility
 
 Per ADR-005 §1: `accepted` (bool) retained as-is. Parsers MAY back-derive `rlhf_signal_type` from `accepted` when only the latter is present (`accepted: true` ⇒ `accept`; `accepted: false` ⇒ `reject`; `accepted` absent ⇒ unknown). The canonical 26-entry store remains byte-identical (md5 `dde2cbd88c0b45956fb22285a2a0f856` preserved).
@@ -298,9 +300,9 @@ quality_metric:
 4. Compute composite; check floor rule.
 5. Write frontmatter block; commit with reference to this spec §4.
 
-### §4.4 Interaction with ≥50 corrections threshold (forward-reference to MD-B2)
+### §4.4 Interaction with ≥50 corrections threshold (RESOLVED at MD-B2 2026-05-21)
 
-Per ADR-007 §4: per-pack quality (this §4) and the ≥50 corrections threshold (MD-B2 scope; ADR-003 amendment pending) are **separate, complementary signals**. A pack may score high quality with low aggregate corrections OR low quality with high aggregate corrections; both signals coexist. MD-B2 canonicalizes the threshold's semantics; this spec does NOT speak for it.
+Per ADR-007 §4: per-pack quality (this §4) and the ≥50 corrections threshold are **separate, complementary signals**. A pack may score high quality with low aggregate corrections OR low quality with high aggregate corrections; both signals coexist. **MD-B2 closed (commit recorded at session-close) canonicalizes the threshold's semantics via ADR-003 §3.6 (NEW):** crossing ≥50 cross-fork frequency requires BOTH standard ADR-003 §3 ceremony AND independent observation evidence from ≥2 distinct vaults (prevents single-vault dominance at high volume). This spec defers to ADR-003 §3.6 for the enforcement mechanism; the per-pack quality / ≥50 separation principle stated above remains the spec's contribution.
 
 ### §4.5 7-pack pilot (forward-reference to MD-B4)
 
@@ -392,16 +394,16 @@ Versioned at the lattice yaml itself (`version: "X.Y.Z"`); patch-bumped at MD-B1
 | Worked example normalizing existing ad-hoc fields (VideoForge) | Yes — §3.4 |
 | Exemplar quality scoring (1 pack: `context_iii_learning_store.md`) | Yes — §8.3 |
 
-### §7.2 What v0.3.0 does NOT cover (forward-references emitted)
+### §7.2 What v0.3.0 does NOT cover (forward-references — partial resolution post-MD-B2)
 
-| Surface | Resolves at |
-|---------|-------------|
-| ≥50 corrections threshold semantics | MD-B2 + ADR-003 amendment |
-| VFL-001 + VFL-002 graduation ceremony (PACK_DELTA_LANDED transition fired) | MD-B2 |
-| Cross-vault RLHF aggregation transport (which fields cross vault boundaries) | MD-B3 (rides on v0.3 airlock from MD-A1) |
-| Scoring remaining 6 canonical packs against 6-axis rubric | MD-B4 |
-| Validation across ≥3 consumer vaults | MD-B5 |
-| `iii_corrections_archive.jsonl` artifact for ARCHIVED entries | MD-B2 (optional; may defer) |
+| Surface | Resolves at | Status |
+|---------|-------------|--------|
+| ≥50 corrections threshold semantics | MD-B2 + ADR-003 amendment | ✅ **RESOLVED MD-B2 2026-05-21** (ADR-003 §3.6 added — elevated-scrutiny queue; standard §3 ceremony + ≥2-vault independent evidence) |
+| VFL-001 + VFL-002 graduation ceremony (all 3 transitions GRADUATION_PROPOSED → GRADUATION_RATIFIED → PACK_DELTA_LANDED) | MD-B2 | ✅ **RESOLVED MD-B2 2026-05-21** (canonical C-027 + C-028; pack deltas in `context_iii_introspect_checks.md` Check 2c.i + `context_iii_inspect_procedures.md` Modality 2 Code Inspect Static trap; canonical md5 rotated dde2cbd... → 5adb0dfa...) |
+| Cross-vault RLHF aggregation transport (which fields cross vault boundaries) | MD-B3 (rides on v0.3 airlock from MD-A1) | pending |
+| Scoring remaining 6 canonical packs against 6-axis rubric | MD-B4 | pending |
+| Validation across ≥3 consumer vaults | MD-B5 | pending |
+| `iii_corrections_archive.jsonl` artifact for ARCHIVED entries | MD-B2 (optional; may defer) | **DEFERRED at MD-B2** per operator gate — zero ARCHIVED entries today; authoring deferred to first archival event |
 
 ### §7.3 Forward-references list (resolved by future missions)
 
@@ -409,11 +411,11 @@ This list MUST be kept current as missions land; resolution updates the row.
 
 | Forward-reference | Originating section | Resolves at | Status |
 |-------------------|---------------------|-------------|--------|
-| ≥50 corrections threshold | §4.4 | MD-B2 + ADR-003 amendment | pending |
+| ≥50 corrections threshold | §4.4 | MD-B2 + ADR-003 amendment | ✅ **RESOLVED MD-B2 2026-05-21** (ADR-003 §3.6 elevated-scrutiny queue) |
 | Cross-vault aggregation field set | §5.3 | MD-B3 | pending |
 | 7-pack pilot scores | §4.5 | MD-B4 | pending |
-| VFL-001/002 actually graduated; namespaced fields fold canonically | §3.4 | MD-B2 | pending |
-| `module_iii_introspect` Check 2g semantics formally cite ADR-007 §1 stage 3 | (§2.1 module table) | MD-B4 re-exercise | partial — Check 2g doc edited at MD-B1 §4.2 (this session) |
+| VFL-001/002 actually graduated; namespaced fields fold canonically | §3.4 | MD-B2 | ✅ **RESOLVED MD-B2 2026-05-21** (canonical C-027 + C-028; VideoForge local store namespaced per ADR-005 §3) |
+| `module_iii_introspect` Check 2g semantics formally cite ADR-007 §1 stage 3 | (§2.1 module table) | MD-B4 re-exercise | partial — Check 2g doc edited at MD-B1 (prior session) |
 | Per-pack quality scoring procedure pilot (MD-B4 propagates from §8.3 exemplar) | §4.5 | MD-B4 | pending |
 
 ---
@@ -424,7 +426,7 @@ This list MUST be kept current as missions land; resolution updates the row.
 
 Paper exercise; no writes to any vault's learning store performed in this verification (the verification itself proves nothing is rewritten):
 
-1. **md5 invariance check**: at MD-B1 close, `md5 -q ~/lattice/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` MUST equal `dde2cbd88c0b45956fb22285a2a0f856`. Result: confirmed unchanged this session (no writes to canonical jsonl performed).
+1. **md5 invariance check**: at MD-B1 close, `md5 -q ~/lattice/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` equalled `dde2cbd88c0b45956fb22285a2a0f856` (verified at MD-B1 close 2026-05-20T02:05Z; no writes performed that session). **At MD-B2 close 2026-05-21**, the md5 rotated to `5adb0dfa38d9224649c3b2cba83852ae` per the planned ADR-005 §4 rotation trigger (ADR-003 §3 graduation ceremony for VFL-001 + VFL-002 → C-027 + C-028). This is the **first canonical md5 rotation since the founding C-001..C-026 import**; both pre-rotation and post-rotation md5 values are recorded in the MD-B2 commit message, ADR-003 amendment-history row, STATE.md close note, and the reply memo (`who/coordination/reply_2026_05_21_iii_to_videoforge_vfl_graduation_ratified.md`).
 2. **VFL-001 re-expression validates** against ADR-005 §2 (required-minimum) + §3 (consumer namespace). See §3.4 above for full worked example. Result: 3 required-minimum fields back-derivable from existing entry fields (`accepted: true` → `accept`; `source_review` → `rlhf_session_id` heuristic; `created` → `rlhf_captured_at` ceiling). 3 consumer-namespace fields preserve the ad-hoc VFL-001 fields with no semantic loss.
 3. **Canonical 26 entries still load**: optional `rlhf_*` fields are absent in canonical; parsers treat absence as valid per ADR-005 §5 clause 5. No retroactive backfill required.
 

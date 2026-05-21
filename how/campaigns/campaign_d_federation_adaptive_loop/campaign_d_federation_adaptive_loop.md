@@ -4,9 +4,9 @@ campaign_id: campaign_d_federation_adaptive_loop
 title: "Campaign D: Federation-Aware Airlock v0.3 + RLHF/Adaptive-Improvement Loop"
 status: open
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-21
 last_edited_by: agent_argus
-phase: P0_charter
+phase: P1_spec_partial
 chartered_at: 2026-05-20
 predecessor: campaign_c_airlock_standard
 parallel_eligible_with:
@@ -71,7 +71,7 @@ Sibling carry-forwards may interleave at any time without blocking the main trac
 - [ ] **MD-A4**: 6 consumer wrappers minor-bump reviewed to v0.3.0 (lattice-labs/iii v0.1.0→v0.3.0 carry-forward included; SiteForge + VideoForge + CanvasForge + wga + LPWhitepaper v0.2.0→v0.3.0)
 - [ ] **MD-A5**: Federation-integration validation (re-exercise VideoForge → CanvasForge request against v0.3 schema with federation substrate active; observability check against LN.aDNA ledger; zero regression confirmed against v0.2 baseline)
 - [x] **MD-B1**: Adaptive-improvement loop spec + RLHF signal schema + ADR-007-class decision authored (per-pack quality metric definition; per-finding RLHF signal capture schema; loop closure protocol — how a signal becomes a correction, becomes a graduation candidate, becomes a graduated pack delta) — ✅ **CLOSED 2026-05-20** (commit `b1f1bc4`; `what/artifacts/iii_adaptive_improvement_loop_spec.md` v0.3.0 + ADR-005 RLHF Signal Channel + ADR-007 Adaptive-Improvement Loop Architecture)
-- [ ] **MD-B2**: Graduation discipline at scale (≥50 corrections threshold canonicalized per ADR-003 amendment; VFL-001 + VFL-002 graduation ceremony fired per ADR-003 §3 + ADR-005; canonical learning store md5 changes from `dde2cbd88c0b45956fb22285a2a0f856` to new post-graduation hash with full provenance)
+- [x] **MD-B2**: Graduation discipline at scale (≥50 corrections threshold canonicalized per ADR-003 amendment; VFL-001 + VFL-002 graduation ceremony fired per ADR-003 §3 + ADR-005; canonical learning store md5 changes from `dde2cbd88c0b45956fb22285a2a0f856` to new post-graduation hash with full provenance) — ✅ **CLOSED MD-B2 2026-05-21** (ADR-003 §3.6 added — elevated-scrutiny queue requiring standard §3 + ≥2-vault evidence; canonical C-027 + C-028 appended; md5 rotated to `5adb0dfa38d9224649c3b2cba83852ae`; PACK_DELTA_LANDED for both per operator gate — VFL-001 → `context_iii_introspect_checks.md` Check 2c.i; VFL-002 → `context_iii_inspect_procedures.md` Modality 2 Code Inspect Static trap; VideoForge local store updated; inbound coord memo `open → accepted → absorbed → closed`; reply memo fired; spec forward-refs §3.4 / §7.2 / §7.3 resolved)
 - [ ] **MD-B3**: Cross-vault RLHF aggregation contract (uses v0.3 airlock from MD-A1; defines how local downstream `*_iii_learning_store.jsonl` entries can be proposed for upstream canonical graduation across vault boundaries; intersects D1 — co-ratified ADR or shared sub-mission MD-AB-interface)
 - [ ] **MD-B4**: 7-domain-pack pilot — execute the adaptive loop across all 7 core packs over a measurement window; produce per-pack quality scores + RLHF signal volumes; surface candidates for next graduation cycle
 - [ ] **MD-B5**: Validation across ≥3 consumer vaults (LPWhitepaper natural Day-1 as first 6/7-pack wrapper; plus VideoForge + CanvasForge; or substitute wga_l1 as federation pilot per LN coord intersect)
@@ -94,7 +94,7 @@ Sibling carry-forwards may interleave at any time without blocking the main trac
 | Mission | Objective | Sessions | Status |
 |---------|-----------|----------|--------|
 | **MD-B1** | Adaptive-improvement loop spec + RLHF signal schema + ADR-007-class decision | 1 | ✅ **COMPLETE 2026-05-20** (commit `b1f1bc4`) |
-| **MD-B2** | Graduation discipline at scale (≥50 corrections; VFL-001+VFL-002 ceremony absorbed) | 1 | pending |
+| **MD-B2** | Graduation discipline at scale (≥50 corrections; VFL-001+VFL-002 ceremony absorbed) | 1 | ✅ **COMPLETE 2026-05-21** (single-session close; ADR-003 §3.6 elevated-scrutiny queue + canonical C-027/C-028 + md5 rotated to `5adb0dfa38d9224649c3b2cba83852ae` + PACK_DELTA_LANDED for both VFL entries per operator gate) |
 | **MD-B3** | Cross-vault RLHF aggregation contract (intersects D1; co-ratified ADR or shared sub-mission) | 1 | pending |
 | **MD-B4** | 7-pack pilot — execute loop across all 7 core packs; per-pack quality scores | 1-2 | pending |
 | **MD-B5** | Validation across ≥3 consumer vaults (LPWhitepaper + 2 others) | 0.5-1 | pending |
@@ -134,8 +134,8 @@ Mission ordering within each track is recommendation, not contract. First-missio
 | Phase | Name | Missions | Status |
 |-------|------|----------|--------|
 | **P0** | Charter ratification (this session) — scope locked, 2 coord memos fired, STATE+MANIFEST+router updated, single-commit close per session-close ceremony (first post-adoption canonical application) | (charter only) | ✅ **CLOSED 2026-05-20** (this session) |
-| **P1** | Spec authoring (parallel-eligible) — MD-A1 v0.3 airlock spec + MD-B1 adaptive-loop spec + RLHF signal schema | MD-A1, MD-B1 | pending |
-| **P2** | Substrate + implementation — MD-A2 v0.3 implementation guidance + MD-A3 activation kit + MD-B2 graduation-at-scale (VFL ceremony fires) | MD-A2, MD-A3, MD-B2 | pending |
+| **P1** | Spec authoring (parallel-eligible) — MD-A1 v0.3 airlock spec + MD-B1 adaptive-loop spec + RLHF signal schema | MD-A1, MD-B1 | **partial** — MD-B1 ✅ 2026-05-20 (`b1f1bc4`); MD-A1 pending |
+| **P2** | Substrate + implementation — MD-A2 v0.3 implementation guidance + MD-A3 activation kit + MD-B2 graduation-at-scale (VFL ceremony fires) | MD-A2, MD-A3, MD-B2 | **partial** — MD-B2 ✅ 2026-05-21 (single-session close); MD-A2 + MD-A3 pending |
 | **P3** | Integration + pilot — MD-A4 6-wrapper minor-bump sweep + MD-B3 cross-vault RLHF aggregation contract (cross-track interface) + MD-B4 7-pack pilot | MD-A4, MD-B3, MD-B4 | pending |
 | **P4** | Validation + DG-D — MD-A5 federation-integration validation + MD-B5 ≥3-vault validation + MD-B6 DG-D gate + annotated v0.3.0 (or v1.0.0) tag | MD-A5, MD-B5, MD-B6 | pending |
 

@@ -70,8 +70,8 @@ III.aDNA/
 │   │       ├── context_iii_whitepaper_communication.md
 │   │       ├── context_iii_canvas_visual.md
 │   │       ├── context_iii_vault_maintenance.md
-│   │       └── iii_corrections_canonical.jsonl    # Upstream learning store (26 entries, 3 graduated — C-001, C-002, C-005)
-│   ├── decisions/                     # ADRs (000-007: 000 + 001×2 + 002×2 + 003×2 + 005 + 007; ADR-005 RLHF Signal Channel + ADR-007 Adaptive-Improvement Loop ratified at MD-B1 close 2026-05-20)
+│   │       └── iii_corrections_canonical.jsonl    # Upstream learning store (28 entries, 5 graduated — C-001, C-002, C-005, C-027 + C-028 added at MD-B2 2026-05-21; md5 5adb0dfa38d9224649c3b2cba83852ae rotated from dde2cbd88c0b45956fb22285a2a0f856 at first canonical rotation since founding C-001..C-026 import)
+│   ├── decisions/                     # ADRs (000-007: 000 + 001×2 + 002×2 + 003×2 + 005 + 007; ADR-005 RLHF Signal Channel + ADR-007 Adaptive-Improvement Loop ratified at MD-B1 close 2026-05-20; ADR-003 §3.6 ≥50 elevated-scrutiny queue added at MD-B2 close 2026-05-21)
 │   ├── modules/                       # 8 modular III components
 │   │   ├── module_iii_dispatch.md
 │   │   ├── module_iii_inspect_text.md

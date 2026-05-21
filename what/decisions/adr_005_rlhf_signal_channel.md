@@ -2,14 +2,17 @@
 type: decision
 adr_id: "005"
 title: RLHF Signal Channel — additive per-finding signal capture on the corrections store
-status: proposed
+status: ratified
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-21
 last_edited_by: agent_argus
-signed_by: (pending Stanley ratification at MD-B1 close)
+signed_by: Stanley (Chief Steward; ratified at MD-B1 close 2026-05-20 commit b1f1bc4)
 supersedes:
 superseded_by:
-amendments: []
+amendments:
+  - date: 2026-05-21
+    mission: campaign_d_federation_adaptive_loop MD-B2
+    summary: Informational note (no semantic change to ADR-005) — the canonical jsonl md5 `dde2cbd88c0b45956fb22285a2a0f856` referenced in §1 (additive-only constraint motivation) + §4 (invariance contract) rotated at MD-B2 close per the §4-specified trigger (ADR-003 §3 graduation ceremony for VFL-001 + VFL-002 → C-027 + C-028). New post-rotation md5 = `5adb0dfa38d9224649c3b2cba83852ae` (first canonical md5 rotation since founding C-001..C-026 import). ADR-005 semantics unchanged — operations defined by this ADR (additive `rlhf_*` fields; consumer namespace; required-min + optional-open partition) do NOT trigger md5 rotation; the rotation was triggered exclusively by ADR-003 §3 ceremony as §4 specifies. The prose in §1 + §4 still cites the founding md5 value as the pre-rotation baseline; readers post-MD-B2 should read those §-references as "the canonical md5 prior to the MD-B2 rotation event" and consult this amendment row for the post-rotation value.
 tags: [adr, rlhf, learning_store, signal_capture, adaptive_loop, schema, iii, v0_3]
 related_adrs:
   - adr_002_consumer_federation_contract  # §1a kind enum + extension policy pattern source
@@ -145,4 +148,5 @@ Mirrors `adr_002_consumer_federation_contract.md` §1a "Extension policy" clause
 
 | Date | Mission | Amendment summary |
 |------|---------|-------------------|
-| (none yet) | | Initial ratification at MD-B1 close. |
+| 2026-05-20 | campaign_d_federation_adaptive_loop MD-B1 | Initial ratification at MD-B1 close (commit `b1f1bc4`). |
+| 2026-05-21 | campaign_d_federation_adaptive_loop MD-B2 | Informational note — the canonical jsonl md5 `dde2cbd88c0b45956fb22285a2a0f856` referenced in §1 + §4 rotated at MD-B2 close per the §4-specified trigger (ADR-003 §3 graduation ceremony for VFL-001 + VFL-002 → C-027 + C-028). New md5 = `5adb0dfa38d9224649c3b2cba83852ae` (first canonical md5 rotation since founding C-001..C-026 import). ADR-005 semantics unchanged. §1 + §4 prose still cites the founding md5 as the pre-rotation baseline; readers should consult this amendment row + STATE.md + reply memo (`who/coordination/reply_2026_05_21_iii_to_videoforge_vfl_graduation_ratified.md`) for the post-rotation value. ADR-005 §3 rule 5 (canonical never carries `rlhf_consumer_namespace.*` fields) verified at MD-B2 close — C-027 + C-028 carry only top-level RLHF fields; namespace fields remain in VideoForge local store. |
