@@ -6,7 +6,7 @@ status: open
 created: 2026-05-20
 updated: 2026-05-21
 last_edited_by: agent_argus
-phase: P1_spec_partial
+phase: P1_spec_complete_P2_substrate_partial
 chartered_at: 2026-05-20
 predecessor: campaign_c_airlock_standard
 parallel_eligible_with:
@@ -65,7 +65,7 @@ Sibling carry-forwards may interleave at any time without blocking the main trac
 
 ## DG-D Criteria (draft — refined as missions land)
 
-- [ ] **MD-A1**: Airlock standard spec v0.3 extension authored at `what/artifacts/iii_airlock_standard_spec.md` (federation-substrate aware; Ed25519 signing-key verification contract at request acceptance per §4.4 extension; ledger event observation contract; multi-substrate-network-identity handling per ADR-014/-015 Tailscale + Nebula pluralism)
+- [x] **MD-A1**: Airlock standard spec v0.3 extension authored at `what/artifacts/iii_airlock_standard_spec.md` (federation-substrate aware; Ed25519 signing-key verification contract at request acceptance per §4.6 new sibling subsection; ledger event observation contract per new §5; multi-substrate-network-identity handling per ADR-014/-015 Tailscale + Nebula pluralism) — ✅ **CLOSED 2026-05-21** (`what/artifacts/iii_airlock_standard_spec.md` v0.2.0 → v0.3.0; +§4.6 Federation signing-key verification contract; +§5 Federation-Substrate Awareness with §§5.1-5.5 substrate-pluralism + Ed25519 verification + ledger observation + `COMPLIANCE_AUDIT` event emission shape + multi-substrate identity; +§7.5 federation-substrate version pin; LN ADR-014 + ADR-015 absorbed by reference; ZERO new III ADR per charter — operational extension of existing §4 pattern + cross-cutting awareness section; old §5-§8 renumbered §6-§9; spec grows 428 → ~620 lines)
 - [ ] **MD-A2**: Implementation guidance v0.3 at `what/artifacts/iii_airlock_substrate_implementation.md` (substrate enforcement extended — sig-verify preflight per §2 extension; ledger-observation hooks per new §X; performance budget for federation-aware preflights)
 - [ ] **MD-A3**: AIRLOCK activation kit shipped (D3 absorbed): activation skill + recipe + verification harness packaged for downstream 9-stub ecosystem; moves an `AIRLOCK.md` from inactive stub → active reference instance on a consumer vault's command
 - [ ] **MD-A4**: 6 consumer wrappers minor-bump reviewed to v0.3.0 (lattice-labs/iii v0.1.0→v0.3.0 carry-forward included; SiteForge + VideoForge + CanvasForge + wga + LPWhitepaper v0.2.0→v0.3.0)
@@ -83,7 +83,7 @@ Sibling carry-forwards may interleave at any time without blocking the main trac
 
 | Mission | Objective | Sessions | Status |
 |---------|-----------|----------|--------|
-| **MD-A1** | Airlock standard spec v0.3 extension (federation-substrate aware; Ed25519 sig-verify + ledger observation contract + Tailscale+Nebula multi-substrate handling) | 1 | pending |
+| **MD-A1** | Airlock standard spec v0.3 extension (federation-substrate aware; Ed25519 sig-verify + ledger observation contract + Tailscale+Nebula multi-substrate handling) | 1 | ✅ **COMPLETE 2026-05-21** (single-session close; spec v0.2.0 → v0.3.0 at `what/artifacts/iii_airlock_standard_spec.md`; +§4.6 +§5; LN ADR-014/-015 absorbed by reference; no new III ADR per consumption-only disposition) |
 | **MD-A2** | Implementation guidance v0.3 (substrate-enforcement extensions per spec v0.3) | 1 | pending |
 | **MD-A3** | AIRLOCK activation kit (D3 absorbed — recipe + skill + verification harness; 9-stub ecosystem activation enablement) | 0.5-1 | pending |
 | **MD-A4** | 6 consumer wrappers minor-bump → v0.3.0 (lattice-labs/iii v0.1.0→v0.3.0 carry-forward absorbed) | 1 | pending |
@@ -134,7 +134,7 @@ Mission ordering within each track is recommendation, not contract. First-missio
 | Phase | Name | Missions | Status |
 |-------|------|----------|--------|
 | **P0** | Charter ratification (this session) — scope locked, 2 coord memos fired, STATE+MANIFEST+router updated, single-commit close per session-close ceremony (first post-adoption canonical application) | (charter only) | ✅ **CLOSED 2026-05-20** (this session) |
-| **P1** | Spec authoring (parallel-eligible) — MD-A1 v0.3 airlock spec + MD-B1 adaptive-loop spec + RLHF signal schema | MD-A1, MD-B1 | **partial** — MD-B1 ✅ 2026-05-20 (`b1f1bc4`); MD-A1 pending |
+| **P1** | Spec authoring (parallel-eligible) — MD-A1 v0.3 airlock spec + MD-B1 adaptive-loop spec + RLHF signal schema | MD-A1, MD-B1 | ✅ **COMPLETE** — MD-B1 ✅ 2026-05-20 (`b1f1bc4`); MD-A1 ✅ 2026-05-21 (this commit) |
 | **P2** | Substrate + implementation — MD-A2 v0.3 implementation guidance + MD-A3 activation kit + MD-B2 graduation-at-scale (VFL ceremony fires) | MD-A2, MD-A3, MD-B2 | **partial** — MD-B2 ✅ 2026-05-21 (single-session close); MD-A2 + MD-A3 pending |
 | **P3** | Integration + pilot — MD-A4 6-wrapper minor-bump sweep + MD-B3 cross-vault RLHF aggregation contract (cross-track interface) + MD-B4 7-pack pilot | MD-A4, MD-B3, MD-B4 | pending |
 | **P4** | Validation + DG-D — MD-A5 federation-integration validation + MD-B5 ≥3-vault validation + MD-B6 DG-D gate + annotated v0.3.0 (or v1.0.0) tag | MD-A5, MD-B5, MD-B6 | pending |

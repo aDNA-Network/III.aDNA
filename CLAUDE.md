@@ -71,7 +71,7 @@ III.aDNA/
 │   │       ├── context_iii_canvas_visual.md
 │   │       ├── context_iii_vault_maintenance.md
 │   │       └── iii_corrections_canonical.jsonl    # Upstream learning store (28 entries, 5 graduated — C-001, C-002, C-005, C-027 + C-028 added at MD-B2 2026-05-21; md5 5adb0dfa38d9224649c3b2cba83852ae rotated from dde2cbd88c0b45956fb22285a2a0f856 at first canonical rotation since founding C-001..C-026 import)
-│   ├── decisions/                     # ADRs (000-007: 000 + 001×2 + 002×2 + 003×2 + 005 + 007; ADR-005 RLHF Signal Channel + ADR-007 Adaptive-Improvement Loop ratified at MD-B1 close 2026-05-20; ADR-003 §3.6 ≥50 elevated-scrutiny queue added at MD-B2 close 2026-05-21)
+│   ├── decisions/                     # ADRs (000-007: 000 + 001×2 + 002×2 + 003×2 + 005 + 007; ADR-005 RLHF Signal Channel + ADR-007 Adaptive-Improvement Loop ratified at MD-B1 close 2026-05-20; ADR-003 §3.6 ≥50 elevated-scrutiny queue added at MD-B2 close 2026-05-21; MD-A1 close 2026-05-21 authored ZERO new ADRs — federation-aware airlock v0.3 consumes LN ADR-014/-015 by reference per consumption-only disposition documented in spec §9.4)
 │   ├── modules/                       # 8 modular III components
 │   │   ├── module_iii_dispatch.md
 │   │   ├── module_iii_inspect_text.md
@@ -197,7 +197,7 @@ Consumers may use any subset. Minimal viable cycle: dispatch + one inspect modal
 
 If you are entering this vault from another context graph, start there. It maps agent profiles to minimum-viable context loading recipes.
 
-Airlock standard spec: `what/artifacts/iii_airlock_standard_spec.md` (MC-1, Campaign C).
+Airlock standard spec: `what/artifacts/iii_airlock_standard_spec.md` (v0.3.0 federation-substrate awareness, authored MD-A1 Campaign D 2026-05-21; v0.1.0 MC-1 + v0.2.0 Campaign C + v0.3.0 Campaign D MD-A1).
 
 ---
 
