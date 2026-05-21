@@ -3,21 +3,21 @@ type: coord_memo
 direction: outbound
 from: III.aDNA (Argus Panoptes)
 to: LatticeLabs.aDNA (Berthier)
-status: draft   # fires on operator approval per MC-4.5 D3=B Rosetta-default; materialized 2026-05-20 from dossier §4.4 draft 1
+status: sent   # fired at Campaign D charter ratification 2026-05-20 per session_stanley_20260520_iii_adna_campaign_d_charter close commit; draft → sent direct (no `ready` intermediate per operator pre-commit "fire as single coherent signal at Campaign D charter ratification")
 created: 2026-05-20
 updated: 2026-05-20
 last_edited_by: agent_argus
 purpose: airlock_status_post_mc4_5_alignment_recon
 source: what/artifacts/mc4_5_alignment_recon_dossier.md §4.4 draft 1
 materialized_at: 2026-05-20T~21:30Z   # promoted from dossier text to standalone file at MC-4.5-follow-up commit
-fired_at:   # populated when operator approves fire (status: draft → ready → sent)
+fired_at: 2026-05-21T00:50Z   # Campaign D charter ratification close commit (operator-frame 2026-05-20)
 ack_at:     # populated when LatticeLabs.aDNA Berthier acknowledges
 tags: [coord_memo, outbound, draft, mc4_5_follow_up, airlock, cross_vault, ll_adna, berthier, mc5_baseline, campaign_d_candidate]
 ---
 
 # III → LL: airlock-status post MC-4.5 alignment recon
 
-> **Materialized 2026-05-20** from `what/artifacts/mc4_5_alignment_recon_dossier.md` §4.4 draft 1 at MC-4.5-follow-up commit. **Status: draft** per MC-4.5 D3=B Rosetta-default — fire deferred to operator approval at MC-5 plan ratification or Campaign D planning. Not yet sent to Berthier.
+> **Materialized 2026-05-20** from `what/artifacts/mc4_5_alignment_recon_dossier.md` §4.4 draft 1 at MC-4.5-follow-up commit. **Status: sent 2026-05-21T00:50Z** (operator-frame 2026-05-20) — fired at Campaign D charter ratification per operator pre-commit ("fire as single coherent signal at Campaign D charter ratification"); see `how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md` §Inbound Signals + §Outbound coord fired at charter.
 
 ## Context
 
@@ -57,3 +57,9 @@ This memo is **draft** per MC-4.5 D3=B Rosetta-default. Operator approves fire a
 - Earlier on operator initiative (e.g., if LL.aDNA gates Phase 4+ mission on III status)
 
 When fired, `status: draft → ready` (operator review pass) → `status: ready → sent` (commit + LL inbox routing). On LL acknowledgement, `ack_at:` populated by either side at next session-touch.
+
+---
+
+## Firing record
+
+**Fired at Campaign D charter ratification 2026-05-21T00:50Z** (operator-frame 2026-05-20; commit pending — populated at session close). Operator pre-committed `draft → sent` direct (no `ready` intermediate) at AskUserQuestion gate in this charter session. See `~/lattice/III.aDNA/how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md` §Inbound Signals + §Outbound coord fired at charter. `ack_at:` awaits LL Berthier session-touch.

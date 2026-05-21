@@ -15,6 +15,8 @@ mc4_git_retroactive_close_commit: c8ce621
 mc4_5_closed: 2026-05-20   # planning-class interstitial alignment recon
 mc5_closed: 2026-05-20   # VideoForge → CanvasForge re-exercised against v0.2; zero regression confirmed
 dg_c_closed: 2026-05-20   # Campaign C: Airlock Standard v0.2 complete end-to-end 9/9
+dg_c_carry_forward_1_closed: 2026-05-20   # skill_session_close_ceremony.md adopted (closure-discipline mitigation; commit c4a5f77)
+campaign_d_chartered: 2026-05-20   # Campaign D: D1 federation-aware airlock v0.3 (with D3 activation kit folded as MD-A3) + D2 RLHF/adaptive-improvement loop, parallel-eligible; 2 outbound coord memos fired (LL Berthier + LN Venus); first canonical post-adoption application of skill_session_close_ceremony
 last_edited_by: agent_argus
 tags: [manifest, governance, iii, framework]
 ---
@@ -106,7 +108,7 @@ The five rows above are the currently-known instances at MB-8 close (2026-05-12)
 
 ## Known Carry-Forwards
 
-Captured at MC-3 wind-down (2026-05-10) for future sessions. **MA-3 carry-forwards (1, 2, 3, 4) all closed at MB-2 / MB-4 / MB-7**; the MB-7 closure (2026-05-12) discharged the last two (#1 `reviewed_output` retype + #3 `AGENTS.md` wikilink) along with the 2 Plan-Agent findings from MB-1 plan validation and the `kind` registry formalization in ADR-002 §1a:
+Captured at MC-3 wind-down (2026-05-10) for future sessions. **MA-3 carry-forwards (1, 2, 3, 4) all closed at MB-2 / MB-4 / MB-7**; the MB-7 closure (2026-05-12) discharged the last two (#1 `reviewed_output` retype + #3 `AGENTS.md` wikilink) along with the 2 Plan-Agent findings from MB-1 plan validation and the `kind` registry formalization in ADR-002 §1a. **Campaign D charter routing** (2026-05-20): the `lattice-labs/iii/CLAUDE.md` minor-bump carry-forward below is folded into Campaign D MD-A4 wrapper sweep (v0.1.0 → v0.3.0); see `how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md` §Carry-Forward Disposition for full disposition table.
 
 - **AIRLOCK.md Path E "v0.1.0" wording** — v0.2.x patch candidate. Path E `Out of scope` line reads `not yet covered by v0.1.0; track in Campaign C v0.2 follow-ups`. Verbatim preservation contract (spec §3.3) carried this line forward through the v0.2.0 bump; Campaign C v0.2 did not add federation_ref pin drift coverage (deferred to v0.3+). Fix wording AND the corresponding spec §3 reference simultaneously to keep the verbatim contract enforceable.
 - **`lattice-labs/iii/CLAUDE.md` federation_ref pin at `v0.1.0`** — consumer-side ADR-002 §3 minor-bump review. Per `lattice-labs/iii/CLAUDE.md:99`, the wrapper agent reviews the upstream CHANGELOG diff before updating `version:`. Not gating any current work; not III.aDNA's responsibility.

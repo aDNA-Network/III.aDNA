@@ -3,21 +3,21 @@ type: coord_memo
 direction: outbound
 from: III.aDNA (Argus Panoptes)
 to: LatticeNetwork.aDNA (Venus)
-status: draft   # fires on operator approval per MC-4.5 D3=B Rosetta-default; materialized 2026-05-20 from dossier §4.4 draft 2
+status: sent   # fired at Campaign D charter ratification 2026-05-20 per session_stanley_20260520_iii_adna_campaign_d_charter close commit; draft → sent direct (no `ready` intermediate per operator pre-commit "fire as single coherent signal at Campaign D charter ratification")
 created: 2026-05-20
 updated: 2026-05-20
 last_edited_by: agent_argus
 purpose: federation_substrate_intersect_with_iii_airlock_v0_3_candidate
 source: what/artifacts/mc4_5_alignment_recon_dossier.md §4.4 draft 2
 materialized_at: 2026-05-20T~21:30Z   # promoted from dossier text to standalone file at MC-4.5-follow-up commit
-fired_at:   # populated when operator approves fire
+fired_at: 2026-05-21T00:50Z   # Campaign D charter ratification close commit (operator-frame 2026-05-20)
 ack_at:     # populated when LatticeNetwork.aDNA Venus acknowledges
 tags: [coord_memo, outbound, draft, mc4_5_follow_up, federation, airlock_v0_3, cross_vault, ln_adna, venus, campaign_d_candidate_d1, load_bearing]
 ---
 
 # III → LN: federation-substrate intersect with III airlock v0.3+ candidate
 
-> **Materialized 2026-05-20** from `what/artifacts/mc4_5_alignment_recon_dossier.md` §4.4 draft 2 at MC-4.5-follow-up commit. **Status: draft** per MC-4.5 D3=B Rosetta-default — fire deferred to operator approval at MC-5 plan ratification or Campaign D planning. Not yet sent to Venus.
+> **Materialized 2026-05-20** from `what/artifacts/mc4_5_alignment_recon_dossier.md` §4.4 draft 2 at MC-4.5-follow-up commit. **Status: sent 2026-05-21T00:50Z** (operator-frame 2026-05-20) — fired at Campaign D charter ratification per operator pre-commit ("fire as single coherent signal at Campaign D charter ratification"); see `how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md` §Inbound Signals + §Outbound coord fired at charter. **Load-bearing intersect**: this memo's substrate-observation-contract ask becomes the active dependency for Campaign D Track D1 (MD-A1 spec v0.3 + MD-A2 implementation v0.3).
 
 ## Context
 
@@ -62,3 +62,9 @@ When fired, `status: draft → ready` (operator review pass) → `status: ready 
 ## Forward signal
 
 Campaign D candidate D1 (federation-aware airlock v0.3) carries this memo's intent forward. The 4-5 mission cadence at MC-4.5 §5.2 names LN.aDNA pc_01 Phase A federation substrate as the load-bearing prerequisite for v0.3 spec extension. Operator-discretionary timing.
+
+---
+
+## Firing record
+
+**Fired at Campaign D charter ratification 2026-05-21T00:50Z** (operator-frame 2026-05-20; commit pending — populated at session close). Operator pre-committed `draft → sent` direct (no `ready` intermediate) at AskUserQuestion gate in this charter session. Campaign D MD-A1 (v0.3 airlock spec extension) opens as the primary downstream consumer of this memo's load-bearing intersect — LN substrate-observation contract specification is the cross-vault dependency MD-A1 must reconcile. See `~/lattice/III.aDNA/how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md` §Inbound Signals + §Risk Register R1 (LN substrate maturity timing). `ack_at:` awaits LN Venus session-touch.
