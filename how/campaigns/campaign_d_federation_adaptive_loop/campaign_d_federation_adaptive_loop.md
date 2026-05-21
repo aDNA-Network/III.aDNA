@@ -70,7 +70,7 @@ Sibling carry-forwards may interleave at any time without blocking the main trac
 - [ ] **MD-A3**: AIRLOCK activation kit shipped (D3 absorbed): activation skill + recipe + verification harness packaged for downstream 9-stub ecosystem; moves an `AIRLOCK.md` from inactive stub → active reference instance on a consumer vault's command
 - [ ] **MD-A4**: 6 consumer wrappers minor-bump reviewed to v0.3.0 (lattice-labs/iii v0.1.0→v0.3.0 carry-forward included; SiteForge + VideoForge + CanvasForge + wga + LPWhitepaper v0.2.0→v0.3.0)
 - [ ] **MD-A5**: Federation-integration validation (re-exercise VideoForge → CanvasForge request against v0.3 schema with federation substrate active; observability check against LN.aDNA ledger; zero regression confirmed against v0.2 baseline)
-- [ ] **MD-B1**: Adaptive-improvement loop spec + RLHF signal schema + ADR-007-class decision authored (per-pack quality metric definition; per-finding RLHF signal capture schema; loop closure protocol — how a signal becomes a correction, becomes a graduation candidate, becomes a graduated pack delta)
+- [x] **MD-B1**: Adaptive-improvement loop spec + RLHF signal schema + ADR-007-class decision authored (per-pack quality metric definition; per-finding RLHF signal capture schema; loop closure protocol — how a signal becomes a correction, becomes a graduation candidate, becomes a graduated pack delta) — ✅ **CLOSED 2026-05-20** (commit `b1f1bc4`; `what/artifacts/iii_adaptive_improvement_loop_spec.md` v0.3.0 + ADR-005 RLHF Signal Channel + ADR-007 Adaptive-Improvement Loop Architecture)
 - [ ] **MD-B2**: Graduation discipline at scale (≥50 corrections threshold canonicalized per ADR-003 amendment; VFL-001 + VFL-002 graduation ceremony fired per ADR-003 §3 + ADR-005; canonical learning store md5 changes from `dde2cbd88c0b45956fb22285a2a0f856` to new post-graduation hash with full provenance)
 - [ ] **MD-B3**: Cross-vault RLHF aggregation contract (uses v0.3 airlock from MD-A1; defines how local downstream `*_iii_learning_store.jsonl` entries can be proposed for upstream canonical graduation across vault boundaries; intersects D1 — co-ratified ADR or shared sub-mission MD-AB-interface)
 - [ ] **MD-B4**: 7-domain-pack pilot — execute the adaptive loop across all 7 core packs over a measurement window; produce per-pack quality scores + RLHF signal volumes; surface candidates for next graduation cycle
@@ -93,7 +93,7 @@ Sibling carry-forwards may interleave at any time without blocking the main trac
 
 | Mission | Objective | Sessions | Status |
 |---------|-----------|----------|--------|
-| **MD-B1** | Adaptive-improvement loop spec + RLHF signal schema + ADR-007-class decision | 1 | pending |
+| **MD-B1** | Adaptive-improvement loop spec + RLHF signal schema + ADR-007-class decision | 1 | ✅ **COMPLETE 2026-05-20** (commit `b1f1bc4`) |
 | **MD-B2** | Graduation discipline at scale (≥50 corrections; VFL-001+VFL-002 ceremony absorbed) | 1 | pending |
 | **MD-B3** | Cross-vault RLHF aggregation contract (intersects D1; co-ratified ADR or shared sub-mission) | 1 | pending |
 | **MD-B4** | 7-pack pilot — execute loop across all 7 core packs; per-pack quality scores | 1-2 | pending |
@@ -166,7 +166,8 @@ From DG-C AAR Follow-up + MC-5 §7 + MC-4.5 §5.1:
 - Canonical learning store (extension/graduation target for D2): `~/lattice/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` (md5 `dde2cbd88c0b45956fb22285a2a0f856` invariant at charter)
 - ADR-002 (consumer federation contract; §3 minor-bump review policy): `~/lattice/III.aDNA/what/decisions/adr_002_consumer_federation_contract.md`
 - ADR-003 (corrections graduation protocol; §3 ceremony for VFL graduation): `~/lattice/III.aDNA/what/decisions/adr_003_corrections_graduation.md`
-- ADR-005 (RLHF channel; baseline for MD-B1 adaptive-loop spec): `~/lattice/III.aDNA/what/decisions/adr_005_rlhf_channel.md` (if not present, will be authored at MD-B1)
+- ADR-005 (RLHF Signal Channel; authored at MD-B1 close 2026-05-20 commit `b1f1bc4`): `~/lattice/III.aDNA/what/decisions/adr_005_rlhf_signal_channel.md`
+- ADR-007 (Adaptive-Improvement Loop Architecture; authored at MD-B1 close 2026-05-20 commit `b1f1bc4`): `~/lattice/III.aDNA/what/decisions/adr_007_adaptive_improvement_loop.md`
 - Session-close ceremony skill (first post-adoption application at this charter session): `~/lattice/III.aDNA/how/skills/skill_session_close_ceremony.md`
 - VFL graduation proposal: `~/lattice/III.aDNA/who/coordination/coord_2026_05_12_vfl_graduation_proposals.md`
 - LN.aDNA pc_01 Phase A artifacts (D1 load-bearing dependency; read-only context): `~/lattice/LatticeNetwork.aDNA/how/campaigns/campaign_alphalattice_genesis/missions/pc_01*`
