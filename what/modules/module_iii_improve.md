@@ -26,7 +26,7 @@ fair:
   interoperable:
     input_types: [structured]
     output_types: [structured]
-    standards: ["aDNA Module Spec v1.0", "III Review Skill v1.0"]
+    standards: ["aDNA Module Spec v1.0", "III Review Skill v1.0", "ADR-005 RLHF Signal Channel", "ADR-007 Adaptive-Improvement Loop"]
   reusable:
     license: "Apache-2.0"
     provenance: "Decomposed from skill_iii_review Step 3; III.aDNA MA-3 2026-05-08"
@@ -58,7 +58,7 @@ migration_provenance:
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | `calibrated_report` | structured | yes | Output of `module_iii_introspect`: `{findings, introspections, graduation_candidates}` |
-| `learning_store_acceptance_rates` | structured | no | Per-correction historical acceptance rates — used to calibrate severity (high acceptance → high confidence in proposed fix) |
+| `learning_store_acceptance_rates` | structured | no | Per-correction historical acceptance rates — used to calibrate severity (high acceptance → high confidence in proposed fix). Additively (per ADR-005 §3 + §2): when entries carry `rlhf_severity_calibration` (float 0.0–1.0; reviewer confidence) and/or `rlhf_signal_type` distribution counts, those are consumed as additional severity-weighting inputs alongside the legacy `accepted` boolean. Backward-compatible — entries without `rlhf_*` fields use `accepted` distribution only. |
 
 ## Outputs
 

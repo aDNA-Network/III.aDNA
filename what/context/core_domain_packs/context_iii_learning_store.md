@@ -3,17 +3,31 @@ type: context_guide
 topic: iii_domain_packs
 subtopic: learning_store
 created: 2026-04-03
-updated: 2026-05-08
-context_version: "1.0"
-token_estimate: ~1500
-last_edited_by: agent_stanley
-tags: [context, iii-review, learning-store, corrections, calibration, vaas]
+updated: 2026-05-20
+context_version: "1.1"
+token_estimate: ~1700
+last_edited_by: agent_argus
+tags: [context, iii-review, learning-store, corrections, calibration, vaas, rlhf, adaptive_loop, adr_005, adr_007]
 banner: "who/assets/banners/banner_context_guide.jpg"
 icon: database
 migration_provenance:
   previous_home: lattice-labs/what/context/iii_domain_packs/context_iii_learning_store.md
   migrated: 2026-05-08
   migration_mission: campaign_a_iii_genesis MA-2
+quality_metric:
+  rubric_version: "adr_007_v0"
+  scored_at: 2026-05-20
+  scored_by: agent_argus
+  scoring_mission: campaign_d_federation_adaptive_loop MD-B1
+  signal_density: 4
+  actionability: 4
+  coverage_uniformity: 4
+  source_diversity: 3
+  cross_topic_coherence: 5
+  graduation_yield: 3
+  composite: 3.83
+  floor_check: passed
+  notes: "First per-pack quality score under ADR-007 §3 six-axis rubric (MD-B1 exemplar). Pack is loop-meta: it governs the learning-store substrate the rubric reads. MD-B4 will score remaining 6 canonical packs against this exemplar."
 ---
 
 # III Learning Store — Schema & Protocol
@@ -71,6 +85,14 @@ Each line is one JSON object representing a recurring failure pattern:
 | `graduated` | bool | yes | Whether promoted to a domain pack trap |
 | `graduated_to` | string\|null | yes | Which domain pack absorbed it, or null |
 | `created` | string | yes | ISO date of first observation |
+| `rlhf_signal_type` | string (enum) | no (required-min when capturing RLHF; ADR-005 §2) | `accept` \| `reject` \| `defer` \| `accept_with_modification` |
+| `rlhf_session_id` | string | no (required-min when capturing RLHF; ADR-005 §2) | Originating review session id |
+| `rlhf_captured_at` | string (ISO 8601 UTC) | no (required-min when capturing RLHF; ADR-005 §2) | Capture instant |
+| `rlhf_modification_delta` | string \| object | no (optional-open; ADR-005 §2) | Diff or rationale when `rlhf_signal_type: accept_with_modification` |
+| `rlhf_reviewer_persona` | string | no (optional-open; ADR-005 §2) | Multi-voice persona id |
+| `rlhf_severity_calibration` | float | no (optional-open; ADR-005 §2) | 0.0–1.0 reviewer confidence |
+| `rlhf_cross_session_link` | string | no (optional-open; ADR-005 §2) | Prior occurrence pointer |
+| `rlhf_consumer_namespace.<vault>.<field>` | any | no (consumer namespace; ADR-005 §3) | Vault-specific signals (e.g., VideoForge's `last_updated`) |
 
 ### Example Entry
 
@@ -80,33 +102,43 @@ Each line is one JSON object representing a recurring failure pattern:
 
 ## Lifecycle Protocol
 
-### 1. Injection (at INSPECT start)
+> Per ADR-007 §1, the per-pattern CorrectionLifecycle has six progression stages (SIGNAL_CAPTURED → CORRECTION_TRACKED → GRADUATION_CANDIDATE → GRADUATION_PROPOSED → GRADUATION_RATIFIED → PACK_DELTA_LANDED) plus two terminal-non-graduated states (PRUNED, ARCHIVED). The four steps below execute the transitions. See `what/artifacts/iii_adaptive_improvement_loop_spec.md` §5 for the full state machine reference.
+
+### 1. Injection (at INSPECT start) — read-side feedback edge of the loop
 
 Before beginning INSPECT, read the canonical store (`iii_corrections_canonical.jsonl`) AND the consumer-vault local store (if present). For each non-graduated correction:
 - Add it to the active check list alongside the loaded domain pack traps
 - Prioritize by frequency (higher frequency = check earlier)
 - Report to user: "Loaded N corrections from learning store"
 
-### 2. Accumulation (at IMPROVE end)
+(This step does not fire CorrectionLifecycle transitions; it provides the substrate `module_iii_introspect` Check 2g reads against. Matches inside Check 2g fire CORRECTION_TRACKED transitions.)
+
+### 2. Accumulation (at IMPROVE end) — fires SIGNAL_CAPTURED / CORRECTION_TRACKED / GRADUATION_CANDIDATE
 
 After completing the IMPROVE phase, evaluate each finding:
 - **Is this a recurring pattern** (not a one-off factual error)? If yes, check if it matches an existing correction (canonical OR local).
-  - **Match found**: Increment `frequency` in the consumer-vault local store. Update `accepted` based on user's decision. Canonical store is read-only outside the graduation ceremony.
-  - **No match**: Append a new correction entry to the consumer-vault local store with `frequency: 1`.
+  - **Match found**: Increment `frequency` in the consumer-vault local store. Update `accepted` based on user's decision. Append additive `rlhf_*` fields per ADR-005 §2 (required-min: `rlhf_signal_type`, `rlhf_session_id`, `rlhf_captured_at`). Canonical store is read-only outside the graduation ceremony. → fires **CORRECTION_TRACKED** transition.
+  - **No match**: Append a new correction entry to the consumer-vault local store with `frequency: 1` and the three ADR-005 §2 required-min `rlhf_*` fields. → fires **SIGNAL_CAPTURED** transition.
+- After all per-finding writes: any entry with `frequency >= 3 AND acceptance_rate >= 80%` → fires **GRADUATION_CANDIDATE** transition; surfaced in `accumulate_report.graduation_signals`.
 - **One-off errors** (e.g., a specific port number wrong) do NOT become corrections. Only patterns that could recur in other documents qualify.
 
-### 3. Graduation (periodic, ADR-003 ceremony)
+### 3. Graduation (periodic, ADR-003 §3 ceremony) — fires GRADUATION_PROPOSED → GRADUATION_RATIFIED → PACK_DELTA_LANDED
 
 During OODA cycles or after every 5-10 reviews:
-- Scan local-store corrections where `frequency >= 3` AND acceptance rate >= 80%
-- Propose graduation to the appropriate domain pack OR to the canonical store (Stanley approval required)
-- On approval: PR to upstream III.aDNA. On merge: write formal trap definition in domain pack OR copy entry into canonical store with `graduated: true` and `graduated_to: "<pack_name>"`
+- Scan local-store corrections where `frequency >= 3` AND acceptance rate >= 80% (matches CorrectionLifecycle GRADUATION_CANDIDATE entries)
+- Propose graduation via cross-vault request memo to III.aDNA → fires **GRADUATION_PROPOSED** transition
+- Stanley + Argus co-ratification: PR to upstream III.aDNA + canonical jsonl append + md5 rotation → fires **GRADUATION_RATIFIED** transition
+- Trap definition written into relevant domain pack → fires **PACK_DELTA_LANDED** transition
 - Graduated corrections stay in the JSONL as historical record but are excluded from injection (the domain pack trap supersedes them)
 
-### 4. Pruning (periodic)
+### 3.5 Per-pack quality metric (ADR-007 §3 six-axis rubric)
 
-- Corrections with acceptance < 50% over 5+ observations → review for removal (may be false positive patterns)
-- If JSONL exceeds ~50 entries / ~2000 tokens → graduate high-frequency items and archive low-frequency ones to `iii_corrections_archive.jsonl` (same directory, full record preserved)
+Per ADR-007 §3, each canonical domain pack at `what/context/core_domain_packs/` SHOULD carry a `quality_metric:` frontmatter block scoring six axes (signal_density / actionability / coverage_uniformity / source_diversity / cross_topic_coherence / graduation_yield) on a 1–5 scale. Composite = arithmetic mean. Floor rule: any axis ≤2 triggers pack revision. See `iii_adaptive_improvement_loop_spec.md` §4 for the consumer-facing reference and §8.3 for the worked exemplar (this pack's own quality_metric block, MD-B1 close). MD-B4 scores remaining 6 packs against this exemplar.
+
+### 4. Pruning (periodic) — terminal-non-graduated PRUNED state
+
+- Corrections with acceptance < 50% over 5+ observations → review for removal (may be false positive patterns) → enters **PRUNED** terminal state per ADR-007 §1
+- If JSONL exceeds ~50 entries / ~2000 tokens → graduate high-frequency items and archive low-frequency ones to `iii_corrections_archive.jsonl` (same directory, full record preserved) → archived entries enter **ARCHIVED** terminal state per ADR-007 §1
 
 ## Token Efficiency
 

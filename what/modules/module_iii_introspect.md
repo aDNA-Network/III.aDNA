@@ -26,7 +26,7 @@ fair:
   interoperable:
     input_types: [structured, context_pack]
     output_types: [structured]
-    standards: ["aDNA Module Spec v1.0", "III Review Skill v1.0"]
+    standards: ["aDNA Module Spec v1.0", "III Review Skill v1.0", "ADR-007 Adaptive-Improvement Loop"]
   reusable:
     license: "Apache-2.0"
     provenance: "Decomposed from skill_iii_review Step 2 + context_iii_introspect_checks (7 checks); III.aDNA MA-3 2026-05-08"
@@ -72,7 +72,7 @@ migration_provenance:
 
 ## Behavior
 
-Sequential execution of the 7 checks per `context_iii_introspect_checks.md`. Modality-agnostic — operates on the common `Finding` format. Check 2g (`corrections_pattern_match`) closes the learning-store feedback loop: it scans merged findings against the corrections store, increments observed frequencies (mentally; the actual write happens in `module_iii_accumulate`), and surfaces graduation candidates.
+Sequential execution of the 7 checks per `context_iii_introspect_checks.md`. Modality-agnostic — operates on the common `Finding` format. Check 2g (`corrections_pattern_match`) closes the learning-store feedback loop: it scans merged findings against the corrections store, increments observed frequencies (mentally; the actual write happens in `module_iii_accumulate`), and surfaces graduation candidates. Each match contributes to the CorrectionLifecycle CORRECTION_TRACKED transition per ADR-007 §1 (stage 2); accumulated matches reaching `frequency ≥ 3 AND acceptance_rate ≥ 80%` trigger the downstream GRADUATION_CANDIDATE transition fired by `module_iii_accumulate`.
 
 For check definitions see `what/context/core_domain_packs/context_iii_introspect_checks.md`. For procedural context see `how/skills/skill_iii_review.md` Step 2. Skill orchestrates pack loading.
 

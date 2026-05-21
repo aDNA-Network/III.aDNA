@@ -1,6 +1,6 @@
 lattice:
   name: iii_verification_oracle
-  version: "1.2.1"
+  version: "1.2.2"
   lattice_type: skill
   description: >
     III Review as a composable semantic verification oracle. Accepts documents
@@ -240,7 +240,8 @@ lattice:
         graduation_thresholds:
           frequency_min: 3
           acceptance_rate_min: 0.80
-        governs_adr: "ADR-003"
+        governs_adrs: ["ADR-003", "ADR-005", "ADR-007"]
+        correction_lifecycle_transitions_emitted: ["SIGNAL_CAPTURED", "CORRECTION_TRACKED", "GRADUATION_CANDIDATE"]  # per ADR-007 §1; downstream graduation transitions are governance-ceremony-fired
         output_format: "LearningStoreDelta + GraduationSignals"
 
     - id: reviewed_output
@@ -386,3 +387,23 @@ lattice:
       governance (canonical = read-only outside graduation, local =
       append-only) is now expressed in the lattice node config rather than
       implicit in the human_review process.
+
+  mb1_changelog:
+    version_bump: "1.2.1 → 1.2.2"
+    date: 2026-05-20
+    mission: campaign_d_federation_adaptive_loop MD-B1
+    additions:
+      - "accumulate node config: `governs_adr: \"ADR-003\"` → `governs_adrs: [\"ADR-003\", \"ADR-005\", \"ADR-007\"]` (ADR-005 = RLHF Signal Channel; ADR-007 = Adaptive-Improvement Loop Architecture)"
+      - "accumulate node config: new `correction_lifecycle_transitions_emitted` field naming the three CorrectionLifecycle transitions (SIGNAL_CAPTURED / CORRECTION_TRACKED / GRADUATION_CANDIDATE) per ADR-007 §1"
+    rewires: []
+    module_refs_added: []
+    rationale: >
+      Patch-level bump (1.2.1 → 1.2.2) carrying additive ADR cross-references
+      only — no node added, no edge added, no semantic change to module IO or
+      lattice topology. Per ADR-002 §3 (consumer review on minor bump),
+      patches are transparent to consumers; the 6 consumer wrappers stay
+      transparent through this change. MD-B1's larger work — naming the loop
+      stages and authoring ADR-005 + ADR-007 + iii_adaptive_improvement_loop_spec.md —
+      lives at the spec + ADR level; the lattice yaml gains only the
+      governance-trail annotations naming what its already-shipped accumulate
+      node has been doing operationally since MA-3.

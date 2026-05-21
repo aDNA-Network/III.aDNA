@@ -4,14 +4,17 @@ adr_id: "003"
 title: Learning Store Ownership — canonical upstream, per-vault forks, graduation ceremony
 status: ratified
 created: 2026-05-07
-updated: 2026-05-12
-last_edited_by: agent_stanley
+updated: 2026-05-20
+last_edited_by: agent_argus
 signed_by: Stanley (Chief Steward)
 amendments:
   - date: 2026-05-12
     mission: campaign_b_iii_federation MB-7
     summary: §4 schema aligned with live canonical jsonl (field names + boolean acceptance)
-tags: [adr, learning-store, corrections, graduation, iii]
+  - date: 2026-05-20
+    mission: campaign_d_federation_adaptive_loop MD-B1
+    summary: §3.5 added (Lifecycle scoping — ADR-003 §3 ceremony is the GRADUATION_PROPOSED → GRADUATION_RATIFIED → PACK_DELTA_LANDED transitions of ADR-007 §1; earlier loop stages governed by ADR-007); §5 graduation-count corrected from "5 already-graduated" to "3 already-graduated (C-001, C-002, C-005)" — documentation reconciliation against the live canonical jsonl (md5 dde2cbd88c0b45956fb22285a2a0f856 invariant preserved)
+tags: [adr, learning-store, corrections, graduation, iii, adaptive_loop_v0_3]
 ---
 
 # ADR-003: Learning Store Ownership
@@ -41,6 +44,10 @@ Every consumer's local `iii_learning_store.jsonl` is a **downstream fork**. Loca
 Consumers maintain a local store at `iii/what/context/<vault>_iii_learning_store.jsonl`. Format is identical to the canonical store schema. Local store accumulation happens during normal ACCUMULATE phase per skill_iii_review.md Step 3b.
 
 On load: a consumer session loads both the canonical store (≤ 50 entries) AND the local store (≤ 20 entries). Local entries take precedence if pattern names conflict (consumer knows its domain better).
+
+### 3.5 Lifecycle scoping (added MD-B1 2026-05-20)
+
+This ADR's §3 graduation ceremony corresponds to the **GRADUATION_PROPOSED → GRADUATION_RATIFIED → PACK_DELTA_LANDED** transitions of the III CorrectionLifecycle state machine defined at `adr_007_adaptive_improvement_loop.md` §1. Earlier lifecycle stages (SIGNAL_CAPTURED, CORRECTION_TRACKED, GRADUATION_CANDIDATE) and terminal-non-graduated states (PRUNED, ARCHIVED) are governed by ADR-007. Per-finding RLHF signal capture (the field schema additively extending §4 below) is governed by `adr_005_rlhf_signal_channel.md`. These three ADRs (003 + 005 + 007) form the coordinated learning-store + signal-channel + adaptive-loop governance set.
 
 ### 3. Graduation ceremony
 
@@ -90,7 +97,7 @@ Consumer local stores follow the same schema. Loading protocol (ADR-002 §4): ca
 
 ### 5. Pre-migration entries (C-001 through C-026)
 
-The 26 entries migrated from lattice-labs are the founding canonical set. Provenance to `lattice-labs` is captured in the per-entry `migration_provenance` block in each pack's `[MIGRATED]` stub plus the canonical store's `iii_corrections_canonical.jsonl` md5 invariant (`dde2cbd88c0b45956fb22285a2a0f856`). The 5 already-graduated entries (C-001, C-002, C-005 + 2 more — see entries with `graduated: true` + `graduated_date` populated) retain their `graduated_to: "core"` value. Graduation candidates C-003 and C-009 remain flagged.
+The 26 entries migrated from lattice-labs are the founding canonical set. Provenance to `lattice-labs` is captured in the per-entry `migration_provenance` block in each pack's `[MIGRATED]` stub plus the canonical store's `iii_corrections_canonical.jsonl` md5 invariant (`dde2cbd88c0b45956fb22285a2a0f856`). The 3 already-graduated entries (C-001 `projective_claim_as_fact`, C-002 `aspiration_as_current_capability`, C-005 `unsourced_consequential_statistic` — see entries with `graduated: true` populated) retain their `graduated_to: "core"` value. Graduation candidates C-003 and C-009 remain flagged. (Pre-MD-B1 amendment-history this section claimed "5 already-graduated"; live jsonl verified at MD-B1 close 2026-05-20 via `grep -c '"graduated":true'` returns 3. Correction is documentation reconciliation; canonical jsonl byte content unchanged; md5 invariant preserved.)
 
 ### 6. Domain pack graduation (separate from corrections graduation)
 
@@ -108,4 +115,5 @@ When a correction pattern becomes pervasive enough to be part of a domain pack's
 
 | Date | Mission | Amendment summary |
 |------|---------|-------------------|
-| 2026-05-12 | campaign_b_iii_federation MB-7 | §4 correction-entry schema aligned with the live canonical jsonl (md5 `dde2cbd88c0b45956fb22285a2a0f856` invariant preserved). Pre-amendment §4 specified `trap_pack` / `acceptance_rate` (numeric) / `graduated_from` (consumer-provenance direction); live entries since the founding C-001..C-026 import used `trap` / `accepted` (boolean) / `graduated_to` (target-pack direction). The drift was a documentation-vs-implementation gap from the Campaign A MA-1 head-start migration; the live shape was always the operational schema. Amendment aligns ADR §4 to live without rewriting any jsonl. §5 prose updated to drop the `graduated_from: lattice-labs` reference (the field never existed in canonical) and point to the canonical md5 invariant instead.
+| 2026-05-12 | campaign_b_iii_federation MB-7 | §4 correction-entry schema aligned with the live canonical jsonl (md5 `dde2cbd88c0b45956fb22285a2a0f856` invariant preserved). Pre-amendment §4 specified `trap_pack` / `acceptance_rate` (numeric) / `graduated_from` (consumer-provenance direction); live entries since the founding C-001..C-026 import used `trap` / `accepted` (boolean) / `graduated_to` (target-pack direction). The drift was a documentation-vs-implementation gap from the Campaign A MA-1 head-start migration; the live shape was always the operational schema. Amendment aligns ADR §4 to live without rewriting any jsonl. §5 prose updated to drop the `graduated_from: lattice-labs` reference (the field never existed in canonical) and point to the canonical md5 invariant instead. |
+| 2026-05-20 | campaign_d_federation_adaptive_loop MD-B1 | §3.5 added (new section): Lifecycle scoping — names ADR-003 §3 ceremony as the GRADUATION_PROPOSED → GRADUATION_RATIFIED → PACK_DELTA_LANDED transitions of `adr_007_adaptive_improvement_loop.md` §1 CorrectionLifecycle; earlier stages governed by ADR-007; signal schema additively extended by ADR-005. §5 graduation-count corrected from "5 already-graduated" to "3 already-graduated (C-001, C-002, C-005)" — documentation reconciliation matching the live canonical jsonl (verified at MD-B1 close via `grep -c '"graduated":true'` → 3; same pattern as the 2026-05-12 §4 reconciliation; md5 `dde2cbd88c0b45956fb22285a2a0f856` invariant preserved). Frontmatter `last_edited_by` reflows from `agent_stanley` to `agent_argus` per author identity for the new amendment row; `signed_by: Stanley (Chief Steward)` unchanged — Stanley ratifies the §3.5 addition + §5 correction at MD-B1 close per the charter hard rule "New ADR(s) require Stanley ratification before MD-B1 close."
