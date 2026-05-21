@@ -57,10 +57,30 @@ Append in any of: validation failed, required secret absent, over-capacity with 
 ## Rejection (<YYYY-MM-DD>)
 
 - **Status**: rejected
-- **Reason**: <one of: validation_failed | missing_secret: <NAME> | scope_mismatch | lattice_incompatible | budget_ceiling_exceeded | over_capacity_no_queue | other>
+- **Reason**: <one of: validation_failed | missing_secret: <NAME> | scope_mismatch | lattice_incompatible | budget_ceiling_exceeded | over_capacity_no_queue | signature_verification_failed: <pubkey_absent | pubkey_revoked | signature_mismatch | key_version_unknown | substrate_mismatch> | other>
 - **Details**: <2-4 sentences explaining the rejection cause>
 - **Remediation** (if applicable): <e.g. "file a corrected memo with `voice_mapping` path resolved against requester vault root">
 - **Next steps**: <e.g. "no further action by receiver"; "requester to refile after remediation">
+```
+
+**`signature_verification_failed` sub-reason enum** (v0.3; per `iii_airlock_standard_spec.md` §4.6 + §5.4 + `iii_airlock_substrate_implementation.md` §4.4):
+
+- `pubkey_absent` — `federation_signature` field missing, OR canonical_id does not resolve, OR no `federation_signing_pubkey_sha256` populated for the canonical_id.
+- `pubkey_revoked` — Cached `MEMBERSHIP_CERT_REVOKED` event covers the resolved pubkey, OR the manifest entry has `revoked_at` populated for the matched version.
+- `signature_mismatch` — Ed25519 verification returned false (signed bytes do not verify under resolved pubkey).
+- `key_version_unknown` — `federation_signature_key_version` references a version not present in the manifest's `federation_signing_pubkey_versions[]` list for the canonical_id.
+- `substrate_mismatch` — Inbound transport substrate is not in the requesting node's `transport.substrates[*].kind` list per ADR-015 §b.
+
+**Ed25519 rejection body example** (v0.3):
+
+```markdown
+## Rejection (2026-05-21)
+
+- **Status**: rejected
+- **Reason**: signature_verification_failed: pubkey_revoked
+- **Details**: The federation signing key version v1 for canonical_id `iris_videoforge` was revoked at 2026-05-20T18:00Z per a `MEMBERSHIP_CERT_REVOKED` ledger event. Receiver's ledger-observation cache invalidated the pubkey; current sig-verify failed at request acceptance per §4.6 receiver-side preflight step 3.
+- **Remediation**: Re-key per ADR-013 §c rotation policy; emit `MEMBERSHIP_CERT_ISSUED` for the new key; re-file request with `federation_signature_key_version: v2` and a v2-key signature.
+- **Next steps**: requester to refile after re-key.
 ```
 
 ## Status Log row
