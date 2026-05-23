@@ -215,13 +215,14 @@ Airlock standard spec: `what/artifacts/iii_airlock_standard_spec.md` (v0.3.0 fed
 
 ## Campaign State
 
-See `STATE.md` for current campaign status. Three campaigns in flight:
+See `STATE.md` for the authoritative operational snapshot. Four campaigns shipped, one in-flight:
 
 | Campaign | Goal | Status |
 |----------|------|--------|
-| Campaign A: Genesis + Foundation | Bootstrap vault, migrate content, modularize | P0 MA-0 IN PROGRESS |
-| Campaign B: Ecosystem Federation | Wire consumer wrappers across all vaults | Pending DG-A |
-| Campaign C: Airlock Standard | Formalize + propagate airlock pattern | Pending DG-A (can overlap B) |
+| Campaign A: Genesis + Foundation | Bootstrap vault, migrate content, modularize, airlock v0.1.0 | ✅ **CLOSED 2026-05-08 — DG-A 9/9** (`v0.1.0` tag at commit `1628793`) |
+| Campaign B: Ecosystem Federation | Wire `iii/` consumer wrappers across all consumer vaults | ✅ **CLOSED 2026-05-12 — DG-B 9/9** (6 wrappers live; MB-1..MB-8 all closed) |
+| Campaign C: Airlock Standard v0.2 | Formalize cross-vault request surface + propagate airlock pattern | ✅ **CLOSED 2026-05-20 — DG-C 9/9** (`v0.2.0` tag at commit `246124d`; spec + schema + AIRLOCK.md v0.2.0 + reply-comment template + substrate-implementation guidance + MC-5 zero-regression validation) |
+| Campaign D: Federation-Aware Airlock v0.3 + RLHF/Adaptive Loop | D1 federation-aware airlock v0.3 (LOAD-BEARING on `LatticeNetwork.aDNA` pc_01 Phase A + Phase B1 dual-substrate) + D2 RLHF + adaptive-improvement loop | **DG-D 6/11** — chartered 2026-05-20; MD-B1 ✅ 2026-05-20 (`b1f1bc4` adaptive loop spec + ADR-005 RLHF + ADR-007 loop architecture); MD-B2 ✅ 2026-05-21 (VFL graduation; canonical md5 rotated `dde2cbd8` → `5adb0dfa`; ADR-003 §3.6; canonical 26 → 28 entries / 5 graduated); MD-A1 ✅ 2026-05-21 (spec v0.3 federation-substrate awareness); MD-A2 ✅ 2026-05-21 (substrate impl v0.3 Ed25519 + ledger observation + COMPLIANCE_AUDIT); MD-A3 ✅ 2026-05-22 (activation kit; AIRLOCK.md reference instance v0.3.0); **MD-A4 ✅ 2026-05-22** (5 consumer wrappers minor-bump v0.2 → v0.3; lattice-labs/iii v0.1.0 formally tracked-deferred); MD-B3 + MD-B4 + MD-A5 + MD-B5 + MD-B6 pending |
 
 ---
 
