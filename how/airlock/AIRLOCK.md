@@ -1,18 +1,23 @@
 ---
 type: airlock
-version: "0.2.0"
+version: "0.3.0"
 status: reference_implementation
 created: 2026-05-07
-updated: 2026-05-10
-last_edited_by: agent_stanley
+updated: 2026-05-22
+last_edited_by: agent_argus
 governed_by: what/artifacts/iii_airlock_standard_spec.md
-covers: [entry_paths, cross_vault_request_patterns]
-absorbs_proposal: who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md
+covers: [entry_paths, cross_vault_request_patterns, federation_substrate_awareness]
+absorbs_proposals:
+  - who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md   # v0.2 origin (closed at MC-5)
+  - who/coordination/coord_2026_05_20_iii_to_ln_federation_substrate_intersect.md   # v0.3 origin (LN substrate intersect; fired at Campaign D charter)
+ln_substrate_version_pin: "LN.aDNA pc_01 Phase A close + Phase B1 close — ADR-014 v0.1 + ADR-015 v0.1 (both accepted 2026-05-20)"
+federation_mode: enforce
+ledger_observation: enabled
 ---
 
 # III.aDNA Airlock
 
-> If you are an external agent entering this vault from another context graph, start here. This file maps your profile and purpose to the minimum-viable context loading recipe. v0.2.0 routes two surfaces: **entry** (you come into this vault to read context and do work locally) and **cross-vault request** (you ask an agent in this vault to do work and ship results back to you). Pick a surface first via § Surface Selection, then route within that surface. Do not load more than your path or surface specifies — keep context budgets tight.
+> If you are an external agent entering this vault from another context graph, start here. This file maps your profile and purpose to the minimum-viable context loading recipe. v0.3.0 routes three surfaces: **entry** (you come into this vault to read context and do work locally), **cross-vault request** (you ask an agent in this vault to do work and ship results back to you), and **federation-substrate awareness** (your traffic crosses a federation substrate — Tailscale or Nebula per LN ADR-015 — and v0.3 adds Ed25519 signature verification + read-only ledger observation contracts). Pick a surface first via § Surface Selection, then route within that surface. Do not load more than your path or surface specifies — keep context budgets tight.
 
 ## What is III.aDNA?
 
@@ -26,9 +31,10 @@ Pick the surface that matches what you are doing. Multi-modal sessions (you both
 |--------------------|---------|
 | Coming into III.aDNA to read context and do work locally (e.g., run III review on an artifact, audit a vault, study the modules) | **Entry** — see § Entry Paths |
 | Asking an agent in III.aDNA to do work and ship results back to your vault | **Request** — see § Cross-Vault Requests |
+| Your inbound request crosses a federation substrate (Tailscale or Nebula) and carries an Ed25519 signature; OR you want to know how this airlock observes the LN ledger | **Federation-substrate awareness** — see § Federation-Substrate Awareness |
 | Federating against III.aDNA at wrapper-creation time (one-time pin) | Out of scope here — see `what/decisions/adr_002_consumer_federation_contract.md` |
 
-Spec reference: `what/artifacts/iii_airlock_standard_spec.md` §2 (Two Surfaces — decision matrix + surface comparison).
+Spec reference: `what/artifacts/iii_airlock_standard_spec.md` §2 (Three Surfaces — decision matrix + surface comparison; renamed from "Two Surfaces" at v0.3).
 
 ---
 
@@ -230,34 +236,58 @@ Valid transitions enumerated in `iii_airlock_request_schema.yaml` `x-lifecycle-t
 
 **Idempotency**. Optional `idempotency_key` enables 30-day dedup on the receiver side. On match (and `force_new: false`), the receiver replies with `duplicate_of: <existing_memo_path>` and links the prior `audit_id`; the new memo flips `cancelled`. Recommended key convention: `<requesting_vault_short>_<artifact_kind>_<version_or_iteration>`. Full contract: spec §4.5.
 
-**Worked example**. VideoForge's commission of the Carly + Herb sprint onboarding deck from CanvasForge: `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`. Authored against the v0.1.0 coord-memo fallback; conforms to v0.2 with two additive deltas documented in spec §5.2 (`secrets_handled` block addable retroactively; `idempotency_key` field optional).
+**Worked example**. VideoForge's commission of the Carly + Herb sprint onboarding deck from CanvasForge: `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`. Authored against the v0.1.0 coord-memo fallback; conforms to v0.3 with three purely additive deltas documented in spec §6.2 (`secrets_handled` block addable retroactively; `idempotency_key` field optional; `federation_signature` + `federation_signature_key_version` pair required at v0.3 re-exercise since both vaults are co-federated post-LN Phase B1 — MD-A5 validation will exercise this delta against the live substrate).
+
+---
+
+## Federation-Substrate Awareness
+
+v0.3 acknowledges that cross-vault traffic now traverses a federation substrate — the Lattice Protocol's identity, membership, and ledger layer. This section is the airlock's contract WITH that substrate: how it verifies signatures at request acceptance, how it observes ledger events read-only, and how it emits its own audit events back to the substrate. The federation substrate itself is authored at LatticeNetwork.aDNA — see [LN ADR-014](~/lattice/LatticeNetwork.aDNA/who/governance/adr_014_re_id_semantics_node_canonical_id_transition.md) (ledger event semantics + idempotency) and [LN ADR-015](~/lattice/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md) (substrate pluralism + `transport.substrates[]` + Ed25519 identity).
+
+**Substrate-pluralism (§5.1)**. Per LN ADR-015 §a, both **Tailscale** and **Nebula** are canonical federation substrates at v0.1. This airlock is substrate-agnostic at the contract layer — the §4.6 + §5.2–§5.4 contracts hold regardless of which substrate carries the traffic. Per-substrate identity is sourced from the node's `inventory_memberships.yaml` `transport.substrates[]` per LN ADR-015 §b; the airlock SHOULD treat that list as truth and SHOULD NOT cache per-substrate identity beyond a short TTL.
+
+**Ed25519 signature verification (§4.6 + §5.2)**. Co-federated requests MUST carry `federation_signature` + `federation_signature_key_version` (added at spec §4.3 optional payload fields). This airlock resolves the requesting persona's Ed25519 pubkey from the LN membership manifest (`transport.substrates[*].identity.federation_signing_pubkey_sha256` per LN ADR-013 §b + ADR-015 §b/§d), verifies the signature over the canonical-JSON serialization of the request frontmatter (sorted keys; NFC normalization; whitespace trimmed; case preserved per LN ADR-014 §c), and rejects with `signature_verification_failed:<subreason>` per the 5-value taxonomy (`pubkey_absent`, `pubkey_revoked`, `signature_mismatch`, `key_version_unknown`, `substrate_mismatch`). Implementation guidance: `what/artifacts/iii_airlock_substrate_implementation.md` §4 (9 sub-sections).
+
+**Mode** — this airlock is in `enforce` mode (frontmatter `federation_mode`). Co-federated requests MUST verify; non-federated requests fall back to the v0.2 trust model (substrate fallback per spec §4.6 advisory-downgrade clause).
+
+**Ledger observation (§5.3; opt-in per wrapper)**. This airlock observes the LN ledger read-only (`enabled` per frontmatter `ledger_observation`). It subscribes to `MEMBERSHIP_*` events (per LN ADR-015 §c), `MEMBERSHIP_NODE_RE_IDENTIFIED` (per LN ADR-014), and `CONNECTION_*` events (per LN ADR-015 §c extension), polling at 60s cadence over LN Tier-1 file-ledger per impl-doc §5.1 recommendation (pub/sub deferred to v0.4+; chain-walk rejected). Observed `MEMBERSHIP_CERT_REVOKED` events invalidate cached pubkeys per §4.6. The airlock MUST NOT write to the ledger directly — it MAY emit `COMPLIANCE_AUDIT` events per §5.3.1 but these are airlock-attested observations, not ledger membership mutations.
+
+**`COMPLIANCE_AUDIT` emission (§5.3.1; assumes_draft)**. This airlock emits a `COMPLIANCE_AUDIT` event per spec §5.3.1 upon request acceptance or rejection — recording `audit_id`, `request_path`, `disposition`, `rejection_reason`, `request_frontmatter_hash` (SHA-256 of canonical-JSON excluding the signature field), `airlock_spec_version`, `substrate_kind` (Tailscale or Nebula), `signature_verified`, and `operator_attestation`. Emission uses the `assumes_draft` direct-JSON-write workaround per impl-doc §6.3 (byte-identical-to-native-enum-path computation) until LN Carry 3 EP-1 ratification at Phase 5 integration seam, when the event-type joins the native `LedgerEventType` enum.
+
+**Multi-substrate identity (§5.4)**. When the node participates in multiple substrates (canonical-pilot-tier per LN ADR-015 §e), this airlock validates that the inbound request's transport substrate matches one of the requesting node's enumerated `transport.substrates[]`. Mismatch rejects with `signature_verification_failed:substrate_mismatch`. Pilot-tier (dual-substrate) and non-pilot-tier (single-substrate Tailscale per LN ADR-015 §j) nodes are treated symmetrically at the contract layer.
+
+**Reply-comment template extension**. The reply-comment template at `how/templates/template_cross_vault_request_reply.md` was extended at MD-A2 with the v0.3 rejection-reason enum value `signature_verification_failed:<subreason>` + a full canonical Ed25519 rejection body example block. Use that template's Rejection variant when sig-verify fails.
 
 ---
 
 ## Version Contract
 
-This airlock is v0.2.0. Your consumer wrapper's `federation_ref` version pin determines which version of these files you load.
+This airlock is v0.3.0. Your consumer wrapper's `federation_ref` version pin determines which version of these files you load.
 
-**On minor version bump** (v0.2 → v0.3 → ...): re-read this AIRLOCK.md to check for updated entry-path file lists, new surfaces, or new lifecycle states before proceeding. Minor bumps are additive — your existing recipes and request memos remain valid.
+**On minor version bump** (v0.3 → v0.4 → ...): re-read this AIRLOCK.md to check for updated entry-path file lists, new surfaces, or new lifecycle states before proceeding. Minor bumps are additive — your existing recipes and request memos remain valid. Consumer wrappers review the upstream changelog at every minor bump per ADR-002 §3.
 
-**On patch bump** (v0.2.0 → v0.2.1): no review required; patch bumps cover typo and clarity fixes that don't change file paths, recipes, or schemas.
+**On patch bump** (v0.3.0 → v0.3.1): no review required; patch bumps cover typo and clarity fixes that don't change file paths, recipes, or schemas.
 
-**On major bump** (v0.x → v1.0): reserved for breaking changes (entry-path removal, required-field reshape, lifecycle-state semantics change). Each consumer wrapper makes an explicit human decision before updating its pin.
+**On major bump** (v0.x → v1.0): reserved for breaking changes (entry-path removal, required-field reshape, lifecycle-state semantics change, advisory → mandatory promotion of Ed25519 verification across all federation contexts). Each consumer wrapper makes an explicit human decision before updating its pin.
 
-**Canonical path changes since v0.1.0**: none (entry paths preserved verbatim; cross-vault request section is purely additive). The standard policy is detailed in spec §6 (versioning policy) and `what/decisions/adr_002_consumer_federation_contract.md` §3 (federation-pin review rules).
+**Canonical path changes since v0.1.0**: none — entry paths preserved verbatim; cross-vault request section (v0.2) and federation-substrate awareness section (v0.3) are purely additive. v0.3.0 added the third surface (Federation-Substrate Awareness) and 3 new optional frontmatter fields (`ln_substrate_version_pin`, `federation_mode`, `ledger_observation`); 2 new optional request-payload fields (`federation_signature`, `federation_signature_key_version`); a new optional `COMPLIANCE_AUDIT` ledger event-type emission (assumes_draft until LN Carry 3 EP-1 ratification). The standard policy is detailed in spec §7 (versioning policy) and `what/decisions/adr_002_consumer_federation_contract.md` §3 (federation-pin review rules).
+
+**LN substrate version pin** (frontmatter `ln_substrate_version_pin`). v0.3+ depends on specific LN substrate features (`transport.substrates[]` field; `MEMBERSHIP_*` event types; Ed25519 keypair infrastructure per LN ADR-013). The frontmatter pin declares the minimum LN substrate state this airlock requires; spec §7.5 governs patch/minor/major bumps in response to LN substrate evolution.
 
 ---
 
-## What v0.2.0 does NOT cover
+## What v0.3.0 does NOT cover
 
-v0.2.0 covers two surfaces — inbound entry (§ Entry Paths) and cross-vault requests (§ Cross-Vault Requests). The following surfaces are deliberately deferred per spec §7.2:
+v0.3.0 covers three surfaces — inbound entry (§ Entry Paths) + cross-vault requests (§ Cross-Vault Requests) + federation-substrate awareness (§ Federation-Substrate Awareness). The following surfaces are deliberately deferred per spec §8.2:
 
-- **`proposed/` channel for proposal triage** (deferred to v0.3+). When III.aDNA wires a `proposed/` channel (pattern source: VideoForge ADR-005 RLHF), incoming standard proposals migrate there. Until then, structured proposals land in `who/coordination/` as the fallback.
-- **Multi-vault transactional requests** (deferred to v0.3+). One requester, multiple receivers, atomic ship. No present-day worked example; design speculative.
-- **Async batched requests** (deferred to v0.3+). One memo, many artifacts shipped over time. No present-day worked example; scaling concern only.
-- **Executable substrate enforcement** (deferred to a future Platform.aDNA for runtime). v0.2 carries the normative contracts in spec §4.4 (secrets preflight) and §4.5 (idempotency dedup); implementation guidance shipped at MC-4 (`what/artifacts/iii_airlock_substrate_implementation.md` §2-§3, 2026-05-13 — preflight script structure, error-message conventions, audit-log schema, cache mechanics, 30-day window semantics, archive-search performance profile). The first executable enforcement lands when a Platform.aDNA integration (e.g., RareHarness) consumes the standard at runtime.
+- **`proposed/` channel for proposal triage** (deferred to v0.4+). When III.aDNA wires a `proposed/` channel (pattern source: VideoForge ADR-005 RLHF), incoming standard proposals migrate there. Until then, structured proposals land in `who/coordination/` as the fallback.
+- **Multi-vault transactional requests** (deferred to v0.4+). One requester, multiple receivers, atomic ship. No present-day worked example; design speculative.
+- **Async batched requests** (deferred to v0.4+). One memo, many artifacts shipped over time. No present-day worked example; scaling concern only.
+- **Body-section signing** (deferred to v0.4+). v0.3 Ed25519 signs the request frontmatter only; body sections are not signed. Wire-shape signature catches frontmatter tampering; body signing requires canonical-Markdown discipline not yet specified.
+- **`COMPLIANCE_AUDIT` native `LedgerEventType` enum membership** (deferred to LN Carry 3 EP-1 ratification at Phase 5 integration seam — cluster amendment with LN ADR-014 + ADR-015 candidates). Until then, `assumes_draft: true` per ADR-003 rule 2; MD-A2 §6.3 direct-JSON-write workaround in production.
+- **Executable substrate enforcement** (deferred to a future Platform.aDNA for runtime). v0.3 carries the normative contracts in spec §4.4 (secrets preflight) + §4.5 (idempotency dedup) + §4.6 (Ed25519 sig-verify) + §5.3 (ledger observation) + §5.3.1 (COMPLIANCE_AUDIT emission); implementation guidance shipped at MC-4 (`what/artifacts/iii_airlock_substrate_implementation.md` §2 + §3, 2026-05-13) and MD-A2 (impl-doc §4 + §5 + §6, 2026-05-21). The first executable enforcement lands when a Platform.aDNA integration (e.g., RareHarness, VAASLattice) consumes the standard at runtime.
 
-If you arrive at a surface not covered here: file a coord memo at the receiving vault following the spec §4 request pattern; v0.3+ will define the missing schema retroactively, and your memo remains valid evidence.
+If you arrive at a surface not covered here: file a coord memo at the receiving vault following the spec §4 request pattern; v0.4+ will define the missing schema retroactively, and your memo remains valid evidence.
 
 ---
 
@@ -269,7 +299,9 @@ To add a new entry path (for a new consumer profile), submit a PR to III.aDNA co
 
 ---
 
-*Standard spec*: `what/artifacts/iii_airlock_standard_spec.md` (v0.2.0; governs this file)
-*Request schema*: `what/artifacts/iii_airlock_request_schema.yaml` (v0.2.0; JSON Schema Draft 2020-12 in YAML form)
-*Reply-comment template*: `how/templates/template_cross_vault_request_reply.md`
-*Absorbs proposal*: `who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`
+*Standard spec*: `what/artifacts/iii_airlock_standard_spec.md` (v0.3.0; governs this file)
+*Request schema*: `what/artifacts/iii_airlock_request_schema.yaml` (v0.3.0; JSON Schema Draft 2020-12 in YAML form; v0.3 adds 2 optional frontmatter fields — `federation_signature` + `federation_signature_key_version`)
+*Implementation guidance*: `what/artifacts/iii_airlock_substrate_implementation.md` (v0.3.0; §2 secrets_handled + §3 idempotency_key from MC-4; §4 Ed25519 preflight + §5 ledger observation + §6 COMPLIANCE_AUDIT emission from MD-A2)
+*Reply-comment template*: `how/templates/template_cross_vault_request_reply.md` (extended at MD-A2 with the `signature_verification_failed:<subreason>` rejection-reason enum value + canonical Ed25519 rejection body example block)
+*Activation kit*: `how/skills/skill_airlock_activation.md` (MD-A3; consumer-side activation/upgrade recipe + verification checklist)
+*Absorbs proposals*: `who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md` (v0.2 origin; closed at MC-5); `who/coordination/coord_2026_05_20_iii_to_ln_federation_substrate_intersect.md` (v0.3 origin; fired at Campaign D charter)
