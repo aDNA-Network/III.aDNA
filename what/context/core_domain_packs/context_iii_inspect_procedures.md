@@ -11,6 +11,20 @@ migration_provenance:
   previous_home: lattice-labs/what/context/iii_domain_packs/context_iii_inspect_procedures.md
   migrated: 2026-05-08
   migration_mission: campaign_a_iii_genesis MA-2
+quality_metric:
+  rubric_version: "adr_007_v0"
+  scored_at: 2026-05-23
+  scored_by: agent_argus
+  scoring_mission: campaign_d_federation_adaptive_loop MD-B4
+  signal_density: 5
+  actionability: 5
+  coverage_uniformity: 4
+  source_diversity: 4
+  cross_topic_coherence: 5
+  graduation_yield: 3
+  composite: 4.33
+  floor_check: passed
+  notes: "MD-B4 7-pack pilot scoring. Five Traps + Confidence Tag System + Finding Format + 4 modality procedures. Modality 2 Code Inspect carries the C-028 PACK_DELTA_LANDED static trap (spec_verbatim_port_to_code) with full pattern + detection signature + domain-generality + substrate-canonical mitigation + governance. One graduated pattern observable in body → graduation_yield=3 (matches MD-B1 exemplar calibration; 1 pattern = 3). Coverage uniformity 4 (not 5) because Modalities 3 + 4 are leaner than Modality 1+2 — purposeful asymmetry given the C-028 sub-section depth."
 ---
 
 # III INSPECT Procedures — Modality Reference

@@ -16,6 +16,21 @@ migration_provenance:
   previous_home: lattice-labs/what/context/iii_vault_maintenance/context_iii_vault_maintenance.md
   migrated: 2026-05-08
   migration_mission: campaign_a_iii_genesis MA-2
+quality_metric:
+  rubric_version: "adr_007_v0"
+  scored_at: 2026-05-23
+  scored_by: agent_argus
+  scoring_mission: campaign_d_federation_adaptive_loop MD-B4
+  signal_density: 4
+  actionability: 4
+  coverage_uniformity: 3
+  source_diversity: 2
+  cross_topic_coherence: 4
+  graduation_yield: 1
+  composite: 3.00
+  floor_check: triggered
+  floor_axes: [source_diversity, graduation_yield]
+  notes: "MD-B4 7-pack pilot scoring. source_diversity=2 is the only REAL floor trigger across the 7-pack pilot — pack cites only frontmatter migration_provenance; no ADR / skill / external sources for the trap inventory or reader profiles. Pack revision candidate: add ADR-references for trap-inventory provenance + cross-references to skill_iii_review (which uses these profiles). graduation_yield=1 reflects MB4-2 data-thinness (canonical records graduated_to:\"core\" not pack-specific; no graduated patterns observable in pack body); axis collapse not a pack-quality issue."
 ---
 
 # III Vault Maintenance — Domain Configuration

@@ -1,6 +1,6 @@
 lattice:
   name: iii_verification_oracle
-  version: "1.2.4"
+  version: "1.2.5"
   lattice_type: skill
   description: >
     III Review as a composable semantic verification oracle. Accepts documents
@@ -245,7 +245,10 @@ lattice:
         correction_lifecycle_transitions_emitted: ["SIGNAL_CAPTURED", "CORRECTION_TRACKED", "GRADUATION_CANDIDATE"]  # per ADR-007 §1; downstream graduation transitions are governance-ceremony-fired
         elevated_scrutiny_signal_emit_policy: "additive — SHOULD emit per ADR-003 §3.6 when cross-fork frequency for any pattern reaches ≥50; cross-fork aggregation mechanism scaffold lands at MD-B4 or later (this 1.2.3 patch only canonicalizes the emit-policy field; the aggregator implementation is a substrate enhancement out of scope at MD-B2)"
         adr_008_cross_vault_aggregation: "what/decisions/adr_008_cross_vault_aggregation.md — governs how a consumer-fork correction crosses the vault boundary (projection: cross-fields vs vault-local consumer namespace per ADR-005 §3 rule 5) and how III aggregates same-pattern proposals from distinct vaults to feed the ADR-003 §3.6 ≥2-vault evidence gate (ratified MD-B3 2026-05-23)"
-        cross_vault_proposal_intake_policy: "additive — III receives graduation proposals as `learning_store_graduation` cross_vault_requests (airlock §4.3); the aggregation index (who/coordination/.aggregation/graduation_proposals_index.jsonl; one record per received proposal keyed by normalized (trap, pattern) + originating_vault) is receiver-side state, read-only against canonical. This 1.2.4 patch canonicalizes the intake-policy + index-schema reference per ADR-008 §3; the index-populating tool is deferred to MD-B4 (cross-fork aggregation execution). No graduation fires at MD-B3 — canonical store untouched."
+        cross_vault_proposal_intake_policy: "additive — III receives graduation proposals as `learning_store_graduation` cross_vault_requests (airlock §4.3); the aggregation index (who/coordination/.aggregation/graduation_proposals_index.jsonl; one record per received proposal keyed by normalized (trap, pattern) + originating_vault) is receiver-side state, read-only against canonical. This 1.2.4 patch canonicalized the intake-policy + index-schema reference per ADR-008 §3; the index-populating ceremony (deferred from MD-B3 to MD-B4) shipped at MD-B4 close 2026-05-23 as a markdown skill (per MD-A2/MD-B1/MD-B3 spec-only precedent + ADR-008 §3.1 which names Argus semantic-equivalence as a human/agent gate not a string match). No graduation fires at MD-B4 — canonical store untouched (md5 invariant)."
+        aggregation_index_path: "who/coordination/.aggregation/graduation_proposals_index.jsonl"
+        aggregation_index_intake_skill: "how/skills/skill_aggregation_index_intake.md (v0.3.0; authored MD-B4; 8-step procedure validate→project→idempotency→normalize→argus_semantic_equivalence→append+gate→reply→audit)"
+        pack_quality_scoring_report: "what/artifacts/md_b4_7_pack_pilot_report.md (7 packs all carry `quality_metric:` frontmatter post-MD-B4; per-pack composites 3.00–4.50, mean 3.93; MB4-2 finding ratified — graduation_yield axis collapses to noise because canonical records `graduated_to: \"core\"` not pack-specific routing)"
         output_format: "LearningStoreDelta + GraduationSignals"
 
     - id: reviewed_output
@@ -477,3 +480,62 @@ lattice:
       `5adb0dfa38d9224649c3b2cba83852ae` is invariant across this mission; the
       aggregation-index-populating tool is deferred to MD-B4 (cross-fork
       aggregation execution).
+
+  mb4_changelog:
+    version_bump: "1.2.4 → 1.2.5"
+    date: 2026-05-23
+    mission: campaign_d_federation_adaptive_loop MD-B4
+    additions:
+      - "accumulate node config: new `aggregation_index_path` field naming the receiver-side sidecar at who/coordination/.aggregation/graduation_proposals_index.jsonl (created at MD-B4 + seeded with VFL-001/-002 retroactive records)"
+      - "accumulate node config: new `aggregation_index_intake_skill` field referencing how/skills/skill_aggregation_index_intake.md (v0.3.0; 8-step manual ceremony resolving ADR-008 §3.2's deferred populating tool per MD-A2/MD-B1/MD-B3 spec-only precedent)"
+      - "accumulate node config: new `pack_quality_scoring_report` field referencing what/artifacts/md_b4_7_pack_pilot_report.md (7 packs all carry `quality_metric:` frontmatter post-MD-B4; per-pack composites 3.00–4.50)"
+      - "accumulate node config: `cross_vault_proposal_intake_policy` field text refreshed — index-populating ceremony has shipped (no longer deferred)"
+    rewires: []
+    module_refs_added: []
+    canonical_jsonl_md5_rotation:
+      before: "5adb0dfa38d9224649c3b2cba83852ae"
+      after: "5adb0dfa38d9224649c3b2cba83852ae"
+      trigger: "NONE — MD-B4 is the 7-pack pilot + aggregation-index ceremony + seed; no graduation ceremony fires this mission; canonical store untouched (md5 invariant)"
+    pack_delta_landed: {}
+    pack_quality_metric_appended:
+      packs:
+        - "context_iii_vault_maintenance.md (composite 3.00; floor TRIGGERED on source_diversity=2 AND graduation_yield=1; source_diversity is real pack-revision finding)"
+        - "context_iii_domain_packs_web_design.md (composite 4.00; floor TRIGGERED on graduation_yield=1 only — MB4-2 measurement issue)"
+        - "context_iii_introspect_checks.md (composite 4.50 — highest of 7; passed)"
+        - "context_iii_inspect_procedures.md (composite 4.33; passed)"
+        - "context_iii_whitepaper_communication.md (composite 3.83; floor TRIGGERED on graduation_yield=1 only — MB4-2)"
+        - "context_iii_canvas_visual.md (composite 4.00; floor TRIGGERED on graduation_yield=1 only — MB4-2; pack is most loop-mature with 3-cycle log)"
+      exemplar_unchanged: "context_iii_learning_store.md (composite 3.83 from MD-B1; re-cited not re-scored)"
+    aggregation_index_seeded:
+      record_count: 2
+      distinct_originating_vaults: 1
+      seed_records:
+        - "forward_link:producer_consumer_pair_unwired (VideoForge.aDNA, freq=3, ratified_C-027)"
+        - "meta_pattern:spec_verbatim_port_to_code (VideoForge.aDNA, freq=3, ratified_C-028)"
+      two_vault_gate_outcome: "UNMET for both records (1 distinct originating vault); no elevated-scrutiny escalation; canonical md5 invariant by construction"
+    rationale: >
+      Patch-level bump (1.2.4 → 1.2.5) carrying additive substrate-references
+      only — no node added, no edge added, no semantic change to module IO or
+      lattice topology. MD-B4 shipped three substrate-relevant artifacts that
+      this patch registers at the accumulate node: (1) the per-pack quality
+      scoring of the 6 unscored canonical packs (now all 7 carry
+      `quality_metric:` frontmatter); (2) the receiver-side aggregation index
+      at `who/coordination/.aggregation/graduation_proposals_index.jsonl`
+      (created at MD-B4, seeded with the VFL-001/-002 retroactive records — 1
+      vault, gate unmet, no graduation); (3) the markdown-skill populating
+      ceremony at `how/skills/skill_aggregation_index_intake.md` (resolving
+      ADR-008 §3.2's deferred-to-MD-B4 tool as a manual ceremony per
+      MD-A2/MD-B1/MD-B3 spec-only precedent + ADR-008 §3.1 "human/agent gate
+      not a string match"). Per ADR-002 §3, patches stay transparent to
+      consumers; the 6 consumer wrappers remain at their current pins.
+      Forward-references in `iii_adaptive_improvement_loop_spec.md` §4.5 +
+      §7.2 + §7.3 resolved at MD-B4 close. MB4-2 finding ratified: the
+      ADR-007 §3 `graduation_yield` formula collapses to noise on 5 of 7
+      packs because canonical jsonl records `graduated_to: "core"` not pack-
+      specific routing; amendment candidate flagged for DG-D / MD-B5
+      consideration (Stanley signature required; out of MD-B4 scope per
+      consumption-only disposition). Per `context_iii_vault_maintenance.md`
+      source_diversity=2 floor trigger: real pack-revision finding, opened
+      as standalone post-DG-D mission (NOT in Campaign D scope). No
+      graduation fires at MD-B4 — canonical jsonl md5
+      `5adb0dfa38d9224649c3b2cba83852ae` is invariant across this mission.

@@ -14,6 +14,20 @@ migration_provenance:
   previous_home: lattice-labs/what/context/iii_domain_packs/context_iii_introspect_checks.md
   migrated: 2026-05-08
   migration_mission: campaign_a_iii_genesis MA-2
+quality_metric:
+  rubric_version: "adr_007_v0"
+  scored_at: 2026-05-23
+  scored_by: agent_argus
+  scoring_mission: campaign_d_federation_adaptive_loop MD-B4
+  signal_density: 5
+  actionability: 5
+  coverage_uniformity: 4
+  source_diversity: 4
+  cross_topic_coherence: 5
+  graduation_yield: 4
+  composite: 4.50
+  floor_check: passed
+  notes: "MD-B4 7-pack pilot scoring. Highest composite of the 7 packs. 7 checks structured ID/Question/What-to-flag/Output; Check 2c.i carries the C-027 PACK_DELTA_LANDED trap (producer_consumer_pair_unwired) with full detection-signature + domain-generality + substrate-canonical mitigation + governance; Check 2f Related corrections cites C-005 (unsourced_consequential_statistic). Two graduated patterns observable in body → graduation_yield=4. Reference pack — the C-027 trap section is the in-context standard for how PACK_DELTA_LANDED stage materializes in a pack."
 ---
 
 # III INTROSPECT Checks — Reference Library

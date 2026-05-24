@@ -304,9 +304,9 @@ quality_metric:
 
 Per ADR-007 §4: per-pack quality (this §4) and the ≥50 corrections threshold are **separate, complementary signals**. A pack may score high quality with low aggregate corrections OR low quality with high aggregate corrections; both signals coexist. **MD-B2 closed (commit recorded at session-close) canonicalizes the threshold's semantics via ADR-003 §3.6 (NEW):** crossing ≥50 cross-fork frequency requires BOTH standard ADR-003 §3 ceremony AND independent observation evidence from ≥2 distinct vaults (prevents single-vault dominance at high volume). This spec defers to ADR-003 §3.6 for the enforcement mechanism; the per-pack quality / ≥50 separation principle stated above remains the spec's contribution.
 
-### §4.5 7-pack pilot (forward-reference to MD-B4)
+### §4.5 7-pack pilot (RESOLVED at MD-B4 2026-05-23)
 
-MD-B4 scope: score the remaining 6 canonical packs against the rubric in §4.3, producing per-pack quality scores + aggregate distribution. MD-B1 ships one exemplar score (on `context_iii_learning_store.md`, the meta-pack governing the loop — see §8.3).
+✅ **RESOLVED MD-B4 2026-05-23**. All 6 unscored canonical packs at `what/context/core_domain_packs/` now carry `quality_metric:` frontmatter blocks per the rubric in §4.3 + ADR-007 §3. Per-pack composites range 3.00 – 4.50 (mean 3.93; median 4.00); the MD-B1 exemplar (`context_iii_learning_store.md` at 3.83) sits at the 33rd percentile of the 7-pack set, validating it as a reasonable baseline. Full pilot report at `what/artifacts/md_b4_7_pack_pilot_report.md` §2 (per-pack scoring table) + §3 (RLHF signal-volume table) + §4 (floor-rule outcomes) + §5 (graduation-candidate surface). Key finding: 4 of 6 packs trigger the floor rule on `graduation_yield`, surfacing MB4-2 (canonical jsonl records `graduated_to: "core"` not pack-specific routing; ADR-007 §3 amendment candidate flagged for DG-D/MD-B5 consideration). One real pack-quality finding: `context_iii_vault_maintenance.md` floor-triggers on `source_diversity: 2` (no ADR/skill/external cites for trap-inventory provenance) — pack-revision candidate for a future post-DG-D mission.
 
 ---
 
@@ -407,7 +407,7 @@ Versioned at the lattice yaml itself (`version: "X.Y.Z"`); patch-bumped at MD-B1
 | ≥50 corrections threshold semantics | MD-B2 + ADR-003 amendment | ✅ **RESOLVED MD-B2 2026-05-21** (ADR-003 §3.6 added — elevated-scrutiny queue; standard §3 ceremony + ≥2-vault independent evidence) |
 | VFL-001 + VFL-002 graduation ceremony (all 3 transitions GRADUATION_PROPOSED → GRADUATION_RATIFIED → PACK_DELTA_LANDED) | MD-B2 | ✅ **RESOLVED MD-B2 2026-05-21** (canonical C-027 + C-028; pack deltas in `context_iii_introspect_checks.md` Check 2c.i + `context_iii_inspect_procedures.md` Modality 2 Code Inspect Static trap; canonical md5 rotated dde2cbd... → 5adb0dfa...) |
 | Cross-vault RLHF aggregation transport (which fields cross vault boundaries) | MD-B3 + ADR-008 | ✅ **RESOLVED MD-B3 2026-05-23** (ADR-008 §2 boundary-crossing field set; §5.3 names it; transport = `learning_store_graduation` cross_vault_request) |
-| Scoring remaining 6 canonical packs against 6-axis rubric | MD-B4 | pending |
+| Scoring remaining 6 canonical packs against 6-axis rubric | MD-B4 | ✅ **RESOLVED MD-B4 2026-05-23** (per-pack `quality_metric:` frontmatter at all 6 packs; aggregate report at `what/artifacts/md_b4_7_pack_pilot_report.md` §2) |
 | Validation across ≥3 consumer vaults | MD-B5 | pending |
 | `iii_corrections_archive.jsonl` artifact for ARCHIVED entries | MD-B2 (optional; may defer) | **DEFERRED at MD-B2** per operator gate — zero ARCHIVED entries today; authoring deferred to first archival event |
 
@@ -419,10 +419,11 @@ This list MUST be kept current as missions land; resolution updates the row.
 |-------------------|---------------------|-------------|--------|
 | ≥50 corrections threshold | §4.4 | MD-B2 + ADR-003 amendment | ✅ **RESOLVED MD-B2 2026-05-21** (ADR-003 §3.6 elevated-scrutiny queue) |
 | Cross-vault aggregation field set | §5.3 | MD-B3 + ADR-008 | ✅ **RESOLVED MD-B3 2026-05-23** (ADR-008 §2) |
-| 7-pack pilot scores | §4.5 | MD-B4 | pending |
+| 7-pack pilot scores | §4.5 | MD-B4 | ✅ **RESOLVED MD-B4 2026-05-23** (`what/artifacts/md_b4_7_pack_pilot_report.md` §2 carries all 7 scores) |
 | VFL-001/002 actually graduated; namespaced fields fold canonically | §3.4 | MD-B2 | ✅ **RESOLVED MD-B2 2026-05-21** (canonical C-027 + C-028; VideoForge local store namespaced per ADR-005 §3) |
-| `module_iii_introspect` Check 2g semantics formally cite ADR-007 §1 stage 3 | (§2.1 module table) | MD-B4 re-exercise | partial — Check 2g doc edited at MD-B1 (prior session) |
-| Per-pack quality scoring procedure pilot (MD-B4 propagates from §8.3 exemplar) | §4.5 | MD-B4 | pending |
+| `module_iii_introspect` Check 2g semantics formally cite ADR-007 §1 stage 3 | (§2.1 module table) | MD-B4 re-exercise | partial — Check 2g doc edited at MD-B1 (prior session); MD-B4 7-pack pilot exercises the loop reference end-to-end via `introspect_checks` pack which scored 4.50 composite (highest of the 7) — Check 2g reference is operationally validated |
+| Per-pack quality scoring procedure pilot (MD-B4 propagates from §8.3 exemplar) | §4.5 | MD-B4 | ✅ **RESOLVED MD-B4 2026-05-23** (6 packs newly-scored; rubric consistency validated at CHECKPOINT 1 against MD-B1 exemplar) |
+| First population of ADR-008 §3 aggregation index | §5.3 (implicit) + ADR-008 §3.2 | MD-B4 | ✅ **RESOLVED MD-B4 2026-05-23** (`who/coordination/.aggregation/graduation_proposals_index.jsonl` created + seeded with VFL-001/-002 ratified records; ≥2-vault gate exercised end-to-end and returns UNMET as designed; populating ceremony at `how/skills/skill_aggregation_index_intake.md`) |
 
 ---
 

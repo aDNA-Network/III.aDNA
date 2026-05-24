@@ -13,6 +13,21 @@ migration_provenance:
   previous_home: lattice-labs/what/context/iii_domain_packs/context_iii_domain_packs_web_design.md
   migrated: 2026-05-08
   migration_mission: campaign_a_iii_genesis MA-2
+quality_metric:
+  rubric_version: "adr_007_v0"
+  scored_at: 2026-05-23
+  scored_by: agent_argus
+  scoring_mission: campaign_d_federation_adaptive_loop MD-B4
+  signal_density: 5
+  actionability: 5
+  coverage_uniformity: 5
+  source_diversity: 3
+  cross_topic_coherence: 5
+  graduation_yield: 1
+  composite: 4.00
+  floor_check: triggered
+  floor_axes: [graduation_yield]
+  notes: "MD-B4 7-pack pilot scoring. Five web-design traps each carry description / example / where it hides / severity default / detection method — outstanding signal density and actionability. graduation_yield=1 is MB4-2 measurement issue (canonical records graduated_to:\"core\" not pack-specific; no canonical graduations observable in pack body); axis collapse not a pack-quality issue. NOT a pack revision candidate — the floor trigger is the data-thinness, not the pack content."
 ---
 
 # III Domain Pack: Web Design

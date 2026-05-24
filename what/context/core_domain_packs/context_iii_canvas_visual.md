@@ -16,6 +16,21 @@ migration_provenance:
   previous_home: lattice-labs/what/context/iii_domain_packs/context_iii_canvas_visual.md
   migrated: 2026-05-08
   migration_mission: campaign_a_iii_genesis MA-2
+quality_metric:
+  rubric_version: "adr_007_v0"
+  scored_at: 2026-05-23
+  scored_by: agent_argus
+  scoring_mission: campaign_d_federation_adaptive_loop MD-B4
+  signal_density: 5
+  actionability: 5
+  coverage_uniformity: 4
+  source_diversity: 4
+  cross_topic_coherence: 5
+  graduation_yield: 1
+  composite: 4.00
+  floor_check: triggered
+  floor_axes: [graduation_yield]
+  notes: "MD-B4 7-pack pilot scoring. Ten canvas-specific traps + Cross-Trap Escalation Rules + Trap Graduation + Learning Store Integration + Trap Frequency Tracking with 3-cycle log. **Operationally the MOST loop-mature pack across all 7** — CV-PENDING-01 hit 3 cycles 100% acceptance and is marked 'graduated' within the pack's own draft→permanent canvas pack track (pending M20 III graduation). Yet graduation_yield=1 reflects MB4-2 measurement issue (canonical-jsonl hasn't received CV-PENDING-01 because the pack-internal graduation track is pre-canonical). Floor trigger is data-thinness in the formula, NOT a pack-quality issue. Composite 4.00 ties web_design; very different shape from web_design (web_design uniform across 5 axes; canvas_visual rich with operational data)."
 ---
 
 # III Domain Pack: Canvas Visual (DRAFT)
