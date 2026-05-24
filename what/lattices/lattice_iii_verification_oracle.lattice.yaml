@@ -1,6 +1,6 @@
 lattice:
   name: iii_verification_oracle
-  version: "1.2.3"
+  version: "1.2.4"
   lattice_type: skill
   description: >
     III Review as a composable semantic verification oracle. Accepts documents
@@ -240,10 +240,12 @@ lattice:
         graduation_thresholds:
           frequency_min: 3
           acceptance_rate_min: 0.80
-        governs_adrs: ["ADR-003", "ADR-005", "ADR-007"]
+        governs_adrs: ["ADR-003", "ADR-005", "ADR-007", "ADR-008"]
         adr_003_section_coverage: ["§3 standard ceremony", "§3.5 lifecycle scoping (added MD-B1)", "§3.6 elevated-scrutiny queue (added MD-B2; ≥50 cross-fork frequency + ≥2-vault evidence)"]
         correction_lifecycle_transitions_emitted: ["SIGNAL_CAPTURED", "CORRECTION_TRACKED", "GRADUATION_CANDIDATE"]  # per ADR-007 §1; downstream graduation transitions are governance-ceremony-fired
         elevated_scrutiny_signal_emit_policy: "additive — SHOULD emit per ADR-003 §3.6 when cross-fork frequency for any pattern reaches ≥50; cross-fork aggregation mechanism scaffold lands at MD-B4 or later (this 1.2.3 patch only canonicalizes the emit-policy field; the aggregator implementation is a substrate enhancement out of scope at MD-B2)"
+        adr_008_cross_vault_aggregation: "what/decisions/adr_008_cross_vault_aggregation.md — governs how a consumer-fork correction crosses the vault boundary (projection: cross-fields vs vault-local consumer namespace per ADR-005 §3 rule 5) and how III aggregates same-pattern proposals from distinct vaults to feed the ADR-003 §3.6 ≥2-vault evidence gate (ratified MD-B3 2026-05-23)"
+        cross_vault_proposal_intake_policy: "additive — III receives graduation proposals as `learning_store_graduation` cross_vault_requests (airlock §4.3); the aggregation index (who/coordination/.aggregation/graduation_proposals_index.jsonl; one record per received proposal keyed by normalized (trap, pattern) + originating_vault) is receiver-side state, read-only against canonical. This 1.2.4 patch canonicalizes the intake-policy + index-schema reference per ADR-008 §3; the index-populating tool is deferred to MD-B4 (cross-fork aggregation execution). No graduation fires at MD-B3 — canonical store untouched."
         output_format: "LearningStoreDelta + GraduationSignals"
 
     - id: reviewed_output
@@ -443,3 +445,35 @@ lattice:
       yaml gains only the governance-trail annotations confirming what its
       already-shipped accumulate node will be doing once cross-fork aggregation
       lands at MD-B4 or later.
+
+  mb3_changelog:
+    version_bump: "1.2.3 → 1.2.4"
+    date: 2026-05-23
+    mission: campaign_d_federation_adaptive_loop MD-B3
+    additions:
+      - "accumulate node config: `governs_adrs` extended with ADR-008 (Cross-Vault RLHF Aggregation Contract)"
+      - "accumulate node config: new `adr_008_cross_vault_aggregation` field referencing the boundary-crossing field set (projection: cross-fields vs vault-local consumer namespace per ADR-005 §3 rule 5) and the ≥2-vault aggregation feeding ADR-003 §3.6"
+      - "accumulate node config: new `cross_vault_proposal_intake_policy` field — III receives `learning_store_graduation` cross_vault_requests (airlock §4.3); aggregation index (who/coordination/.aggregation/graduation_proposals_index.jsonl) is receiver-side state read-only against canonical; index-populating tool deferred to MD-B4"
+    rewires: []
+    module_refs_added: []
+    canonical_jsonl_md5_rotation:
+      before: "5adb0dfa38d9224649c3b2cba83852ae"
+      after: "5adb0dfa38d9224649c3b2cba83852ae"
+      trigger: "NONE — MD-B3 authors the cross-vault aggregation contract; no graduation ceremony fires this mission; canonical store untouched (md5 invariant)"
+    pack_delta_landed: {}
+    rationale: >
+      Patch-level bump (1.2.3 → 1.2.4) carrying additive governance-trail
+      annotations only — no node added, no edge added, no semantic change to
+      module IO or lattice topology. The MD-B3 ratification of ADR-008
+      (cross-vault RLHF aggregation contract) is declared at the accumulate
+      node config via the new `adr_008_cross_vault_aggregation` and
+      `cross_vault_proposal_intake_policy` fields. The contract defines the
+      proposal transport (`learning_store_graduation` cross_vault_request over
+      the v0.3 airlock §4.3), the boundary-crossing projection (ADR-008 §2), and
+      the III-side same-pattern aggregation that feeds ADR-003 §3.6's ≥2-vault
+      independent-evidence gate (ADR-008 §3). Per ADR-002 §3, patches stay
+      transparent to consumers; the 6 consumer wrappers remain at their current
+      pins. No graduation fires at MD-B3 — the canonical jsonl md5
+      `5adb0dfa38d9224649c3b2cba83852ae` is invariant across this mission; the
+      aggregation-index-populating tool is deferred to MD-B4 (cross-fork
+      aggregation execution).

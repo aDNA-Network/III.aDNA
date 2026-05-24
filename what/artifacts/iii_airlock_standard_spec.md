@@ -209,7 +209,7 @@ priority: low                # low | medium | high | urgent
 deadline: <iso8601 | "no_calendar_urgency">
 audit_id: <pending | uuid_v4>      # populated by receiver on acceptance
 artifact_request:
-  type: <deck | comic | video | website | review | dataset | ...>
+  type: <deck | comic | video | website | review | dataset | learning_store_graduation | ...>
   spec_path: <path/to/spec.md>     # required
   output_sink: <path/to/sink/>     # required
   voice_mapping: <path>            # optional
@@ -233,6 +233,8 @@ tags: [<list>]
 ```
 
 **Required minimum** (Gap 3 core): `type`, `spec_path`, `output_sink`. A request with only these fields is conformant; everything else is optional and shaped by the work being commissioned. v0.3 adds two optional federation fields (`federation_signature` + `federation_signature_key_version`) which become required at request acceptance under the §4.6 co-federation rule.
+
+The `artifact_request.type` enum is open-ended. **`learning_store_graduation`** is a named member (registered at MD-B3 2026-05-23): a consumer proposes one or more local `*_iii_learning_store.jsonl` entries for upstream canonical graduation. Its contract — boundary-crossing field set, ≥2-vault evidence aggregation, transport — is [ADR-008 Cross-Vault RLHF Aggregation Contract](../decisions/adr_008_cross_vault_aggregation.md); its memo shape is `how/templates/template_cross_vault_graduation_proposal.md`. For this type, `artifact_request` carries `source_learning_store`, `candidate_target`, and `proposed_entries` in place of the rendering-oriented `spec_path`/`output_sink` (which name the canonical store as sink).
 
 #### Body sections (10-section canonical shape)
 
@@ -419,7 +421,7 @@ Six §4 + §5 contracts have implementation forward-referenced to subsequent mis
 - **§4.6 + §5.2 Ed25519 verification implementation**: **RESOLVED at MD-A2 close 2026-05-21** — see `what/artifacts/iii_airlock_substrate_implementation.md` §4 (9 sub-sections: preflight script + canonical-JSON algorithm + pubkey resolution + sub-reason taxonomy + advisory mode + cache invalidation + audit schema + boundary integrity + performance budget).
 - **§5.3 Ledger observation subscription model**: **RESOLVED at MD-A2 close 2026-05-21** — see `what/artifacts/iii_airlock_substrate_implementation.md` §5 (7 sub-sections; recommendation: polling at 60s cadence over LN Tier-1 file-ledger; pub/sub deferred to v0.4+; chain-walk rejected).
 - **§5.3.1 `COMPLIANCE_AUDIT` emission implementation**: **RESOLVED at MD-A2 close 2026-05-21** — see `what/artifacts/iii_airlock_substrate_implementation.md` §6 (7 sub-sections: trigger sites + payload assembly + assumes_draft direct-JSON-write workaround + idempotency mechanics + local audit-log mirror + substrate_kind propagation + failure modes).
-- **Cross-vault RLHF aggregation over the §5 contracts**: deferred to **MD-B3** — uses the federation-aware airlock for cross-vault learning-store signal transit (per Campaign D charter §Critical Path: MD-B3 cannot ship before MD-A1 v0.3 spec exists; MD-A2 substrate-impl now satisfies). RESOLVED at MD-B3.
+- **Cross-vault RLHF aggregation over the §5 contracts**: **RESOLVED at MD-B3 close 2026-05-23** — governed by [ADR-008 Cross-Vault RLHF Aggregation Contract](../decisions/adr_008_cross_vault_aggregation.md). A graduation proposal travels as a `cross_vault_request` of `artifact_request.type: learning_store_graduation` (registered at §4.3); ADR-008 §2 fixes the boundary-crossing field set; ADR-008 §3 defines the ≥2-vault evidence aggregation feeding ADR-003 §3.6. Federation gating per §4.6 + §5.2 applies to co-federated proposals.
 - **End-to-end validation across the live federation substrate**: deferred to **MD-A5** — re-exercise of the VideoForge → CanvasForge worked example with Ed25519 signing + ledger observation active. RESOLVED at MD-A5.
 - **`COMPLIANCE_AUDIT` native enum membership**: deferred to **LN Carry 3 EP-1 ratification at Phase 5 integration seam** (per ADR-014 §e + ADR-015 §c cluster amendment). Until then, `assumes_draft: true` per ADR-003 rule 2; MD-A2 §6.3 direct-JSON-write workaround in production.
 
@@ -541,7 +543,7 @@ R1 mitigation per Campaign D charter: this version pin lets v0.3 spec ship at th
 | Ed25519 verification implementation (preflight scripts; key resolution from LN manifest; canonical-JSON algorithm; performance budget) | Authored at MD-A2 ✅ 2026-05-21 — impl-doc §4 | Implementation guidance shipped at `what/artifacts/iii_airlock_substrate_implementation.md` §4 v0.3.0 (documentation-grade per R3) |
 | `COMPLIANCE_AUDIT` event emission implementation (ledger client integration; idempotency mechanics; assumes_draft direct-JSON-write workaround) | Authored at MD-A2 ✅ 2026-05-21 — impl-doc §6 | Implementation guidance shipped at `what/artifacts/iii_airlock_substrate_implementation.md` §6 v0.3.0; assumes_draft workaround spec'd until LN Carry 3 EP-1 Phase 5 fold-in |
 | Ledger observation client subscription model (§5.3 deferred to MD-A2 implementation chooses) | Authored at MD-A2 ✅ 2026-05-21 — impl-doc §5 | Implementation guidance shipped at `what/artifacts/iii_airlock_substrate_implementation.md` §5 v0.3.0; polling at 60s cadence recommended; pub/sub deferred v0.4+ |
-| Cross-vault RLHF aggregation contract (per Campaign D Track D2; rides on §5 federation-aware airlock) | **MD-B3** | Track D2 work; uses §5 contracts as substrate for cross-vault learning-store signal transit |
+| Cross-vault RLHF aggregation contract (per Campaign D Track D2; rides on §5 federation-aware airlock) | Authored at MD-B3 ✅ 2026-05-23 — ADR-008 | Contract at `what/decisions/adr_008_cross_vault_aggregation.md`; transport = `learning_store_graduation` cross_vault_request (§4.3); ≥2-vault aggregation feeds ADR-003 §3.6 |
 | End-to-end validation across the live federation substrate (re-exercise of VideoForge → CanvasForge worked example with v0.3 federation features active) | **MD-A5** | Federation-integration validation mission per Campaign D Track D1 |
 | `COMPLIANCE_AUDIT` native `LedgerEventType` enum membership | LN **Carry 3 EP-1 fold-in at Phase 5** | Cluster amendment with ADR-014 + ADR-015 candidates; until then `assumes_draft: true` per ADR-003 rule 2 |
 | Substrate-enforcement *implementation* (preflight scripts, idempotency cache code) for §4.4 + §4.5 | MC-4 ✅ 2026-05-13 | Implementation guidance shipped at `what/artifacts/iii_airlock_substrate_implementation.md` §2 + §3 (documentation-grade per R3; executable runtime deferred to a future Platform.aDNA integration) |
@@ -550,7 +552,7 @@ R1 mitigation per Campaign D charter: this version pin lets v0.3 spec ship at th
 
 ### §8.3 Forward-references in this spec
 
-Five v0.2-originating forward-references all resolved through DG-C; v0.3 introduces five new forward-references (one resolved in this MD-A1 mission; four pending across MD-A2 / MD-A5 / MD-B3 / LN Phase 5).
+Six v0.2-originating forward-references all resolved through DG-C; v0.3 introduced eight new forward-references — six resolved (three at MD-A2: Ed25519 + ledger observation + COMPLIANCE_AUDIT emission; AIRLOCK.md v0.3 bump at MD-A3; 6-wrapper minor-bump sweep at MD-A4; cross-vault RLHF aggregation at MD-B3) and two pending (MD-A5 end-to-end validation + LN Carry 3 EP-1 Phase 5 native-enum membership).
 
 **v0.2-originating (all resolved)**:
 
@@ -561,7 +563,7 @@ Five v0.2-originating forward-references all resolved through DG-C; v0.3 introdu
 - §9.5 (was §8.4) cross-references row "Reference instance (entry paths): `how/airlock/AIRLOCK.md` (v0.1.0 ships; v0.2.0 bump at MC-3)" — **bumped at MC-3 2026-05-10**; AIRLOCK.md carries `version: "0.2.0"`; v0.3.0 bump scheduled for MD-A3 (activation kit).
 - MC-5 validation forward-reference — **RESOLVED at MC-5 close 2026-05-20** (commit `1ea1c4d`; `what/artifacts/mc5_validation_videoforge_canvasforge_v0_2.md` authored; zero regression confirmed; inbound proposal flipped `absorbed → closed`).
 
-**v0.3-originating (three resolved at MD-A2, four pending)**:
+**v0.3-originating (six resolved through MD-B3, two pending)**:
 
 - §4.6 + §5.2 Ed25519 verification implementation — **RESOLVED at MD-A2 close 2026-05-21** — see `what/artifacts/iii_airlock_substrate_implementation.md` §4 (9 sub-sections; documentation-grade per R3).
 - §5.3 Ledger observation subscription model — **RESOLVED at MD-A2 close 2026-05-21** — see `what/artifacts/iii_airlock_substrate_implementation.md` §5 (7 sub-sections; polling at 60s recommended; pub/sub v0.4+; chain-walk rejected).
@@ -569,7 +571,7 @@ Five v0.2-originating forward-references all resolved through DG-C; v0.3 introdu
 - AIRLOCK.md v0.2.0 → v0.3.0 bump + activation kit packaging — deferred to **MD-A3**. RESOLVED at MD-A3.
 - 6 consumer wrappers minor-bump review v0.2.0 → v0.3.0 (lattice-labs/iii v0.1.0 → v0.3.0 carry-forward absorbed) — deferred to **MD-A4**. RESOLVED at MD-A4.
 - End-to-end validation across the live federation substrate — deferred to **MD-A5**. RESOLVED at MD-A5.
-- Cross-vault RLHF aggregation contract using §5 — deferred to **MD-B3** (Campaign D Track D2). RESOLVED at MD-B3.
+- Cross-vault RLHF aggregation contract using §5 — **RESOLVED at MD-B3 close 2026-05-23** — governed by [ADR-008](../decisions/adr_008_cross_vault_aggregation.md); transport = `learning_store_graduation` cross_vault_request registered at §4.3; boundary-crossing field set ADR-008 §2; ≥2-vault aggregation ADR-008 §3.
 - `COMPLIANCE_AUDIT` native enum membership — deferred to **LN Carry 3 EP-1 ratification at Phase 5 integration seam** per ADR-014 §e + ADR-015 §c cluster amendment.
 
 A consumer agent reading this spec at v0.3.0 SHOULD treat the contracts (the prose in §4.6 + §5.1–§5.4) as normative. Implementation guidance for §4.6 + §5 landed at MD-A2 ✅ (impl-doc v0.3.0; documentation-grade per R3); live-substrate validation lands at MD-A5; consumer adoption fires at MD-A4 minor-bump sweep.

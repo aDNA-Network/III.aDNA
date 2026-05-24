@@ -1,13 +1,13 @@
 ---
 type: standard_spec
 title: "III.aDNA Adaptive-Improvement Loop Standard"
-version: "0.3.0"
+version: "0.3.0"   # unchanged at MD-B3 — §5.3 forward-ref resolved via sibling ADR-008 (patch-only flips; mirrors airlock spec MD-A2/A3 no-version-bump precedent)
 status: reference_implementation
 created: 2026-05-20
-updated: 2026-05-21
+updated: 2026-05-23
 last_edited_by: agent_argus
 governs: the named III adaptive-improvement loop; per-finding RLHF signal capture; per-pack quality measurement; correction-lifecycle state machine
-runtime_substrate: what/lattices/lattice_iii_verification_oracle.lattice.yaml  # v1.2.2 post-MD-B1
+runtime_substrate: what/lattices/lattice_iii_verification_oracle.lattice.yaml  # v1.2.4 post-MD-B3
 defers_signal_schema_to: what/decisions/adr_005_rlhf_signal_channel.md
 defers_loop_architecture_to: what/decisions/adr_007_adaptive_improvement_loop.md
 covers: [signal_capture, correction_lifecycle, per_pack_quality, loop_closure_protocol]
@@ -37,7 +37,7 @@ The III adaptive-improvement loop is operationally complete in pre-v0.3 substrat
 - **The corrections jsonl byte representation** — that lives in ADR-003 §4 (already shipped). This spec adds optional `rlhf_*` fields (§3) but does not rewrite the schema.
 - **The graduation ceremony procedure** — `frequency ≥ 3 AND acceptance ≥ 80% AND ≥ 2 sessions` per ADR-003 §3. This spec **uses** the ceremony as a lifecycle transition (§5) but does not redefine it.
 - **The ≥50 corrections threshold** mentioned in Campaign D charter line 74 — MD-B2 scope; ADR-003 amendment will canonicalize it; ADR-007 §4 confirms it is a separate, complementary signal from per-pack quality.
-- **Cross-vault RLHF aggregation transport** — MD-B3 scope; rides on v0.3 airlock from MD-A1; this spec emits the forward-reference at §5.3.
+- **Cross-vault RLHF aggregation transport** — governed by ADR-008 (Cross-Vault RLHF Aggregation Contract, ratified MD-B3 2026-05-23); rides on the v0.3 airlock. This spec's §5.3 names the boundary-crossing field set and defers the contract to ADR-008.
 
 ### Substrate already in place (pre-v0.3, named here)
 
@@ -343,13 +343,19 @@ The CorrectionLifecycle state of any entry is **inferred from the existing ADR-0
 
 The state machine is **inference-from-fields by design** — preserves the ADR-003 §4 schema unchanged; preserves the canonical jsonl md5 invariant.
 
-### §5.3 Cross-vault interface (forward-reference to MD-B3)
+### §5.3 Cross-vault interface (resolved at MD-B3 — see ADR-008)
 
-MD-B3 scope: cross-vault RLHF aggregation contract. Rides on v0.3 airlock surface from MD-A1. Per ADR-007 §1 the cross-vault-visible stages are **SIGNAL_CAPTURED + CORRECTION_TRACKED** — both produce signal data that can be aggregated across vaults; later stages (GRADUATION_*) are III-canonical-only by ADR-003 §3 design.
+Per ADR-007 §1 the cross-vault-visible stages are **SIGNAL_CAPTURED + CORRECTION_TRACKED** — both produce signal data that can be aggregated across vaults; later stages (GRADUATION_*) are III-canonical-only by ADR-003 §3 design. A consumer proposes graduation by transporting the observation data of those two stages over the v0.3 airlock; III enters the GRADUATION_* stages on the consumer's behalf at ratification.
 
-MD-B3 will normatively specify which fields cross the vault boundary (likely: `pattern`, `rlhf_signal_type`, `rlhf_session_id`, `frequency`, originating vault name) and which stay vault-local (consumer namespace fields per ADR-005 §3 clause 3).
+The cross-vault RLHF aggregation contract is governed by **[ADR-008 Cross-Vault RLHF Aggregation Contract](../decisions/adr_008_cross_vault_aggregation.md)** (ratified MD-B3 2026-05-23). It normatively fixes:
 
-This spec emits the forward-reference; MD-B3 resolves it.
+- **What crosses the boundary** (ADR-008 §2): the canonical-eligible *projection* of a local entry — `pattern`, `trap`, `description`, `example`, `frequency`, `accepted`, `source_review`/`source_finding`, the three ADR-005 §2 required-min RLHF fields (`rlhf_signal_type`, `rlhf_session_id`, `rlhf_captured_at`), and `originating_vault`.
+- **What stays vault-local**: every `rlhf_consumer_namespace.<vault>.*` field, per ADR-005 §3 rule 5 (canonical never carries consumer-namespace fields). The projection is the local entry stripped of its consumer namespace.
+- **Transport**: a `cross_vault_request` of `artifact_request.type: learning_store_graduation` (airlock spec §4.3), templated at `how/templates/template_cross_vault_graduation_proposal.md`.
+- **Aggregation** (ADR-008 §3): III sums `frequency` across distinct originating vaults per normalized `(trap, pattern)` join key, feeding the ADR-003 §3.6 ≥2-vault independent-evidence gate.
+
+This spec emitted the forward-reference; ADR-008 resolves it. The one real precedent —
+`who/coordination/coord_2026_05_12_vfl_graduation_proposals.md` (VideoForge VFL-001/VFL-002 → C-027/C-028) — is a conforming instance of the ADR-008 contract.
 
 ### §5.4 Relationship to ReviewState
 
@@ -400,7 +406,7 @@ Versioned at the lattice yaml itself (`version: "X.Y.Z"`); patch-bumped at MD-B1
 |---------|-------------|--------|
 | ≥50 corrections threshold semantics | MD-B2 + ADR-003 amendment | ✅ **RESOLVED MD-B2 2026-05-21** (ADR-003 §3.6 added — elevated-scrutiny queue; standard §3 ceremony + ≥2-vault independent evidence) |
 | VFL-001 + VFL-002 graduation ceremony (all 3 transitions GRADUATION_PROPOSED → GRADUATION_RATIFIED → PACK_DELTA_LANDED) | MD-B2 | ✅ **RESOLVED MD-B2 2026-05-21** (canonical C-027 + C-028; pack deltas in `context_iii_introspect_checks.md` Check 2c.i + `context_iii_inspect_procedures.md` Modality 2 Code Inspect Static trap; canonical md5 rotated dde2cbd... → 5adb0dfa...) |
-| Cross-vault RLHF aggregation transport (which fields cross vault boundaries) | MD-B3 (rides on v0.3 airlock from MD-A1) | pending |
+| Cross-vault RLHF aggregation transport (which fields cross vault boundaries) | MD-B3 + ADR-008 | ✅ **RESOLVED MD-B3 2026-05-23** (ADR-008 §2 boundary-crossing field set; §5.3 names it; transport = `learning_store_graduation` cross_vault_request) |
 | Scoring remaining 6 canonical packs against 6-axis rubric | MD-B4 | pending |
 | Validation across ≥3 consumer vaults | MD-B5 | pending |
 | `iii_corrections_archive.jsonl` artifact for ARCHIVED entries | MD-B2 (optional; may defer) | **DEFERRED at MD-B2** per operator gate — zero ARCHIVED entries today; authoring deferred to first archival event |
@@ -412,7 +418,7 @@ This list MUST be kept current as missions land; resolution updates the row.
 | Forward-reference | Originating section | Resolves at | Status |
 |-------------------|---------------------|-------------|--------|
 | ≥50 corrections threshold | §4.4 | MD-B2 + ADR-003 amendment | ✅ **RESOLVED MD-B2 2026-05-21** (ADR-003 §3.6 elevated-scrutiny queue) |
-| Cross-vault aggregation field set | §5.3 | MD-B3 | pending |
+| Cross-vault aggregation field set | §5.3 | MD-B3 + ADR-008 | ✅ **RESOLVED MD-B3 2026-05-23** (ADR-008 §2) |
 | 7-pack pilot scores | §4.5 | MD-B4 | pending |
 | VFL-001/002 actually graduated; namespaced fields fold canonically | §3.4 | MD-B2 | ✅ **RESOLVED MD-B2 2026-05-21** (canonical C-027 + C-028; VideoForge local store namespaced per ADR-005 §3) |
 | `module_iii_introspect` Check 2g semantics formally cite ADR-007 §1 stage 3 | (§2.1 module table) | MD-B4 re-exercise | partial — Check 2g doc edited at MD-B1 (prior session) |

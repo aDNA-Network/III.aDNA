@@ -2,7 +2,7 @@
 type: manifest
 role: project
 created: 2026-05-07
-updated: 2026-05-22
+updated: 2026-05-23
 mb3_closed: 2026-05-11
 mb4_closed: 2026-05-11
 mb5_closed: 2026-05-11
@@ -23,6 +23,7 @@ md_a1_closed: 2026-05-21   # airlock standard spec v0.2.0 → v0.3.0 federation-
 md_a2_closed: 2026-05-21   # airlock substrate implementation v0.2.0 → v0.3.0 (+§4 Ed25519 + §5 ledger observation + §6 COMPLIANCE_AUDIT)
 md_a3_closed: 2026-05-22   # AIRLOCK activation kit (D3 absorbed) — skill_airlock_activation.md + AIRLOCK.md reference instance v0.3.0
 md_a4_closed: 2026-05-22   # 5 consumer wrappers minor-bump v0.2.0 → v0.3.0 (wga + SiteForge + VideoForge + CanvasForge + LPWhitepaper); lattice-labs/iii v0.1.0 formally tracked-deferred per workspace genesis-first migration discipline; closes Track D1 P3 wrapper-pin half
+md_b3_closed: 2026-05-23   # cross-vault RLHF aggregation contract — NEW ADR-008 (boundary-crossing field set resolves adaptive-loop spec §5.3 + ≥2-vault aggregation feeds ADR-003 §3.6) + NEW template_cross_vault_graduation_proposal.md (canonical request type learning_store_graduation; formalizes VFL memo); both specs' forward-refs RESOLVED with no version bump (sibling-ADR resolution per airlock MD-A2/A3 precedent); lattice yaml 1.2.3 → 1.2.4; ZERO graduation — canonical md5 5adb0dfa invariant; ADR-008 Stanley-ratified at close; DG-D 6/11 → 7/11; eighth canonical close-ceremony application
 last_edited_by: agent_argus
 tags: [manifest, governance, iii, framework]
 ---
@@ -37,7 +38,7 @@ tags: [manifest, governance, iii, framework]
 
 **Persona**: Argus Panoptes — the all-seeing giant.
 
-**Version**: `v0.2.0` (cross-vault-request-capable, 2026-05-10) — see § Release History below for full lineage. **v0.3.0-line work in-flight** (federation-aware airlock spec + impl-doc + activation kit shipped at MD-A1/MD-A2/MD-A3 2026-05-21/22; 5 consumer wrappers pin-reviewed to v0.3.0 at MD-A4 2026-05-22; canonical `v0.3.0` annotated tag deferred to DG-D close per Campaign B+C precedent).
+**Version**: `v0.2.0` (cross-vault-request-capable, 2026-05-10) — see § Release History below for full lineage. **v0.3.0-line work in-flight** (federation-aware airlock spec + impl-doc + activation kit shipped at MD-A1/MD-A2/MD-A3 2026-05-21/22; 5 consumer wrappers pin-reviewed to v0.3.0 at MD-A4 2026-05-22; **cross-vault RLHF aggregation contract ADR-008 ratified at MD-B3 2026-05-23** — the D1+D2 cross-track interface, with `template_cross_vault_graduation_proposal.md` formalizing the VFL graduation precedent; canonical `v0.3.0` annotated tag deferred to DG-D close per Campaign B+C precedent).
 
 **GitHub**: https://github.com/LatticeProtocol/III.aDNA (published at Campaign A wind-down, commit `75aea6f`).
 
