@@ -67,7 +67,7 @@ fragment_library_spec.md     # Versioned named-fragment library API (Fragment da
 cycle_driver_spec.md         # Closed-loop inspect/introspect/improve with accretion guard + voter rotation
 yaml_response_schema.md      # PersonaResponse YAML schema + escape rules
 examples/
-  m19_5_lattice_network/     # The node.aDNA M19.5 run as a worked example (10 images, JSONL, SIS, outcome)
+  m19_5_lattice_network/     # The node.aDNA M19.5 run as a worked example (10 images, JSONL, ISS, outcome)
 ```
 
 ## Cross-vault sequencing
