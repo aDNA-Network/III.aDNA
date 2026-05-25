@@ -4,12 +4,13 @@ adr_id: "008"
 title: Cross-Vault RLHF Aggregation Contract — boundary-crossing field set, proposal transport over the v0.3 airlock, ≥2-vault evidence aggregation
 status: accepted
 created: 2026-05-23
-updated: 2026-05-23
+updated: 2026-05-25
 last_edited_by: agent_argus
 signed_by: Stanley (Chief Steward) — ratified at MD-B3 close 2026-05-23
 supersedes:
 superseded_by:
-amendments: []
+amendments:
+  - { date: 2026-05-25, mission: MD-B6, summary: "§2 one-paragraph temporal note re: C-001..C-028 pre-ADR-008 originating_vault:null (F2 disposition; preserves canonical jsonl md5 invariant)" }
 tags: [adr, cross_vault_aggregation, rlhf, learning_store_graduation, federation, airlock_v0_3, iii, v0_3, md_b3]
 related_adrs:
   - adr_002_consumer_federation_contract  # the wrappers whose local stores propose upstream; §3 minor-bump review
@@ -128,6 +129,21 @@ Per ADR-007 §1, only the `SIGNAL_CAPTURED` + `CORRECTION_TRACKED` stages are cr
 carries the *observations* (those stages' data); the `GRADUATION_*` stages are III-canonical-only and are
 entered by III, not asserted by the requester.
 
+**Temporal note (added MD-B6 2026-05-25; F2 disposition).** Canonical entries `C-001` through `C-028` all
+graduated *before* ADR-008's ratification (2026-05-23) and therefore carry `originating_vault: null` as their
+documented historical state. `originating_vault` is a required boundary-crossing projection from the
+`requesting_vault` of a `learning_store_graduation` cross_vault_request (§1's transport); pre-ADR-008
+graduations had no such transport and no field to project from. The single retroactive case — VFL-001 +
+VFL-002 (VideoForge.aDNA) graduating into C-027 + C-028 at MD-B2 (2026-05-21, two days before ADR-008) — has
+its provenance recoverable via `who/coordination/.aggregation/graduation_proposals_index.jsonl` seed records
+authored at MD-B4 (2026-05-23) per `how/skills/skill_aggregation_index_intake.md`. The canonical jsonl md5
+`5adb0dfa38d9224649c3b2cba83852ae` (rotated at MD-B2) is **preserved by design** — backfilling C-027/C-028
+would (a) misrepresent them as post-ADR-008 graduations and (b) break the invariant Campaign D protected
+across 8 mission closures. Post-MD-B6, every new graduation transported via `learning_store_graduation`
+MUST populate `originating_vault` per the §2 boundary-crossing field set (unchanged contract). For the §3
+≥2-vault evidence aggregation, C-027/C-028's null does NOT count toward any future gate-distinct-vault
+total (they pre-date the field's enforcement; future evidence comes from future proposals).
+
 ### 3. III-side aggregation protocol (feeds ADR-003 §3.6 ≥2-vault evidence)
 
 When III receives a `learning_store_graduation` request, it aggregates by pattern across all received
@@ -218,4 +234,5 @@ proposals:
 
 | Date | Mission | Amendment summary |
 |------|---------|-------------------|
-| (none yet) | | Initial ratification at MD-B3 close. |
+| 2026-05-23 | MD-B3 | Initial ratification at MD-B3 close. Stanley signed. |
+| 2026-05-25 | MD-B6 | §2 one-paragraph temporal note (F2 disposition): canonical C-001..C-028 graduated pre-ADR-008 carry `originating_vault: null` as documented historical state; VFL-001/-002 → C-027/C-028 provenance recoverable via aggregation-index seed records authored at MD-B4. Preserves canonical jsonl md5 `5adb0dfa38d9224649c3b2cba83852ae` invariant (rotated at MD-B2; held across 8 Campaign D closures). Non-breaking; no data rewrite; no version bump per consumption-only precedent. |

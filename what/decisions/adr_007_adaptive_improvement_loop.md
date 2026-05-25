@@ -4,12 +4,13 @@ adr_id: "007"
 title: Adaptive-Improvement Loop Architecture — named stages, lifecycle state machine, per-pack quality metric
 status: proposed
 created: 2026-05-20
-updated: 2026-05-20
+updated: 2026-05-25
 last_edited_by: agent_argus
-signed_by: (pending Stanley ratification at MD-B1 close)
+signed_by: Stanley (Chief Steward) — ratified at MD-B1 close 2026-05-20
 supersedes:
 superseded_by:
-amendments: []
+amendments:
+  - { date: 2026-05-25, mission: MD-B6, summary: "§3.6 pack-credit attribution procedure clarification (MB4-2 ratification — non-breaking READ-side rule)" }
 tags: [adr, adaptive_loop, architecture, lifecycle_state_machine, per_pack_quality, iii, v0_3]
 related_adrs:
   - adr_001_module_architecture           # 8-module composition this ADR coordinates over
@@ -24,7 +25,7 @@ governs: stage IDs of the III adaptive-improvement loop; per-pattern CorrectionL
 
 ## Status
 
-Proposed — 2026-05-20 (authored by agent_argus; pending Stanley ratification at MD-B1 close).
+Accepted — ratified by Stanley at MD-B1 close 2026-05-20. Amended at MD-B6 close 2026-05-25 (in-place §3.6 procedure clarification for pack-credit attribution; non-breaking; READ-side rule over the existing schema).
 
 ## Context
 
@@ -112,6 +113,18 @@ Each axis scored on the 1–5 integer scale from `skill_context_quality_audit.md
 
 The `graduation_yield` axis is the III-loop-specific diagnostic the existing rubric lacks. A pack with `signal_density: 5` but `graduation_yield: 1` is producing findings that never accumulate to graduation — exactly the case MD-B4's "7-pack pilot" needs to surface.
 
+#### 3.6 Procedure clarification — pack-credit attribution (MB4-2 ratification, MD-B6 2026-05-25)
+
+The `graduation_yield` formula above (`(corrections with graduated_to=<pack_name> over period) / (review cycles where pack was loaded over period)`) **MUST be read** with the following procedural rule:
+
+- **`graduated_to:` is canonical-schema-wide**, not consumer-routing metadata. In practice, every graduated correction in the canonical jsonl carries `graduated_to: "core"` (the value names the destination *store* — the canonical core domain packs — not the specific pack file that received the delta). MD-B5 cross-consumer evidence (`what/artifacts/md_b5_consumer_vault_validation.md` §8) confirmed this is recorded identically at BOTH consumer-local AND canonical layers, ruling out the alternative interpretation that consumers might use the field for pack-specific routing.
+- **Pack-credit therefore attaches via the PACK_DELTA_LANDED stage marker** (per §1 lifecycle), NOT by floor-matching `graduated_to` against pack names. Specifically: the destination pack is the file the graduation memo's `pack_delta_target` (or equivalent provenance field in the graduation ceremony record) names. For the two MD-B2 graduations: VFL-001 → `context_iii_introspect_checks.md` Check 2c.i; VFL-002 → `context_iii_inspect_procedures.md` Modality 2 Code Inspect Static trap. Both are observable from the MD-B2 close-record + the canonical entries' `source_review` provenance, not from `graduated_to:`.
+- **Effect on the rubric**: when applying §3 to a future pack-quality assessment, `graduation_yield` is computed by counting corrections whose PACK_DELTA_LANDED transition landed at the assessed pack's file (per ceremony record), divided by review cycles where the pack was loaded. Packs that have received zero PACK_DELTA_LANDED entries continue to score 1 (the floor); packs that received deltas score upward attributably.
+
+This is a **non-breaking READ-side rule**: existing data (28 canonical entries + 4 VideoForge VFL entries + 4 CanvasForge legacy entries) does NOT need rewriting. No write-side migration. The 7-pack pilot scores from MD-B4 (`what/artifacts/md_b4_7_pack_pilot_report.md`) remain valid; the next pilot's `graduation_yield` numbers, computed per §3.6, will not collapse to noise on packs that actually received deltas.
+
+**Bounded forward**: future RLHF-pack-routing schema work (v0.4+ territory only) may revisit whether `graduated_to:` should ever become pack-specific. §3.6's clarification holds for the v0.3 release line and is the load-bearing procedure for any v0.3 pack-quality re-assessment.
+
 ### 4. Per-pack quality and ≥50 corrections threshold are SEPARATE, complementary signals
 
 The Campaign D charter line 74 mentions a "≥50 corrections threshold canonicalized per ADR-003 amendment" as MD-B2 scope. This threshold is **distinct from** per-pack quality. They MUST NOT be merged:
@@ -155,4 +168,5 @@ The consumer-facing spec (`iii_adaptive_improvement_loop_spec.md`) **defers** sc
 
 | Date | Mission | Amendment summary |
 |------|---------|-------------------|
-| (none yet) | | Initial ratification at MD-B1 close. |
+| 2026-05-20 | MD-B1 | Initial ratification at MD-B1 close (commit `b1f1bc4`). Stanley signed. |
+| 2026-05-25 | MD-B6 | §3.6 in-place procedure clarification (MB4-2 ratification): `graduation_yield` axis credits packs via the PACK_DELTA_LANDED stage marker / graduation-memo `pack_delta_target` cross-reference, NOT by floor-matching `graduated_to:` against pack names (which is canonical-schema-wide, not consumer-routing metadata, per MD-B5 §8 cross-consumer evidence). Non-breaking; READ-side rule over existing schema; no data rewrite; no version bump per MD-A1+A2+A3+A4+A5+B3+B4+B5 consumption-only precedent. |
