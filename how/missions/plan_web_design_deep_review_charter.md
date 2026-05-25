@@ -3,7 +3,7 @@ plan_id: plan_web_design_deep_review_charter
 type: plan
 title: "Web-Design Deep-Review — campaign charter authoring (planning mission)"
 owner: stanley
-status: planned
+status: completed
 mission_class: campaign_planning_research
 campaign: null   # standalone — designs a not-yet-opened campaign (no III campaign is currently open; Campaign D closed 2026-05-25)
 designs_campaign: campaign_web_design_deep_review   # proposed slug; proposed letter Campaign F (E reserved for generalized writing-III) — see §9 Q1
@@ -12,6 +12,9 @@ created: 2026-05-25
 updated: 2026-05-25
 last_edited_by: agent_argus
 authored_at_session: session_stanley_20260525_iii_adna_web_design_deep_review_planning_authoring
+executed_at_session: session_stanley_20260525_iii_adna_web_design_deep_review_planning_execution
+deliverables_landed: 6
+designs_campaign_charter_at: how/campaigns/campaign_web_design_deep_review/campaign_web_design_deep_review.md
 boundary_posture: boundary_preserving   # III stays semantic; mechanical audits (Lighthouse/axe/CWV) stay in SiteForge — see §1
 evidence_method: inspection_grade        # review existing Lighthouse/Playwright reports on disk; no live builds/audit runs
 sequencing: "standalone; executes on operator gate. Not Campaign E (generalized writing-III stays reserved/gated on LiteratureForge.aDNA forge-BUILD)."
@@ -110,4 +113,10 @@ Authored as a standalone planning mission per operator decision (2026-05-25), st
 
 ## AAR
 
-_(empty — populated only when this mission is executed and closed.)_
+Executed 2026-05-25 (session `…web_design_deep_review_planning_execution`). All 6 deliverables (§5) landed; 4 operator decisions locked at plan ratification (Campaign F + slug; candidates-only graduation; empirical weight to wga+SS; ingest-seam documented-only); Q2 trap set resolved by the gap ledger (Trap 6 CWV-as-Design-Debt + Trap 7 AI-Slop Composition in; motion + responsive deferred as 1-vault candidates).
+
+- **Worked**: parallel Explore/general-purpose subagents for Phase A (SiteForge boundary map + 3-site empirical review + external SOTA) produced honest, citation-grade evidence fast; the charter draft + spec slotted cleanly onto the MD-X2 structural template.
+- **Didn't**: the empirical hypothesis was *over*-optimistic — all 3 sites are already III-reviewed and high-quality, so design-residue is thin (most candidates 1-vault). Re-scoped to evidence-disciplined rather than aspirational; this is a finding, not a failure.
+- **Finding**: the strongest justification for the flagship anti-slop trap (Trap 7) is a *coverage seam* (Brand Gate 8 is manual-screenshot-only) rather than prevalence on well-tended sites — III should own what the robots explicitly defer to humans. Separately, the wga ecoregion case exposed a real Trap-5 *precision* bug (would false-positive legitimate legend data while missing the cross-page inconsistency).
+- **Change**: when an empirical corpus is itself already-optimized by the system under review, weight trap justification toward coverage-seam + external-SOTA evidence, and lean on candidates-only graduation until independent cross-vault frequency accrues. Also: charter §7 carried a stale figure (ScienceStanley "~44 tests"; actual 310) — verify quantitative claims at execution, never carry them forward unchecked.
+- **Follow-up**: `campaign_web_design_deep_review` (Campaign F) charter DRAFT ready for operator open-gate at `how/campaigns/campaign_web_design_deep_review/`. Hard invariants held throughout: canonical md5 `5adb0dfa38d9224649c3b2cba83852ae` invariant (28 entries); no live pack/ADR/lattice/wrapper edits; no live audit runs; campaign NOT opened.
