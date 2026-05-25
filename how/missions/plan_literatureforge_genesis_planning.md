@@ -3,7 +3,10 @@ plan_id: plan_literatureforge_genesis_planning
 type: plan
 title: "MD-X2 — LiteratureForge.aDNA Genesis-Planning Mission (research + genesis-charter authoring)"
 owner: stanley
-status: planned
+status: completed
+executed_at_session: session_stanley_20260525_iii_adna_md_x2_literatureforge_genesis_execution
+closed: 2026-05-25
+outcome: "EXECUTED through fork + genesis Phase 0 per operator decision. Research dossier + genesis charter draft + cross-vault architecture note authored; LiteratureForge.aDNA forked (commit dede876, branch main, persona Thoth); Operation Scriptorium genesis campaign live (P0 closed; P1 Resume-Here)."
 mission_class: genesis_planning_research
 campaign: campaign_d_federation_adaptive_loop
 mission: MD-X2
@@ -115,4 +118,15 @@ Authored as a standalone-interstitial planning mission per operator decision (20
 
 ## AAR
 
-*Populated when the executing session sets `status: completed`.*
+- **Worked**: Three parallel research streams (external SOTA via WebSearch; internal Explore pattern-mine of SpeechForge/CanvasForge/VideoForge/III; LPWhitepaper Explore seed-mine) gave a complete, grounded dossier in one pass. The operator-locked decisions (persona Thoth; 5 Day-1 genres; hybrid+promotion sub-genre model) let the charter + ADR-000 be authored concretely. SpeechForge/MoleculeForge were clean genesis structure templates.
+- **Didn't**: Nothing blocking. Per operator decision the scope extended *beyond* the mission card's §6 ("no fork at MD-X2") — the operator explicitly chose "through fork + Phase 0", so the fork + genesis Phase 0 were executed in the same effort rather than deferred to a separate gate. Documented here for audit.
+- **Finding**: The whitepaper submodule's three LPWhitepaper seed artifacts (whitepaper_communication pack + 25-cycle deep-review + LaTeX format spec) map 1:1 to the genre-submodule 4-part bundle `{trap-pack + reviewer-voice-set + format-spec + reward-rubric}` — the design is grounded in a real corpus, not invented. The writing-III boundary (D6) cleanly resolves mission §9 Q5.
+- **Change**: O4's "P0–P5 genesis-planning arc" was realized as a 6-phase Operation Scriptorium charter; P5 produces a separate forge-BUILD execution campaign (*Operation Codex*), co-dependent with III.aDNA Campaign E.
+- **Follow-up**: III.aDNA returns for **Campaign E** (generalized writing-III + LPWhitepaper migration); **MD-B5** (≥3-vault validation) reframed to use the 3 stable v0.3 consumers, deferring LPWhitepaper to its post-migration chain (cross-vault note §5); then **MD-B6** DG-D gate + tag. DG-D unchanged 9/11 (MD-X2 non-gating).
+
+## Deliverables produced (execution)
+
+- `III.aDNA/what/artifacts/md_x2_literatureforge_research_dossier.md` (D1)
+- `III.aDNA/what/artifacts/md_x2_literatureforge_genesis_charter_draft.md` (D2 + D4 embedded Design Foundation)
+- `III.aDNA/what/artifacts/md_x2_cross_vault_architecture_note.md` (D3 + D5 MD-B5 reframe §5 + D6 Campaign E seed §6)
+- `LiteratureForge.aDNA/` forked (commit `dede876`, branch `main`) — genesis Phase 0 closed; Operation Scriptorium live; 3 MD-X2 artifacts carried in.
