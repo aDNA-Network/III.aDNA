@@ -2,9 +2,10 @@
 campaign_id: campaign_web_design_deep_review
 type: campaign
 title: "Campaign F — Web-Design Deep-Review & Improve (boundary-preserving)"
-codename: "(operator-ratifiable at P0 — proposed: Operation Tell)"
+codename: "Operation Tell"
 owner: stanley
-status: draft
+status: active
+phase: 1
 campaign_letter: F
 phase_count: 5
 mission_count: 9
@@ -14,17 +15,18 @@ estimation_class: governance-tight
 priority: medium
 created: 2026-05-25
 updated: 2026-05-25
+opened: 2026-05-25
 last_edited_by: agent_argus
 authored_by_mission: plan_web_design_deep_review_charter
 predecessor: campaign_d_federation_adaptive_loop
 boundary_posture: boundary_preserving
 graduation_posture: "candidates only — graduate later (operator decision 2026-05-25)"
-tags: [campaign, draft, web_design, siteforge, boundary_preserving, anti_slop, campaign_f, charter_draft]
+tags: [campaign, active, web_design, siteforge, boundary_preserving, anti_slop, campaign_f, operation_tell, phase_1]
 ---
 
-# DRAFT — Campaign F: Web-Design Deep-Review & Improve
+# Campaign F — Web-Design Deep-Review & Improve ("Operation Tell")
 
-> **Draft status**: authored at III.aDNA by the planning mission `plan_web_design_deep_review_charter` (2026-05-25) as deliverable O5. It is an **approve-or-modify draft** — it does **not** open the campaign. Opening (P0 entry) is a separate operator gate. On approval, the planning-mission card becomes this campaign's P0 charter-authoring record. The four research artifacts (`wdr_*`) authored alongside are this campaign's source-of-record.
+> **Status: ACTIVE** — opened 2026-05-25 by operator gate (Decision Point 1). Codename **Operation Tell** ratified at F0 (refs the AI-slop "tells" the flagship Trap 7 catches). The planning mission `plan_web_design_deep_review_charter` (2026-05-25, completed) is this campaign's P0 charter-authoring record; the four `wdr_*` research artifacts authored alongside are its source-of-record. F0 closed + Phase 1 entered in the same session (`session_stanley_20260525_iii_adna_campaign_f_open_pack_revision`).
 
 ## Goal
 
@@ -68,17 +70,17 @@ III **stays semantic**. Mechanical audit *execution* stays in SiteForge (Gates 1
 ### Phase 0: Adoption & Setup
 | Mission | Title | Sessions | Dependencies | Status |
 |---------|-------|----------|-------------|--------|
-| F0 | Adopt the 4 `wdr_*` artifacts + this charter as source-of-record; ratify codename + scope; confirm Q2 final trap set (Trap 6 + Trap 7 in; motion/responsive deferred) | 0.5 | — | planned |
+| F0 | Adopt the 4 `wdr_*` artifacts + this charter as source-of-record; ratify codename + scope; confirm Q2 final trap set (Trap 6 + Trap 7 in; motion/responsive deferred) | 0.5 | — | ✅ **completed 2026-05-25** |
 
-**Phase exit gate**: charter ratified; trap set confirmed; canonical md5 baseline recorded (`5adb0dfa…`).
+**Phase exit gate**: ✅ charter ratified (status→active; codename "Operation Tell"); ✅ trap set confirmed (Trap 6 CWV-as-Design-Debt + Trap 7 AI-Slop Composition in; motion + responsive deferred as 1-vault candidates per the planning-mission AAR); ✅ canonical md5 baseline recorded `5adb0dfa38d9224649c3b2cba83852ae` (28 entries) at session startup; ✅ 4 `wdr_*` artifacts + this charter adopted as source-of-record.
 
 ### Phase 1: Pack Revision (core)
 | Mission | Title | Sessions | Dependencies | Status |
 |---------|-------|----------|-------------|--------|
-| F1 | Land Trap 6 (CWV-as-Design-Debt) + Trap 7 (AI-Slop Composition) into the live pack (full pack-format entries per WDR-4 §2) | 1 | F0 | planned |
-| F2 | Trap hardenings + `source_diversity` citation remediation (Trap 3/4/5 per WDR-4 §3); re-score pack against ADR-007 §3 rubric | 1 | F1 | planned |
+| F1 | Land Trap 6 (CWV-as-Design-Debt) + Trap 7 (AI-Slop Composition) into the live pack (full pack-format entries per WDR-4 §2) | 1 | F0 | ✅ **completed 2026-05-25** |
+| F2 | Trap hardenings + `source_diversity` citation remediation (Trap 3/4/5 per WDR-4 §3); re-score pack against ADR-007 §3 rubric | 1 | F1 | ✅ **completed 2026-05-25** |
 
-**Phase exit gate**: pack updated + re-scored; composite ≥4.00 holds; `source_diversity` ≥4; Stanley ratifies the pack edit (Standing Rule 6).
+**Phase exit gate**: ✅ pack updated (7 traps: Trap 6 + Trap 7 landed; Trap 3 hardened with coverage-ceiling + SC 2.5.8 + semantic-heading; Trap 4 earned-credibility/naturalness; Trap 5 precision fix token-vs-semantic-data) + re-scored; ✅ composite ≥4.00 holds (4.00 → **4.17**); ✅ `source_diversity` ≥4 (3 → **4**; capped at 4 — academic source-type absent per rubric §4); ✅ ≥6 external citations (14 citation URLs across 8 source clusters) + ADR-002/ADR-003/skill_iii_review cross-refs; ✅ **Stanley ratified the pack edit 2026-05-25** (Standing Rule 6, Decision Point 3). Hard invariant held: canonical jsonl md5 `5adb0dfa38d9224649c3b2cba83852ae` (28 entries) invariant — zero graduation, candidates-only posture preserved.
 
 ### Phase 2: Correction Candidates
 | Mission | Title | Sessions | Dependencies | Status |
@@ -105,9 +107,9 @@ III **stays semantic**. Mechanical audit *execution* stays in SiteForge (Gates 1
 ## Decision Points
 | # | When | Decision | Status |
 |---|------|----------|--------|
-| 1 | P0 entry | Open the campaign (this draft → active) | pending (operator gate) |
-| 2 | F0 | Confirm final trap set + codename | pending |
-| 3 | F2 close | Ratify live pack edit (Standing Rule 6/7) | pending |
+| 1 | P0 entry | Open the campaign (this draft → active) | ✅ approved 2026-05-25 (operator gate) |
+| 2 | F0 | Confirm final trap set + codename | ✅ confirmed 2026-05-25 (Trap 6 + Trap 7; "Operation Tell") |
+| 3 | F2 close | Ratify live pack edit (Standing Rule 6/7) | pending (this session — DP3 human gate) |
 | 4 | F4 | Approve III minor bump v0.3.0→v0.4.0 + each consumer re-pin | pending |
 | 5 | F6 | DG-F GO/NO-GO | pending |
 
