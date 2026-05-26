@@ -5,7 +5,7 @@ title: "Campaign F — Web-Design Deep-Review & Improve (boundary-preserving)"
 codename: "Operation Tell"
 owner: stanley
 status: active
-phase: 1
+phase: 2
 campaign_letter: F
 phase_count: 5
 mission_count: 9
@@ -14,7 +14,7 @@ calibrated_sessions: "4-6"
 estimation_class: governance-tight
 priority: medium
 created: 2026-05-25
-updated: 2026-05-25
+updated: 2026-05-26
 opened: 2026-05-25
 last_edited_by: agent_argus
 authored_by_mission: plan_web_design_deep_review_charter
@@ -85,9 +85,9 @@ III **stays semantic**. Mechanical audit *execution* stays in SiteForge (Gates 1
 ### Phase 2: Correction Candidates
 | Mission | Title | Sessions | Dependencies | Status |
 |---------|-------|----------|-------------|--------|
-| F3 | Author the 5 correction candidates (`C-029+`) with `≥2-vault` evidence rows into the spec / consumer local store; verify canonical jsonl md5 **invariant** (`5adb0dfa…`); zero graduation | 0.5–1 | F2 | planned |
+| F3 | Author the 5 correction candidates (`C-029+`) with `≥2-vault` evidence rows into the spec / consumer local store; verify canonical jsonl md5 **invariant** (`5adb0dfa…`); zero graduation | 0.5–1 | F2 | ✅ **completed 2026-05-26** |
 
-**Phase exit gate**: candidates recorded; `md5 iii_corrections_canonical.jsonl` == `5adb0dfa38d9224649c3b2cba83852ae`; `wc -l` == 28 (unchanged).
+**Phase exit gate**: ✅ candidates recorded in `what/artifacts/f3_correction_candidates.md` (operator chose Markdown candidate ledger over a staging `.jsonl`, 2026-05-26) — 5 schema-conformant `graduation_candidate:true` rows (C-029…C-033 prov.); ✅ `md5 iii_corrections_canonical.jsonl` == `5adb0dfa38d9224649c3b2cba83852ae`; ✅ `wc -l` == 28 (unchanged). Honest-evidence posture held: only C-029 is genuinely 2-vault (SS+wga); C-030…C-033 are 1-vault and recorded as awaiting a 2nd vault (C-032 explicitly refuted on wga+CC). 3 reinforced existing corrections (C-012/C-015/C-016) noted as future re-graduation inputs — no action.
 
 ### Phase 3: Consumer-Wrapper Sweep
 | Mission | Title | Sessions | Dependencies | Status |
