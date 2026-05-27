@@ -5,7 +5,7 @@ title: "Campaign F — Web-Design Deep-Review & Improve (boundary-preserving)"
 codename: "Operation Tell"
 owner: stanley
 status: active
-phase: 2
+phase: 3
 campaign_letter: F
 phase_count: 5
 mission_count: 9
@@ -21,7 +21,7 @@ authored_by_mission: plan_web_design_deep_review_charter
 predecessor: campaign_d_federation_adaptive_loop
 boundary_posture: boundary_preserving
 graduation_posture: "candidates only — graduate later (operator decision 2026-05-25)"
-tags: [campaign, active, web_design, siteforge, boundary_preserving, anti_slop, campaign_f, operation_tell, phase_1]
+tags: [campaign, active, web_design, siteforge, boundary_preserving, anti_slop, campaign_f, operation_tell, phase_3, f4_complete, v0_4_0_declared]
 ---
 
 # Campaign F — Web-Design Deep-Review & Improve ("Operation Tell")
@@ -92,9 +92,9 @@ III **stays semantic**. Mechanical audit *execution* stays in SiteForge (Gates 1
 ### Phase 3: Consumer-Wrapper Sweep
 | Mission | Title | Sessions | Dependencies | Status |
 |---------|-------|----------|-------------|--------|
-| F4 | III minor bump `v0.3.0 → v0.4.0`; ADR-002 §3 minor-bump review for `web_design`-carrying wrappers (SiteForge + VideoForge + CanvasForge; wga + LPWhitepaper as applicable); each consumer re-pins explicitly | 1–2 | F2 | planned |
+| F4 | III minor bump `v0.3.0 → v0.4.0`; ADR-002 §3 minor-bump review for `web_design`-carrying wrappers (SiteForge + VideoForge + CanvasForge; wga + LPWhitepaper as applicable); each consumer re-pins explicitly | 1–2 | F2 | ✅ **completed 2026-05-26** |
 
-**Phase exit gate**: wrappers reviewed + re-pinned (or explicitly deferred per consumer); no active consumer broken; forward-stub discipline observed (Standing Rule 2).
+**Phase exit gate**: ✅ III minor-bumped `v0.3.0 → v0.4.0` (declared in `MANIFEST.md` Version + Release-History row at III commit `f49e821`; annotated `v0.4.0` git tag deferred to F6). ✅ ADR-002 §3 minor-bump review fired at all minor-policy consumers. **4 `web_design` carriers** (by `packs_used`) reviewed + re-pinned to `v0.4.0` / `pinned_at_commit f49e821` / `lattice_version 1.2.5`: **VideoForge** (commit `3cc3191`) + **CanvasForge** (commit `97654e3`) + **wga** (commit `3bbfb7a`) committed in their own repos; **SiteForge** edited but **left UNCOMMITTED** (in-flight ISS-campaign migration dirtied `iii/CLAUDE.md` with an unrelated SIS→ISS rename — operator folds the F4 pin into their ISS commit; counts reviewed+re-pinned for DG-F crit 7 per operator decision). **LPWhitepaper** (no `web_design` in `packs_used`): review fired, **explicitly deferred** — stays `v0.3.0`, additive-only bump is backward-compatible, re-pins at its own cadence. **lattice-labs/iii** `v0.1.0` **TRACKED-DEFERRED** (workspace genesis-first migration discipline; untouched). No active consumer broken; no file moves so no forward stubs needed (Standing Rule 2 n/a); `local_extensions` untouched in every wrapper (out of minor-bump-review scope). Canonical jsonl md5 `5adb0dfa38d9224649c3b2cba83852ae` (28 entries) INVARIANT; lattice yaml at `1.2.5`; zero new III ADR; no `v0.4.0` tag (F6); local commits only, no push.
 
 ### Phase 4: Validation, Decision Gate & Close
 | Mission | Title | Sessions | Dependencies | Status |
@@ -110,7 +110,7 @@ III **stays semantic**. Mechanical audit *execution* stays in SiteForge (Gates 1
 | 1 | P0 entry | Open the campaign (this draft → active) | ✅ approved 2026-05-25 (operator gate) |
 | 2 | F0 | Confirm final trap set + codename | ✅ confirmed 2026-05-25 (Trap 6 + Trap 7; "Operation Tell") |
 | 3 | F2 close | Ratify live pack edit (Standing Rule 6/7) | pending (this session — DP3 human gate) |
-| 4 | F4 | Approve III minor bump v0.3.0→v0.4.0 + each consumer re-pin | pending |
+| 4 | F4 | Approve III minor bump v0.3.0→v0.4.0 + each consumer re-pin | ✅ approved 2026-05-26 (operator gate; LPWhitepaper deferred + SiteForge edited-uncommitted dispositions ratified) |
 | 5 | F6 | DG-F GO/NO-GO | pending |
 
 ## Decision Gate DG-F (binary; ALL must hold to close)
