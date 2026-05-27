@@ -5,7 +5,7 @@ title: "Campaign F — Web-Design Deep-Review & Improve (boundary-preserving)"
 codename: "Operation Tell"
 owner: stanley
 status: active
-phase: 3
+phase: 4
 campaign_letter: F
 phase_count: 5
 mission_count: 9
@@ -21,7 +21,7 @@ authored_by_mission: plan_web_design_deep_review_charter
 predecessor: campaign_d_federation_adaptive_loop
 boundary_posture: boundary_preserving
 graduation_posture: "candidates only — graduate later (operator decision 2026-05-25)"
-tags: [campaign, active, web_design, siteforge, boundary_preserving, anti_slop, campaign_f, operation_tell, phase_3, f4_complete, v0_4_0_declared]
+tags: [campaign, active, web_design, siteforge, boundary_preserving, anti_slop, campaign_f, operation_tell, phase_4, f5_complete, validation, wdr3_residue, dg_f_crit_10, v0_4_0_declared]
 ---
 
 # Campaign F — Web-Design Deep-Review & Improve ("Operation Tell")
@@ -99,10 +99,10 @@ III **stays semantic**. Mechanical audit *execution* stays in SiteForge (Gates 1
 ### Phase 4: Validation, Decision Gate & Close
 | Mission | Title | Sessions | Dependencies | Status |
 |---------|-------|----------|-------------|--------|
-| F5 | Validation — confirm new traps catch the WDR-3 residue findings (re-inspect the gap-ledger cases against the revised pack; inspection-grade, no live runs) | 1 | F1–F4 | planned |
+| F5 | Validation — confirm new traps catch the WDR-3 residue findings (re-inspect the gap-ledger cases against the revised pack; inspection-grade, no live runs) | 1 | F1–F4 | ✅ **completed 2026-05-26** |
 | F6 | DG-F decision gate + Campaign AAR + annotated `v0.4.0` tag | 0.5 | F5 | planned |
 
-**Phase exit gate**: DG-F all-green; AAR populated; tag cut; STATE.md updated.
+**Phase exit gate** (partial — F5 ✅, F6 pending): ✅ F5 validation artifact `what/artifacts/f5_validation_wdr3_residue.md` authored (inspection-grade; **8 of 8** in-scope WDR-3 residue findings CAUGHT with exact pack-line citations; 2 deferred residue findings — motion-absence + responsive-neglect — confirmed on-record per F0 + C-032; ContextCommons negative control confirms **zero** new false positives on a clean site); ✅ DG-F criterion 10 satisfied; ✅ canonical jsonl md5 `5adb0dfa38d9224649c3b2cba83852ae` (28 entries) INVARIANT (zero graduation; zero wrapper/ADR/lattice touch; no builds/audits run); zero-regression CONFIRMED. **Remaining for full Phase-4 close (F6)**: DG-F GO/NO-GO (DP5) + AAR populated + annotated `v0.4.0` tag cut + STATE.md & charter `status: completed`.
 
 ## Decision Points
 | # | When | Decision | Status |
@@ -123,7 +123,7 @@ III **stays semantic**. Mechanical audit *execution* stays in SiteForge (Gates 1
 7. ADR-002 §3 wrapper sweep complete; every `web_design`-carrying wrapper reviewed + re-pinned or explicitly deferred; no active consumer broken.
 8. III minor-bumped `v0.3.0 → v0.4.0`; CHANGELOG entry present.
 9. Audit-signal-ingest seam documented (not built); no III audit runtime introduced; no audit-execution ADR.
-10. Validation (F5) confirms the revised pack catches the WDR-3 residue cases.
+10. Validation (F5) confirms the revised pack catches the WDR-3 residue cases. — ✅ **F5 2026-05-26** (`what/artifacts/f5_validation_wdr3_residue.md`: 8/8 in-scope residue CAUGHT + 2 deferred on-record + CC negative control).
 11. AAR populated; `v0.4.0` annotated tag cut; STATE.md + this charter `status: completed`.
 
 ## Risk Register
