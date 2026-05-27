@@ -4,8 +4,8 @@ type: campaign
 title: "Campaign F — Web-Design Deep-Review & Improve (boundary-preserving)"
 codename: "Operation Tell"
 owner: stanley
-status: active
-phase: 4
+status: completed
+phase: 5
 campaign_letter: F
 phase_count: 5
 mission_count: 9
@@ -14,14 +14,18 @@ calibrated_sessions: "4-6"
 estimation_class: governance-tight
 priority: medium
 created: 2026-05-25
-updated: 2026-05-26
+updated: 2026-05-27
 opened: 2026-05-25
+closed: 2026-05-27
+dg_f_closed: 2026-05-27
+dg_f_outcome: GO
+release_tag: "v0.4.0"
 last_edited_by: agent_argus
 authored_by_mission: plan_web_design_deep_review_charter
 predecessor: campaign_d_federation_adaptive_loop
 boundary_posture: boundary_preserving
-graduation_posture: "candidates only — graduate later (operator decision 2026-05-25)"
-tags: [campaign, active, web_design, siteforge, boundary_preserving, anti_slop, campaign_f, operation_tell, phase_4, f5_complete, validation, wdr3_residue, dg_f_crit_10, v0_4_0_declared]
+graduation_posture: "candidates only — graduated zero in-campaign (operator decision 2026-05-25)"
+tags: [campaign, completed, web_design, siteforge, boundary_preserving, anti_slop, campaign_f, operation_tell, phase_5, f6_complete, dg_f_closed, dg_f_11_of_11, v0_4_0_tagged, campaign_f_complete, candidates_only, canonical_md5_invariant]
 ---
 
 # Campaign F — Web-Design Deep-Review & Improve ("Operation Tell")
@@ -100,9 +104,9 @@ III **stays semantic**. Mechanical audit *execution* stays in SiteForge (Gates 1
 | Mission | Title | Sessions | Dependencies | Status |
 |---------|-------|----------|-------------|--------|
 | F5 | Validation — confirm new traps catch the WDR-3 residue findings (re-inspect the gap-ledger cases against the revised pack; inspection-grade, no live runs) | 1 | F1–F4 | ✅ **completed 2026-05-26** |
-| F6 | DG-F decision gate + Campaign AAR + annotated `v0.4.0` tag | 0.5 | F5 | planned |
+| F6 | DG-F decision gate + Campaign AAR + annotated `v0.4.0` tag | 0.5 | F5 | ✅ **completed 2026-05-27** |
 
-**Phase exit gate** (partial — F5 ✅, F6 pending): ✅ F5 validation artifact `what/artifacts/f5_validation_wdr3_residue.md` authored (inspection-grade; **8 of 8** in-scope WDR-3 residue findings CAUGHT with exact pack-line citations; 2 deferred residue findings — motion-absence + responsive-neglect — confirmed on-record per F0 + C-032; ContextCommons negative control confirms **zero** new false positives on a clean site); ✅ DG-F criterion 10 satisfied; ✅ canonical jsonl md5 `5adb0dfa38d9224649c3b2cba83852ae` (28 entries) INVARIANT (zero graduation; zero wrapper/ADR/lattice touch; no builds/audits run); zero-regression CONFIRMED. **Remaining for full Phase-4 close (F6)**: DG-F GO/NO-GO (DP5) + AAR populated + annotated `v0.4.0` tag cut + STATE.md & charter `status: completed`.
+**Phase exit gate**: ✅ F5 validation artifact `what/artifacts/f5_validation_wdr3_residue.md` authored (inspection-grade; **8 of 8** in-scope WDR-3 residue findings CAUGHT with exact pack-line citations; 2 deferred residue findings — motion-absence + responsive-neglect — confirmed on-record per F0 + C-032; ContextCommons negative control confirms **zero** new false positives on a clean site); ✅ DG-F criterion 10 satisfied; ✅ F6 DG-F scorecard artifact `what/artifacts/f6_dg_f_scorecard.md` authored (10 sections mirroring `md_b6_dg_d_scorecard.md`; 11-criterion table all ✅; hard-invariant ledger pre/post; boundary-discipline coherence assertion); ✅ DP5 GO ratified 2026-05-27; ✅ DG-F 11/11; ✅ annotated `v0.4.0` git tag cut at close-commit SHA (MD-B6-style contract-surface enumeration; predecessor `v0.3.0` at MD-B6 close 2026-05-25); ✅ Campaign AAR populated inline (see §Campaign AAR); ✅ canonical jsonl md5 `5adb0dfa38d9224649c3b2cba83852ae` (28 entries) INVARIANT (held across all 7 Campaign F missions F0..F6); zero-regression CONFIRMED end-to-end.
 
 ## Decision Points
 | # | When | Decision | Status |
@@ -111,7 +115,7 @@ III **stays semantic**. Mechanical audit *execution* stays in SiteForge (Gates 1
 | 2 | F0 | Confirm final trap set + codename | ✅ confirmed 2026-05-25 (Trap 6 + Trap 7; "Operation Tell") |
 | 3 | F2 close | Ratify live pack edit (Standing Rule 6/7) | pending (this session — DP3 human gate) |
 | 4 | F4 | Approve III minor bump v0.3.0→v0.4.0 + each consumer re-pin | ✅ approved 2026-05-26 (operator gate; LPWhitepaper deferred + SiteForge edited-uncommitted dispositions ratified) |
-| 5 | F6 | DG-F GO/NO-GO | pending |
+| 5 | F6 | DG-F GO/NO-GO | ✅ GO 2026-05-27 (operator gate; DG-F 11/11; v0.4.0 tag cut) |
 
 ## Decision Gate DG-F (binary; ALL must hold to close)
 1. Trap 6 (CWV-as-Design-Debt) landed in live pack with full pack-format entry. 
@@ -124,7 +128,7 @@ III **stays semantic**. Mechanical audit *execution* stays in SiteForge (Gates 1
 8. III minor-bumped `v0.3.0 → v0.4.0`; CHANGELOG entry present.
 9. Audit-signal-ingest seam documented (not built); no III audit runtime introduced; no audit-execution ADR.
 10. Validation (F5) confirms the revised pack catches the WDR-3 residue cases. — ✅ **F5 2026-05-26** (`what/artifacts/f5_validation_wdr3_residue.md`: 8/8 in-scope residue CAUGHT + 2 deferred on-record + CC negative control).
-11. AAR populated; `v0.4.0` annotated tag cut; STATE.md + this charter `status: completed`.
+11. AAR populated; `v0.4.0` annotated tag cut; STATE.md + this charter `status: completed`. — ✅ **F6 2026-05-27** (`what/artifacts/f6_dg_f_scorecard.md`: 11/11 ✅; charter frontmatter `status: active → completed` + `phase: 4 → 5` + `dg_f_closed: 2026-05-27` + `release_tag: "v0.4.0"`; AAR populated inline below; annotated `v0.4.0` tag cut at close-commit SHA — MD-B6-style contract-surface enumeration body).
 
 ## Risk Register
 | Risk | Severity | Mitigation |
@@ -159,12 +163,51 @@ III **stays semantic**. Mechanical audit *execution* stays in SiteForge (Gates 1
 - Relates to (does not block) Campaign E — the new web traps + corrections become inputs the SiteForge `iii/` wrapper consumes; the "III-tuned artifacts get better" thesis is shared.
 
 ## Completion Summary
-*Fill out when setting `status: completed`.*
+
+Campaign F ("Operation Tell") closed end-to-end at `v0.4.0` on 2026-05-27 with DG-F 11/11 GO. The `web_design` pack gained **Trap 6 (CWV-as-Design-Debt)** + **Trap 7 (AI-Slop Composition)**; Trap 3/4/5 were hardened (coverage-ceiling + SC 2.5.8 + semantic-heading on Trap 3; earned-credibility on Trap 4; precision fix token-vs-semantic-data on Trap 5); `source_diversity` axis lifted 3→4 via 14 citation URLs across 8 source clusters; composite re-scored **4.00 → 4.17**. 5 correction candidates **C-029..C-033** recorded in `what/artifacts/f3_correction_candidates.md` (candidates-only — canonical jsonl md5 `5adb0dfa38d9224649c3b2cba83852ae` (28 entries) **INVARIANT** end-to-end). ADR-002 §3 minor-bump wrapper sweep re-pinned 3 `web_design` carriers committed (VideoForge `3cc3191` + CanvasForge `97654e3` + wga `3bbfb7a`) + SiteForge edited-uncommitted (folds into in-flight ISS commit) + LPWhitepaper explicitly deferred (no `web_design`). **Boundary held**: no III audit runtime; Trap 6 reads existing Lighthouse JSON, never re-runs; no audit-execution ADR (count stays 7); ingest seam documented-only. F5 inspection-grade validation: **8/8** in-scope WDR-3 residue findings caught + 2 deferred on-record + ContextCommons negative control clean. Production pin advances `v0.3.0 → v0.4.0`; annotated tag cut at close-commit SHA.
 
 ## Campaign AAR
-*Mandatory before `status: completed`. See `how/templates/template_aar_lightweight.md`.*
-- **Worked**: _(pending execution)_
-- **Didn't**: _(pending)_
-- **Finding**: _(pending)_
-- **Change**: _(pending)_
-- **Follow-up**: _(pending)_
+
+*Populated inline at F6 close per Campaign A+B+C+D precedent. See `how/templates/template_aar_lightweight.md`.*
+
+- **Worked**:
+  - The **candidates-only posture** (operator decision 2026-05-25) preserved canonical jsonl md5 `5adb0dfa38d9224649c3b2cba83852ae` across all 7 missions (F0..F6) — verified at every mission close per the Verification Strategy invariant check. Hard-invariant discipline carried over cleanly from Campaign D.
+  - **ADR-002 §3 minor-bump review** absorbed the wrapper sweep cleanly across 4 carriers; per-wrapper mechanical edit shape was consistent (5-field flip + frontmatter refresh + tag flip) and replicated MD-A4's v0.2→v0.3 sweep with no rollback.
+  - **Boundary discipline held under operator pressure**: Trap 6 (CWV-as-Design-Debt) reads existing SiteForge Lighthouse JSON + attributes the breach but **never re-runs** (pack L127/L131/L165). F1+F2+F5 ran zero builds, zero audits — Campaign F bought reach without surface-area growth.
+  - **F5 inspection-grade validation** paralleled MD-A5 / MD-B5 cleanly without needing a build/audit run; 8/8 in-scope residue findings caught with exact pack-line citations; ContextCommons negative control confirms zero new false positives on a clean site.
+  - **Codename + scope confirmation at F0** + the 4 WDR artifacts as source-of-record kept Campaign F evidence-disciplined rather than aspirational; thin candidates correctly deferred (motion-absence refuted on wga+CC; responsive-neglect 1-vault mild).
+  - **Consumption-only ADR discipline** maintained — zero new III ADRs across all 7 missions (final count stays 7); mirrors the 9-of-11 Campaign D ratio. The pack revision is content-only; ADR-002/003/007 already governed the contract surface F4 + F3 + F2 exercised.
+  - **DG-F scorecard pattern from MD-B6** translated cleanly to a single-track campaign — 10-section shape, 11-criterion table, hard-invariant ledger pre/post, boundary-discipline coherence assertion. Audit anchor + close ceremony in one session per Campaign B+C+D precedent.
+
+- **Didn't**:
+  - **Graduation ceremony deferred** — zero canonical-frequency hits among C-030..C-033 (all 1-vault); only C-029 (`image_component_omits_dimensions`) is genuinely 2-vault (SS+wga) but ADR-003 §3 graduation still requires consumer-vault proposal step from own local store, not authored research. Canonical learning store grows zero entries in Campaign F.
+  - **SiteForge couldn't commit its re-pin** at F4 — in-flight ISS migration dirtied `iii/CLAUDE.md` with an unrelated SIS→ISS rename; operator folds the F4 pin into the ISS commit. SiteForge counts reviewed+re-pinned for DG-F crit 7 (DP4 ratification 2026-05-26) but its `iii/CLAUDE.md` remains edited-uncommitted at F6 close — out-of-vault audit asymmetry that resolves when ISS commit lands.
+  - **LPWhitepaper's wrapper review fired but re-pin deferred** — no `web_design` in `packs_used`; backward-compatible additive bump; LPWhitepaper stays at v0.3.0 and re-pins at own cadence (likely post-LiteratureForge migration chain per MD-X2 §6).
+  - Only **3 trap-hardenings + 1 axis remediation** (`source_diversity` 3→4, not 5) — academic source-type absent in the rubric §4 caps the axis at 4 absent peer-reviewed citations. Lifting to 5 would require citing arXiv/ACM/Springer accessibility/CWV research; deferred as not load-bearing for the campaign.
+  - **F4 mission ran without a dedicated session file** — the F4 work landed in two commits (`f49e821` v0.4.0 declare + `4cf72144` close bookkeeping) without intervening session ceremony in `how/sessions/history/2026-05/`. One-off audit-trail asymmetry; flagged forward to future close-ceremony hygiene (Follow-up item).
+  - **Ingest seam not built** — `wdr_web_design_pack_revision_spec.md` §5 explicitly documents the audit-signal-ingest seam as a future option only; Campaign F documents what it would look like and explicitly defers construction (intentional per charter §Boundary posture, not a miss).
+
+- **Finding**:
+  WDR-3's "3 already-high-quality, already-III-reviewed sites" empirical corpus (wga / ScienceStanley / ContextCommons) produced **thinner residue than a naïve hypothesis predicted**. The right scoping move was **candidates-only + thin-trap deferral**, not aspirational pack expansion. Two new traps and three hardenings were well-justified; five candidates were the right ceiling. **The single highest-value content change (Trap 7 AI-Slop Composition) was justified by the *Brand Gate 8 manual-only coverage seam*, not by sample prevalence** — SiteForge's 10-gate framework formally hands manual judgment to a human at Gate 8, but the "structural AI-slop silhouette" pattern is a learnable trap *if* it's framed as silhouette+content judgment together rather than silhouette alone. **Coverage-driven trap authorship is a viable pattern when the seam is well-documented**; Campaign F established this as a precedent for future pack revisions.
+
+- **Change**:
+  Pack-revision campaigns inherit a clean recipe — codify as a template at `how/templates/template_pack_revision_campaign.md` (future follow-up if multiple pack revisions queue):
+  1. **Recon WDR artifacts as source-of-record** (internal coverage map + external SOTA dossier + empirical gap ledger + revision spec + cross-vault architecture note where applicable) — Campaign F's `plan_web_design_deep_review_charter` planning mission produced 5 such artifacts before scope was locked.
+  2. **Trap landings + hardenings + axis remediation in one pack-edit mission** (Campaign F F1+F2 split this into 2 missions; future campaigns may consolidate where pack delta is smaller).
+  3. **Candidates-only correction recording** (`what/artifacts/<campaign>_correction_candidates.md` Markdown ledger; canonical jsonl untouched).
+  4. **ADR-002 §3 minor-bump wrapper sweep** at the version-declare commit SHA (`pinned_at_commit f49e821` for Campaign F).
+  5. **Inspection-grade validation paralleling MD-B5/F5** — re-walk the residue/gap-ledger against the revised pack with exact pack-line citations, with a negative-control site to confirm zero new false positives.
+  6. **DG-class close ceremony per `skill_session_close_ceremony.md`** + 10-section scorecard artifact mirroring `md_b6_dg_d_scorecard.md`.
+  This recipe is the natural template for the post-DG-D standalone `vault_maintenance` pack revision (carried forward from MD-B4) and for Campaign E's eventual generalized writing-III pack work.
+
+- **Follow-up**:
+  - **(a)** Graduation ceremony for **C-029** (`image_component_omits_dimensions`; 2-vault SS+wga) at next natural-frequency gate — triggered when a consumer vault re-observes the pattern from its own local RLHF store and proposes via ADR-008 `learning_store_graduation` cross_vault_request.
+  - **(b)** **C-030..C-033** await 2nd-vault evidence; C-032 (motion-absence) REFUTED on wga+CC and is unlikely to graduate; C-030/C-031/C-033 await organic 2nd-vault observation.
+  - **(c)** **`context_iii_vault_maintenance.md` pack revision** (post-DG-D standalone from MD-B4 `source_diversity = 2` finding; carried forward from MD-B6 §8 — apply the Campaign F recipe at next operator gate).
+  - **(d)** **SiteForge folds F4 pin into ISS commit** at SiteForge's own cadence; resolves the edited-uncommitted audit asymmetry.
+  - **(e)** **LPWhitepaper.aDNA wrapper re-pin** at own cadence, likely concurrent with Campaign E (post-LiteratureForge migration chain).
+  - **(f)** **Motion/interaction-absence + responsive-breakpoint candidate traps** stay deferred until cross-vault frequency emerges (operator gate).
+  - **(g)** **F4 audit-trail asymmetry** — flag forward to future close-ceremony hygiene: even bookkeeping-only commits (`v0.4.0` declare + close bookkeeping) benefit from a lightweight session file. Consider a `template_session_bookkeeping.md` for sub-1-hour mission slices that ship commits without full SITREP.
+  - **(h)** **Audit-signal-ingest seam construction** is v0.5+ territory (future Platform.aDNA integration); Campaign F documented what it would look like — not in immediate roadmap.
+  - **(i)** **Campaign E (generalized writing-III)** stays forward-seeded; opens when `LiteratureForge.aDNA` reaches its forge-BUILD phase per MD-X2 §6 — re-points LPWhitepaper `federation_ref` at that point.
+  - **(j)** **Push to remote** — operator-discretionary per workspace standing rules; III.aDNA sits 5 commits ahead of `origin/main` post-F6 (F3 candidates + F4 declare + F4 close + F5 validation + F6 close).
