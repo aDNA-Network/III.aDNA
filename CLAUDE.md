@@ -158,11 +158,11 @@ Canonical spec: `what/decisions/adr_002_consumer_federation_contract.md`
 |------|-------|-------------------|
 | `context_iii_inspect_procedures.md` | 4-modality INSPECT procedures reference | All consumers |
 | `context_iii_introspect_checks.md` | 7 INTROSPECT check definitions | All consumers |
-| `context_iii_domain_packs_web_design.md` | Web UI/UX traps (5 traps) | SiteForge, VideoForge |
+| `context_iii_domain_packs_web_design.md` | Web UI/UX traps (7 traps; +Trap 6 CWV-as-Design-Debt + +Trap 7 AI-Slop Composition landed at Campaign F F1 2026-05-25; composite 4.17 at v0.4.0) | SiteForge, VideoForge, CanvasForge, wga |
 | `context_iii_whitepaper_communication.md` | Technical document traps | lattice-labs, WilhelmAI |
 | `context_iii_canvas_visual.md` | Canvas/deck/visual traps | CanvasForge |
 | `context_iii_vault_maintenance.md` | Vault staleness/quality traps | All org-vaults |
-| `iii_corrections_canonical.jsonl` | 26-entry graduated learning store | All consumers |
+| `iii_corrections_canonical.jsonl` | 28-entry graduated learning store (md5 `5adb0dfa…`; invariant since MD-B2 2026-05-21) | All consumers |
 
 **Per-consumer extensions** (live in consumer vault `iii/what/context/`): vault-specific trap packs and local corrections forks. Graduation ceremony: per-vault corrections with frequency ≥ 3, acceptance ≥ 80% → PR to upstream canonical via ADR-003 protocol.
 
