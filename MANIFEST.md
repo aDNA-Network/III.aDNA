@@ -67,7 +67,7 @@ III.aDNA/
 ├── what/
 │   ├── artifacts/        # iii_airlock_standard_spec.md v0.2.0 + iii_airlock_request_schema.yaml (JSON Schema Draft 2020-12)
 │   ├── context/
-│   │   └── core_domain_packs/   # 7 canonical packs + learning store
+│   │   └── core_domain_packs/   # 8 canonical packs + learning store (+context_iii_iss_surfaces.md at Campaign G G1 2026-05-29)
 │   ├── decisions/         # ADRs 000–004 (founding set); ADR-002 + ADR-003 amended at MB-7 (Amendment History footers)
 │   ├── modules/           # 8 composable III modules (.md + .module.yaml each)
 │   └── lattices/          # lattice_iii_verification_oracle.lattice.yaml v1.2.1 (reviewed_output retyped at MB-7)

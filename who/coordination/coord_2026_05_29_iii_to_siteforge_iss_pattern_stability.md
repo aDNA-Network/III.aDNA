@@ -1,7 +1,8 @@
 ---
 type: coordination
-artifact_class: cross_vault_memo_draft
-status: draft   # DRAFT — fires at G0 of Campaign G (after DP-1 open), NOT at planning-mission execution
+artifact_class: cross_vault_memo
+status: sent   # FIRED at Campaign G G0-close 2026-05-29 (DP-1 open + DP-2 coord-firing set); SiteForge confirm pending
+sent: 2026-05-29
 from_vault: III.aDNA
 from_persona: agent_argus
 to_vault: SiteForge.aDNA
@@ -9,12 +10,12 @@ to_persona: agent_siteforge_native
 created: 2026-05-29
 campaign: campaign_g_consolidation
 subject: "ISS pattern-stability confirm + commit-SHA pin + ISS-pack draft review invite + 2 adaptation-guide-doc candidates"
-tags: [coordination, draft, campaign_g, operation_atrium, iii_to_siteforge, iss_pattern_stability]
+tags: [coordination, sent, campaign_g, operation_atrium, iii_to_siteforge, iss_pattern_stability]
 ---
 
-# DRAFT coord — III → SiteForge: ISS pattern-stability + pack-review invite
+# Coord — III → SiteForge: ISS pattern-stability + pack-review invite
 
-> **DRAFT.** Fires at Campaign G **G0** after the operator opens the campaign (DP-1). Not sent at planning-mission execution.
+> **SENT 2026-05-29** at Campaign G G0-close (after the operator opened the campaign at DP-1). Awaiting SiteForge reply on the pattern-stability confirm + commit-SHA pin.
 
 ## Context
 

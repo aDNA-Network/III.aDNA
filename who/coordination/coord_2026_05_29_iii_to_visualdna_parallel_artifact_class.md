@@ -1,7 +1,8 @@
 ---
 type: coordination
-artifact_class: cross_vault_memo_draft
-status: draft
+artifact_class: cross_vault_memo
+status: sent   # FIRED at Campaign G G0-close 2026-05-29 (DP-2 coord-firing set — operator elected to send despite the draft's droppable-as-redundant flag)
+sent: 2026-05-29
 from_vault: III.aDNA
 from_persona: agent_argus
 to_vault: VisualDNA.aDNA
@@ -9,12 +10,12 @@ to_persona: pygmalion
 created: 2026-05-29
 campaign: campaign_g_consolidation
 subject: "ISS surfaces ≠ visual bundles — parallel-but-distinct artifact classes; bundle-review stays track-deferred to v1.0 GA"
-tags: [coordination, draft, campaign_g, operation_atrium, iii_to_visualdna, parallel_artifact_class]
+tags: [coordination, sent, campaign_g, operation_atrium, iii_to_visualdna, parallel_artifact_class]
 ---
 
-# DRAFT coord — III → VisualDNA: parallel artifact-class acknowledgement
+# Coord — III → VisualDNA: parallel artifact-class acknowledgement
 
-> **DRAFT.** Fires at Campaign G **G0** after DP-1. Not sent at planning-mission execution. (Optional — VisualDNA was already acknowledged at the 2026-05-28 coord intake; this is a courtesy re-affirm. Operator may drop at DP-2 as redundant.)
+> **SENT 2026-05-29** at Campaign G G0-close (DP-2 coord-firing set). Informational — no ask; re-affirms ISS ≠ visual-bundle artifact classes and that bundle-review stays deferred to VisualDNA v1.0 GA.
 
 ## Context
 
