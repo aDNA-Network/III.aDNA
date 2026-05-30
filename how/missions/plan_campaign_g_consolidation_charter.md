@@ -3,17 +3,18 @@ plan_id: plan_campaign_g_consolidation_charter
 type: plan
 title: "Campaign G — Consolidation & ISS-Surface III Pack (Operation Atrium) — campaign charter authoring (planning mission)"
 owner: stanley
-status: planned
+status: completed   # EXECUTED 2026-05-29 — 8 deliverables authored; charter draft awaits DP-1 operator gate
 mission_class: campaign_planning_research
 campaign: null   # standalone — designs a not-yet-opened campaign (no III campaign is currently open; Campaign F closed 2026-05-27; MX-1 closed 2026-05-28; VisualDNA coord intake closed 2026-05-28)
 designs_campaign: campaign_g_consolidation   # proposed slug; proposed letter Campaign G (E reserved for generalized writing-III gated on LiteratureForge forge-BUILD; F closed)
 codename: "Operation Atrium"                 # ratified at plan-mode entry 2026-05-28; sibling-callback to Campaign F "Operation Tell"; atrium = the chamber where inputs meet and are composed before routing
 disposition: standalone_planning
 created: 2026-05-28
-updated: 2026-05-28
+updated: 2026-05-29
 last_edited_by: agent_argus
 authored_at_session: session_stanley_20260528_iii_adna_campaign_g_planning_charter
-deliverables_landed: 0   # planned; updated to N at execution close
+executed_at_session: session_stanley_20260529_iii_adna_campaign_g_planning_execution
+deliverables_landed: 8   # EXECUTED 2026-05-29 — 5 recon artifacts + audit-ingest note + charter draft + architecture note (w/ 4 coord drafts)
 designs_campaign_charter_at: how/campaigns/campaign_g_consolidation/campaign_g_consolidation.md   # created at execution per Campaign F precedent
 boundary_posture: boundary_preserving   # III stays semantic; SiteForge keeps ISS runtime + audit execution; III packs against the contract surface, ingests audit signals only as documented seam
 evidence_method: inspection_grade        # recon = read SiteForge ISS lib + ADR-028/029 + 2 live consumer wrappers + Campaign F WDR artifacts; no live builds, no audit runs, no III runtime construction
