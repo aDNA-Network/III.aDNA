@@ -4,14 +4,14 @@ type: campaign
 title: "Campaign G — Consolidation & ISS-Surface III Pack (Operation Atrium)"
 codename: "Operation Atrium"
 owner: stanley
-status: active           # OPENED at DP-1 2026-05-29; DP-2 ratified; G1 anchor pack landed (DP-3 ratified 2026-05-30); G2 (T3 learning_store §Sources sd3→4 + T2 audit-ingest seam landed + ISS-pack lattice registration 1.2.5→1.2.6) COMPLETE 2026-05-30; G3 pending
-phase: G2
+status: active           # OPENED at DP-1 2026-05-29; DP-2 ratified; G1 anchor pack landed (DP-3 ratified 2026-05-30); G2 COMPLETE 2026-05-30; G3 (ISS candidate ledger ISS-C6/C8/C9 + DP-4 candidates-only) COMPLETE 2026-05-30; G4 pending
+phase: G3
 mission_count: 7         # G0..G6
 estimated_sessions: 7
 estimation_class: calibrated_against_campaign_f
 priority: high
 created: 2026-05-29
-updated: 2026-05-30       # G2 close — T3 + T2 + lattice oracle registration; canonical jsonl md5 INVARIANT; III stays v0.4.1; lattice 1.2.5→1.2.6
+updated: 2026-05-30       # G3 close — ISS candidate ledger (3 axes) + DP-4 RESOLVED candidates-only (no C-029 consumer proposal); canonical jsonl md5 INVARIANT; III stays v0.4.1; lattice 1.2.6
 last_edited_by: agent_argus
 authored_by_mission: plan_campaign_g_consolidation_charter
 predecessor: campaign_web_design_deep_review   # Campaign F (Operation Tell); v0.4.0
@@ -93,9 +93,9 @@ graduation ceremony for C-029 (→ T4); `learning_store` deepening (→ T3); aud
 ### Phase G3 — Candidate Ledger + Conditional Graduation
 | Mission | Title | Sessions | Deps | Status |
 |---|---|---|---|---|
-| G3 | ISS candidate ledger (≥3 candidates, ≥2-vault evidence where present) + **conditional** C-029 graduation fire at DP-4 | 1 | G2 | pending |
+| G3 | ISS candidate ledger (≥3 candidates, ≥2-vault evidence where present) + **conditional** C-029 graduation fire at DP-4 | 1 | G2 | ✅ **CLOSED 2026-05-30** — `g3_iss_candidate_ledger.md` landed (3 ISS trap-axis candidates ISS-C6/C8/C9, honest 0-vault-live/latent labels); **DP-4 resolved candidates-only** (no consumer C-029 proposal; canonical INVARIANT) |
 
-**Exit gate:** candidate ledger authored (Markdown, `f3`-shape); **DP-4** — IF consumer-vault C-029 proposal present → graduation ceremony fires (canonical md5 ROTATES with full provenance in DG-G scorecard); ELSE candidates-only ratified (canonical INVARIANT). **The sole non-invariant path in Campaign G.**
+**Exit gate:** candidate ledger authored (Markdown, `f3`-shape); **DP-4** — IF consumer-vault C-029 proposal present → graduation ceremony fires (canonical md5 ROTATES with full provenance in DG-G scorecard); ELSE candidates-only ratified (canonical INVARIANT). **The sole non-invariant path in Campaign G.** ✅ **MET** — ledger landed (ISS-C6 SR-under-glass + ISS-C8 touch-target + ISS-C9 gate-path, each substrate-grounded, all 0-vault-live; §"Reinforced landed traps" maps EGL-1..6 to landed {1,2,3,4,5,7}; §DP-4 disposition documents the candidates-only determination). DP-4 = **candidates-only**: aggregation index holds only 2 VideoForge seeds (C-027/C-028), zero C-029; MoleculeForge store 0 bytes; VisualDNA pre-GA → **canonical jsonl `5adb0dfa…`/28 INVARIANT** (charter R2-expected path). DG-G crit **5 + 6 satisfied**.
 
 ### Phase G4 — Minor Bump + Wrapper Sweep
 | Mission | Title | Sessions | Deps | Status |
@@ -125,7 +125,7 @@ graduation ceremony for C-029 (→ T4); `learning_store` deepening (→ T3); aud
 | DP-1 | G0 close | **Open Campaign G** (charter draft → active) | ✅ **CLEARED 2026-05-29** (operator "let's continue") |
 | DP-2 | G0 close | Ratify trap selection (≥5 from 9) + T3 re-scope + adopter-landscape scope (include ZenZachary?) + coord-memo firing set | ✅ **CLEARED 2026-05-29** — trap set **6 core {1,2,3,4,5,7}** (a11y 6/8 evaluated at G1 re-inspection, added iff confirmed); **T3 KEEP** as polish (G2); ZenZachary **INCLUDED** as primary G5 validation corpus; coord-firing set = **SiteForge + VisualDNA** (ISS-adopters + LiteratureForge HELD, own cadence) |
 | DP-3 | G1 close | Ratify landed trap set + a11y-trap inclusion (6/8) | ✅ **CLEARED 2026-05-30** — operator "let's continue" ratifies the 6 landed traps {1,2,3,4,5,7} + composite 4.00 + a11y Traps 6/8 held-as-candidates (evidence-locked from the G1 ZenZachary re-inspection) |
-| DP-4 | G3 | **Conditional graduation** — fire C-029 IF consumer proposal present (canonical md5 rotation gate) ELSE candidates-only | pending (highest-stakes) |
+| DP-4 | G3 | **Conditional graduation** — fire C-029 IF consumer proposal present (canonical md5 rotation gate) ELSE candidates-only | ✅ **CLEARED 2026-05-30 — candidates-only** (verified: no consumer-vault C-029 proposal — aggregation index = 2 VideoForge seeds only, zero C-029; MoleculeForge local store 0 bytes; VisualDNA pre-v1.0-GA). Canonical md5 `5adb0dfa…`/28 **INVARIANT**; C-029 stays in `f3_correction_candidates.md`. The charter R2-expected outcome; operator-ratified at close. Evidence: `g3_iss_candidate_ledger.md` §DP-4 |
 | DP-5 | G6 | DG-G GO/NO-GO | pending |
 | DP-6 | G6 | Cut annotated `v0.5.0` tag | pending |
 
