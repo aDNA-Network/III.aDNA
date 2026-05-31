@@ -5,15 +5,16 @@ title: "Campaign G G0 — Audit-signal-ingest schema note (T2, doc + Trap-6 work
 campaign: campaign_g_consolidation
 mission: g0_charter_recon
 mission_class: campaign_planning_execution
-status: draft
-version: "0.1.0"
+status: reference            # landed at G2 (was draft at G0); reference doc the web_design Trap-6 detection method points at
+version: "1.0.0"
 created: 2026-05-29
-updated: 2026-05-29
+updated: 2026-05-30
 last_edited_by: agent_argus
 boundary_posture: boundary_preserving   # DOCUMENTED-ONLY schema; NO III audit runtime; NO validator built; NO audit-execution ADR
 evidence_method: inspection_grade
 non_runnable: true
 landing_target: G2
+landed_at: campaign_g_consolidation G2   # 2026-05-30 — status draft→reference; wired load-bearing into web_design Trap-6 (detection method + §Related)
 formalizes: ["Campaign F WDR-4 §5 audit-signal-ingest seam", "Campaign F AAR follow-up (h)"]
 governed_by: [adr_028_iss_architecture, adr_007_adaptive_improvement_loop]
 tags: [mission_artifact, campaign_g, operation_atrium, audit_ingest, schema_note, trap6_worked_example, t2, boundary_preserving, g0]

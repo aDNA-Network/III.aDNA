@@ -4,14 +4,14 @@ type: campaign
 title: "Campaign G — Consolidation & ISS-Surface III Pack (Operation Atrium)"
 codename: "Operation Atrium"
 owner: stanley
-status: active           # OPENED at DP-1 operator gate 2026-05-29 ("let's continue"); DP-2 ratified same session (trap set {1,2,3,4,5,7}; T3 keep; fire SiteForge+VisualDNA memos); G1 in flight
-phase: G1
+status: active           # OPENED at DP-1 2026-05-29; DP-2 ratified; G1 anchor pack landed (DP-3 ratified 2026-05-30); G2 (T3 learning_store §Sources sd3→4 + T2 audit-ingest seam landed + ISS-pack lattice registration 1.2.5→1.2.6) COMPLETE 2026-05-30; G3 pending
+phase: G2
 mission_count: 7         # G0..G6
 estimated_sessions: 7
 estimation_class: calibrated_against_campaign_f
 priority: high
 created: 2026-05-29
-updated: 2026-05-29       # DP-1 open + DP-2 ratification 2026-05-29
+updated: 2026-05-30       # G2 close — T3 + T2 + lattice oracle registration; canonical jsonl md5 INVARIANT; III stays v0.4.1; lattice 1.2.5→1.2.6
 last_edited_by: agent_argus
 authored_by_mission: plan_campaign_g_consolidation_charter
 predecessor: campaign_web_design_deep_review   # Campaign F (Operation Tell); v0.4.0
@@ -79,16 +79,16 @@ graduation ceremony for C-029 (→ T4); `learning_store` deepening (→ T3); aud
 ### Phase G1 — ISS-Surface Pack Landing (ANCHOR)
 | Mission | Title | Sessions | Deps | Status |
 |---|---|---|---|---|
-| G1 | Author `context_iii_iss_surfaces.md` (≥5 traps) + a11y re-inspection (Traps 6/8) + ADR-007 §3 score | 1-2 | G0 | 🔄 in-flight 2026-05-29 (DP-2 trap set: 6 core {1,2,3,4,5,7}) |
+| G1 | Author `context_iii_iss_surfaces.md` (≥5 traps) + a11y re-inspection (Traps 6/8) + ADR-007 §3 score | 1-2 | G0 | ✅ **CLOSED 2026-05-30** — pack landed (6 traps {1,2,3,4,5,7}; composite 4.00); a11y Traps 6/8 held as candidates (evidence-locked); **DP-3 ratified** (operator "let's continue") |
 
-**Exit gate:** pack landed with ≥5 traps each carrying Description/Example/Where-Hides/Severity/Detection + substrate citation; quality_metric scored (target composite ≥4.0); DP-3 trap-set ratified; canonical jsonl INVARIANT.
+**Exit gate:** pack landed with ≥5 traps each carrying Description/Example/Where-Hides/Severity/Detection + substrate citation; quality_metric scored (target composite ≥4.0); DP-3 trap-set ratified; canonical jsonl INVARIANT. ✅ **MET** (6 traps; composite 4.00; DP-3 cleared; jsonl `5adb0dfa…`/28 invariant).
 
 ### Phase G2 — learning_store Deepening + Audit-Ingest Seam
 | Mission | Title | Sessions | Deps | Status |
 |---|---|---|---|---|
-| G2 | T3 (`learning_store` §Sources formalization, sd 3→4) + T2 (audit-ingest schema note + Trap-6 worked example) + optional lattice 1.2.5→1.2.6 oracle registration | 1 | G1 | pending |
+| G2 | T3 (`learning_store` §Sources formalization, sd 3→4) + T2 (audit-ingest schema note + Trap-6 worked example) + optional lattice 1.2.5→1.2.6 oracle registration | 1 | G1 | ✅ **CLOSED 2026-05-30** — T3 + T2 + lattice registration all landed (decisions: register-now + wired-T2) |
 
-**Exit gate:** `learning_store` re-scored ~4.00 (citation-add only; canonical INVARIANT); audit-ingest note landed (boundary held, no runtime); lattice yaml registered if ISS pack added to oracle.
+**Exit gate:** `learning_store` re-scored ~4.00 (citation-add only; canonical INVARIANT); audit-ingest note landed (boundary held, no runtime); lattice yaml registered if ISS pack added to oracle. ✅ **MET** — `learning_store` **3.83→4.00** (sd 3→4; §Sources 5-cluster MX-1 replay; canonical INVARIANT); `g0_audit_ingest_schema_note.md` landed `draft→reference` v1.0.0 + **wired load-bearing** into `web_design` Trap-6 detection + §Related (boundary held: no runtime/validator); lattice **1.2.5→1.2.6** (`iss_surfaces` registered in `pack_assignment` + `depth_assignment`). DG-G crit **3 + 4 satisfied**.
 
 ### Phase G3 — Candidate Ledger + Conditional Graduation
 | Mission | Title | Sessions | Deps | Status |
@@ -124,7 +124,7 @@ graduation ceremony for C-029 (→ T4); `learning_store` deepening (→ T3); aud
 |---|---|---|---|
 | DP-1 | G0 close | **Open Campaign G** (charter draft → active) | ✅ **CLEARED 2026-05-29** (operator "let's continue") |
 | DP-2 | G0 close | Ratify trap selection (≥5 from 9) + T3 re-scope + adopter-landscape scope (include ZenZachary?) + coord-memo firing set | ✅ **CLEARED 2026-05-29** — trap set **6 core {1,2,3,4,5,7}** (a11y 6/8 evaluated at G1 re-inspection, added iff confirmed); **T3 KEEP** as polish (G2); ZenZachary **INCLUDED** as primary G5 validation corpus; coord-firing set = **SiteForge + VisualDNA** (ISS-adopters + LiteratureForge HELD, own cadence) |
-| DP-3 | G1 close | Ratify landed trap set + a11y-trap inclusion (6/8) | pending (this session terminates here) |
+| DP-3 | G1 close | Ratify landed trap set + a11y-trap inclusion (6/8) | ✅ **CLEARED 2026-05-30** — operator "let's continue" ratifies the 6 landed traps {1,2,3,4,5,7} + composite 4.00 + a11y Traps 6/8 held-as-candidates (evidence-locked from the G1 ZenZachary re-inspection) |
 | DP-4 | G3 | **Conditional graduation** — fire C-029 IF consumer proposal present (canonical md5 rotation gate) ELSE candidates-only | pending (highest-stakes) |
 | DP-5 | G6 | DG-G GO/NO-GO | pending |
 | DP-6 | G6 | Cut annotated `v0.5.0` tag | pending |

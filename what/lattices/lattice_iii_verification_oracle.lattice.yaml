@@ -1,6 +1,6 @@
 lattice:
   name: iii_verification_oracle
-  version: "1.2.5"
+  version: "1.2.6"
   lattice_type: skill
   description: >
     III Review as a composable semantic verification oracle. Accepts documents
@@ -77,6 +77,10 @@ lattice:
           "*/site/src/**/*.css": ["core", "web_design"]
           "*/site/src/content/**": ["core", "web_design"]
           "how/campaigns/campaign_siteforge/**": ["core", "web_design", "strategy"]
+          # ISS operator-decision-gate domain (Campaign G G2 — registers the iss_surfaces pack into dispatch)
+          "*/iss/**/*.output.json": ["core", "iss_surfaces"]
+          "*/iss/**/*.html": ["core", "iss_surfaces"]
+          "*/iss/**/CLAUDE.md": ["core", "iss_surfaces"]
           # General context
           "what/context/*": ["core"]
           # Fallback
@@ -95,6 +99,8 @@ lattice:
           "*/site/src/utils/*": "standard"
           "*/site/src/components/**": "shallow"
           "*/site/src/content/**": "shallow"
+          "*/iss/**/*.output.json": "standard"
+          "*/iss/**/*.html": "standard"
           "*": "shallow"
         frontmatter_dispatch:
           type_to_packs:
@@ -539,3 +545,32 @@ lattice:
       as standalone post-DG-D mission (NOT in Campaign D scope). No
       graduation fires at MD-B4 — canonical jsonl md5
       `5adb0dfa38d9224649c3b2cba83852ae` is invariant across this mission.
+
+  g2_changelog:
+    version_bump: "1.2.5 → 1.2.6"
+    date: 2026-05-30
+    mission: campaign_g_consolidation G2
+    additions:
+      - "dispatch node `pack_assignment`: registered the `iss_surfaces` pack (Campaign G G1 anchor) into dispatch — `*/iss/**/*.output.json` + `*/iss/**/*.html` + `*/iss/**/CLAUDE.md` → [\"core\", \"iss_surfaces\"]; ISS operator-decision-gate artifacts now auto-route to the new pack instead of falling through to the bare-core fallback"
+      - "dispatch node `depth_assignment`: `*/iss/**/*.output.json` + `*/iss/**/*.html` → `standard` (gate-quality review is standard-depth, not the shallow fallback)"
+    rewires: []
+    module_refs_added: []
+    rationale: >
+      Patch-level bump (1.2.5 → 1.2.6) carrying additive dispatch-routing rules
+      only — no node added, no edge added, no semantic change to module IO or
+      lattice topology. Campaign G G1 landed the `context_iii_iss_surfaces.md`
+      pack (6 traps {1,2,3,4,5,7}; composite 4.00) but left it unreachable by
+      the auto-dispatcher; this G2 patch wires ISS gate artifacts (output JSON
+      per ADR-028 AD-7, rendered gate HTML, and the `iss/` wrapper config) to
+      the pack so a review of an authored gate loads `iss_surfaces` alongside
+      `core`. Boundary held: the lattice only *routes to* the pack; it adds no
+      ISS runtime and no audit runtime (the pack itself reads the on-disk
+      contract surface and never renders or re-runs a gate). Per ADR-002 §3,
+      patches stay transparent to consumers; no wrapper re-pin is forced by
+      this change — the ISS-adopter wrappers (MoleculeForge + WilhelmAI +
+      ZenZachary) re-pin at G4 only IF they add `iss_surfaces` to `packs_used`.
+      III semver stays v0.4.1 (the v0.5.0 minor bump + ADR-002 §3 wrapper sweep
+      are G4). Canonical jsonl md5 `5adb0dfa38d9224649c3b2cba83852ae` (28
+      entries) is invariant across this mission; zero new III ADR (ADR-009
+      "ISS-Surface Artifact Class" stays REJECTED — ISS is a consumed pattern
+      from ADR-028/029).

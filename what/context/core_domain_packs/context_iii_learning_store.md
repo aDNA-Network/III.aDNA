@@ -3,9 +3,9 @@ type: context_guide
 topic: iii_domain_packs
 subtopic: learning_store
 created: 2026-04-03
-updated: 2026-05-20
-context_version: "1.1"
-token_estimate: ~1700
+updated: 2026-05-30
+context_version: "1.2"
+token_estimate: ~1900
 last_edited_by: agent_argus
 tags: [context, iii-review, learning-store, corrections, calibration, vaas, rlhf, adaptive_loop, adr_005, adr_007]
 banner: "who/assets/banners/banner_context_guide.jpg"
@@ -19,15 +19,23 @@ quality_metric:
   scored_at: 2026-05-20
   scored_by: agent_argus
   scoring_mission: campaign_d_federation_adaptive_loop MD-B1
+  re_scored_at: 2026-05-30
+  re_scored_by: agent_argus
+  re_scoring_mission: campaign_g_consolidation G2
   signal_density: 4
   actionability: 4
   coverage_uniformity: 4
-  source_diversity: 3
+  source_diversity: 4
   cross_topic_coherence: 5
   graduation_yield: 3
-  composite: 3.83
+  composite: 4.00
   floor_check: passed
-  notes: "First per-pack quality score under ADR-007 §3 six-axis rubric (MD-B1 exemplar). Pack is loop-meta: it governs the learning-store substrate the rubric reads. MD-B4 will score remaining 6 canonical packs against this exemplar."
+  prior_score:
+    scored_at: 2026-05-20
+    scoring_mission: campaign_d_federation_adaptive_loop MD-B1
+    source_diversity: 3
+    composite: 3.83
+  notes: "G2 (Campaign G T3) citation-hardening re-score: source_diversity 3→4 after formalizing the ~21 embedded cross-refs into a structured §Sources & Citations section (5 internal source clusters; principled-4 reflexive-pack ceiling, mirroring MX-1 vault_maintenance + web_design F2). composite 3.83→4.00 = (4+4+4+4+5+3)/6 = 24/6. All other axes HELD — citation-add only; no trap/detection redefinition (matches MX-1 scope discipline). graduation_yield held at 3 (deliberately NOT collapsed to the gy=1 'measurement artifact' ADR-007 §3.6 assigns trap-packs with zero PACK_DELTA_LANDED records): learning_store is the loop-meta substrate pack that OPERATES the graduation machinery, not a graduation TARGET — its gy reflects the real graduation throughput it governs (5 canonical graduations C-001/C-002/C-005/C-027/C-028 flowed through this pack's CorrectionLifecycle), genuinely mid-strength. Original MD-B1 exemplar note: first per-pack score under ADR-007 §3; pack is loop-meta (governs the learning-store substrate the rubric reads)."
 ---
 
 # III Learning Store — Schema & Protocol
@@ -188,6 +196,39 @@ This forms a bounded chain lattice with `sup(a,b) = max(a,b)`, mirroring VaaS's 
 - Check for stale entries (patterns from documents that have been rewritten)
 - Verify graduation candidates are correctly identified
 - Source review: `self_review` — tracked in corrections JSONL
+
+## Sources & Citations
+
+Internal grounding for the schema + lifecycle protocol + quality-metric machinery this pack defines (the `source_diversity` corpus). `learning_store` is a **reflexive, loop-meta pack**: its subject IS the III learning-store substrate — the corrections store, the CorrectionLifecycle, and the rubric that scores every pack (including this one). Its citation set is therefore correctly internal-source-heavy. External knowledge-management / organizational-memory literature was evaluated and deferred at G2 (2026-05-30) as non-load-bearing — the same principled-4 ceiling MX-1 set for `context_iii_vault_maintenance.md` and F2 set for `context_iii_domain_packs_web_design.md`. (Until G2 these citations lived embedded inline — ~21 cross-refs scattered through the body; T3 formalizes them into the structure below without adding or redefining any trap/protocol step.)
+
+### Internal contracts (III canonical ADRs)
+
+1. **`what/decisions/adr_003_learning_store_ownership.md`** §3 — the graduation ceremony (frequency ≥ 3 + acceptance ≥ 80%; canonical-vs-consumer-local store boundary: consumer edits never push automatically, canonical receives entries only via the ceremony) + §3.6 (≥2-vault elevated-scrutiny queue at cross-fork frequency ≥50). Grounds: § Lifecycle Protocol step 3 (Graduation), § Corrections JSONL Schema (canonical-vs-per-consumer location split), the canonical/local read split in step 1 (Injection).
+2. **`what/decisions/adr_005_rlhf_signal_channel.md`** §2 (required-min `rlhf_signal_type`/`rlhf_session_id`/`rlhf_captured_at` + optional-open `rlhf_*` fields) + §3 (`rlhf_consumer_namespace.<vault>.<field>` consumer namespace). Grounds: § Corrections JSONL Schema (all `rlhf_*` rows), § Lifecycle Protocol step 2 (Accumulation — the additive `rlhf_*` append).
+3. **`what/decisions/adr_007_adaptive_improvement_loop.md`** §1 (the six-stage CorrectionLifecycle state machine + two terminal-non-graduated states) + §3 (the six-axis per-pack rubric this pack's own `quality_metric` is scored against) + §3.6 amendment (MD-B6 2026-05-25 — graduation_yield credits packs by PACK_DELTA_LANDED stage marker + graduation-memo `pack_delta_target`, not by floor-matching `graduated_to: "core"`). Grounds: § Lifecycle Protocol (every transition annotation), § 3.5 Per-pack quality metric, this pack's own `quality_metric` frontmatter (incl. the graduation_yield-held-at-3 rationale).
+4. **`what/decisions/adr_008_cross_vault_aggregation.md`** — the cross-vault RLHF aggregation contract (boundary-crossing field set + ≥2-vault aggregation feeding ADR-003 §3.6; transport = `learning_store_graduation` cross_vault_request over the v0.3 airlock §4.3). Grounds: § Corrections JSONL Schema (cross-vault provenance fields), the federation framing of the canonical/local split.
+
+### Internal procedures (III canonical skills)
+
+5. **`how/skills/skill_iii_review.md`** — the orchestration that reads this store at INSPECT start and writes it at IMPROVE end; **Step 3b ACCUMULATE** is the read/write edge of the adaptive loop this pack specifies. Grounds: § Lifecycle Protocol steps 1 (Injection) + 2 (Accumulation), § Architecture diagram (inject → accumulate → graduate cycle).
+6. **`how/skills/skill_session_close_ceremony.md`** — the cascade-bookkeeping discipline under which graduation md5-rotations + score-changes are committed (STATE.md + charter + pack in the SAME commit). Grounds: § Lifecycle Protocol step 3 (graduation as a ceremony, not an ad-hoc edit), the canonical-store md5-rotation discipline.
+7. **`how/skills/skill_aggregation_index_intake.md`** — the ADR-008 §3.2 intake ceremony (one record per received `learning_store_graduation` proposal, keyed by normalized (trap, pattern) + originating_vault; receiver-side, read-only against canonical). Grounds: § Lifecycle Protocol step 3 (the upstream-receive half of graduation), § Corrections JSONL Schema (cross-vault proposal provenance).
+
+### Cross-campaign precedent
+
+8. **Campaign D MD-B1** (`what/artifacts/iii_adaptive_improvement_loop_spec.md` provenance) — the first per-pack `quality_metric` score under ADR-007 §3; **this pack is the scoring exemplar** the other six canonical packs were scored against. Grounds: § 3.5 Per-pack quality metric, this pack's frontmatter `prior_score`.
+9. **Campaign D MD-B2** — first canonical jsonl md5 rotation (`dde2cbd…` → `5adb0dfa…`) under the graduation ceremony; the rotation-with-provenance discipline. Grounds: § Lifecycle Protocol step 3 (md5 rotation), § Token Efficiency (cap-and-graduate).
+10. **Campaign D MD-B4** (`what/artifacts/md_b4_7_pack_pilot_report.md`) — the 7-pack scoring pilot that surfaced the graduation_yield measurement-artifact finding (resolved at MD-B6 via ADR-007 §3.6); the empirical basis for this pack's graduation_yield-held-at-3 note. Grounds: § 3.5 Per-pack quality metric, frontmatter `notes`.
+11. **Campaign D MD-B6** (`what/artifacts/md_b6_dg_d_scorecard.md`) + **MX-1** (`what/artifacts/mx1_validation_self_review.md`) — the DG scorecard shape + the citation-hardening recipe (structured §Sources, principled-4 ceiling) this very section replays. Grounds: § Sources preamble, the principled-4 ceiling rationale below.
+
+### The canonical artifact itself
+
+12. **`what/context/core_domain_packs/iii_corrections_canonical.jsonl`** — the 28-entry upstream store (md5 `5adb0dfa38d9224649c3b2cba83852ae`; 5 graduated: C-001/C-002/C-005/C-027/C-028) this schema documents. The pack and its artifact are co-located by design. Grounds: § Corrections JSONL Schema (every field row), § Example Entry.
+13. **`what/artifacts/iii_adaptive_improvement_loop_spec.md`** §5 — the full CorrectionLifecycle state-machine reference the § Lifecycle Protocol four steps execute against. Grounds: § Lifecycle Protocol preamble + every transition annotation.
+
+### Citation ceiling rationale (principled-4)
+
+The `source_diversity` rubric (`adr_007_adaptive_improvement_loop.md` §3 + `how/skills/skill_context_quality_audit.md` source-diversity definition) reserves the **5**-score for source sets that include peer-reviewed academic literature alongside vendor/practitioner/empirical sources. `learning_store` is a **reflexive, loop-meta pack** — its subjects ARE III's own corrections substrate, ADRs, and lifecycle machinery; the academically-recognized literature for "non-parametric correction stores" (the VaaS corrections-list lineage is already cited in § VaaS Integration Mapping; broader active-learning / RLHF literature sits behind ADR-005's own grounding) is either already embedded or at the wrong abstraction layer for an aDNA-internal schema doc. At G2 the operator-approved scope was citation-formalization, not external-citation-chasing: padding a reflexive schema pack with general active-learning papers would *reduce* signal density, not increase load-bearing source diversity. The principled ceiling is **4**, mirroring MX-1 `vault_maintenance` and F2 `web_design` (both capped at 4 absent load-bearing academic citations).
 
 ## Related
 
