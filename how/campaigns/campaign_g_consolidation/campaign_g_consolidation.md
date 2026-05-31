@@ -4,14 +4,14 @@ type: campaign
 title: "Campaign G — Consolidation & ISS-Surface III Pack (Operation Atrium)"
 codename: "Operation Atrium"
 owner: stanley
-status: active           # OPENED at DP-1 2026-05-29; DP-2 ratified; G1 anchor pack landed (DP-3 ratified 2026-05-30); G2 COMPLETE 2026-05-30; G3 (ISS candidate ledger ISS-C6/C8/C9 + DP-4 candidates-only) COMPLETE 2026-05-30; G4 pending
-phase: G3
+status: active           # OPENED at DP-1 2026-05-29; DP-2 ratified; G1 landed (DP-3 ratified 2026-05-30); G2 COMPLETE 2026-05-30; G3 (ISS candidate ledger + DP-4 candidates-only) COMPLETE 2026-05-30; G4 (v0.5.0 minor bump + ADR-002 §3 wrapper sweep; 3 carriers re-pinned, ISS-adopter invite fired) COMPLETE 2026-05-31; G5 pending
+phase: G4
 mission_count: 7         # G0..G6
 estimated_sessions: 7
 estimation_class: calibrated_against_campaign_f
 priority: high
 created: 2026-05-29
-updated: 2026-05-30       # G3 close — ISS candidate ledger (3 axes) + DP-4 RESOLVED candidates-only (no C-029 consumer proposal); canonical jsonl md5 INVARIANT; III stays v0.4.1; lattice 1.2.6
+updated: 2026-05-31       # G4 close — III v0.4.1→v0.5.0 DECLARED (commit 0f06aa6; tag deferred to G6) + ADR-002 §3 sweep (VideoForge ab5b178 + CanvasForge 3ebd55a + wga cfc5d7e @ v0.5.0; SiteForge/LPWhitepaper/lattice-labs + 4 non-tracked DEFERRED) + ISS-adopter invite FIRED; canonical jsonl md5 INVARIANT; lattice 1.2.6; zero new III ADR
 last_edited_by: agent_argus
 authored_by_mission: plan_campaign_g_consolidation_charter
 predecessor: campaign_web_design_deep_review   # Campaign F (Operation Tell); v0.4.0
@@ -100,9 +100,9 @@ graduation ceremony for C-029 (→ T4); `learning_store` deepening (→ T3); aud
 ### Phase G4 — Minor Bump + Wrapper Sweep
 | Mission | Title | Sessions | Deps | Status |
 |---|---|---|---|---|
-| G4 | III v0.4.1 → v0.5.0 minor bump + ADR-002 §3 wrapper sweep | 1 | G3 | pending |
+| G4 | III v0.4.1 → v0.5.0 minor bump + ADR-002 §3 wrapper sweep | 1 | G3 | ✅ **CLOSED 2026-05-31** — v0.5.0 DECLARED (MANIFEST commit `0f06aa6`; tag deferred to G6); 3 carriers re-pinned (VideoForge `ab5b178` + CanvasForge `3ebd55a` + wga `cfc5d7e`); SiteForge/LPWhitepaper/lattice-labs + 4 non-tracked DEFERRED; ISS-adopter invite FIRED |
 
-**Exit gate:** MANIFEST Version + Release-History row; ADR-002 §3 review fired at all minor-policy consumers; ISS-adopter wrappers (MoleculeForge + WilhelmAI + ZenZachary) re-pin IF they add `iss_surfaces` to `packs_used`; `learning_store` carriers re-pin (additive, backward-compat per F4 LPWhitepaper precedent); SiteForge F4-residue + LPWhitepaper defer per own cadence. Annotated tag DEFERRED to G6.
+**Exit gate:** MANIFEST Version + Release-History row; ADR-002 §3 review fired at all minor-policy consumers; ISS-adopter wrappers (MoleculeForge + WilhelmAI + ZenZachary) re-pin IF they add `iss_surfaces` to `packs_used`; `learning_store` carriers re-pin (additive, backward-compat per F4 LPWhitepaper precedent); SiteForge F4-residue + LPWhitepaper defer per own cadence. Annotated tag DEFERRED to G6. ✅ **MET** — III `v0.4.1 → v0.5.0` DECLARED at MANIFEST `0f06aa6` (Version prose + Release-History v0.5.0 row; annotated tag DEFERRED to G6 per F4/v0.4.0 precedent). ADR-002 §3 sweep fired at all minor-policy consumers; operator-elected mechanic = **Argus edits+commits in-vault** (MD-A4/F4 precedent), clean-tree pre-flight, `local_extensions` byte-identical: **VideoForge `ab5b178` + CanvasForge `3ebd55a` + wga `cfc5d7e` re-pinned @ `v0.5.0`** (`pinned_at_commit 0f06aa6` / lattice 1.2.6). **DEFERRED per own cadence** (review-fired, recorded in MANIFEST Active Consumers): SiteForge (F4-residue edited-uncommitted) + LPWhitepaper (no `web_design`/`iss_surfaces`; additive backward-compat) + lattice-labs/iii (TRACKED-DEFERRED) + non-MANIFEST-tracked ContextCommons / LatticeLabs / MoleculeForge / ZenZachary (own cadence; the two ISS-adopters fold into the `iss_surfaces` opt-in). **ISS-adopter opt-in/validation invite FIRED** (`coord_2026_05_31_iii_to_iss_adopters_validation_invite.md` draft→sent; consumer-discretionary — Argus does NOT unilaterally add `iss_surfaces`; no re-pin forced; seeds G5). Hard invariants HELD: canonical jsonl md5 `5adb0dfa…`/28 INVARIANT; lattice 1.2.6 unchanged; zero new III ADR (re-pin governed by existing ADR-002 §3); no annotated tag (G6); workspace router UNTOUCHED (G6 cascade item). DG-G crit **7 + 8 satisfied**.
 
 ### Phase G5 — Validation (inspection-grade)
 | Mission | Title | Sessions | Deps | Status |

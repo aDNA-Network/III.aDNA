@@ -1,20 +1,22 @@
 ---
 type: coordination
-artifact_class: cross_vault_memo_draft
-status: draft
+artifact_class: cross_vault_memo
+status: sent
 from_vault: III.aDNA
 from_persona: agent_argus
 to_vault: [MoleculeForge.aDNA, WilhelmAI.aDNA, ZenZachary.aDNA]
 to_persona: [franklin, hygieia, pygmalion]
 created: 2026-05-29
+sent: 2026-05-31
+fired_at_phase: G4
 campaign: campaign_g_consolidation
 subject: "ISS-adopter community: §G5 validation invite + opt-in iss_surfaces packs_used consultation + RLHF-completeness preview"
-tags: [coordination, draft, campaign_g, operation_atrium, iii_to_iss_adopters, multi_recipient, validation_invite]
+tags: [coordination, sent, campaign_g, operation_atrium, iii_to_iss_adopters, multi_recipient, validation_invite, iss_surfaces_opt_in]
 ---
 
-# DRAFT coord — III → ISS adopters (MoleculeForge + WilhelmAI + ZenZachary)
+# Coord — III → ISS adopters (MoleculeForge + WilhelmAI + ZenZachary)
 
-> **DRAFT.** Multi-recipient. Fires at Campaign G **G0** after DP-1. Not sent at planning-mission execution.
+> **SENT 2026-05-31** at Campaign G **G4** (held through G0-G3 per DP-2 disposition "ISS-adopters HELD, own cadence"; fired at the v0.5.0 minor bump per operator decision). Multi-recipient. Consumer-discretionary — no re-pin is forced.
 
 ## Context
 

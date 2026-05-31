@@ -79,7 +79,7 @@ The C-029..C-033 candidates from Campaign F remain available for graduation at t
 | Recipient | Purpose | Draft |
 |---|---|---|
 | **SiteForge.aDNA** (Stanley persona) | ISS pattern-stability confirm + pin SHA + invite review of the ISS-pack draft; surface the 2 adaptation-guide-doc candidates (G-W1 decision_significance activation; G-W2 confidence-capture rule) | `draft_coord_2026_05_29_iii_to_siteforge_iss_pattern_stability.md` |
-| **MoleculeForge.aDNA + WilhelmAI.aDNA + ZenZachary.aDNA** (multi-recipient) | §G5 validation invite + opt-in `iss_surfaces` `packs_used` consultation (one decision or two) + RLHF-completeness preview | `draft_coord_2026_05_29_iii_to_iss_adopters_validation_invite.md` |
+| **MoleculeForge.aDNA + WilhelmAI.aDNA + ZenZachary.aDNA** (multi-recipient) | §G5 validation invite + opt-in `iss_surfaces` `packs_used` consultation (one decision or two) + RLHF-completeness preview | `coord_2026_05_31_iii_to_iss_adopters_validation_invite.md` (SENT G4 2026-05-31) |
 | **LiteratureForge.aDNA** (Thoth) | Re-affirm Campaign E forward-seed stays gated on forge-BUILD; Campaign G does NOT subsume it | `draft_coord_2026_05_29_iii_to_literatureforge_campaign_e_reaffirm.md` |
 | **VisualDNA.aDNA** (Pygmalion) | Acknowledge ISS as a parallel-but-distinct artifact class to visual bundles; bundle-review still track-deferred to v1.0 GA | `draft_coord_2026_05_29_iii_to_visualdna_parallel_artifact_class.md` |
 
