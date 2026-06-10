@@ -41,17 +41,17 @@ Execute MB-7 (Campaign B P3 second mission). Close the six accumulated vault-hyg
 ## Source Material (read-only inputs)
 
 - Approved plan: `/Users/stanley/.claude/plans/please-read-the-claude-md-snuggly-wand.md`
-- `/Users/stanley/lattice/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md` (MB-7 row + Plan-Agent Findings + DG-B authority)
-- `/Users/stanley/lattice/III.aDNA/what/lattices/lattice_iii_verification_oracle.lattice.yaml` (lines 213 + 247)
-- `/Users/stanley/lattice/III.aDNA/what/context/core_domain_packs/context_iii_learning_store.md:163`
-- `/Users/stanley/lattice/III.aDNA/what/decisions/adr_002_consumer_federation_contract.md` (§1)
-- `/Users/stanley/lattice/III.aDNA/what/decisions/adr_003_learning_store_ownership.md` (§4)
-- `/Users/stanley/lattice/lattice-labs/iii/CLAUDE.md:50` (KINN path field)
-- `/Users/stanley/lattice/lattice-labs/what/context/iii_domain_packs/context_iii_kinn_branding.md` (KINN pack; 13 KB / 203 lines / md5 `1624fb138c0bebb0c87585eb7d62dca5`)
-- `/Users/stanley/lattice/lattice-labs/what/context/iii_domain_packs/context_iii_learning_store.md` (MA-2 `[MIGRATED]` stub pattern)
-- `/Users/stanley/lattice/lattice-labs/what/context/iii_domain_packs/MIGRATION_NOTE.md` (note format reference)
-- `/Users/stanley/lattice/lattice-labs/how/campaigns/campaign_whitepaper_iii_deep_review/iii_corrections_campaign.jsonl` (13,144 B / 21 entries)
-- `/Users/stanley/lattice/lattice-labs/how/campaigns/campaign_canvas_visual_command/iii_corrections.jsonl` (659 B deprecated stub)
+- `/Users/stanley/aDNA/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md` (MB-7 row + Plan-Agent Findings + DG-B authority)
+- `/Users/stanley/aDNA/III.aDNA/what/lattices/lattice_iii_verification_oracle.lattice.yaml` (lines 213 + 247)
+- `/Users/stanley/aDNA/III.aDNA/what/context/core_domain_packs/context_iii_learning_store.md:163`
+- `/Users/stanley/aDNA/III.aDNA/what/decisions/adr_002_consumer_federation_contract.md` (§1)
+- `/Users/stanley/aDNA/III.aDNA/what/decisions/adr_003_learning_store_ownership.md` (§4)
+- `/Users/stanley/aDNA/lattice-labs/iii/CLAUDE.md:50` (KINN path field)
+- `/Users/stanley/aDNA/lattice-labs/what/context/iii_domain_packs/context_iii_kinn_branding.md` (KINN pack; 13 KB / 203 lines / md5 `1624fb138c0bebb0c87585eb7d62dca5`)
+- `/Users/stanley/aDNA/lattice-labs/what/context/iii_domain_packs/context_iii_learning_store.md` (MA-2 `[MIGRATED]` stub pattern)
+- `/Users/stanley/aDNA/lattice-labs/what/context/iii_domain_packs/MIGRATION_NOTE.md` (note format reference)
+- `/Users/stanley/aDNA/lattice-labs/how/campaigns/campaign_whitepaper_iii_deep_review/iii_corrections_campaign.jsonl` (13,144 B / 21 entries)
+- `/Users/stanley/aDNA/lattice-labs/how/campaigns/campaign_canvas_visual_command/iii_corrections.jsonl` (659 B deprecated stub)
 
 ## Activity Log
 
@@ -75,25 +75,25 @@ Execute MB-7 (Campaign B P3 second mission). Close the six accumulated vault-hyg
 2. **Learning store md wikilink resolves**: `grep -c 'AGENTS' context_iii_learning_store.md` returns `0`.
 3. **ADR-003 §4 / live jsonl schema match**: field names in `head -1 iii_corrections_canonical.jsonl` are subset of ADR-003 §4 enumerated names (`id`, `trap`, `pattern`, `description`, `example`, `source_review`, `source_finding`, `frequency`, `accepted`, `graduated`, `graduated_to`, `created`, `graduated_date`).
 4. **ADR-002 §1 kind enum**: contains all 5 of `domain_pack`, `reviewer_registry`, `bridge_pack`, `local_skill`, `learning_store_local` in the formal enum; cross-check against `grep -h '^- kind:' */iii/CLAUDE.md` across all 5 wrapper files — set match.
-5. **KINN pack at new location**: `test -f ~/lattice/lattice-labs/iii/what/context/context_iii_kinn_branding.md && md5 -r $_` returns `1624fb138c0bebb0c87585eb7d62dca5` (pre-move md5); `lattice-labs/iii/CLAUDE.md:50` `path:` resolves to new location; old location is `[MIGRATED]` stub.
+5. **KINN pack at new location**: `test -f ~/aDNA/lattice-labs/iii/what/context/context_iii_kinn_branding.md && md5 -r $_` returns `1624fb138c0bebb0c87585eb7d62dca5` (pre-move md5); `lattice-labs/iii/CLAUDE.md:50` `path:` resolves to new location; old location is `[MIGRATED]` stub.
 6. **Canonical jsonl md5 invariant**: `md5 -r iii_corrections_canonical.jsonl` returns `dde2cbd88c0b45956fb22285a2a0f856` (unchanged — schema reconciliation is ADR-side only).
 7. **Breadcrumb MIGRATION_NOTEs exist**: both `campaign_whitepaper_iii_deep_review/MIGRATION_NOTE.md` and `campaign_canvas_visual_command/MIGRATION_NOTE.md` present.
 8. **Campaign B charter sync**: MB-7 row ✅ + ticked DG-B box; Plan-Agent Findings (b) names "whitepaper" not "kinn"; frontmatter `mb7_closed: 2026-05-12`; Phase Plan P3 row updated.
 
 ## Outputs
 
-- `~/lattice/III.aDNA/what/lattices/lattice_iii_verification_oracle.lattice.yaml` (line 247 + version)
-- `~/lattice/III.aDNA/what/context/core_domain_packs/context_iii_learning_store.md` (line 163)
-- `~/lattice/III.aDNA/what/decisions/adr_003_learning_store_ownership.md` (§4 + Amendment History footer)
-- `~/lattice/III.aDNA/what/decisions/adr_002_consumer_federation_contract.md` (§1 + Amendment History footer)
-- `~/lattice/lattice-labs/iii/CLAUDE.md` (line 50 path + rationale)
-- `~/lattice/lattice-labs/iii/what/context/context_iii_kinn_branding.md` (NEW — moved file)
-- `~/lattice/lattice-labs/what/context/iii_domain_packs/context_iii_kinn_branding.md` (replaced with `[MIGRATED]` stub)
-- `~/lattice/lattice-labs/how/campaigns/campaign_whitepaper_iii_deep_review/MIGRATION_NOTE.md` (NEW)
-- `~/lattice/lattice-labs/how/campaigns/campaign_canvas_visual_command/MIGRATION_NOTE.md` (NEW)
-- `~/lattice/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md` (MB-7 closure + DG-B box + Plan-Agent (b) correction + frontmatter + Phase Plan)
-- `~/lattice/III.aDNA/MANIFEST.md` (frontmatter)
-- `~/lattice/III.aDNA/STATE.md` (Current Phase + Latest Direction + What's Working + Mission Queue + Blockers + Learning Store Status + frontmatter)
+- `~/aDNA/III.aDNA/what/lattices/lattice_iii_verification_oracle.lattice.yaml` (line 247 + version)
+- `~/aDNA/III.aDNA/what/context/core_domain_packs/context_iii_learning_store.md` (line 163)
+- `~/aDNA/III.aDNA/what/decisions/adr_003_learning_store_ownership.md` (§4 + Amendment History footer)
+- `~/aDNA/III.aDNA/what/decisions/adr_002_consumer_federation_contract.md` (§1 + Amendment History footer)
+- `~/aDNA/lattice-labs/iii/CLAUDE.md` (line 50 path + rationale)
+- `~/aDNA/lattice-labs/iii/what/context/context_iii_kinn_branding.md` (NEW — moved file)
+- `~/aDNA/lattice-labs/what/context/iii_domain_packs/context_iii_kinn_branding.md` (replaced with `[MIGRATED]` stub)
+- `~/aDNA/lattice-labs/how/campaigns/campaign_whitepaper_iii_deep_review/MIGRATION_NOTE.md` (NEW)
+- `~/aDNA/lattice-labs/how/campaigns/campaign_canvas_visual_command/MIGRATION_NOTE.md` (NEW)
+- `~/aDNA/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md` (MB-7 closure + DG-B box + Plan-Agent (b) correction + frontmatter + Phase Plan)
+- `~/aDNA/III.aDNA/MANIFEST.md` (frontmatter)
+- `~/aDNA/III.aDNA/STATE.md` (Current Phase + Latest Direction + What's Working + Mission Queue + Blockers + Learning Store Status + frontmatter)
 - This session file → `how/sessions/history/2026-05/`
 
 ## Closure

@@ -9,12 +9,12 @@ last_edited_by: agent_argus
 governs: how/airlock/AIRLOCK.md
 predecessor_version: "0.2.0"
 inbound_proposal: who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md
-worked_example: ~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md
+worked_example: ~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md
 defers_schema_to: what/artifacts/iii_airlock_request_schema.yaml  # authored MC-2 2026-05-08
 defers_substrate_to: what/artifacts/iii_airlock_substrate_implementation.md  # v0.2 authored MC-4 2026-05-13; v0.3 extension authored at MD-A2 (next mission)
 defers_federation_substrate_to:
-  - ~/lattice/LatticeNetwork.aDNA/who/governance/adr_014_re_id_semantics_node_canonical_id_transition.md   # ledger event semantics + idempotency (accepted 2026-05-20)
-  - ~/lattice/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md   # substrate pluralism + transport.substrates[] + Ed25519 per-purpose identity (accepted 2026-05-20)
+  - ~/aDNA/LatticeNetwork.aDNA/who/governance/adr_014_re_id_semantics_node_canonical_id_transition.md   # ledger event semantics + idempotency (accepted 2026-05-20)
+  - ~/aDNA/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md   # substrate pluralism + transport.substrates[] + Ed25519 per-purpose identity (accepted 2026-05-20)
   - what/decisions/adr_002_consumer_federation_contract.md   # consumer federation pin policy (minor-bump review trigger)
 load_bearing_dependency: "LatticeNetwork.aDNA pc_01 Phase A federation substrate (Ed25519 keypair LIVE on wga_l1 + bore.pub:42561 tunnel + 4-event admission ceremony; landed 2026-05-20) + Phase B1 dual-substrate ratification (ADR-014 v0.1 + ADR-015 v0.1 accepted 2026-05-20; cross-substrate first-emit validated at HTTP 200 2026-05-21)"
 ln_substrate_version_pin: "LN.aDNA pc_01 Phase A close + Phase B1 close — ADR-014 v0.1 + ADR-015 v0.1 (both accepted 2026-05-20)"
@@ -44,7 +44,7 @@ The III.aDNA Airlock Standard governs **vault-to-vault traffic** — the ways ag
 - **Federation pin negotiation** — when consumer wrappers update their `federation_ref.version`. That lives in [ADR-002 §3](../decisions/adr_002_consumer_federation_contract.md).
 - **Lattice-internal contract types** — module I/O, lattice edge schemas, learning store records. Those are governed by the III modules, lattice yaml, and ADR-003.
 - **Cross-graph federation negotiation** — when a consumer initially federates against a forge or framework. Covered by the Forge Canonical Pattern Spec (`SiteForge.aDNA/what/artifacts/sf_forge_pattern_spec.md`) and ADR-002.
-- **Federation-substrate internals** — how nodes join Tailscale or Nebula, how the membership ledger emits chained events, how Ed25519 keypairs are provisioned, how substrate health is detected. Those are LatticeNetwork.aDNA's authority — see [LN ADR-014](~/lattice/LatticeNetwork.aDNA/who/governance/adr_014_re_id_semantics_node_canonical_id_transition.md) (ledger event semantics + idempotency) and [LN ADR-015](~/lattice/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md) (substrate pluralism + `transport.substrates[]` + Ed25519 per-purpose identity). v0.3 of this spec *consumes* that substrate; it does not redefine it.
+- **Federation-substrate internals** — how nodes join Tailscale or Nebula, how the membership ledger emits chained events, how Ed25519 keypairs are provisioned, how substrate health is detected. Those are LatticeNetwork.aDNA's authority — see [LN ADR-014](~/aDNA/LatticeNetwork.aDNA/who/governance/adr_014_re_id_semantics_node_canonical_id_transition.md) (ledger event semantics + idempotency) and [LN ADR-015](~/aDNA/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md) (substrate pluralism + `transport.substrates[]` + Ed25519 per-purpose identity). v0.3 of this spec *consumes* that substrate; it does not redefine it.
 
 ### What this standard does
 
@@ -142,7 +142,7 @@ A cross-vault request is an ephemeral, file-on-disk artifact that lets one agent
 who/coordination/coord_<YYYY_MM_DD>_<requesting_vault>_requests_<artifact>.md
 ```
 
-Example: `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`.
+Example: `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`.
 
 **Why this convention** (not a new `inbox/` directory):
 - Receiving vault is the gatekeeper; the request artifact is its intake record. Filing it under the receiver's `who/coordination/` keeps responsibility local.
@@ -301,17 +301,17 @@ force_new: false
 
 ### §4.6 Federation signing-key verification contract — Gap 6 (v0.3 addition)
 
-When the requesting vault and receiving vault are both participants in the same federation substrate (per [LN ADR-015 §a](~/lattice/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md) — Tailscale + Nebula canonical at v0.1), v0.3 introduces an Ed25519 signature verification preflight at request acceptance. §4.6 is the request-acceptance gate at which Ed25519 enforcement fires; §5 defines the broader federation-substrate observation contract that the gate consumes.
+When the requesting vault and receiving vault are both participants in the same federation substrate (per [LN ADR-015 §a](~/aDNA/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md) — Tailscale + Nebula canonical at v0.1), v0.3 introduces an Ed25519 signature verification preflight at request acceptance. §4.6 is the request-acceptance gate at which Ed25519 enforcement fires; §5 defines the broader federation-substrate observation contract that the gate consumes.
 
 **Requester-side contract** (MUST when both vaults are co-federated; SHOULD when only the requesting vault is federated):
 
-1. **Sign**: the requesting vault MUST sign the canonical-JSON serialization of the request frontmatter with its federation signing key (per [LN ADR-013 §a](~/lattice/LatticeNetwork.aDNA/who/governance/adr_013_federation_signing_key_infrastructure.md) operator-attested per-purpose-slot pattern). Place the base64-encoded Ed25519 signature in the `federation_signature:` field at the request frontmatter top level (added at §4.3).
+1. **Sign**: the requesting vault MUST sign the canonical-JSON serialization of the request frontmatter with its federation signing key (per [LN ADR-013 §a](~/aDNA/LatticeNetwork.aDNA/who/governance/adr_013_federation_signing_key_infrastructure.md) operator-attested per-purpose-slot pattern). Place the base64-encoded Ed25519 signature in the `federation_signature:` field at the request frontmatter top level (added at §4.3).
 2. **Cite key version**: include `federation_signature_key_version:` referencing the LN membership manifest entry version active at request-creation time. A key rotation per ADR-014 §a `MEMBERSHIP_NODE_RE_IDENTIFIED` event invalidates prior versions; this field lets the receiver resolve which key was authoritative when the request was signed.
 3. **Canonical-JSON discipline**: per ADR-014 §c — sorted keys; NFC string normalization; whitespace trimmed; case preserved. The signed payload is the request frontmatter excluding the `federation_signature` field itself (the signature does not sign itself). Body sections are NOT signed at v0.3 (rationale: §4.3 body is human-edited prose; a wire-shape signature catches frontmatter tampering; v0.4 may add body-section signing).
 
 **Receiver-side preflight contract** (MUST when both vaults are co-federated):
 
-1. **Resolve requesting persona's Ed25519 pubkey**: from the LatticeNetwork.aDNA membership manifest (`transport.substrates[*].identity` per ADR-015 §b + ADR-013 §b per-purpose-slot dict). The `requesting_persona` field in the request frontmatter maps to a `canonical_id` per [ADR-010](~/lattice/LatticeNetwork.aDNA/who/governance/adr_010_canonical_node_id_schema_three_universes.md), which maps to a pubkey in the manifest.
+1. **Resolve requesting persona's Ed25519 pubkey**: from the LatticeNetwork.aDNA membership manifest (`transport.substrates[*].identity` per ADR-015 §b + ADR-013 §b per-purpose-slot dict). The `requesting_persona` field in the request frontmatter maps to a `canonical_id` per [ADR-010](~/aDNA/LatticeNetwork.aDNA/who/governance/adr_010_canonical_node_id_schema_three_universes.md), which maps to a pubkey in the manifest.
 2. **Verify signature**: over the canonical-JSON serialization of the request frontmatter (excluding the signature field itself).
 3. **Reject on failure**: if the pubkey is absent OR the signature does not verify OR the pubkey is revoked per ADR-015 §c `MEMBERSHIP_CERT_REVOKED` events, the receiver MUST flip `status: rejected` with reason `signature_verification_failed: <subreason>`. Sub-reasons: `pubkey_absent`, `pubkey_revoked`, `signature_mismatch`, `key_version_unknown`.
 4. **Boundary integrity**: the receiver MUST NOT log Ed25519 private keys (which it does not possess); MAY log the signature value (public artifact) and verification outcome to the audit log per the same JSONL pattern as the §4.4 secrets preflight.
@@ -334,7 +334,7 @@ Advisory mode MUST be recorded in the audit log; promotion from advisory to enfo
 
 v0.3 acknowledges that vault-to-vault traffic now traverses a federation substrate — the Lattice Protocol's identity, membership, and ledger layer. §5 specifies the airlock's contract WITH that substrate: how it observes ledger events, how it handles multi-substrate identity, and how it emits its own audit events back to the substrate.
 
-The federation substrate itself is authored at LatticeNetwork.aDNA — see [LN ADR-014](~/lattice/LatticeNetwork.aDNA/who/governance/adr_014_re_id_semantics_node_canonical_id_transition.md) (ledger event semantics + idempotency) and [LN ADR-015](~/lattice/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md) (substrate pluralism + `transport.substrates[]` + Ed25519 identity). §5 binds the airlock to that substrate without redefining it.
+The federation substrate itself is authored at LatticeNetwork.aDNA — see [LN ADR-014](~/aDNA/LatticeNetwork.aDNA/who/governance/adr_014_re_id_semantics_node_canonical_id_transition.md) (ledger event semantics + idempotency) and [LN ADR-015](~/aDNA/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md) (substrate pluralism + `transport.substrates[]` + Ed25519 identity). §5 binds the airlock to that substrate without redefining it.
 
 ### §5.1 Substrate-pluralism acknowledgement
 
@@ -431,7 +431,7 @@ Six §4 + §5 contracts have implementation forward-referenced to subsequent mis
 
 ## §6 Worked Example Reference
 
-The canonical worked example is `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` — VideoForge's commission of a Carly + Herb sprint onboarding deck from CanvasForge. The memo predates v0.2 and was authored against the v0.1.0 coord-memo fallback; it conforms to the §4.3 shape with three additive deltas v0.2 + v0.3 introduce (`secrets_handled`, `idempotency_key`, and the v0.3 `federation_signature` + `federation_signature_key_version` pair).
+The canonical worked example is `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` — VideoForge's commission of a Carly + Herb sprint onboarding deck from CanvasForge. The memo predates v0.2 and was authored against the v0.1.0 coord-memo fallback; it conforms to the §4.3 shape with three additive deltas v0.2 + v0.3 introduce (`secrets_handled`, `idempotency_key`, and the v0.3 `federation_signature` + `federation_signature_key_version` pair).
 
 ### §6.1 Coverage map (worked example → spec sections)
 
@@ -611,21 +611,21 @@ v0.3 introduces the third interaction surface (federation-substrate awareness) a
 - Campaign D charter: `how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md` (OPEN; MD-A1 + MD-B1 + MD-B2 closed at v0.3.0 ship; DG-D 3/11)
 - Reference instance (entry + request surfaces): `how/airlock/AIRLOCK.md` (v0.2.0 — bumped at MC-3 2026-05-10; substrate-enforcement forward-reference at line 258 resolved at MC-4 close 2026-05-13; v0.3.0 bump deferred to MD-A3 activation kit)
 - Substrate implementation guidance: `what/artifacts/iii_airlock_substrate_implementation.md` (v0.2.0 — authored at MC-4 2026-05-13; resolves §4.4 + §4.5 forward-references; v0.3 extension authored at MD-A2 — resolves §4.6 + §5.2 + §5.3.1 forward-references)
-- Reference instance (cross-vault request, worked example): `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`
+- Reference instance (cross-vault request, worked example): `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`
 - Inbound proposal (v0.2): `who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md` (absorbed at v0.2; closed at MC-5 2026-05-20)
 - Federation-pin policy: `what/decisions/adr_002_consumer_federation_contract.md` §3
 - Learning-store ownership (canonical upstream + per-vault forks): `what/decisions/adr_003_learning_store_ownership.md`
 - RLHF Signal Channel ADR (Campaign D MD-B1 sibling deliverable; cross-vault aggregation rides on §5 at MD-B3): `what/decisions/adr_005_rlhf_signal_channel.md`
 - Adaptive-Improvement Loop Architecture ADR (Campaign D MD-B1 sibling deliverable): `what/decisions/adr_007_adaptive_improvement_loop.md`
 - Adaptive-improvement loop spec (Campaign D MD-B1 sibling artifact; established v0.3 frontmatter cadence patterns this spec follows): `what/artifacts/iii_adaptive_improvement_loop_spec.md`
-- Forge canonical pattern (entry-time federation, separate from airlock): `~/lattice/SiteForge.aDNA/what/artifacts/sf_forge_pattern_spec.md`
-- VideoForge ADR-003 (cross-graph entry contract; pattern source for §4.4): `~/lattice/VideoForge.aDNA/what/decisions/adr_003_cross_graph_entry_contract.md`
-- VideoForge ADR-005 (RLHF channel; pattern source for `proposed/` deferred to §8.2): `~/lattice/VideoForge.aDNA/what/decisions/adr_005_context_learning_rlhf.md`
-- **LatticeNetwork.aDNA ADR-014** (`MEMBERSHIP_NODE_RE_IDENTIFIED` ledger event v0.1 + idempotency contract): `~/lattice/LatticeNetwork.aDNA/who/governance/adr_014_re_id_semantics_node_canonical_id_transition.md`
-- **LatticeNetwork.aDNA ADR-015** (federation-substrate pluralism v0.1 — Tailscale + Nebula canonical; `transport.substrates[]` schema; 5 substrate-tagged event types): `~/lattice/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md`
-- LatticeNetwork.aDNA ADR-013 (federation signing-key infrastructure; per-purpose-slot pattern — pubkey source for §4.6 + §5.2): `~/lattice/LatticeNetwork.aDNA/who/governance/adr_013_federation_signing_key_infrastructure.md`
-- LatticeNetwork.aDNA ADR-010 (canonical-node-id schema three universes; `canonical_id` resolution for §5.4): `~/lattice/LatticeNetwork.aDNA/who/governance/adr_010_canonical_node_id_schema_three_universes.md`
-- LatticeNetwork.aDNA pc_01 mission (load-bearing dependency closed 2026-05-20/21): `~/lattice/LatticeNetwork.aDNA/how/campaigns/campaign_alphalattice_genesis/missions/mission_pc_01_mccoy_macmini_wga_canonicalization_exemplar.md`
+- Forge canonical pattern (entry-time federation, separate from airlock): `~/aDNA/SiteForge.aDNA/what/artifacts/sf_forge_pattern_spec.md`
+- VideoForge ADR-003 (cross-graph entry contract; pattern source for §4.4): `~/aDNA/VideoForge.aDNA/what/decisions/adr_003_cross_graph_entry_contract.md`
+- VideoForge ADR-005 (RLHF channel; pattern source for `proposed/` deferred to §8.2): `~/aDNA/VideoForge.aDNA/what/decisions/adr_005_context_learning_rlhf.md`
+- **LatticeNetwork.aDNA ADR-014** (`MEMBERSHIP_NODE_RE_IDENTIFIED` ledger event v0.1 + idempotency contract): `~/aDNA/LatticeNetwork.aDNA/who/governance/adr_014_re_id_semantics_node_canonical_id_transition.md`
+- **LatticeNetwork.aDNA ADR-015** (federation-substrate pluralism v0.1 — Tailscale + Nebula canonical; `transport.substrates[]` schema; 5 substrate-tagged event types): `~/aDNA/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md`
+- LatticeNetwork.aDNA ADR-013 (federation signing-key infrastructure; per-purpose-slot pattern — pubkey source for §4.6 + §5.2): `~/aDNA/LatticeNetwork.aDNA/who/governance/adr_013_federation_signing_key_infrastructure.md`
+- LatticeNetwork.aDNA ADR-010 (canonical-node-id schema three universes; `canonical_id` resolution for §5.4): `~/aDNA/LatticeNetwork.aDNA/who/governance/adr_010_canonical_node_id_schema_three_universes.md`
+- LatticeNetwork.aDNA pc_01 mission (load-bearing dependency closed 2026-05-20/21): `~/aDNA/LatticeNetwork.aDNA/how/campaigns/campaign_alphalattice_genesis/missions/mission_pc_01_mccoy_macmini_wga_canonicalization_exemplar.md`
 - Outbound coord memo to LN Venus (fired at Campaign D charter; this spec resolves its load-bearing intersect ask): `who/coordination/coord_2026_05_20_iii_to_ln_federation_substrate_intersect.md`
 - Outbound coord memo to LL Berthier (fired at Campaign D charter; flags LL.aDNA as plausible D1 Day-1 consumer): `who/coordination/coord_2026_05_20_iii_to_ll_airlock_status_post_mc4_5.md`
 

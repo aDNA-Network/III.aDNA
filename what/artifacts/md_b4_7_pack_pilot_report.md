@@ -42,9 +42,9 @@ This report executes the adaptive loop's measurement surface across all 7 core d
 
 **Charter directive** (line 150 carry-forward disposition): "Standalone interstitial MD-X1 OR fold into D2 MD-B4 per relevance. If all 5 candidates III-relevant, fold into MD-B4; if mixed, MD-X1 carves out an assessment-only mission."
 
-**Source memo**: `~/lattice/LatticeLabs.aDNA/who/coordination/coord_2026_05_20_adna_doctrine_promotion_candidates.md` (Berthier; filed at LL.aDNA Phase 4 S22 close; target `aDNA.aDNA`; courtesy memo, no countersign required, no urgency).
+**Source memo**: `~/aDNA/LatticeLabs.aDNA/who/coordination/coord_2026_05_20_adna_doctrine_promotion_candidates.md` (Berthier; filed at LL.aDNA Phase 4 S22 close; target `aDNA.aDNA`; courtesy memo, no countersign required, no urgency).
 
-**5 candidate files** (all at `~/lattice/LatticeLabs.aDNA/how/doctrine/`):
+**5 candidate files** (all at `~/aDNA/LatticeLabs.aDNA/how/doctrine/`):
 
 | # | File | LL Strength | III hits (`grep -ciE 'III\|iii\b\|introspect\|inspect\|improve\|adaptive.{0,10}loop\|RLHF\|graduation_yield\|domain.pack'`) | III-relevance verdict |
 |---|------|-------------|---|---|

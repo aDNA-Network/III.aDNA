@@ -65,7 +65,7 @@ CLAUDE + session + fired memo). Annotated tag DEFERRED to G6.
 - Lattice yaml `version` — **1.2.6 unchanged** (G4 is version-declaration + re-pin; no oracle routing change).
 - ADR file count — UNCHANGED (10; zero new III ADR; re-pin governed by existing ADR-002 §3; ADR-009 stays REJECTED).
 - Every swept wrapper: diff shows ONLY federation_ref + frontmatter lines; `local_extensions` byte-identical.
-- No annotated `v0.5.0` git tag (G6); workspace router `~/lattice/CLAUDE.md` UNTOUCHED (G6 cascade item).
+- No annotated `v0.5.0` git tag (G6); workspace router `~/aDNA/CLAUDE.md` UNTOUCHED (G6 cascade item).
 - Intended mutation: III `v0.4.1 → v0.5.0` (MANIFEST Version + Release-History row).
 
 ## Activity Log
@@ -93,7 +93,7 @@ CLAUDE + session + fired memo). Annotated tag DEFERRED to G6.
 ### Next up
 
 - **G5** — inspection-grade validation on live ISS adopters against the landed `iss_surfaces` pack: ZenZachary (14 rendered gates — richest residue corpus) + MoleculeForge (`p6_1` output-JSON exemplar) + WilhelmAI (config exemplar); recommend ≥2 of 3. Each recommended residue caught with pack-line citation + negative control clean; `zero_regression_confirmed: true`. (Consumes the fired invite.)
-- Then **G6** — DG-G 11/11 + AAR inline + annotated `v0.5.0` git tag at close commit + full cascade bookkeeping (incl. **workspace-router `~/lattice/CLAUDE.md` production-pin** + root CLAUDE.md Campaign State).
+- Then **G6** — DG-G 11/11 + AAR inline + annotated `v0.5.0` git tag at close commit + full cascade bookkeeping (incl. **workspace-router `~/aDNA/CLAUDE.md` production-pin** + root CLAUDE.md Campaign State).
 
 ### Blockers
 
@@ -106,7 +106,7 @@ CLAUDE + session + fired memo). Annotated tag DEFERRED to G6.
 **III.aDNA — Renamed**: `who/coordination/draft_coord_2026_05_29_…` → `coord_2026_05_31_iii_to_iss_adopters_validation_invite.md` (draft→sent).
 **Foreign-vault commits** (path-scoped `iii/CLAUDE.md` only): VideoForge `ab5b178` · CanvasForge `3ebd55a` · wga `cfc5d7e`.
 **UNTOUCHED (hard invariants)**: `iii_corrections_canonical.jsonl` (md5 `5adb0dfa…`/28 INVARIANT) · `context_iii_iss_surfaces.md` (ISS pack) · `lattice_iii_verification_oracle.lattice.yaml` (1.2.6) · `what/decisions/adr_*` (zero new ADR) · all swept wrappers' `local_extensions` · SiteForge `iii/CLAUDE.md` (dirty F4-residue, not clobbered) · wga `audit/scripts/01_login.ts` (unrelated dirty, left untouched).
-**Workspace router** `~/lattice/CLAUDE.md`: UNTOUCHED (production-pin update is a G6 cascade item per charter). **No annotated `v0.5.0` git tag** (G6).
+**Workspace router** `~/aDNA/CLAUDE.md`: UNTOUCHED (production-pin update is a G6 cascade item per charter). **No annotated `v0.5.0` git tag** (G6).
 
 ## Next Session Prompt
 

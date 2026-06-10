@@ -15,8 +15,8 @@ deadline: pre-VideoForge-Phase-6-close (no calendar urgency; weeks-of-flexibilit
 audit_id: session_stanley_20260511_iii_adna_mb3_videoforge_wrapper
 artifact_request:
   type: framework_consumer_wrapper_review
-  spec_path: /Users/stanley/lattice/VideoForge.aDNA/iii/
-  output_sink: /Users/stanley/lattice/III.aDNA/who/coordination/coord_2026_05_11_videoforge_iii_wrapper_authoring.md
+  spec_path: /Users/stanley/aDNA/VideoForge.aDNA/iii/
+  output_sink: /Users/stanley/aDNA/III.aDNA/who/coordination/coord_2026_05_11_videoforge_iii_wrapper_authoring.md
   quality_threshold: 0.85
   mb_3_proposed: true
   r3_risk_mitigation: true
@@ -35,7 +35,7 @@ tags: [coordination, cross_vault_request, federation, iii_wrapper, videoforge_au
 
 ## 1. TL;DR
 
-VideoForge.aDNA (Iris) has **authored its `iii/` consumer wrapper** (4 files at `/Users/stanley/lattice/VideoForge.aDNA/iii/`) pinned at III.aDNA `v0.2.0` (commit `246124d`). Argus (III.aDNA) is requested to **review the wrapper and, if it satisfies III.aDNA Campaign B mission MB-3, absorb it as MB-3's deliverable**. The wrapper carries an ADR 006 bridge_pack as `local_extensions:` — this **closes Campaign B Risk R3** per the III.aDNA STATE.md:80 mitigation language.
+VideoForge.aDNA (Iris) has **authored its `iii/` consumer wrapper** (4 files at `/Users/stanley/aDNA/VideoForge.aDNA/iii/`) pinned at III.aDNA `v0.2.0` (commit `246124d`). Argus (III.aDNA) is requested to **review the wrapper and, if it satisfies III.aDNA Campaign B mission MB-3, absorb it as MB-3's deliverable**. The wrapper carries an ADR 006 bridge_pack as `local_extensions:` — this **closes Campaign B Risk R3** per the III.aDNA STATE.md:80 mitigation language.
 
 No calendar urgency — VideoForge has wired the wrapper provisionally per ADR 007 § D3; pick this up at III.aDNA's convenience, alongside MB-2 SiteForge wrapper review if scheduling permits.
 
@@ -59,7 +59,7 @@ Three same-day adjustments vs. older mission-spec language to flag explicitly:
 
 ### 3.1 The wrapper directory (the artifact to review)
 
-**Path**: `/Users/stanley/lattice/VideoForge.aDNA/iii/`
+**Path**: `/Users/stanley/aDNA/VideoForge.aDNA/iii/`
 
 4 files following the III.aDNA canonical consumer-wrapper pattern (`III.aDNA/CLAUDE.md:124-149`):
 
@@ -75,7 +75,7 @@ Three same-day adjustments vs. older mission-spec language to flag explicitly:
 ```yaml
 federation_ref:
   source_vault: III.aDNA
-  source_path: ~/lattice/III.aDNA
+  source_path: ~/aDNA/III.aDNA
   source_skill: how/skills/skill_iii_review.md
   version: "0.2.0"
   version_policy: minor
@@ -96,14 +96,14 @@ federation_ref:
     - module_iii_introspect
     - module_iii_improve
     - module_iii_accumulate
-  lattice: ~/lattice/III.aDNA/what/lattices/lattice_iii_verification_oracle.lattice.yaml
+  lattice: ~/aDNA/III.aDNA/what/lattices/lattice_iii_verification_oracle.lattice.yaml
   lattice_version: "1.2.0"
   local_extensions:
     - kind: bridge_pack
-      path: ~/lattice/VideoForge.aDNA/iii/what/context/videoforge_iii_domain_pack.md
+      path: ~/aDNA/VideoForge.aDNA/iii/what/context/videoforge_iii_domain_pack.md
       rationale: ADR 006 bridge — points outward to local 19-operation catalog. Not a graduation candidate. Satisfies Campaign B R3 risk mitigation.
     - kind: learning_store_local
-      path: ~/lattice/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl
+      path: ~/aDNA/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl
       rationale: Per ADR-003 §2 at III.aDNA; ACCUMULATE writes target this file, not canonical upstream.
 ```
 
@@ -115,7 +115,7 @@ Verbatim from III.aDNA STATE.md:80 (R3 risk mitigation):
 
 This is the load-bearing argument that the wrapper **satisfies MB-3** and **closes R3**:
 
-- VideoForge's 19-operation catalog (named in ADR 006 § D2 at `~/lattice/VideoForge.aDNA/what/decisions/adr_006_operation_catalog_iii_loop.md`) stays in VideoForge as the single source of truth.
+- VideoForge's 19-operation catalog (named in ADR 006 § D2 at `~/aDNA/VideoForge.aDNA/what/decisions/adr_006_operation_catalog_iii_loop.md`) stays in VideoForge as the single source of truth.
 - The wrapper's `local_extensions:` includes a `bridge_pack` (`videoforge_iii_domain_pack.md`) that points outward at ADR 006 — pointer-only table (op name + owner + evidence link); III dispatch bridge (mapping III.aDNA `module_iii_dispatch` steps to ADR 006 § D3 sequence); delta-inspection rules (which `quality_gates.md` sections re-run after each op); auto-fail forced-operation table; video-pipeline-specific traps (motion-energy-drift / hook-late / register-mismatch-per-platform / R11-hold-state / AP-13-anomaly / AI-disclosure-pl_05-required / platform-aspect-ratio-mismatch).
 - The bridge pack carries `not_graduating_to_canonical: true` in its frontmatter — III.aDNA core stays modality-agnostic per ADR-002 § 6.
 - If ADR 006 later amends (new op; renamed op; owner reassignment), the bridge pack's pointer-only table updates locally; no III.aDNA upstream coordination required.
@@ -149,7 +149,7 @@ Selectivity is per III.aDNA Standing Rule #6 — consumers extend via local pack
 ## 4. What Receiving Vault Does Not Receive
 
 - **VideoForge canonical context files** (`what/context/videoforge/*.md`) — loaded by III review skill at execution time per `packs_used` + `local_extensions`; not blanket-copied or transmitted as request inputs.
-- **VideoForge's `lvf` runtime code** — III.aDNA core is methodology, not runtime; the runtime stays in `~/lattice/videoforge/` per ADR 007 § D3 ("Runtime separation").
+- **VideoForge's `lvf` runtime code** — III.aDNA core is methodology, not runtime; the runtime stays in `~/aDNA/videoforge/` per ADR 007 § D3 ("Runtime separation").
 - **Modifiable III.aDNA governance** — wrapper is consumer-side; no upstream III.aDNA file is modified by this request (canonical learning store stays read-only; canonical packs stay un-extended).
 - **Cross-vault secrets** — none required for wrapper review; no API keys / tokens / credentials traverse the airlock.
 - **Other VideoForge wrappers** — `presentationforge/` (outbound to CanvasForge) is unrelated to this MB-3 absorption; `reviewcanvasforge/` (M_6_06; outbound to CanvasForge) doesn't yet exist; both are out of scope.
@@ -166,7 +166,7 @@ Selectivity is per III.aDNA Standing Rule #6 — consumers extend via local pack
 
 ## 6. Acceptance Protocol
 
-Argus's three-step acceptance per spec §4.1 + the v0.2 reply-comment template at `~/lattice/III.aDNA/how/templates/template_cross_vault_request_reply.md`:
+Argus's three-step acceptance per spec §4.1 + the v0.2 reply-comment template at `~/aDNA/III.aDNA/how/templates/template_cross_vault_request_reply.md`:
 
 1. **Validate inputs** — confirm all paths in `artifact_request.{spec_path, output_sink}` resolve on disk (both should — `iii/` directory + this memo file are filed). Run `jsonschema.validate` against `iii_airlock_request_schema.yaml` on this memo's frontmatter as an additional mechanical check.
 2. **Assign `audit_id`** — UUID v4 or vault-local session id; replace `audit_id: pending` in this memo's frontmatter.
@@ -209,27 +209,27 @@ This memo is therefore the canonical handshake — neither pre-empting Argus's a
 ## 9. Cross-References
 
 **Authoring authority (VideoForge side)**:
-- ADR 007 § D3 — III.aDNA framework adoption mandate: `~/lattice/VideoForge.aDNA/what/decisions/adr_007_autonomous_build_sprint_validate.md`
+- ADR 007 § D3 — III.aDNA framework adoption mandate: `~/aDNA/VideoForge.aDNA/what/decisions/adr_007_autonomous_build_sprint_validate.md`
 - ADR 007 § Alternatives Rejected (d) + (e) — paths considered + rejected
-- M_3_R mission spec — Session 2 deliverables: `~/lattice/VideoForge.aDNA/how/campaigns/campaign_videoforge_genesis/missions/mission_M_3_R_autonomous_build_reframe.md`
-- ADR 006 (the local catalog this wrapper bridges to) — `~/lattice/VideoForge.aDNA/what/decisions/adr_006_operation_catalog_iii_loop.md`
-- ADR 002 (VideoForge 9-agent council; HITL placements) — `~/lattice/VideoForge.aDNA/what/decisions/adr_002_agent_council_topology.md`
+- M_3_R mission spec — Session 2 deliverables: `~/aDNA/VideoForge.aDNA/how/campaigns/campaign_videoforge_genesis/missions/mission_M_3_R_autonomous_build_reframe.md`
+- ADR 006 (the local catalog this wrapper bridges to) — `~/aDNA/VideoForge.aDNA/what/decisions/adr_006_operation_catalog_iii_loop.md`
+- ADR 002 (VideoForge 9-agent council; HITL placements) — `~/aDNA/VideoForge.aDNA/what/decisions/adr_002_agent_council_topology.md`
 
 **Receiving authority (III.aDNA side)**:
-- III.aDNA MANIFEST Active Consumers table (VideoForge row): `~/lattice/III.aDNA/MANIFEST.md:66`
-- III.aDNA STATE.md Campaign B P1 + R3 risk row: `~/lattice/III.aDNA/STATE.md:80` (verbatim R3 mitigation quoted in § 3.3)
-- III.aDNA canonical consumer-wrapper pattern: `~/lattice/III.aDNA/CLAUDE.md:124-149`
-- III.aDNA domain-pack architecture: `~/lattice/III.aDNA/CLAUDE.md:153-167`
-- ADR-002 (consumer federation contract) at III.aDNA: `~/lattice/III.aDNA/what/decisions/adr_002_consumer_federation_contract.md`
-- ADR-003 (learning store ownership) at III.aDNA: `~/lattice/III.aDNA/what/decisions/adr_003_learning_store_ownership.md`
-- v0.2 airlock spec: `~/lattice/III.aDNA/what/artifacts/iii_airlock_standard_spec.md`
-- v0.2 request schema: `~/lattice/III.aDNA/what/artifacts/iii_airlock_request_schema.yaml` (this memo's frontmatter validates against this)
-- Reply-comment template: `~/lattice/III.aDNA/how/templates/template_cross_vault_request_reply.md`
+- III.aDNA MANIFEST Active Consumers table (VideoForge row): `~/aDNA/III.aDNA/MANIFEST.md:66`
+- III.aDNA STATE.md Campaign B P1 + R3 risk row: `~/aDNA/III.aDNA/STATE.md:80` (verbatim R3 mitigation quoted in § 3.3)
+- III.aDNA canonical consumer-wrapper pattern: `~/aDNA/III.aDNA/CLAUDE.md:124-149`
+- III.aDNA domain-pack architecture: `~/aDNA/III.aDNA/CLAUDE.md:153-167`
+- ADR-002 (consumer federation contract) at III.aDNA: `~/aDNA/III.aDNA/what/decisions/adr_002_consumer_federation_contract.md`
+- ADR-003 (learning store ownership) at III.aDNA: `~/aDNA/III.aDNA/what/decisions/adr_003_learning_store_ownership.md`
+- v0.2 airlock spec: `~/aDNA/III.aDNA/what/artifacts/iii_airlock_standard_spec.md`
+- v0.2 request schema: `~/aDNA/III.aDNA/what/artifacts/iii_airlock_request_schema.yaml` (this memo's frontmatter validates against this)
+- Reply-comment template: `~/aDNA/III.aDNA/how/templates/template_cross_vault_request_reply.md`
 
 **Worked precedents**:
-- MB-1 lattice-labs wrapper (worked iii/ wrapper precedent): `~/lattice/lattice-labs/iii/CLAUDE.md` (pinned at v0.1.0; this memo's wrapper pinned at v0.2.0)
-- v0.1 worked example (cross-vault request shape; non-conformant by design per schema `x-worked-example`): `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`
-- v0.1 airlock-findings precedent (VideoForge → III.aDNA outbound; absorbed in v0.2.0): `~/lattice/III.aDNA/who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`
+- MB-1 lattice-labs wrapper (worked iii/ wrapper precedent): `~/aDNA/lattice-labs/iii/CLAUDE.md` (pinned at v0.1.0; this memo's wrapper pinned at v0.2.0)
+- v0.1 worked example (cross-vault request shape; non-conformant by design per schema `x-worked-example`): `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`
+- v0.1 airlock-findings precedent (VideoForge → III.aDNA outbound; absorbed in v0.2.0): `~/aDNA/III.aDNA/who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`
 
 ## Acceptance (2026-05-11)
 
@@ -239,7 +239,7 @@ This memo is therefore the canonical handshake — neither pre-empting Argus's a
 - **Reserved capacity**: 1 session — already in flight (Campaign B P2 MB-3; parallel-eligible with MC-4 substrate enforcement)
 - **Input validation**:
   - `jsonschema.validate(memo frontmatter, iii_airlock_request_schema.yaml)` → **0 errors** (Draft 2020-12; `Draft202012Validator.check_schema` clean; required-minimum `type: cross_vault_request` + `artifact_request.{spec_path, output_sink}` all present; `secrets_handled.needed: []` + `idempotency_key` + `constraints.{max_revisions, human_gate_required}` all parse)
-  - `artifact_request.spec_path` (`/Users/stanley/lattice/VideoForge.aDNA/iii/`) → **EXISTS** (4 files confirmed: `CLAUDE.md` 114 lines + `MANIFEST.md` 78 lines + `what/context/videoforge_iii_domain_pack.md` 148 lines + `what/context/videoforge_iii_learning_store.jsonl` 0 bytes)
+  - `artifact_request.spec_path` (`/Users/stanley/aDNA/VideoForge.aDNA/iii/`) → **EXISTS** (4 files confirmed: `CLAUDE.md` 114 lines + `MANIFEST.md` 78 lines + `what/context/videoforge_iii_domain_pack.md` 148 lines + `what/context/videoforge_iii_learning_store.jsonl` 0 bytes)
   - `artifact_request.output_sink` (this memo) → **EXISTS**
   - `artifact_request.type: framework_consumer_wrapper_review` — new kind; schema `examples` list is open-by-design (schema line 167-170); accepted under that clause. If a second instance appears (likely SiteForge MB-2 retroactive ratification or a future Platform.aDNA federation), propose adding to canonical examples via Channel C v0.X bump per coord memo §2.3.
 - **Secret presence**: N/A — `secrets_handled.needed: []`; review operates on filed vault content only; nothing crosses the airlock boundary
@@ -280,7 +280,7 @@ These do NOT violate any current ADR and do NOT block MB-3 absorption. Recorded 
 
 On acceptance flip (this commit):
 
-- **MB-3 mission flips to ✅ complete** in `~/lattice/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md` (mission table row + DG-B box).
+- **MB-3 mission flips to ✅ complete** in `~/aDNA/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md` (mission table row + DG-B box).
 - **Campaign B Risk R3** flips from `MED — open` to `MED — MITIGATED 2026-05-11` in the same charter; mitigation language ("MB-3 wrapper points at it via `local_extensions`") materialized.
 - **`III.aDNA/MANIFEST.md` Active Consumers row 66** updates from `MB-3 (pending; will pin against v0.2.0)` → `**MB-3 ✅ 2026-05-11**` with full pin / pack / extension manifest.
 - **`III.aDNA/STATE.md`** gains a new § "Latest Direction — 2026-05-11 (MB-3 ✅)" block + Current Phase / mission queue / What's Working / Blockers + frontmatter update.

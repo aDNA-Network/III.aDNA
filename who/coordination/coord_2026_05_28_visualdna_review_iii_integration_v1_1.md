@@ -7,8 +7,8 @@ home_vault: VisualDNA.aDNA
 transmitted_to: [III.aDNA]
 trigger: VisualDNA.aDNA P-R research dossier close (execution-trigger acknowledgment session 2026-05-28; trigger (b) fired 2026-05-27 via ZenZachary arrival)
 disposition: notification + v1.1 integration consideration request (no immediate ack required; non-binding)
-anchor: ~/lattice/VisualDNA.aDNA/what/research/brand_character_digital_twin_synthesis.md (v1.0.0; published 2026-05-28)
-home_coord: ~/lattice/VisualDNA.aDNA/who/coordination/coord_2026_05_28_execution_trigger_fired.md
+anchor: ~/aDNA/VisualDNA.aDNA/what/research/brand_character_digital_twin_synthesis.md (v1.0.0; published 2026-05-28)
+home_coord: ~/aDNA/VisualDNA.aDNA/who/coordination/coord_2026_05_28_execution_trigger_fired.md
 re_merge_rationale: lattice-labs/who/coordination/coord_2026_04_16_forge_split.md
 tags: [coordination, cross_vault, lite_ping, framework_integration, v1_1_consideration, iii_pack_for_visual_bundles, argus_panoptes_review_request, visualdna_genesis]
 ---
@@ -17,7 +17,7 @@ tags: [coordination, cross_vault, lite_ping, framework_integration, v1_1_conside
 
 ## What happened
 
-VisualDNA.aDNA's execution trigger fired 2026-05-27 (condition (b): ZenZachary.aDNA arrived as new visual-DNA consumer). Trigger acknowledged 2026-05-28 in execution-activation session (Stanley Option B election). Same session closed P-R research dossier at v1.0.0 (`~/lattice/VisualDNA.aDNA/what/research/brand_character_digital_twin_synthesis.md` — 8-section synthesis grounding the framework in 4 industry sources + 9 HF papers + framework positioning).
+VisualDNA.aDNA's execution trigger fired 2026-05-27 (condition (b): ZenZachary.aDNA arrived as new visual-DNA consumer). Trigger acknowledged 2026-05-28 in execution-activation session (Stanley Option B election). Same session closed P-R research dossier at v1.0.0 (`~/aDNA/VisualDNA.aDNA/what/research/brand_character_digital_twin_synthesis.md` — 8-section synthesis grounding the framework in 4 industry sources + 9 HF papers + framework positioning).
 
 Per META-PLAN D3 STANDARD external grounding election, this is one of three lite cross-vault coord pings transmitted to sibling Framework.aDNAs (III + ContextCompass + VAASLattice) flagging v1.1+ integration considerations. Mirrors the lite-coord pattern; non-binding.
 
@@ -29,7 +29,7 @@ The dossier's §3 Academic SOTA references CharaConsist (2507.11533) as a charac
 
 ## What VisualDNA proposes for v1.1+ consideration (non-binding)
 
-A consumer wrapper at `~/lattice/VisualDNA.aDNA/iii/CLAUDE.md` would let visual DNA bundles invoke III review for bundle ergonomics:
+A consumer wrapper at `~/aDNA/VisualDNA.aDNA/iii/CLAUDE.md` would let visual DNA bundles invoke III review for bundle ergonomics:
 
 - **iii_pass_visual.md sidecar** — per-bundle III review output (alongside or merged into existing iii_pass.md if bundle review is folded into the standard III pack)
 - **Bundle review hook** — 5-voice pass adapted for visual artifacts: (1) Operator clarity (can a partner read the bundle and know what to render?); (2) Reference-image discipline (are references diverse / coherent / non-conflicting?); (3) Invariant precision (do required.patterns match what the references show?); (4) Charm signal coherence (does the charm_signal block + atmosphere_signal block compose cleanly with location bundles?); (5) Consumer-compat completeness (is the consumer_compat matrix populated for all 6 v1.0 consumers?)
@@ -45,14 +45,14 @@ If III wants to coordinate more concretely (e.g., pilot a visual bundle review i
 
 ## Cross-references
 
-- **Anchor dossier**: `~/lattice/VisualDNA.aDNA/what/research/brand_character_digital_twin_synthesis.md` (v1.0.0; published 2026-05-28)
-- **VisualDNA home coord** (this session): `~/lattice/VisualDNA.aDNA/who/coordination/coord_2026_05_28_execution_trigger_fired.md`
+- **Anchor dossier**: `~/aDNA/VisualDNA.aDNA/what/research/brand_character_digital_twin_synthesis.md` (v1.0.0; published 2026-05-28)
+- **VisualDNA home coord** (this session): `~/aDNA/VisualDNA.aDNA/who/coordination/coord_2026_05_28_execution_trigger_fired.md`
 - **VisualDNA activation plan**: `/Users/stanley/.claude/plans/please-read-the-claude-md-bright-yao.md`
-- **VisualDNA META-PLAN ratification**: `~/lattice/VisualDNA.aDNA/who/coordination/coord_2026_05_27_meta_plan_ratified.md`
-- **VisualDNA CLAUDE.md**: `~/lattice/VisualDNA.aDNA/CLAUDE.md`
-- **Trigger evidence** (ZenZachary): `~/lattice/VisualDNA.aDNA/who/coordination/coord_2026_05_27_zenzach_vdp03_setup.md`
-- **III airlock standard** (already load-bearing for spec_visualdna_airlock at VisualDNA): `~/lattice/III.aDNA/what/artifacts/iii_airlock_standard_spec.md` v0.3.0
-- **Re-merge anchor**: `~/lattice/lattice-labs/who/coordination/coord_2026_04_16_forge_split.md`
+- **VisualDNA META-PLAN ratification**: `~/aDNA/VisualDNA.aDNA/who/coordination/coord_2026_05_27_meta_plan_ratified.md`
+- **VisualDNA CLAUDE.md**: `~/aDNA/VisualDNA.aDNA/CLAUDE.md`
+- **Trigger evidence** (ZenZachary): `~/aDNA/VisualDNA.aDNA/who/coordination/coord_2026_05_27_zenzach_vdp03_setup.md`
+- **III airlock standard** (already load-bearing for spec_visualdna_airlock at VisualDNA): `~/aDNA/III.aDNA/what/artifacts/iii_airlock_standard_spec.md` v0.3.0
+- **Re-merge anchor**: `~/aDNA/lattice-labs/who/coordination/coord_2026_04_16_forge_split.md`
 
 ## Status Log
 

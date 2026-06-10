@@ -210,11 +210,11 @@ Per plan ratification (3 operator selections at AskUserQuestion gate this planni
 - F3 candidate ledger: `what/artifacts/f3_correction_candidates.md`
 - F5 validation artifact: `what/artifacts/f5_validation_wdr3_residue.md`
 - 4 web_design wrapper carriers @ v0.4.0 / `f49e821`:
-  - `~/lattice/VideoForge.aDNA/iii/CLAUDE.md` (commit `3cc3191`)
-  - `~/lattice/CanvasForge.aDNA/iii/CLAUDE.md` (commit `97654e3`)
-  - `~/lattice/wga.aDNA/iii/CLAUDE.md` (commit `3bbfb7a`)
-  - `~/lattice/SiteForge.aDNA/iii/CLAUDE.md` (edited-uncommitted; ISS-fold)
-- Wrapper deferred: `~/lattice/LPWhitepaper.aDNA/iii/CLAUDE.md` (stays @ v0.3.0; no web_design)
+  - `~/aDNA/VideoForge.aDNA/iii/CLAUDE.md` (commit `3cc3191`)
+  - `~/aDNA/CanvasForge.aDNA/iii/CLAUDE.md` (commit `97654e3`)
+  - `~/aDNA/wga.aDNA/iii/CLAUDE.md` (commit `3bbfb7a`)
+  - `~/aDNA/SiteForge.aDNA/iii/CLAUDE.md` (edited-uncommitted; ISS-fold)
+- Wrapper deferred: `~/aDNA/LPWhitepaper.aDNA/iii/CLAUDE.md` (stays @ v0.3.0; no web_design)
 - Governing ADRs (consumed, not amended at F6):
   - ADR-002 Consumer Federation Contract §3 minor-bump review: `what/decisions/adr_002_consumer_federation_contract.md`
   - ADR-003 Learning-Store Ownership §3 graduation ceremony: `what/decisions/adr_003_learning_store_ownership.md`

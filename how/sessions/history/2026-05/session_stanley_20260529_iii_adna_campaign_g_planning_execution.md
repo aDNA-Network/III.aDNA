@@ -83,7 +83,7 @@ Carried from the planning card (pre-disposed; not re-litigated): codename **Oper
 - All consumer wrappers (10 `iii/` + ≥2 `iss/`) — UNTOUCHED (no version bump → no ADR-002 §3 sweep).
 - MANIFEST.md — UNTOUCHED (III stays v0.4.1; no Release-History row).
 - III root CLAUDE.md — UNTOUCHED (Campaign G stays off the Campaign State table until DP-1 opens it).
-- Workspace router `~/lattice/CLAUDE.md` — UNTOUCHED (Standing Rule 7 surgical).
+- Workspace router `~/aDNA/CLAUDE.md` — UNTOUCHED (Standing Rule 7 surgical).
 - No git tag cut; no `git push` (operator-discretionary).
 
 ## Activity Log

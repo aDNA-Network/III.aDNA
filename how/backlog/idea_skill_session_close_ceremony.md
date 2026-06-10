@@ -67,8 +67,8 @@ The mitigation is **demonstrated by MC-4.5 itself**: the MC-4.5 close ceremony e
 - MC-4 retroactive close commit (canonical drift example): commit `c8ce621` in this repo
 - MC-4.5 close commit (canonical mitigation exemplar): commit `8235837` in this repo
 - Existing session protocol: `how/sessions/AGENTS.md` (the protocol that needs the skill scaffold to be executable, not just documented)
-- aDNA.aDNA M2.3.5 close ceremony precedent: `~/lattice/aDNA.aDNA/how/campaigns/campaign_adna_serious_tool_readiness/missions/mission_adna_str_p2_m23_5_push_readiness_review.md` + `~/lattice/aDNA.aDNA/how/campaigns/campaign_adna_serious_tool_readiness/missions/artifacts/aar_m23_5_push_readiness_review.md`
-- aDNA.aDNA M2.1 Op-3 archive-on-close pattern (5th canonical instance precedent at M2.3.5; complements the close-ceremony steps with STATE.md router maintenance): `~/lattice/aDNA.aDNA/how/campaigns/campaign_adna_serious_tool_readiness/missions/artifacts/m21_obj4_archive_convention_design.md`
+- aDNA.aDNA M2.3.5 close ceremony precedent: `~/aDNA/aDNA.aDNA/how/campaigns/campaign_adna_serious_tool_readiness/missions/mission_adna_str_p2_m23_5_push_readiness_review.md` + `~/aDNA/aDNA.aDNA/how/campaigns/campaign_adna_serious_tool_readiness/missions/artifacts/aar_m23_5_push_readiness_review.md`
+- aDNA.aDNA M2.1 Op-3 archive-on-close pattern (5th canonical instance precedent at M2.3.5; complements the close-ceremony steps with STATE.md router maintenance): `~/aDNA/aDNA.aDNA/how/campaigns/campaign_adna_serious_tool_readiness/missions/artifacts/m21_obj4_archive_convention_design.md`
 
 ## Upstream graduation potential
 

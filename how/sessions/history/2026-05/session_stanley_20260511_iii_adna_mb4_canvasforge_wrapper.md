@@ -23,9 +23,9 @@ Distinct from MB-3: this is **authoring** (Argus-side), not audit/ratification o
 
 **User's framing**: CanvasForge.aDNA is itself a forge with three downstream wrappers — SS `presentationforge/`, SS `graphicnovelforge/`, CC `presentationforge/`. The plan was designed downstream-safety-first; MB-4 changes are purely additive at vault root + a Standing Order edit. No moves of paths downstreams pin.
 
-1. Author `~/lattice/CanvasForge.aDNA/iii/CLAUDE.md` (federation_ref + 5 packs + 8 modules + 3 local_extensions + body sections; structure mirrors MB-3 VideoForge wrapper).
-2. Create `~/lattice/CanvasForge.aDNA/iii/what/context/canvasforge_iii_learning_store.jsonl` (0 bytes).
-3. Add new Standing Order 12 to `~/lattice/CanvasForge.aDNA/CLAUDE.md` (mirrors SiteForge SO 7 wording); annotate Project Structure tree to list `iii/`.
+1. Author `~/aDNA/CanvasForge.aDNA/iii/CLAUDE.md` (federation_ref + 5 packs + 8 modules + 3 local_extensions + body sections; structure mirrors MB-3 VideoForge wrapper).
+2. Create `~/aDNA/CanvasForge.aDNA/iii/what/context/canvasforge_iii_learning_store.jsonl` (0 bytes).
+3. Add new Standing Order 12 to `~/aDNA/CanvasForge.aDNA/CLAUDE.md` (mirrors SiteForge SO 7 wording); annotate Project Structure tree to list `iii/`.
 4. Update III.aDNA-side registers: MANIFEST.md Active Consumers CanvasForge row; Campaign B charter MB-4 row + DG-B box + Phase Plan + frontmatter `mb4_closed`; STATE.md Current Phase + new Latest Direction § + Campaign B mission queue + What's Working + frontmatter; III.aDNA/CLAUDE.md:60 correction.
 5. Verification sweep (md5 invariant; pin resolves; downstream-safety grep; wikilink sweep).
 6. Move session to `how/sessions/history/2026-05/`; commit per-vault (III.aDNA + CanvasForge.aDNA); no tag bump; no push.
@@ -42,15 +42,15 @@ Distinct from MB-3: this is **authoring** (Argus-side), not audit/ratification o
 
 ## Source Material (read-only inputs)
 
-- `/Users/stanley/lattice/VideoForge.aDNA/iii/CLAUDE.md` (115 lines; closest template — federation_ref + bridge_pack precedent + local_extensions + routing notes + cross-references)
-- `/Users/stanley/lattice/SiteForge.aDNA/iii/CLAUDE.md` (MB-2 template; reviewer_registry analog for `local_skill` shape; "packs out of scope" section)
-- `/Users/stanley/lattice/SiteForge.aDNA/CLAUDE.md` (SO 7 wording template; project-map iii/ listing pattern)
-- `/Users/stanley/lattice/CanvasForge.aDNA/CLAUDE.md` (current Standing Orders 1-11; Project Structure section; voice/style for SO 12 wording)
-- `/Users/stanley/lattice/CanvasForge.aDNA/what/context/iii/context_iii_canvas_visual.md` (10-trap canvas pack — bridge_pack target)
-- `/Users/stanley/lattice/CanvasForge.aDNA/how/skills/skill_canvas_iii_review.md` (5-voice canvas review skill — local_skill target)
-- `/Users/stanley/lattice/III.aDNA/what/decisions/adr_002_consumer_federation_contract.md` (federation_ref schema)
-- `/Users/stanley/lattice/III.aDNA/what/decisions/adr_003_learning_store_ownership.md` (learning_store_local semantics)
-- `/Users/stanley/lattice/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md` (MB-4 row authority)
+- `/Users/stanley/aDNA/VideoForge.aDNA/iii/CLAUDE.md` (115 lines; closest template — federation_ref + bridge_pack precedent + local_extensions + routing notes + cross-references)
+- `/Users/stanley/aDNA/SiteForge.aDNA/iii/CLAUDE.md` (MB-2 template; reviewer_registry analog for `local_skill` shape; "packs out of scope" section)
+- `/Users/stanley/aDNA/SiteForge.aDNA/CLAUDE.md` (SO 7 wording template; project-map iii/ listing pattern)
+- `/Users/stanley/aDNA/CanvasForge.aDNA/CLAUDE.md` (current Standing Orders 1-11; Project Structure section; voice/style for SO 12 wording)
+- `/Users/stanley/aDNA/CanvasForge.aDNA/what/context/iii/context_iii_canvas_visual.md` (10-trap canvas pack — bridge_pack target)
+- `/Users/stanley/aDNA/CanvasForge.aDNA/how/skills/skill_canvas_iii_review.md` (5-voice canvas review skill — local_skill target)
+- `/Users/stanley/aDNA/III.aDNA/what/decisions/adr_002_consumer_federation_contract.md` (federation_ref schema)
+- `/Users/stanley/aDNA/III.aDNA/what/decisions/adr_003_learning_store_ownership.md` (learning_store_local semantics)
+- `/Users/stanley/aDNA/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md` (MB-4 row authority)
 - MB-1 + MB-2 + MB-3 wrappers + session files — worked precedents
 
 ## Activity Log
@@ -73,21 +73,21 @@ Distinct from MB-3: this is **authoring** (Argus-side), not audit/ratification o
 1. **Wrapper paths resolve** — `wc -l` each of the 3 local_extensions targets; bridge_pack = 291, local_skill = 105, learning_store_local = 0 bytes.
 2. **Pin resolves** — `git rev-parse v0.2.0^{commit}` = `246124d`.
 3. **Canonical invariant** — `md5sum iii_corrections_canonical.jsonl` unchanged at `dde2cbd88c0b45956fb22285a2a0f856`.
-4. **Downstream-safety** — `grep -rn "iii/\|context/iii\|skill_canvas_iii" /Users/stanley/lattice/science_stanley.aDNA/presentationforge/ /Users/stanley/lattice/science_stanley.aDNA/graphicnovelforge/ /Users/stanley/lattice/context_commons.aDNA/presentationforge/` → 0 hits.
-5. **Standing Order present** — `grep -n "iii/CLAUDE.md" /Users/stanley/lattice/CanvasForge.aDNA/CLAUDE.md` returns the new SO line.
+4. **Downstream-safety** — `grep -rn "iii/\|context/iii\|skill_canvas_iii" /Users/stanley/aDNA/science_stanley.aDNA/presentationforge/ /Users/stanley/aDNA/science_stanley.aDNA/graphicnovelforge/ /Users/stanley/aDNA/context_commons.aDNA/presentationforge/` → 0 hits.
+5. **Standing Order present** — `grep -n "iii/CLAUDE.md" /Users/stanley/aDNA/CanvasForge.aDNA/CLAUDE.md` returns the new SO line.
 6. **Register sync** — STATE.md / MANIFEST.md / campaign charter all show `MB-4 ✅ 2026-05-11`.
-7. **Wikilink sweep** — `grep -rn "context_iii_canvas_visual\|skill_canvas_iii_review" /Users/stanley/lattice/CanvasForge.aDNA/` resolves cleanly (no broken pointers).
+7. **Wikilink sweep** — `grep -rn "context_iii_canvas_visual\|skill_canvas_iii_review" /Users/stanley/aDNA/CanvasForge.aDNA/` resolves cleanly (no broken pointers).
 8. **No tag bump** — `git tag -l` returns only `v0.1.0` and `v0.2.0`.
 
 ## Outputs
 
-- `~/lattice/CanvasForge.aDNA/iii/CLAUDE.md` (new)
-- `~/lattice/CanvasForge.aDNA/iii/what/context/canvasforge_iii_learning_store.jsonl` (new, empty)
-- `~/lattice/CanvasForge.aDNA/CLAUDE.md` (SO 12 added; project map updated)
-- `~/lattice/III.aDNA/MANIFEST.md` (Active Consumers row)
-- `~/lattice/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md` (MB-4 row + DG-B box + Phase Plan + frontmatter)
-- `~/lattice/III.aDNA/STATE.md` (Current Phase + Latest Direction + What's Working + queue + frontmatter)
-- `~/lattice/III.aDNA/CLAUDE.md` line 60 (correction)
+- `~/aDNA/CanvasForge.aDNA/iii/CLAUDE.md` (new)
+- `~/aDNA/CanvasForge.aDNA/iii/what/context/canvasforge_iii_learning_store.jsonl` (new, empty)
+- `~/aDNA/CanvasForge.aDNA/CLAUDE.md` (SO 12 added; project map updated)
+- `~/aDNA/III.aDNA/MANIFEST.md` (Active Consumers row)
+- `~/aDNA/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md` (MB-4 row + DG-B box + Phase Plan + frontmatter)
+- `~/aDNA/III.aDNA/STATE.md` (Current Phase + Latest Direction + What's Working + queue + frontmatter)
+- `~/aDNA/III.aDNA/CLAUDE.md` line 60 (correction)
 - This session file → `how/sessions/history/2026-05/`
 
 ## Closure

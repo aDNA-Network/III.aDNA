@@ -42,13 +42,13 @@ III.aDNA Campaign C closed Phase 2 on 2026-05-13 (disk) / 2026-05-20 (git retroa
 
 ## Cross-references
 
-- III.aDNA MC-4.5 dossier (full landscape survey; §3.4 LN signals; §5.2 D1 candidate sketch): `~/lattice/III.aDNA/what/artifacts/mc4_5_alignment_recon_dossier.md`
-- III.aDNA STATE.md (current state with MC-4.5 close bullet): `~/lattice/III.aDNA/STATE.md`
-- AIRLOCK standard spec v0.2.0 (extension point: §4 cross-vault request patterns; v0.3+ would extend §4.4 secrets_handled to include signing-key verification): `~/lattice/III.aDNA/what/artifacts/iii_airlock_standard_spec.md`
-- Substrate implementation guidance (§2 secrets preflight + §3 idempotency dedup; v0.3+ would add federation-substrate observation): `~/lattice/III.aDNA/what/artifacts/iii_airlock_substrate_implementation.md`
-- LN.aDNA pc_01 Phase A artifacts (read-only context): `~/lattice/LatticeNetwork.aDNA/how/campaigns/campaign_alphalattice_genesis/missions/pc_01*`
-- LN.aDNA AIRLOCK.md stub (currently inactive; v0.1.0 pinned to III ~0.2.0): `~/lattice/LatticeNetwork.aDNA/how/airlock/AIRLOCK.md`
-- wga.aDNA `iii/` consumer wrapper (Day-1 federation pilot candidate): `~/lattice/wga.aDNA/iii/CLAUDE.md`
+- III.aDNA MC-4.5 dossier (full landscape survey; §3.4 LN signals; §5.2 D1 candidate sketch): `~/aDNA/III.aDNA/what/artifacts/mc4_5_alignment_recon_dossier.md`
+- III.aDNA STATE.md (current state with MC-4.5 close bullet): `~/aDNA/III.aDNA/STATE.md`
+- AIRLOCK standard spec v0.2.0 (extension point: §4 cross-vault request patterns; v0.3+ would extend §4.4 secrets_handled to include signing-key verification): `~/aDNA/III.aDNA/what/artifacts/iii_airlock_standard_spec.md`
+- Substrate implementation guidance (§2 secrets preflight + §3 idempotency dedup; v0.3+ would add federation-substrate observation): `~/aDNA/III.aDNA/what/artifacts/iii_airlock_substrate_implementation.md`
+- LN.aDNA pc_01 Phase A artifacts (read-only context): `~/aDNA/LatticeNetwork.aDNA/how/campaigns/campaign_alphalattice_genesis/missions/pc_01*`
+- LN.aDNA AIRLOCK.md stub (currently inactive; v0.1.0 pinned to III ~0.2.0): `~/aDNA/LatticeNetwork.aDNA/how/airlock/AIRLOCK.md`
+- wga.aDNA `iii/` consumer wrapper (Day-1 federation pilot candidate): `~/aDNA/wga.aDNA/iii/CLAUDE.md`
 
 ## Fire policy
 
@@ -67,4 +67,4 @@ Campaign D candidate D1 (federation-aware airlock v0.3) carries this memo's inte
 
 ## Firing record
 
-**Fired at Campaign D charter ratification 2026-05-21T00:50Z** (operator-frame 2026-05-20; commit `67a0936`). Operator pre-committed `draft → sent` direct (no `ready` intermediate) at AskUserQuestion gate in this charter session. Campaign D MD-A1 (v0.3 airlock spec extension) opens as the primary downstream consumer of this memo's load-bearing intersect — LN substrate-observation contract specification is the cross-vault dependency MD-A1 must reconcile. See `~/lattice/III.aDNA/how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md` §Inbound Signals + §Risk Register R1 (LN substrate maturity timing). `ack_at:` awaits LN Venus session-touch.
+**Fired at Campaign D charter ratification 2026-05-21T00:50Z** (operator-frame 2026-05-20; commit `67a0936`). Operator pre-committed `draft → sent` direct (no `ready` intermediate) at AskUserQuestion gate in this charter session. Campaign D MD-A1 (v0.3 airlock spec extension) opens as the primary downstream consumer of this memo's load-bearing intersect — LN substrate-observation contract specification is the cross-vault dependency MD-A1 must reconcile. See `~/aDNA/III.aDNA/how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md` §Inbound Signals + §Risk Register R1 (LN substrate maturity timing). `ack_at:` awaits LN Venus session-touch.

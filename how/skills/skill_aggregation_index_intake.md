@@ -38,7 +38,7 @@ The skill is markdown-only (no Python script). Per MD-A2 / MD-B1 / MD-B3 spec-on
 
 ## When to Use
 
-Invoke this skill when III receives a memo filed at `~/lattice/III.aDNA/who/coordination/coord_<YYYY-MM-DD>_<originating_vault>_<batch_id>.md` whose frontmatter `type:` is `cross_vault_request` AND `artifact_request.type:` is `learning_store_graduation`.
+Invoke this skill when III receives a memo filed at `~/aDNA/III.aDNA/who/coordination/coord_<YYYY-MM-DD>_<originating_vault>_<batch_id>.md` whose frontmatter `type:` is `cross_vault_request` AND `artifact_request.type:` is `learning_store_graduation`.
 
 Do NOT invoke for:
 - Other `cross_vault_request` types (those routed via their own type-specific intake skills or general airlock intake).
@@ -55,9 +55,9 @@ Do NOT invoke for:
 ## Inputs
 
 - **`proposal_memo_path`** — absolute path to the received cross-vault request memo
-- **`canonical_jsonl_path`** — `~/lattice/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` (READ-ONLY; consulted for `idempotency_key` collision checks only; never written by this skill)
-- **`index_jsonl_path`** — `~/lattice/III.aDNA/who/coordination/.aggregation/graduation_proposals_index.jsonl` (the receiver-side sidecar populated by this skill)
-- **`audit_log_path`** — `~/lattice/III.aDNA/who/coordination/.audit/audit_<YYYY-MM>.jsonl` (the receiver-side audit log; new `event_type: aggregation_intake` per airlock impl-doc §6 schema convention)
+- **`canonical_jsonl_path`** — `~/aDNA/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` (READ-ONLY; consulted for `idempotency_key` collision checks only; never written by this skill)
+- **`index_jsonl_path`** — `~/aDNA/III.aDNA/who/coordination/.aggregation/graduation_proposals_index.jsonl` (the receiver-side sidecar populated by this skill)
+- **`audit_log_path`** — `~/aDNA/III.aDNA/who/coordination/.audit/audit_<YYYY-MM>.jsonl` (the receiver-side audit log; new `event_type: aggregation_intake` per airlock impl-doc §6 schema convention)
 
 ## Procedure
 
@@ -86,7 +86,7 @@ Compute the `idempotency_key` from the memo frontmatter. Grep the index for an e
 
 ```bash
 grep -F "\"idempotency_key\":\"$KEY\"" \
-  ~/lattice/III.aDNA/who/coordination/.aggregation/graduation_proposals_index.jsonl
+  ~/aDNA/III.aDNA/who/coordination/.aggregation/graduation_proposals_index.jsonl
 ```
 
 If a matching record exists AND `force_new: false` in the memo: this is a re-file. Emit reply with `duplicate_of: <existing_audit_id>` per airlock §4.5; flip the new memo to `status: cancelled`. **Do NOT append a new index record** (per ADR-008 §4 — re-files do not inflate cross-fork frequency). Halt skill.
@@ -105,7 +105,7 @@ Grep the index for existing records with the same `pattern_key`:
 
 ```bash
 grep -F "\"pattern_key\":\"$PATTERN_KEY\"" \
-  ~/lattice/III.aDNA/who/coordination/.aggregation/graduation_proposals_index.jsonl
+  ~/aDNA/III.aDNA/who/coordination/.aggregation/graduation_proposals_index.jsonl
 ```
 
 For each potentially-equivalent existing record (same `pattern_key` exact match OR semantically-similar pattern names under different lexical forms):
@@ -137,7 +137,7 @@ The index record is **receiver-side state only** — it never crosses back to th
 
 ```bash
 grep -F "\"pattern_key\":\"$PATTERN_KEY\"" \
-  ~/lattice/III.aDNA/who/coordination/.aggregation/graduation_proposals_index.jsonl \
+  ~/aDNA/III.aDNA/who/coordination/.aggregation/graduation_proposals_index.jsonl \
   | jq -r '.originating_vault' | sort -u | wc -l
 ```
 
@@ -154,7 +154,7 @@ Author a reply memo at `who/coordination/reply_<YYYY-MM-DD>_iii_to_<originating_
 
 ### Step 8 — Audit-log record
 
-Append one record per memo intake to `~/lattice/III.aDNA/who/coordination/.audit/audit_<YYYY-MM>.jsonl`:
+Append one record per memo intake to `~/aDNA/III.aDNA/who/coordination/.audit/audit_<YYYY-MM>.jsonl`:
 
 ```jsonl
 {"event_type": "aggregation_intake", "audit_id": "<uuid>", "received_at": "<ISO-8601>", "proposal_memo_path": "<relative>", "originating_vault": "<requesting_vault>", "idempotency_key": "<from memo>", "proposed_entry_count": <int>, "disposition": "accepted|rejected|cancelled", "rejection_reason": "<enum value or null>", "pattern_keys_indexed": [<list>], "argus_equivalence_decision": "yes|no|n/a", "merged_with": "<audit_id or null>", "evidence_summary_2_vault_gate": "met|unmet", "reply_memo_path": "<relative>", "airlock_spec_version": "0.3.0", "federation_mode": "enforce|advisory|off", "signature_verified": true|false|null}
@@ -176,7 +176,7 @@ The audit record is the durable receiver-only state per airlock impl-doc §6.5 b
 
 ## Seed records (MD-B4 retroactive seeding)
 
-The MD-B4 mission seeded this index with the one real cross-vault graduation precedent: the VFL memo at `~/lattice/lattice-labs/who/coordination/coord_2026_05_12_vfl_graduation_proposals.md` (VideoForge VFL-001 + VFL-002, ratified at MD-B2 2026-05-21 into C-027 + C-028).
+The MD-B4 mission seeded this index with the one real cross-vault graduation precedent: the VFL memo at `~/aDNA/lattice-labs/who/coordination/coord_2026_05_12_vfl_graduation_proposals.md` (VideoForge VFL-001 + VFL-002, ratified at MD-B2 2026-05-21 into C-027 + C-028).
 
 The seed records demonstrate the populator end-to-end without firing any new graduation (the canonical store and its md5 are untouched at MD-B4). Both records are from `originating_vault: VideoForge.aDNA` — so the ≥2-vault gate (Step 6) returns **unmet** for both `pattern_key` values, exercising the gate's protective behavior. Status field `ratified_C-027_C-028` reflects that these were already ratified prior to MD-B4; they are seeded as historical, not as live proposals.
 

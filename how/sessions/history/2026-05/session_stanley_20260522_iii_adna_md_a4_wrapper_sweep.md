@@ -23,7 +23,7 @@ files_modified:
   - MANIFEST.md                                                                           # Active Consumers pinned cols
   - CLAUDE.md                                                                             # Campaign State row + learning store / lattice yaml stat refresh
   - how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md  # MD-A4 row flip + Phase Plan P3 partial
-  - ../CLAUDE.md (workspace router at /Users/stanley/lattice/CLAUDE.md)                  # III.aDNA row reflects 5 wrappers v0.3 + lattice-labs deferred
+  - ../CLAUDE.md (workspace router at /Users/stanley/aDNA/CLAUDE.md)                  # III.aDNA row reflects 5 wrappers v0.3 + lattice-labs deferred
 files_created:
   - how/sessions/active/session_stanley_20260522_iii_adna_md_a4_wrapper_sweep.md          # this file (moves to history/2026-05/ at close)
 campaign: campaign_d_federation_adaptive_loop
@@ -90,7 +90,7 @@ session_close_ceremony_application: "seventh canonical post-adoption (after char
 - **06:45Z** — STATE.md updated: frontmatter `updated` rewritten with full MD-A4 close summary paragraph + `last_session` / `prior_session` / `tags` flipped; new top "Current Phase" Campaign D MD-A4 ✅ CLOSED paragraph authored (~6700 chars); Campaigns table row Campaign D updated with MD-A3 + MD-A4 status flips and DG-D 6/11 progress. Mid-flight bug caught + fixed: chained-paragraph header in Campaigns row mislabeled `MD-A2` (where content described MD-B2 VFL graduation) — relabeled to `MD-B2` to preserve chain integrity.
 - **06:50Z** — CLAUDE.md Campaign State table refreshed end-to-end (was severely stale from project bootstrap, showing Campaigns A/B/C all "P0 MA-0 IN PROGRESS"); now reflects A/B/C all closed + Campaign D 6/11 with MD-A4 ✅.
 - **06:52Z** — Campaign D charter updated: DG-D Criteria line 71 MD-A4 box flipped ☐ → ☒ with full close paragraph; Mission Table D1 row line 89 status `pending` → `✅ COMPLETE 2026-05-22` with mechanical-shape summary; Phase Plan line 139 P3 row `pending` → `partial` with MD-B3 + MD-B4 next-up status.
-- **06:55Z** — Workspace router `~/lattice/CLAUDE.md` III.aDNA row updated (both Projects table at line 73 + project map at line 127) — reflects MD-A2 + MD-A3 + MD-A4 status; DG-D 3/11 → 6/11; "Next" line updated to MD-B3 OR MD-B4 OR MD-A5 (MD-A2/A3 no longer "Next" since they're done).
+- **06:55Z** — Workspace router `~/aDNA/CLAUDE.md` III.aDNA row updated (both Projects table at line 73 + project map at line 127) — reflects MD-A2 + MD-A3 + MD-A4 status; DG-D 3/11 → 6/11; "Next" line updated to MD-B3 OR MD-B4 OR MD-A5 (MD-A2/A3 no longer "Next" since they're done).
 - **07:00Z** — Final verification suite executed: (1) 5 wrappers at v0.3.0 ✅; (2) lattice-labs deferred ✅; (3) canonical md5 invariant ✅; (4) lattice yaml unchanged at 1.2.3 ✅; (5) Campaign D charter MD-A1..MD-A4 all ✅ boxes (MD-A5 still pending) ✅; (6) STATE.md frontmatter updated ✅. All 6 verification checks pass.
 
 ## SITREP
@@ -98,9 +98,9 @@ session_close_ceremony_application: "seventh canonical post-adoption (after char
 ### Completed this session
 
 - **5 active consumer wrappers bumped `v0.2.0 → v0.3.0`** per ADR-002 §3 minor-bump review protocol: `wga.aDNA/iii/CLAUDE.md`, `SiteForge.aDNA/iii/CLAUDE.md`, `VideoForge.aDNA/iii/CLAUDE.md`, `CanvasForge.aDNA/iii/CLAUDE.md`, `LPWhitepaper.aDNA/iii/CLAUDE.md`. All now pin to commit `a309ad4` (v0.3.0-line / MD-A3 close commit shipping spec + impl-doc + activation kit + reference-instance AIRLOCK.md).
-- **`lattice-labs/iii/CLAUDE.md` formally TRACKED-DEFERRED** at v0.1.0 per workspace `~/lattice/CLAUDE.md` genesis-first migration discipline (lattice-labs is predecessor to LatticeLabs.aDNA; successor wrapper `LatticeLabs.aDNA/iii` v0.2.0 absorbs v0.3-required work post-Phase-6). New § MD-A4 disposition section authored documenting status + rationale + effect + ADR-002 §3 review record + next review trigger.
+- **`lattice-labs/iii/CLAUDE.md` formally TRACKED-DEFERRED** at v0.1.0 per workspace `~/aDNA/CLAUDE.md` genesis-first migration discipline (lattice-labs is predecessor to LatticeLabs.aDNA; successor wrapper `LatticeLabs.aDNA/iii` v0.2.0 absorbs v0.3-required work post-Phase-6). New § MD-A4 disposition section authored documenting status + rationale + effect + ADR-002 §3 review record + next review trigger.
 - **III.aDNA-side bookkeeping landed**: MANIFEST.md frontmatter + Active Consumers table + Known Carry-Forwards bullet; STATE.md frontmatter + new top Current Phase paragraph + Campaigns table row; CLAUDE.md Campaign State table refreshed end-to-end (was severely stale from bootstrap); campaign charter DG-D Criteria line 71 + Mission Table line 89 + Phase Plan line 139 all updated.
-- **Workspace router** `~/lattice/CLAUDE.md` III.aDNA row + project map both updated (DG-D 3/11 → 6/11; MD-A2/A3/A4 status reflected).
+- **Workspace router** `~/aDNA/CLAUDE.md` III.aDNA row + project map both updated (DG-D 3/11 → 6/11; MD-A2/A3/A4 status reflected).
 - **Canonical invariants preserved**: canonical jsonl md5 `5adb0dfa38d9224649c3b2cba83852ae` unchanged (no learning-store touch); lattice yaml v1.2.3 unchanged (no substrate edit); spec/impl-doc/AIRLOCK.md reference-instance versions all unchanged at v0.3.0.
 - **ZERO new III ADR** authored — consumption-only precedent from MD-A1+MD-A2+MD-A3 preserved.
 - **No outbound coord memos fired** — internal sweep mission per MD-A2+MD-A3 precedent; LN federation-pilot courtesy notification re: wga pin bump defers to MD-A5 cadence.
@@ -138,7 +138,7 @@ session_close_ceremony_application: "seventh canonical post-adoption (after char
 - `lattice-labs/iii/CLAUDE.md` (v0.1.0 stays; formal tracked-deferred annotation added)
 
 **Workspace router** (not in any git repo):
-- `~/lattice/CLAUDE.md` (III.aDNA Projects table row + project map line — informational)
+- `~/aDNA/CLAUDE.md` (III.aDNA Projects table row + project map line — informational)
 
 **Files NOT touched** (per scope discipline):
 - `iii_corrections_canonical.jsonl` (md5 invariant preserved)

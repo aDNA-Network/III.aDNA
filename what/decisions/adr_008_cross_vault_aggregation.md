@@ -76,7 +76,7 @@ receiving_persona: argus_panoptes
 artifact_request:
   type: learning_store_graduation          # canonical value registered at airlock spec §4.3 by MD-B3
   source_learning_store: <path to the consumer's *_iii_learning_store.jsonl>
-  candidate_target: ~/lattice/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl
+  candidate_target: ~/aDNA/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl
   ceremony_authority: ADR-003 §3 (+ §3.6 if elevated-scrutiny)
   proposed_entries: [<local_id>, ...]       # e.g. ["VFL-001", "VFL-002"]
 idempotency_key: <vault_short>_graduation_<batch_id>

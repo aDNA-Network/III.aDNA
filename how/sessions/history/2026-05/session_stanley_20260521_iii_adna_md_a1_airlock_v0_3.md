@@ -16,7 +16,7 @@ files_modified:
   - STATE.md
   - how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md
   - what/artifacts/iii_airlock_standard_spec.md
-  - "(external) ~/lattice/CLAUDE.md (workspace router; not git-tracked at workspace root)"
+  - "(external) ~/aDNA/CLAUDE.md (workspace router; not git-tracked at workspace root)"
 files_created:
   - who/coordination/reply_2026_05_21_iii_to_ln_md_a1_spec_v0_3_landed.md
   - how/sessions/active/session_stanley_20260521_iii_adna_md_a1_airlock_v0_3.md   # this file
@@ -84,7 +84,7 @@ risk_disposition:
   - `grep 'ln_substrate_version_pin' what/artifacts/iii_airlock_standard_spec.md` → multiple matches (frontmatter + §7.5 + §9.4) ✓
 - **14:15Z** — Step 8: Charter scorecard flip — DG-D Criteria checkbox MD-A1 `[ ] → [x]` with full closure annotation citing v0.2.0 → v0.3.0; mission table MD-A1 row status `pending → ✅ COMPLETE 2026-05-21`; Phase Plan P1 row `partial → ✅ COMPLETE`; frontmatter `phase: P1_spec_partial → P1_spec_complete_P2_substrate_partial`. Charter `updated: 2026-05-21` unchanged (already today). DG-D count 2/11 → 3/11.
 - **14:16Z** — Step 9: STATE.md refresh — frontmatter `last_session:` + `prior_session:` updated; `updated:` annotation refreshed to MD-A1 close (full single-paragraph summary covering all 9 new sections + ancillary touchpoints + no-touch invariants + DG-D advancement); `tags:` extended with MD-A1 + airlock_v0_3 + federation_aware + ed25519 + ledger_observation + multi_substrate + ln_adr_014_015_absorbed. Current Phase top-bullet authored (~5 KB; mirrors MD-B2 close note structure; cites all 3 new section authorings + 4 ancillary substrate updates + risk disposition + recommended next). Campaigns table Campaign D row updated: `P1 partial → P1 ✅ COMPLETE — MD-A1 ✅ + MD-B1 ✅; P2 partial — MD-B2 ✅; MD-A2 + MD-A3 pending`.
-- **14:17Z** — Step 10: Workspace + III.aDNA CLAUDE.md sync. III.aDNA CLAUDE.md line 74 decisions/ comment extended (MD-A1 close note: ZERO new ADRs authored per consumption-only disposition). III.aDNA CLAUDE.md line 200 airlock-spec reference annotation refreshed (v0.3.0 federation-substrate awareness MD-A1 Campaign D). Workspace `/Users/stanley/lattice/CLAUDE.md` III.aDNA project table row updated (DG-D 2/11 → 3/11; MD-A1 ✅; spec v0.3.0 landing detailed; LN dependency satisfied; next missions enumerated). Workspace ASCII project tree III.aDNA annotation refreshed.
+- **14:17Z** — Step 10: Workspace + III.aDNA CLAUDE.md sync. III.aDNA CLAUDE.md line 74 decisions/ comment extended (MD-A1 close note: ZERO new ADRs authored per consumption-only disposition). III.aDNA CLAUDE.md line 200 airlock-spec reference annotation refreshed (v0.3.0 federation-substrate awareness MD-A1 Campaign D). Workspace `/Users/stanley/aDNA/CLAUDE.md` III.aDNA project table row updated (DG-D 2/11 → 3/11; MD-A1 ✅; spec v0.3.0 landing detailed; LN dependency satisfied; next missions enumerated). Workspace ASCII project tree III.aDNA annotation refreshed.
 - **14:18Z** — Step 11: Reply coord memo authored at `who/coordination/reply_2026_05_21_iii_to_ln_md_a1_spec_v0_3_landed.md` — Argus → Venus full-profile Acceptance variant per `template_cross_vault_request_reply.md` (matching MD-B2 reply memo cadence); `disposition: load_bearing_intersect_resolved`; cites ADR-014 + ADR-015 absorption + ADR-013 + ADR-010 as upstream patterns; lists all 9 new spec sections; declares `ln_substrate_version_pin`; provides 4 LN-side optional touchpoints (none binding); confirms wga_l1 Day-1 federation pilot status; awaits `ack_at:` on the original inbound coord memo at next Venus session-touch.
 - **14:18Z** — Step 12: Pre-flight verification. Charter unflipped MD-A1 checkboxes: 0 ✓. Spec version: 0.3.0 ✓. New §4.6 + §5 + §5.3.1 + §7.5 + §9.4 + §9.5 LN ADR cross-refs all present ✓. Canonical jsonl md5 `5adb0dfa38d9224649c3b2cba83852ae` invariant preserved ✓ (no learning-store touch). Lattice yaml at 1.2.3 ✓ (no bump; artifact-only mission). Working tree shows 5 modified + 2 created files (1 external = workspace router).
 - **14:19Z** — Step 13: Session-close ceremony 7-step protocol. Activity log + SITREP + Next Session Prompt populated; frontmatter `status: active → completed`; `ended:` + `closed_at:` ISO timestamps added; session file move active/ → history/2026-05/ folded into close commit; single commit with conventional message; STATE.md refresh already landed at Step 9 (combined for efficiency per MD-B1 + MD-B2 precedent — STATE refresh + active session move both fold into the close commit).
@@ -138,7 +138,7 @@ risk_disposition:
 - `CLAUDE.md` (project map decisions/ comment + airlock-spec reference annotation)
 
 **External-vault**:
-- `/Users/stanley/lattice/CLAUDE.md` (workspace router; III.aDNA project table row + ASCII project tree annotation)
+- `/Users/stanley/aDNA/CLAUDE.md` (workspace router; III.aDNA project table row + ASCII project tree annotation)
 
 **Untouched (verified)**:
 - `what/context/core_domain_packs/iii_corrections_canonical.jsonl` (md5 `5adb0dfa38d9224649c3b2cba83852ae` invariant)

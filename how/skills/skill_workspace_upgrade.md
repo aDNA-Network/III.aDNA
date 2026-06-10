@@ -34,7 +34,7 @@ This skill complements `skill_project_fork.md` (creates new projects) — this s
 
 | Parameter | Source | Required |
 |-----------|--------|----------|
-| `workspace_root` | The directory containing your aDNA projects (e.g., `~/lattice/`) | Yes |
+| `workspace_root` | The directory containing your aDNA projects (e.g., `~/aDNA/`) | Yes |
 | `cleanup_mode` | `aggressive` (archive everything stale) or `conservative` (only clear stubs) | No (default: `aggressive`) |
 
 ## Implementation

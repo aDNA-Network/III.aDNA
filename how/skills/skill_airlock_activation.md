@@ -32,10 +32,10 @@ Packages the recipe + verification checklist consumer vaults need to move a `how
 The activation kit is **documentation-grade per Campaign C R3 + MD-A2 precedent**: no executable runtime, no scripts to run. The skill walks an operator/agent through the manual edits + verification checklist that constitute activation. An executable activation harness is deferred to a future III.aDNA v0.4+ or Platform.aDNA integration.
 
 **Canonical contracts referenced**:
-- Airlock standard spec v0.3.0: `~/lattice/III.aDNA/what/artifacts/iii_airlock_standard_spec.md`
-- Substrate implementation guidance v0.3.0: `~/lattice/III.aDNA/what/artifacts/iii_airlock_substrate_implementation.md`
-- Reference instance (the model the kit teaches consumers to mirror): `~/lattice/III.aDNA/how/airlock/AIRLOCK.md` (v0.3.0 post-MD-A3)
-- Reply-comment template (extended at MD-A2 with Ed25519 rejection sub-reasons): `~/lattice/III.aDNA/how/templates/template_cross_vault_request_reply.md`
+- Airlock standard spec v0.3.0: `~/aDNA/III.aDNA/what/artifacts/iii_airlock_standard_spec.md`
+- Substrate implementation guidance v0.3.0: `~/aDNA/III.aDNA/what/artifacts/iii_airlock_substrate_implementation.md`
+- Reference instance (the model the kit teaches consumers to mirror): `~/aDNA/III.aDNA/how/airlock/AIRLOCK.md` (v0.3.0 post-MD-A3)
+- Reply-comment template (extended at MD-A2 with Ed25519 rejection sub-reasons): `~/aDNA/III.aDNA/how/templates/template_cross_vault_request_reply.md`
 - Federation contracts: ADR-002 §3 (consumer minor-bump review); ADR-003 rule 2 (assumes_draft inheritance); LN ADR-013 §b (per-purpose-slot dict); LN ADR-014 §c (canonical-JSON algorithm); LN ADR-015 §b/§d/§e (substrate pluralism + `transport.substrates[]`)
 
 ## When to Use
@@ -54,7 +54,7 @@ Do NOT use this skill to:
 
 - The consumer vault has an `iii/` wrapper at `<vault>/iii/CLAUDE.md` (created via `skill_iii_setup.md`).
 - The consumer vault has a `how/airlock/AIRLOCK.md` stub (either fresh-fork from `.adna` template OR a v0.2 active instance ready for bump).
-- The III.aDNA upstream is reachable at `~/lattice/III.aDNA/` (or via the GitHub remote `https://github.com/LatticeProtocol/III.aDNA`) at a commit that ships the v0.3.0 airlock spec + impl-doc (post-MD-A1 + MD-A2; reference instance bumps at MD-A3).
+- The III.aDNA upstream is reachable at `~/aDNA/III.aDNA/` (or via the GitHub remote `https://github.com/LatticeProtocol/III.aDNA`) at a commit that ships the v0.3.0 airlock spec + impl-doc (post-MD-A1 + MD-A2; reference instance bumps at MD-A3).
 - The operator can decide whether the consumer will participate in federation observation (opt-in per spec §5.3) OR remain substrate-naïve (v0.3 still applies; §5 hooks just stay inert).
 - For federation-active consumers: LN.aDNA `pc_01` Phase A close + Phase B1 close are live (Ed25519 keypair + bore.pub:42561 tunnel + ADR-014/-015 accepted 2026-05-20); the consumer's federation signing pubkey is registered in the LN membership manifest at `transport.substrates[*].identity.federation_signing_pubkey_sha256` per ADR-013 §b + ADR-015 §b/§d.
 
@@ -62,7 +62,7 @@ Do NOT use this skill to:
 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
-| `consumer_vault_path` | yes | Absolute path to consumer vault root (e.g., `~/lattice/wga.aDNA/`) |
+| `consumer_vault_path` | yes | Absolute path to consumer vault root (e.g., `~/aDNA/wga.aDNA/`) |
 | `airlock_path` | yes | Path to the AIRLOCK.md being activated/bumped (e.g., `<vault>/how/airlock/AIRLOCK.md`) |
 | `mode` | yes | `activate` (v0.0 stub → v0.3.0) OR `upgrade` (v0.2.0 → v0.3.0). Picks Step 3 (activation) vs Step 4 (upgrade) below. |
 | `federation_mode` | yes | `enforce` (require Ed25519 verification at request acceptance) OR `advisory` (warn-on-failure; v0.2-compatibility profile per spec §4.6) OR `inactive` (consumer is not federated; §5 hooks stay dormant) |
@@ -89,11 +89,11 @@ Do NOT use this skill to:
 
 Before any edits, verify all of these pass:
 
-1. **III.aDNA version reachable** — `~/lattice/III.aDNA/` exists (or remote reachable); `git -C ~/lattice/III.aDNA tag | grep -q v0.2.0` returns 0 (production pin live); spec at `what/artifacts/iii_airlock_standard_spec.md` has `version: "0.3.0"` (MD-A1 close).
+1. **III.aDNA version reachable** — `~/aDNA/III.aDNA/` exists (or remote reachable); `git -C ~/aDNA/III.aDNA tag | grep -q v0.2.0` returns 0 (production pin live); spec at `what/artifacts/iii_airlock_standard_spec.md` has `version: "0.3.0"` (MD-A1 close).
 2. **Impl-doc available** — `what/artifacts/iii_airlock_substrate_implementation.md` has `version: "0.3.0"` (MD-A2 close); §4 + §5 + §6 present.
 3. **LN substrate prerequisites (federation_mode != inactive)** — LN.aDNA `pc_01` Phase A + Phase B1 closed; ADR-014 + ADR-015 ratified; consumer's `canonical_id` resolves to a `transport.substrates[*].identity.federation_signing_pubkey_sha256` entry in the LN membership manifest.
 4. **`iii/` wrapper version pin compatible** — consumer's `<vault>/iii/CLAUDE.md` has `federation_ref.version` ≥ `0.3.0` (or `>=0.2.0` with operator-acknowledged forward-pin to v0.3 at MD-A4 sweep close). If `<0.2.0`, abort and run `skill_iii_setup.md` upgrade flow first.
-5. **Reply-comment template current** — `~/lattice/III.aDNA/how/templates/template_cross_vault_request_reply.md` line 60 (rejection-reason enum) includes `signature_verification_failed:<pubkey_absent|pubkey_revoked|signature_mismatch|key_version_unknown|substrate_mismatch>` (added at MD-A2 close).
+5. **Reply-comment template current** — `~/aDNA/III.aDNA/how/templates/template_cross_vault_request_reply.md` line 60 (rejection-reason enum) includes `signature_verification_failed:<pubkey_absent|pubkey_revoked|signature_mismatch|key_version_unknown|substrate_mismatch>` (added at MD-A2 close).
 
 If any check fails, abort and resolve the failed prerequisite first. Do not partial-activate.
 
@@ -113,7 +113,7 @@ status: reference_implementation     # was "inactive" or "stub"
 created: <YYYY-MM-DD>                # preserve if already set
 updated: <YYYY-MM-DD>                # today
 last_edited_by: agent_<id>
-governed_by: ~/lattice/III.aDNA/what/artifacts/iii_airlock_standard_spec.md
+governed_by: ~/aDNA/III.aDNA/what/artifacts/iii_airlock_standard_spec.md
 covers: [entry_paths, cross_vault_request_patterns, federation_substrate_awareness]   # v0.3 third surface
 ln_substrate_version_pin: "<from input param ln_substrate_pin>"
 federation_mode: <enforce | advisory | inactive>     # from input param
@@ -123,7 +123,7 @@ ledger_observation: <enabled | disabled>             # from input param (default
 
 #### Step 3.2 — Author entry paths
 
-Adopt the 5-path matrix from the III.aDNA reference instance (`~/lattice/III.aDNA/how/airlock/AIRLOCK.md` §Entry Paths) verbatim where applicable; tailor when the consumer's modality footprint differs. The matrix is:
+Adopt the 5-path matrix from the III.aDNA reference instance (`~/aDNA/III.aDNA/how/airlock/AIRLOCK.md` §Entry Paths) verbatim where applicable; tailor when the consumer's modality footprint differs. The matrix is:
 
 | Path | Profile | Use cases |
 |------|---------|-----------|
@@ -139,7 +139,7 @@ For each path, include: agent profile, use cases, out-of-scope row, expected out
 
 #### Step 3.3 — Author cross-vault request section
 
-Adopt the §Cross-Vault Requests section from the III.aDNA reference instance verbatim — the v0.2-introduced surface (lifecycle states, handshake profiles, secrets delegation, idempotency) is invariant across consumers. Only the §Worked Example reference path changes per consumer (point at a real coord memo in the consumer's own `who/coordination/` if one exists; otherwise point at III.aDNA's canonical worked example at `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`).
+Adopt the §Cross-Vault Requests section from the III.aDNA reference instance verbatim — the v0.2-introduced surface (lifecycle states, handshake profiles, secrets delegation, idempotency) is invariant across consumers. Only the §Worked Example reference path changes per consumer (point at a real coord memo in the consumer's own `who/coordination/` if one exists; otherwise point at III.aDNA's canonical worked example at `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`).
 
 #### Step 3.4 — Author §Federation-Substrate Awareness section (v0.3 third surface)
 
@@ -157,7 +157,7 @@ v0.3 acknowledges that cross-vault traffic now traverses a federation substrate 
 - verifies the signature over the canonical-JSON serialization of the request frontmatter (sorted keys; NFC normalization; per ADR-014 §c)
 - rejects with `signature_verification_failed:<subreason>` per the 5-value taxonomy (pubkey_absent, pubkey_revoked, signature_mismatch, key_version_unknown, substrate_mismatch)
 
-Implementation guidance: `~/lattice/III.aDNA/what/artifacts/iii_airlock_substrate_implementation.md` §4.
+Implementation guidance: `~/aDNA/III.aDNA/what/artifacts/iii_airlock_substrate_implementation.md` §4.
 
 **Mode** — this airlock is in `<enforce | advisory | inactive>` mode (frontmatter `federation_mode`). Advisory mode warns on failure but does not reject; enforce mode rejects per §4.6. Promotion advisory → enforce is a per-wrapper minor-bump decision.
 
@@ -194,7 +194,7 @@ If you arrive at a surface not covered here: file a coord memo at the receiving 
 Add a cross-reference from `<vault>/iii/CLAUDE.md` to the activated airlock. Append (or update existing) to the wrapper's § Cross-References section:
 
 ```markdown
-- Consumer airlock (reference instance v0.3.0): `~/lattice/<vault>.aDNA/how/airlock/AIRLOCK.md` (activated <YYYY-MM-DD> via III.aDNA `skill_airlock_activation.md`)
+- Consumer airlock (reference instance v0.3.0): `~/aDNA/<vault>.aDNA/how/airlock/AIRLOCK.md` (activated <YYYY-MM-DD> via III.aDNA `skill_airlock_activation.md`)
 ```
 
 #### Step 3.7 — Verify activation
@@ -268,25 +268,25 @@ Run the Step 6 verification checklist. The upgrade case skips a few items (entry
 
 **Before (v0.2.0 state)**:
 ```yaml
-# ~/lattice/wga.aDNA/how/airlock/AIRLOCK.md (hypothetical — wga's stub at v0.2.0)
+# ~/aDNA/wga.aDNA/how/airlock/AIRLOCK.md (hypothetical — wga's stub at v0.2.0)
 ---
 type: airlock
 version: "0.2.0"
 status: reference_implementation
-governed_by: ~/lattice/III.aDNA/what/artifacts/iii_airlock_standard_spec.md
+governed_by: ~/aDNA/III.aDNA/what/artifacts/iii_airlock_standard_spec.md
 covers: [entry_paths, cross_vault_request_patterns]
 ---
 ```
 
 **After (v0.3.0 active, federation-aware)**:
 ```yaml
-# ~/lattice/wga.aDNA/how/airlock/AIRLOCK.md (post-Step 4)
+# ~/aDNA/wga.aDNA/how/airlock/AIRLOCK.md (post-Step 4)
 ---
 type: airlock
 version: "0.3.0"
 status: reference_implementation
 updated: 2026-05-29
-governed_by: ~/lattice/III.aDNA/what/artifacts/iii_airlock_standard_spec.md
+governed_by: ~/aDNA/III.aDNA/what/artifacts/iii_airlock_standard_spec.md
 covers: [entry_paths, cross_vault_request_patterns, federation_substrate_awareness]
 ln_substrate_version_pin: "LN.aDNA pc_01 Phase A close + Phase B1 close — ADR-014 v0.1 + ADR-015 v0.1 (both accepted 2026-05-20)"
 federation_mode: advisory                # safe default for Day-1 federation pilot; promote to enforce after MD-A5 validation
@@ -300,9 +300,9 @@ ledger_observation: enabled              # wga is in active federation; observe 
 - Replaced "What v0.2.0 does NOT cover" → "What v0.3.0 does NOT cover" (Step 4.4).
 - Updated closing references (Step 4.5).
 
-**Cross-reference in `~/lattice/wga.aDNA/iii/CLAUDE.md`** appended to § Cross-References:
+**Cross-reference in `~/aDNA/wga.aDNA/iii/CLAUDE.md`** appended to § Cross-References:
 ```markdown
-- Consumer airlock (reference instance v0.3.0): `~/lattice/wga.aDNA/how/airlock/AIRLOCK.md` (activated 2026-05-29 via III.aDNA `skill_airlock_activation.md` at MD-A4 wrapper-sweep)
+- Consumer airlock (reference instance v0.3.0): `~/aDNA/wga.aDNA/how/airlock/AIRLOCK.md` (activated 2026-05-29 via III.aDNA `skill_airlock_activation.md` at MD-A4 wrapper-sweep)
 ```
 
 **Federation-pilot-specific notes** (because wga_l1 is in active federation):
@@ -318,7 +318,7 @@ Walk the consumer's activated/upgraded `AIRLOCK.md` against each check. ✅ = pa
 1. `type: airlock` present. ✅/❌
 2. `version: "0.3.0"` (string, quoted). ✅/❌
 3. `status: reference_implementation` (or equivalent active state). ✅/❌
-4. `governed_by:` points at `~/lattice/III.aDNA/what/artifacts/iii_airlock_standard_spec.md` (or relative-path equivalent). ✅/❌
+4. `governed_by:` points at `~/aDNA/III.aDNA/what/artifacts/iii_airlock_standard_spec.md` (or relative-path equivalent). ✅/❌
 5. `covers:` includes `entry_paths`, `cross_vault_request_patterns`, AND `federation_substrate_awareness` (third surface added at v0.3). ✅/❌
 6. `ln_substrate_version_pin:` populated with a recognizable LN version string (e.g., "LN.aDNA pc_01 Phase A close + Phase B1 close — ADR-014 v0.1 + ADR-015 v0.1"). ✅/❌
 7. `federation_mode:` set to one of `enforce | advisory | inactive`. ✅/❌
@@ -334,7 +334,7 @@ Walk the consumer's activated/upgraded `AIRLOCK.md` against each check. ✅ = pa
 **Federation-specific (skip if `federation_mode: inactive`)**:
 14. Ed25519 sub-reason taxonomy (5 values: pubkey_absent, pubkey_revoked, signature_mismatch, key_version_unknown, substrate_mismatch) is cited verbatim in the §Federation-Substrate Awareness section. ✅/❌/n/a
 15. `transport.substrates[*].identity.federation_signing_pubkey_sha256` pubkey resolution path is documented (or cited via spec §4.6 + ADR-013 §b reference). ✅/❌/n/a
-16. Reply-comment template at `~/lattice/III.aDNA/how/templates/template_cross_vault_request_reply.md` is current (line 60 includes `signature_verification_failed:<subreason>`; check by grep). ✅/❌/n/a
+16. Reply-comment template at `~/aDNA/III.aDNA/how/templates/template_cross_vault_request_reply.md` is current (line 60 includes `signature_verification_failed:<subreason>`; check by grep). ✅/❌/n/a
 17. If `ledger_observation: enabled`: §5.3 cited; polling cadence (60s recommended) referenced; `MEMBERSHIP_CERT_REVOKED` → pubkey-invalidation linkage documented. ✅/❌/n/a
 18. If `federation_mode != inactive`: COMPLIANCE_AUDIT emission cited; `assumes_draft` workaround per impl-doc §6.3 noted. ✅/❌/n/a
 
@@ -368,27 +368,27 @@ Rollback is reversible — the consumer can re-attempt activation at any time af
 ### Step 8 — Cross-References
 
 **III.aDNA canonical**:
-- Airlock standard spec v0.3.0: `~/lattice/III.aDNA/what/artifacts/iii_airlock_standard_spec.md` (§4.6 Federation signing-key verification contract; §5 Federation-Substrate Awareness — §5.1 pluralism + §5.2 Ed25519 substrate-side + §5.3 ledger observation + §5.3.1 COMPLIANCE_AUDIT emission shape + §5.4 multi-substrate identity; §7.3 reference-instance pinning; §7.5 federation-substrate version pin)
-- Substrate implementation guidance v0.3.0: `~/lattice/III.aDNA/what/artifacts/iii_airlock_substrate_implementation.md` (§4 Federation Signing-Key Verification (Ed25519) Preflight, 9 sub-sections; §5 Ledger Observation Client, 7 sub-sections; §6 COMPLIANCE_AUDIT Event Emission, 7 sub-sections)
-- Reference instance (model the consumer mirrors): `~/lattice/III.aDNA/how/airlock/AIRLOCK.md` (v0.3.0 post-MD-A3)
-- Reply-comment template (Ed25519 rejection sub-reasons added at MD-A2): `~/lattice/III.aDNA/how/templates/template_cross_vault_request_reply.md`
-- Companion skill — consumer wrapper bootstrap: `~/lattice/III.aDNA/how/skills/skill_iii_setup.md`
-- Companion skill — session close discipline: `~/lattice/III.aDNA/how/skills/skill_session_close_ceremony.md`
+- Airlock standard spec v0.3.0: `~/aDNA/III.aDNA/what/artifacts/iii_airlock_standard_spec.md` (§4.6 Federation signing-key verification contract; §5 Federation-Substrate Awareness — §5.1 pluralism + §5.2 Ed25519 substrate-side + §5.3 ledger observation + §5.3.1 COMPLIANCE_AUDIT emission shape + §5.4 multi-substrate identity; §7.3 reference-instance pinning; §7.5 federation-substrate version pin)
+- Substrate implementation guidance v0.3.0: `~/aDNA/III.aDNA/what/artifacts/iii_airlock_substrate_implementation.md` (§4 Federation Signing-Key Verification (Ed25519) Preflight, 9 sub-sections; §5 Ledger Observation Client, 7 sub-sections; §6 COMPLIANCE_AUDIT Event Emission, 7 sub-sections)
+- Reference instance (model the consumer mirrors): `~/aDNA/III.aDNA/how/airlock/AIRLOCK.md` (v0.3.0 post-MD-A3)
+- Reply-comment template (Ed25519 rejection sub-reasons added at MD-A2): `~/aDNA/III.aDNA/how/templates/template_cross_vault_request_reply.md`
+- Companion skill — consumer wrapper bootstrap: `~/aDNA/III.aDNA/how/skills/skill_iii_setup.md`
+- Companion skill — session close discipline: `~/aDNA/III.aDNA/how/skills/skill_session_close_ceremony.md`
 
 **III ADRs**:
-- ADR-002 §3 (consumer federation contract — minor-bump consumer-review trigger): `~/lattice/III.aDNA/what/decisions/adr_002_consumer_federation_contract.md`
-- ADR-003 rule 2 (learning store ownership — assumes_draft inheritance pattern, used at COMPLIANCE_AUDIT emission): `~/lattice/III.aDNA/what/decisions/adr_003_learning_store_ownership.md`
-- ADR-008 (airlock pattern design — activation operator-discretionary): `~/lattice/III.aDNA/what/decisions/adr_008_airlock_pattern.md` (or equivalent path)
+- ADR-002 §3 (consumer federation contract — minor-bump consumer-review trigger): `~/aDNA/III.aDNA/what/decisions/adr_002_consumer_federation_contract.md`
+- ADR-003 rule 2 (learning store ownership — assumes_draft inheritance pattern, used at COMPLIANCE_AUDIT emission): `~/aDNA/III.aDNA/what/decisions/adr_003_learning_store_ownership.md`
+- ADR-008 (airlock pattern design — activation operator-discretionary): `~/aDNA/III.aDNA/what/decisions/adr_008_airlock_pattern.md` (or equivalent path)
 
 **LN ADRs (absorbed by reference at v0.3 spec)**:
-- LN ADR-010 (canonical node ID schema): `~/lattice/LatticeNetwork.aDNA/who/governance/adr_010_canonical_node_id_schema_three_universes.md`
-- LN ADR-013 §b (federation signing key infrastructure — per-purpose-slot dict): `~/lattice/LatticeNetwork.aDNA/who/governance/adr_013_federation_signing_key_infrastructure.md`
-- LN ADR-014 §c (canonical-JSON algorithm — sorted keys, NFC, whitespace, case): `~/lattice/LatticeNetwork.aDNA/who/governance/adr_014_re_id_semantics_node_canonical_id_transition.md`
-- LN ADR-015 §b + §d + §e (substrate pluralism + `transport.substrates[]` + canonical-pilot-tier nodes): `~/lattice/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md`
+- LN ADR-010 (canonical node ID schema): `~/aDNA/LatticeNetwork.aDNA/who/governance/adr_010_canonical_node_id_schema_three_universes.md`
+- LN ADR-013 §b (federation signing key infrastructure — per-purpose-slot dict): `~/aDNA/LatticeNetwork.aDNA/who/governance/adr_013_federation_signing_key_infrastructure.md`
+- LN ADR-014 §c (canonical-JSON algorithm — sorted keys, NFC, whitespace, case): `~/aDNA/LatticeNetwork.aDNA/who/governance/adr_014_re_id_semantics_node_canonical_id_transition.md`
+- LN ADR-015 §b + §d + §e (substrate pluralism + `transport.substrates[]` + canonical-pilot-tier nodes): `~/aDNA/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md`
 
 **Provenance**:
 - Authored at III.aDNA Campaign D MD-A3 (2026-05-22) after MD-A1 (spec v0.3) + MD-A2 (impl-doc v0.3) closed the v0.3 contract surface. D3 (originally a standalone activation kit mission in the MC-4.5 alignment recon dossier §5.2) was absorbed into MD-A3 per the Campaign D charter — this skill IS the D3 deliverable repackaged as an MD-A3 outcome.
-- 9-stub ecosystem discovery: `~/lattice/III.aDNA/what/artifacts/mc4_5_alignment_recon_dossier.md` §3.6 (10 vaults with `how/airlock/AIRLOCK.md` files; 1 active canonical at III.aDNA, 9 inactive stubs).
+- 9-stub ecosystem discovery: `~/aDNA/III.aDNA/what/artifacts/mc4_5_alignment_recon_dossier.md` §3.6 (10 vaults with `how/airlock/AIRLOCK.md` files; 1 active canonical at III.aDNA, 9 inactive stubs).
 - Activation operator-discretionary per ADR-008 design — this skill packages the activation procedure but does NOT auto-activate. Each consumer's activation is a human-gated decision at the consumer's wrapper-minor-bump review cadence.
 
 ## Outputs
@@ -414,7 +414,7 @@ Rollback is reversible — the consumer can re-attempt activation at any time af
 
 ## Related
 
-- **Skills Protocol**: `~/lattice/III.aDNA/how/skills/AGENTS.md`
+- **Skills Protocol**: `~/aDNA/III.aDNA/how/skills/AGENTS.md`
 - **Companion**: `skill_iii_setup.md` (run first — bootstraps the `iii/` wrapper); `skill_iii_review.md` (the review loop the wrapper invokes); `skill_session_close_ceremony.md` (close discipline for the activation session)
 - **MD-A4 dependency**: this skill is the load-bearing input to MD-A4 wrapper-sweep — that mission applies this skill across 6 active consumer wrappers (lattice-labs/iii v0.1.0 → v0.3.0 carry-forward absorbed; SiteForge + VideoForge + CanvasForge + wga + LPWhitepaper v0.2.0 → v0.3.0).
 - **MD-A5 dependency**: this skill is the substrate-precondition for MD-A5 federation-integration validation (re-exercises the VideoForge → CanvasForge worked example with v0.3 federation features active).

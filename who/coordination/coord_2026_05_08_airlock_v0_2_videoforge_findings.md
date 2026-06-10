@@ -33,11 +33,11 @@ VideoForge agent (this) read III.aDNA/how/airlock/AIRLOCK.md v0.1.0 + the consum
 
 | Surface | Direction | Existing pattern | Concrete artifact |
 |---------|-----------|------------------|-------------------|
-| Entry | inbound to vault | III.aDNA AIRLOCK.md v0.1.0 (5 entry paths by agent profile) | `~/lattice/III.aDNA/how/airlock/AIRLOCK.md` |
-| Wrapper | inbound, federation-bound | SiteForge canonical spec | `~/lattice/SiteForge.aDNA/what/artifacts/sf_forge_pattern_spec.md` |
+| Entry | inbound to vault | III.aDNA AIRLOCK.md v0.1.0 (5 entry paths by agent profile) | `~/aDNA/III.aDNA/how/airlock/AIRLOCK.md` |
+| Wrapper | inbound, federation-bound | SiteForge canonical spec | `~/aDNA/SiteForge.aDNA/what/artifacts/sf_forge_pattern_spec.md` |
 | Request | bidirectional, ephemeral | none (coord memos serve as ad-hoc fallback) | various `who/coordination/coord_*` files |
 
-VideoForge ended up using the coord-memo fallback at `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` because no formal request pattern exists.
+VideoForge ended up using the coord-memo fallback at `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` because no formal request pattern exists.
 
 This is fine for one-off cases; it does not scale and lacks symmetry. v0.2 should close the gap.
 
@@ -55,7 +55,7 @@ This is fine for one-off cases; it does not scale and lacks symmetry. v0.2 shoul
 - Define an acceptance ceremony (3-step: validate inputs → assign session_id → reply-comment on memo)
 - Define a rejection ceremony (1-step: reply-comment with reason; status flip)
 
-VideoForge implementation example: `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` § "Acceptance Protocol" + § "Rollback / Cancel".
+VideoForge implementation example: `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` § "Acceptance Protocol" + § "Rollback / Cancel".
 
 ---
 
@@ -165,7 +165,7 @@ Low-priority for current 2-forge workspace; matters when scaling to 5+ forges wi
 
 ## Suggested v0.2 Mission Sequencing (for III.aDNA Campaign C)
 
-1. **MC-1 (Standard Spec)**: author `~/lattice/III.aDNA/what/artifacts/iii_airlock_standard_spec.md` codifying entry paths (existing v0.1.0 content) + cross-vault request patterns (this memo's findings)
+1. **MC-1 (Standard Spec)**: author `~/aDNA/III.aDNA/what/artifacts/iii_airlock_standard_spec.md` codifying entry paths (existing v0.1.0 content) + cross-vault request patterns (this memo's findings)
 2. **MC-2 (Schema)**: define request payload schema (Gap 3) + commit YAML schema to a canonical location
 3. **MC-3 (Reference Implementations)**: update III.aDNA AIRLOCK.md to v0.2; provide reference reply-comment template (Gap 2 handshake)
 4. **MC-4 (Substrate Enforcement)**: define preflight checks for `secrets_handled` (Gap 4) and `idempotency_key` (Gap 5)
@@ -188,14 +188,14 @@ III.aDNA does not have a `proposed/` channel yet (per STATE.md — Campaign A MA
 
 ## Cross-References
 
-- **III.aDNA AIRLOCK.md v0.1.0** (the artifact we're proposing to bump): `~/lattice/III.aDNA/how/airlock/AIRLOCK.md`
-- **III.aDNA STATE.md** (Campaign C deferred note): `~/lattice/III.aDNA/STATE.md`
-- **Worked example (cross-forge request)**: `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`
-- **VideoForge airlock surface (consumer of v0.1.0)**: `~/lattice/VideoForge.aDNA/how/airlock/AIRLOCK.md`
-- **VideoForge ADR 003 (cross-graph entry contract)**: `~/lattice/VideoForge.aDNA/what/decisions/adr_003_cross_graph_entry_contract.md`
-- **VideoForge ADR 005 (RLHF channel)**: `~/lattice/VideoForge.aDNA/what/decisions/adr_005_context_learning_rlhf.md` — pattern source for `proposed/` channel mechanic
-- **Forge canonical spec** (entry-time, federation-bound): `~/lattice/SiteForge.aDNA/what/artifacts/sf_forge_pattern_spec.md`
-- **VideoForge P5 Session B context**: `~/lattice/VideoForge.aDNA/how/campaigns/campaign_videoforge_genesis_planning/missions/mission_p5_execution_campaign_charter.md`
+- **III.aDNA AIRLOCK.md v0.1.0** (the artifact we're proposing to bump): `~/aDNA/III.aDNA/how/airlock/AIRLOCK.md`
+- **III.aDNA STATE.md** (Campaign C deferred note): `~/aDNA/III.aDNA/STATE.md`
+- **Worked example (cross-forge request)**: `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`
+- **VideoForge airlock surface (consumer of v0.1.0)**: `~/aDNA/VideoForge.aDNA/how/airlock/AIRLOCK.md`
+- **VideoForge ADR 003 (cross-graph entry contract)**: `~/aDNA/VideoForge.aDNA/what/decisions/adr_003_cross_graph_entry_contract.md`
+- **VideoForge ADR 005 (RLHF channel)**: `~/aDNA/VideoForge.aDNA/what/decisions/adr_005_context_learning_rlhf.md` — pattern source for `proposed/` channel mechanic
+- **Forge canonical spec** (entry-time, federation-bound): `~/aDNA/SiteForge.aDNA/what/artifacts/sf_forge_pattern_spec.md`
+- **VideoForge P5 Session B context**: `~/aDNA/VideoForge.aDNA/how/campaigns/campaign_videoforge_genesis_planning/missions/mission_p5_execution_campaign_charter.md`
 
 ## Status Log
 

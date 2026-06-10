@@ -183,7 +183,7 @@ Per plan ratification (4 operator selections at AskUserQuestion gate), the follo
   - Aggregation index intake skill: `how/skills/skill_aggregation_index_intake.md`
   - Aggregation index: `who/coordination/.aggregation/graduation_proposals_index.jsonl`
   - Consumer-vault validation: `what/artifacts/md_b5_consumer_vault_validation.md`
-- 5 active consumer wrappers @ v0.3.0 / `a309ad4`: `~/lattice/SiteForge.aDNA/iii/CLAUDE.md` + `~/lattice/VideoForge.aDNA/iii/CLAUDE.md` + `~/lattice/CanvasForge.aDNA/iii/CLAUDE.md` + `~/lattice/wga.aDNA/iii/CLAUDE.md` + `~/lattice/LPWhitepaper.aDNA/iii/CLAUDE.md`
+- 5 active consumer wrappers @ v0.3.0 / `a309ad4`: `~/aDNA/SiteForge.aDNA/iii/CLAUDE.md` + `~/aDNA/VideoForge.aDNA/iii/CLAUDE.md` + `~/aDNA/CanvasForge.aDNA/iii/CLAUDE.md` + `~/aDNA/wga.aDNA/iii/CLAUDE.md` + `~/aDNA/LPWhitepaper.aDNA/iii/CLAUDE.md`
 - Outbound coord memos (track-deferred): `who/coordination/coord_2026_05_20_iii_to_ll_airlock_status_post_mc4_5.md` + `who/coordination/coord_2026_05_20_iii_to_ln_federation_substrate_intersect.md`
 - Release tag predecessor: `v0.2.0` commit `246124d4176a564df0df2823d6d3bbeba51f9d0a` / tag object `5cd210e81ed20540588ee934e88f5f6fb6f7c17a` (2026-05-10 MC-3 close)
 - Release tag (this gate): `v0.3.0` (annotated; close-commit SHA in `git tag -l v0.3.0 -n20` output post-close)

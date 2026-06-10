@@ -45,7 +45,7 @@ Campaign B (Federation) and Campaign C (Airlock Standard v0.2) are **independent
 4. **Gap 4 — No cross-vault secret delegation rules.** No handling when receiving vault's pipeline needs a secret the requesting vault holds (or vice versa).
 5. **Gap 5 — No idempotency contract for duplicate requests.** Same request filed twice → both processed independently.
 
-The VideoForge → CanvasForge memo at `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` is the worked example v0.2 must accommodate.
+The VideoForge → CanvasForge memo at `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` is the worked example v0.2 must accommodate.
 
 ## DG-C Criteria
 
@@ -114,11 +114,11 @@ The MA-4 AIRLOCK.md v0.1.0 anti-regression section ("What v0.1.0 does NOT cover"
 
 ## Cross-References
 
-- Inbound proposal: `~/lattice/III.aDNA/who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`
-- v0.1.0 reference implementation: `~/lattice/III.aDNA/how/airlock/AIRLOCK.md`
-- Worked example (cross-forge request): `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`
-- Predecessor campaign: `~/lattice/III.aDNA/how/campaigns/campaign_a_iii_genesis/campaign_a_iii_genesis.md`
-- Sibling campaign (parallel-eligible): `~/lattice/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md`
-- VideoForge ADR 003 (cross-graph entry contract; pattern source): `~/lattice/VideoForge.aDNA/what/decisions/adr_003_cross_graph_entry_contract.md`
-- VideoForge ADR 005 (RLHF channel; pattern source for `proposed/` mechanic): `~/lattice/VideoForge.aDNA/what/decisions/adr_005_context_learning_rlhf.md`
-- Forge canonical spec (entry-time pattern, federation-bound): `~/lattice/SiteForge.aDNA/what/artifacts/sf_forge_pattern_spec.md`
+- Inbound proposal: `~/aDNA/III.aDNA/who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md`
+- v0.1.0 reference implementation: `~/aDNA/III.aDNA/how/airlock/AIRLOCK.md`
+- Worked example (cross-forge request): `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`
+- Predecessor campaign: `~/aDNA/III.aDNA/how/campaigns/campaign_a_iii_genesis/campaign_a_iii_genesis.md`
+- Sibling campaign (parallel-eligible): `~/aDNA/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md`
+- VideoForge ADR 003 (cross-graph entry contract; pattern source): `~/aDNA/VideoForge.aDNA/what/decisions/adr_003_cross_graph_entry_contract.md`
+- VideoForge ADR 005 (RLHF channel; pattern source for `proposed/` mechanic): `~/aDNA/VideoForge.aDNA/what/decisions/adr_005_context_learning_rlhf.md`
+- Forge canonical spec (entry-time pattern, federation-bound): `~/aDNA/SiteForge.aDNA/what/artifacts/sf_forge_pattern_spec.md`

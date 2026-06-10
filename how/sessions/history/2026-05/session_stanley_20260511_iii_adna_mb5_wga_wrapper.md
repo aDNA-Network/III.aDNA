@@ -21,9 +21,9 @@ Execute MB-5 (Campaign B P2 advance). Author wga.aDNA `iii/CLAUDE.md` federation
 
 Distinct from MB-3 / MB-4: **clean-slate consumer**. wga has zero pre-existing `iii/` infrastructure, zero downstream vaults federating against it, no bridge_pack candidate, no local skill, and no in-place jsonl to retire. The earlier `campaign_wga_site_iii` (lattice-labs, complete 2026-04-14) already graduated its findings (C-012..C-016) into the canonical learning store at MA-1.
 
-1. Author `~/lattice/wga.aDNA/iii/CLAUDE.md` (federation_ref + 5 packs + 8 modules + 1 `local_extension` = `learning_store_local` only).
-2. Create `~/lattice/wga.aDNA/iii/what/context/wga_iii_learning_store.jsonl` (0 bytes).
-3. Add new Standing Order 7 to `~/lattice/wga.aDNA/CLAUDE.md`; update Vault Layout tree + Domain Subdirectories table to list `iii/`.
+1. Author `~/aDNA/wga.aDNA/iii/CLAUDE.md` (federation_ref + 5 packs + 8 modules + 1 `local_extension` = `learning_store_local` only).
+2. Create `~/aDNA/wga.aDNA/iii/what/context/wga_iii_learning_store.jsonl` (0 bytes).
+3. Add new Standing Order 7 to `~/aDNA/wga.aDNA/CLAUDE.md`; update Vault Layout tree + Domain Subdirectories table to list `iii/`.
 4. Update III.aDNA-side registers: MANIFEST.md Active Consumers wga row; Campaign B charter MB-5 row + DG-B box + Phase Plan + frontmatter `mb5_closed`; STATE.md Current Phase + new Latest Direction § + Campaign B mission queue + What's Working + Blockers + frontmatter.
 5. Verification sweep (8 gates per plan).
 6. Move session to `how/sessions/history/2026-05/`; commit per-vault (III.aDNA + wga.aDNA); no tag bump; no push.
@@ -32,7 +32,7 @@ Distinct from MB-3 / MB-4: **clean-slate consumer**. wga has zero pre-existing `
 
 - **Pack selection: 5/7 canonical**, mirroring VideoForge: `inspect_procedures`, `introspect_checks`, `learning_store`, `domain_packs_web_design`, `vault_maintenance`. Omit `whitepaper_communication` (no whitepaper-style outputs at wga yet), `canvas_visual` (no canvas substrate produced; symphony is audio-visual sonification, distinct modality), `kinn_branding` (KINN-specific lattice-labs extension).
 - **No bridge_pack.** wga has no equivalent of ADR-006 (VideoForge) or CanvasForge's 10-trap canvas pack. Curriculum/whitepaper traps could surface later via a v0.2.1 wrapper bump; not gating MB-5.
-- **No local_skill.** wga uses the canonical III skill at `~/lattice/III.aDNA/how/skills/skill_iii_review.md` directly; no wga-specific reviewer composition exists.
+- **No local_skill.** wga uses the canonical III skill at `~/aDNA/III.aDNA/how/skills/skill_iii_review.md` directly; no wga-specific reviewer composition exists.
 - **Single `local_extension`: `learning_store_local` only.** Seeded empty per ADR-003 §2.
 - **Pin: `v0.2.0` at commit `246124d`** (exact tag commit; matches MB-3 + MB-4 precision; lattice-labs MB-1 stays at `v0.1.0` pending consumer-side minor-bump review).
 - **No git tag bump.** MB-5 touches no III.aDNA core (skill, modules, packs, lattice, ADRs all untouched). `v0.2.0` stays.
@@ -41,12 +41,12 @@ Distinct from MB-3 / MB-4: **clean-slate consumer**. wga has zero pre-existing `
 
 ## Source Material (read-only inputs)
 
-- `/Users/stanley/lattice/VideoForge.aDNA/iii/CLAUDE.md` (115 lines — primary template; closest shape match: 5/7 packs + no local skill; strip bridge_pack to get MB-5 form)
-- `/Users/stanley/lattice/lattice-labs/iii/CLAUDE.md` (MB-1 minimal baseline — "Active campaigns using this wrapper" section pattern)
-- `/Users/stanley/lattice/wga.aDNA/CLAUDE.md` (current Standing Orders 1-6; Vault Layout; Domain Subdirectories table; voice/style for SO 7 wording)
-- `/Users/stanley/lattice/III.aDNA/what/decisions/adr_002_consumer_federation_contract.md` (federation_ref schema)
-- `/Users/stanley/lattice/III.aDNA/what/decisions/adr_003_learning_store_ownership.md` (learning_store_local semantics)
-- `/Users/stanley/lattice/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md` (MB-5 row authority)
+- `/Users/stanley/aDNA/VideoForge.aDNA/iii/CLAUDE.md` (115 lines — primary template; closest shape match: 5/7 packs + no local skill; strip bridge_pack to get MB-5 form)
+- `/Users/stanley/aDNA/lattice-labs/iii/CLAUDE.md` (MB-1 minimal baseline — "Active campaigns using this wrapper" section pattern)
+- `/Users/stanley/aDNA/wga.aDNA/CLAUDE.md` (current Standing Orders 1-6; Vault Layout; Domain Subdirectories table; voice/style for SO 7 wording)
+- `/Users/stanley/aDNA/III.aDNA/what/decisions/adr_002_consumer_federation_contract.md` (federation_ref schema)
+- `/Users/stanley/aDNA/III.aDNA/what/decisions/adr_003_learning_store_ownership.md` (learning_store_local semantics)
+- `/Users/stanley/aDNA/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md` (MB-5 row authority)
 - MB-1 through MB-4 wrappers + session files — worked precedents
 
 ## Activity Log
@@ -76,12 +76,12 @@ Distinct from MB-3 / MB-4: **clean-slate consumer**. wga has zero pre-existing `
 
 ## Outputs
 
-- `~/lattice/wga.aDNA/iii/CLAUDE.md` (new)
-- `~/lattice/wga.aDNA/iii/what/context/wga_iii_learning_store.jsonl` (new, empty)
-- `~/lattice/wga.aDNA/CLAUDE.md` (SO 7 added; vault layout + domain subdirs updated)
-- `~/lattice/III.aDNA/MANIFEST.md` (Active Consumers wga row + frontmatter)
-- `~/lattice/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md` (MB-5 row + DG-B box + Phase Plan + frontmatter)
-- `~/lattice/III.aDNA/STATE.md` (Current Phase + Latest Direction + What's Working + queue + Blockers + frontmatter)
+- `~/aDNA/wga.aDNA/iii/CLAUDE.md` (new)
+- `~/aDNA/wga.aDNA/iii/what/context/wga_iii_learning_store.jsonl` (new, empty)
+- `~/aDNA/wga.aDNA/CLAUDE.md` (SO 7 added; vault layout + domain subdirs updated)
+- `~/aDNA/III.aDNA/MANIFEST.md` (Active Consumers wga row + frontmatter)
+- `~/aDNA/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md` (MB-5 row + DG-B box + Phase Plan + frontmatter)
+- `~/aDNA/III.aDNA/STATE.md` (Current Phase + Latest Direction + What's Working + queue + Blockers + frontmatter)
 - This session file → `how/sessions/history/2026-05/`
 
 ## Closure

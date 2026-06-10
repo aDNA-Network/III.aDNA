@@ -38,7 +38,7 @@ Author `how/missions/plan_campaign_g_consolidation_charter.md` with `status: pla
 ## Recon (parallel Explore + Plan agents at planning-mode entry)
 
 - **ISS anatomy** (canonical skill `aDNA.aDNA/how/skills/skill_create_iss.md` + ADR-028 architecture AD-1..AD-10 + ADR-029 standard-touch ST-1..ST-6 + SiteForge `what/lib/iss/` README): single surface = gate identity + decision frame + 3–N options OR form fields + evidence panel (context/analysis/SWOT) + recommendation block (rationale/key_factors/risks/confidence/next_actions) + RLHF signal (schema v1.0) + persona/voice/skin cascade. 8 canonical HTML templates × 6 personas × 4 presets × 8-category adaptation guides.
-- **ISS-adopter community DEFINITIVE state**: **2** live consumer wrappers (MoleculeForge `iss/CLAUDE.md` pinned at SiteForge `903f461` D10 close, `packs_used: []`; WilhelmAI `iss/CLAUDE.md`). RareHarness has **no** `iss/` directory yet (Explore-agent claim incorrect — verified at `ls /Users/stanley/lattice/RareHarness.aDNA/iss/` returns "No such file or directory"). SiteForge HEAD at `59599c2`.
+- **ISS-adopter community DEFINITIVE state**: **2** live consumer wrappers (MoleculeForge `iss/CLAUDE.md` pinned at SiteForge `903f461` D10 close, `packs_used: []`; WilhelmAI `iss/CLAUDE.md`). RareHarness has **no** `iss/` directory yet (Explore-agent claim incorrect — verified at `ls /Users/stanley/aDNA/RareHarness.aDNA/iss/` returns "No such file or directory"). SiteForge HEAD at `59599c2`.
 - **III has zero ISS coverage today** — no pack, no ADR, no wrapper, no backlog idea touching ISS. Verified across `what/context/core_domain_packs/`, `what/decisions/`, `how/backlog/`.
 - **36-item inventory** consolidated into 5 themes: (1) graduation + cross-vault evidence maturation (C-029 ceremony, C-030..C-033 ≥2-vault evidence, Layer-2 AIRLOCK activations); (2) domain pack deepening (`learning_store` `source_diversity = 2`; `whitepaper_communication` Campaign E territory); (3) Campaign E forward-seed (gated on LiteratureForge.aDNA forge-BUILD); (4) ISS-surface III integration (anchor); (5) audit-signal ingest seam + VisualDNA bundle review (revisit v1.0 GA).
 
@@ -83,7 +83,7 @@ Author `how/missions/plan_campaign_g_consolidation_charter.md` with `status: pla
 - All consumer wrappers (10 `iii/` carriers + 2 `iss/` carriers across the workspace) — UNTOUCHED.
 - MANIFEST.md — UNTOUCHED (no version bump; no Release-History row).
 - III root CLAUDE.md — UNTOUCHED (Campaign G is `planned` not `active`; Campaign State row stays off the table — Campaign F planning-card precedent).
-- Workspace router `~/lattice/CLAUDE.md` — UNTOUCHED (Standing Rule 7 surgical; planning cards do not promote into the router).
+- Workspace router `~/aDNA/CLAUDE.md` — UNTOUCHED (Standing Rule 7 surgical; planning cards do not promote into the router).
 - No git tag cut.
 - No `git push origin main` (operator-discretionary per workspace SR).
 

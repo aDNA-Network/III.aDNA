@@ -29,7 +29,7 @@ tags: [session, genesis, ma-0]
 
 ## Deliverables
 
-- `/Users/stanley/lattice/III.aDNA/` — vault bootstrapped, 342 files, initial commit `4df4d9b`
+- `/Users/stanley/aDNA/III.aDNA/` — vault bootstrapped, 342 files, initial commit `4df4d9b`
 - `III.aDNA/CLAUDE.md` v1.0 — Argus identity, Framework.aDNA category, full architecture
 - `III.aDNA/MANIFEST.md` — project identity + consumer table
 - `III.aDNA/STATE.md` — operational state with campaign table + risk register
@@ -39,7 +39,7 @@ tags: [session, genesis, ma-0]
 - `III.aDNA/what/decisions/adr_003_learning_store_ownership.md` — ratified
 - `III.aDNA/how/campaigns/campaign_a_iii_genesis/campaign_a_iii_genesis.md`
 - `III.aDNA/how/airlock/AIRLOCK.md` — 5 entry paths (text/web/code/video/vault-maintenance)
-- `/Users/stanley/lattice/CLAUDE.md` — Framework Ecosystem section added, III.aDNA registered
+- `/Users/stanley/aDNA/CLAUDE.md` — Framework Ecosystem section added, III.aDNA registered
 
 ## SITREP
 

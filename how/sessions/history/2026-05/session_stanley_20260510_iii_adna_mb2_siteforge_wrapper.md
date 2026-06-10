@@ -45,14 +45,14 @@ Execute MB-2 (Campaign B P2 opener; parallel-eligible with MC-4). Author the sec
 - `what/decisions/adr_003_learning_store_ownership.md` (ACCUMULATE local-target rule; graduation ceremony)
 - `what/modules/module_iii_semantic_reviewer.md` (composite_reference lines 56-69 — explicit landing-site citation for carry-forward #2)
 - `how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md` (MB-2 row authority)
-- `~/lattice/lattice-labs/iii/CLAUDE.md` (MB-1 reference template — 111-line canonical first-instance)
-- `~/lattice/lattice-labs/what/context/iii_domain_packs/MIGRATION_NOTE.md` (Stage 3 closure pattern)
-- `~/lattice/SiteForge.aDNA/CLAUDE.md` (Standing Orders + Known Consumers + Consumer Integration sections)
-- `~/lattice/SiteForge.aDNA/what/context/siteforge/siteforge_reviewers.yaml` (5-voice registry — declared as local_extension, no edits)
-- `~/lattice/SiteForge.aDNA/what/context/iii_domain_packs/` (two files retired)
-- `~/lattice/SiteForge.aDNA/what/lattices/lattice_partner_website_scaffold.lattice.yaml` line 163
-- `~/lattice/SiteForge.aDNA/what/lattices/skills/lattice_quality_validation.lattice.yaml` line 57
-- `~/lattice/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` (md5 invariant `dde2cbd88c0b45956fb22285a2a0f856`)
+- `~/aDNA/lattice-labs/iii/CLAUDE.md` (MB-1 reference template — 111-line canonical first-instance)
+- `~/aDNA/lattice-labs/what/context/iii_domain_packs/MIGRATION_NOTE.md` (Stage 3 closure pattern)
+- `~/aDNA/SiteForge.aDNA/CLAUDE.md` (Standing Orders + Known Consumers + Consumer Integration sections)
+- `~/aDNA/SiteForge.aDNA/what/context/siteforge/siteforge_reviewers.yaml` (5-voice registry — declared as local_extension, no edits)
+- `~/aDNA/SiteForge.aDNA/what/context/iii_domain_packs/` (two files retired)
+- `~/aDNA/SiteForge.aDNA/what/lattices/lattice_partner_website_scaffold.lattice.yaml` line 163
+- `~/aDNA/SiteForge.aDNA/what/lattices/skills/lattice_quality_validation.lattice.yaml` line 57
+- `~/aDNA/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` (md5 invariant `dde2cbd88c0b45956fb22285a2a0f856`)
 
 ## Activity Log
 

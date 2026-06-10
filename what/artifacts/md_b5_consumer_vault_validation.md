@@ -19,9 +19,9 @@ governed_by:
 predecessor_validation: what/artifacts/md_a5_federation_integration_validation.md   # Track-D1 sibling; MD-B5 is the Track-D2 analog (three-sub-method model reused)
 consumers_validated: [SiteForge.aDNA/iii, VideoForge.aDNA/iii, CanvasForge.aDNA/iii]
 local_stores_walked:
-  - ~/lattice/SiteForge.aDNA/iii/what/context/siteforge_iii_learning_store.jsonl   # 0 entries (empty; loop ready, not yet exercised)
-  - ~/lattice/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl  # 4 entries (VFL-001..004; 2 graduated → C-027/C-028)
-  - ~/lattice/CanvasForge.aDNA/iii/what/context/canvasforge_iii_learning_store.jsonl  # 4 entries (legacy schema)
+  - ~/aDNA/SiteForge.aDNA/iii/what/context/siteforge_iii_learning_store.jsonl   # 0 entries (empty; loop ready, not yet exercised)
+  - ~/aDNA/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl  # 4 entries (VFL-001..004; 2 graduated → C-027/C-028)
+  - ~/aDNA/CanvasForge.aDNA/iii/what/context/canvasforge_iii_learning_store.jsonl  # 4 entries (legacy schema)
 aggregation_index_walked: who/coordination/.aggregation/graduation_proposals_index.jsonl   # 2 seed records; 1 distinct originating vault
 documentation_grade: true
 non_runnable: true   # validation by inspection + schema walk + lifecycle inference; no executable validator runs at MD-B5
@@ -56,9 +56,9 @@ Three sub-methods compose this validation (mirroring MD-A5 §1):
 
 | Input | Path | Role |
 |---|---|---|
-| SiteForge wrapper | `~/lattice/SiteForge.aDNA/iii/CLAUDE.md` (+ `Integration Notes` RLHF Alignment §) | Consumer #1; v0.3.0 pin + RLHF opt-in policy (signal flow defined at `campaign_siteforge_iss` P5.5) |
-| VideoForge wrapper | `~/lattice/VideoForge.aDNA/iii/CLAUDE.md` | Consumer #2; v0.3.0 pin + ADR-006 bridge_pack; the one vault with graduations landed (C-027/C-028) |
-| CanvasForge wrapper | `~/lattice/CanvasForge.aDNA/iii/CLAUDE.md` | Consumer #3; v0.3.0 pin + bridge_pack + local_skill |
+| SiteForge wrapper | `~/aDNA/SiteForge.aDNA/iii/CLAUDE.md` (+ `Integration Notes` RLHF Alignment §) | Consumer #1; v0.3.0 pin + RLHF opt-in policy (signal flow defined at `campaign_siteforge_iss` P5.5) |
+| VideoForge wrapper | `~/aDNA/VideoForge.aDNA/iii/CLAUDE.md` | Consumer #2; v0.3.0 pin + ADR-006 bridge_pack; the one vault with graduations landed (C-027/C-028) |
+| CanvasForge wrapper | `~/aDNA/CanvasForge.aDNA/iii/CLAUDE.md` | Consumer #3; v0.3.0 pin + bridge_pack + local_skill |
 | SiteForge local store | `…/iii/what/context/siteforge_iii_learning_store.jsonl` | 0 entries (empty; loop ready, not yet exercised) |
 | VideoForge local store | `…/iii/what/context/videoforge_iii_learning_store.jsonl` | 4 entries (VFL-001..004); VFL-001/-002 carry the 3 ADR-005 §2 required fields + 5 `rlhf_consumer_namespace.videoforge.*` fields each |
 | CanvasForge local store | `…/iii/what/context/canvasforge_iii_learning_store.jsonl` | 4 entries in a bespoke legacy schema (`id/type/title/signal/origin/status/date`) |
@@ -191,6 +191,6 @@ The aggregation index (`who/coordination/.aggregation/graduation_proposals_index
 - Aggregation index: `who/coordination/.aggregation/graduation_proposals_index.jsonl`
 - VFL graduation memo (the one real precedent): `who/coordination/coord_2026_05_12_vfl_graduation_proposals.md`
 - Reply memo (VFL ratified): `who/coordination/reply_2026_05_21_iii_to_videoforge_vfl_graduation_ratified.md`
-- Consumer wrappers: `~/lattice/{SiteForge,VideoForge,CanvasForge}.aDNA/iii/CLAUDE.md`
+- Consumer wrappers: `~/aDNA/{SiteForge,VideoForge,CanvasForge}.aDNA/iii/CLAUDE.md`
 - Canonical learning store (md5 `5adb0dfa38d9224649c3b2cba83852ae`): `what/context/core_domain_packs/iii_corrections_canonical.jsonl`
 - Campaign charter: `how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md`

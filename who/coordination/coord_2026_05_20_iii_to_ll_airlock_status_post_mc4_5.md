@@ -39,15 +39,15 @@ III.aDNA Campaign C closed Phase 2 on 2026-05-13 (disk) / 2026-05-20 (git retroa
 
 ## Cross-references
 
-- III.aDNA MC-4.5 dossier (full landscape survey): `~/lattice/III.aDNA/what/artifacts/mc4_5_alignment_recon_dossier.md`
-- III.aDNA STATE.md (current state with MC-4.5 close bullet): `~/lattice/III.aDNA/STATE.md`
-- III.aDNA Campaign C master (MC-4.5 row added): `~/lattice/III.aDNA/how/campaigns/campaign_c_airlock_standard/campaign_c_airlock_standard.md`
-- AIRLOCK standard spec v0.2.0: `~/lattice/III.aDNA/what/artifacts/iii_airlock_standard_spec.md`
-- Substrate implementation guidance: `~/lattice/III.aDNA/what/artifacts/iii_airlock_substrate_implementation.md`
-- ADR-002 (consumer federation contract; §3 consumer-side minor-bump review policy): `~/lattice/III.aDNA/what/decisions/adr_002_consumer_federation_contract.md`
-- ADR-008 (airlock template stub design): `~/lattice/aDNA.aDNA/what/decisions/adr_008_*.md`
-- LL.aDNA's AIRLOCK.md stub: `~/lattice/LatticeLabs.aDNA/how/airlock/AIRLOCK.md`
-- LL.aDNA's `iii/` consumer wrapper status check (currently pinned to v0.1.0; LL.aDNA may inherit lattice-labs pin OR have own): `~/lattice/lattice-labs/iii/CLAUDE.md` (predecessor); `~/lattice/LatticeLabs.aDNA/iii/` (if present at LL)
+- III.aDNA MC-4.5 dossier (full landscape survey): `~/aDNA/III.aDNA/what/artifacts/mc4_5_alignment_recon_dossier.md`
+- III.aDNA STATE.md (current state with MC-4.5 close bullet): `~/aDNA/III.aDNA/STATE.md`
+- III.aDNA Campaign C master (MC-4.5 row added): `~/aDNA/III.aDNA/how/campaigns/campaign_c_airlock_standard/campaign_c_airlock_standard.md`
+- AIRLOCK standard spec v0.2.0: `~/aDNA/III.aDNA/what/artifacts/iii_airlock_standard_spec.md`
+- Substrate implementation guidance: `~/aDNA/III.aDNA/what/artifacts/iii_airlock_substrate_implementation.md`
+- ADR-002 (consumer federation contract; §3 consumer-side minor-bump review policy): `~/aDNA/III.aDNA/what/decisions/adr_002_consumer_federation_contract.md`
+- ADR-008 (airlock template stub design): `~/aDNA/aDNA.aDNA/what/decisions/adr_008_*.md`
+- LL.aDNA's AIRLOCK.md stub: `~/aDNA/LatticeLabs.aDNA/how/airlock/AIRLOCK.md`
+- LL.aDNA's `iii/` consumer wrapper status check (currently pinned to v0.1.0; LL.aDNA may inherit lattice-labs pin OR have own): `~/aDNA/lattice-labs/iii/CLAUDE.md` (predecessor); `~/aDNA/LatticeLabs.aDNA/iii/` (if present at LL)
 
 ## Fire policy
 
@@ -62,4 +62,4 @@ When fired, `status: draft → ready` (operator review pass) → `status: ready 
 
 ## Firing record
 
-**Fired at Campaign D charter ratification 2026-05-21T00:50Z** (operator-frame 2026-05-20; commit `67a0936`). Operator pre-committed `draft → sent` direct (no `ready` intermediate) at AskUserQuestion gate in this charter session. See `~/lattice/III.aDNA/how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md` §Inbound Signals + §Outbound coord fired at charter. `ack_at:` awaits LL Berthier session-touch.
+**Fired at Campaign D charter ratification 2026-05-21T00:50Z** (operator-frame 2026-05-20; commit `67a0936`). Operator pre-committed `draft → sent` direct (no `ready` intermediate) at AskUserQuestion gate in this charter session. See `~/aDNA/III.aDNA/how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md` §Inbound Signals + §Outbound coord fired at charter. `ack_at:` awaits LL Berthier session-touch.

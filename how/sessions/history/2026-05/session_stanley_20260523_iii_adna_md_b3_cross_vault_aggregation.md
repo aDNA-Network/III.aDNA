@@ -35,7 +35,7 @@ files_modified:
   - MANIFEST.md                                                # md_b3_closed + version note
   - how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md  # MD-B3 row/criteria flips + Phase Plan P3
   - CLAUDE.md                                                  # Campaign State row
-  - ../CLAUDE.md (workspace router at /Users/stanley/lattice/CLAUDE.md)   # III.aDNA row reflects MD-B3 closed
+  - ../CLAUDE.md (workspace router at /Users/stanley/aDNA/CLAUDE.md)   # III.aDNA row reflects MD-B3 closed
 ---
 
 # Session — MD-B3 Cross-Vault RLHF Aggregation Contract
@@ -48,7 +48,7 @@ files_modified:
 - **02:30Z** — Authored NEW `how/templates/template_cross_vault_graduation_proposal.md` (frontmatter conforming to airlock §4.3 `cross_vault_request` + 10-section body specialized for graduation; projection table carries CROSS fields only; explicit `rlhf_consumer_namespace.*` exclusion).
 - **03:00Z** — Spec resolutions: adaptive-loop §5.3 expanded → cites ADR-008 + names cross/stay-local field sets; §7.2/§7.3/intro flipped RESOLVED. Airlock §4.3 registers `learning_store_graduation` type + §5.5/§8.2/§8.3 flipped + §8.3 count summaries reconciled (were stale since MD-A1 — now "six v0.3-originating resolved through MD-B3, two pending").
 - **03:45Z** — Lattice yaml 1.2.3 → 1.2.4 (accumulate node `governs_adrs` +ADR-008 + `adr_008_cross_vault_aggregation` + `cross_vault_proposal_intake_policy` fields naming the receiver-side aggregation-index schema; new `mb3_changelog` block; index-populating tool deferred to MD-B4).
-- **04:15Z** — Bookkeeping: STATE.md (frontmatter + new Current Phase paragraph), MANIFEST.md (`md_b3_closed` + version note), charter (DG-D criteria box 75 + Mission Table MD-B3 row + Phase Plan P3 + frontmatter), CLAUDE.md (Campaign State row + ADR inventory 000-008), workspace router `~/lattice/CLAUDE.md` (project-table row + layout line — note: workspace root is NOT a git repo, router edit is on-disk only, consistent with prior missions).
+- **04:15Z** — Bookkeeping: STATE.md (frontmatter + new Current Phase paragraph), MANIFEST.md (`md_b3_closed` + version note), charter (DG-D criteria box 75 + Mission Table MD-B3 row + Phase Plan P3 + frontmatter), CLAUDE.md (Campaign State row + ADR inventory 000-008), workspace router `~/aDNA/CLAUDE.md` (project-table row + layout line — note: workspace root is NOT a git repo, router edit is on-disk only, consistent with prior missions).
 - **04:45Z** — Verification pass all green: canonical md5 `5adb0dfa38d9224649c3b2cba83852ae` invariant (verified pre + mid + post); zero remaining MD-B3 pending rows; ADR-008 frontmatter sane; template projection carries `rlhf_consumer_namespace` only as exclusion rule; `learning_store_graduation` registered ×5; charter 7 [x] / 4 [ ] = DG-D 7/11; lattice 1.2.4. **Stanley ratified ADR-008** `proposed → accepted` + `signed_by: Stanley` per charter new-ADR hard rule.
 
 ## SITREP
@@ -86,7 +86,7 @@ files_modified:
 - `what/lattices/lattice_iii_verification_oracle.lattice.yaml` (1.2.3 → 1.2.4)
 - `STATE.md`, `MANIFEST.md`, `CLAUDE.md`, `how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md`
 
-**External-vault**: workspace router `~/lattice/CLAUDE.md` updated on-disk (NOT a git repo; not committed, consistent with prior missions). ZERO foreign-vault mutations otherwise. Canonical learning store UNTOUCHED (no graduation fired).
+**External-vault**: workspace router `~/aDNA/CLAUDE.md` updated on-disk (NOT a git repo; not committed, consistent with prior missions). ZERO foreign-vault mutations otherwise. Canonical learning store UNTOUCHED (no graduation fired).
 
 ## Next Session Prompt
 

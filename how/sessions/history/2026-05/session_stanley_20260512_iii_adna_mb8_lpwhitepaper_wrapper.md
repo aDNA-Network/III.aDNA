@@ -61,7 +61,7 @@ Note: Explore agent plan reported 6 ported context_iii_*.md files; actual count 
 ### Phase 2 — Wrapper authoring (skill_iii_setup.md 10 steps) ✅
 All 10 steps of `skill_iii_setup.md` executed verbatim:
 - Step 1 pin: v0.2.0 @ `246124d`
-- Step 2 wrapper: `~/lattice/LPWhitepaper.aDNA/iii/CLAUDE.md` authored (~120 lines body + federation_ref block)
+- Step 2 wrapper: `~/aDNA/LPWhitepaper.aDNA/iii/CLAUDE.md` authored (~120 lines body + federation_ref block)
 - Step 3 packs: **6 of 7** chosen — first 6/7-pack wrapper in the ecosystem
 - Step 4 modules: all 8
 - Step 5 local_extensions: 1 entry (`learning_store_local` only — minimal-baseline shape, matches wga MB-5 precedent shape)
@@ -79,7 +79,7 @@ All 10 steps of `skill_iii_setup.md` executed verbatim:
 - `MIGRATION_NOTE.md` authored at `what/context/iii_domain_packs/` documenting full disposition + the open-option future 2-entry seed
 
 ### Phase 4 — Airlock-spec Consumers register ✅
-- `~/lattice/III.aDNA/MANIFEST.md` gained new `## Active Airlock-spec Consumers` section after Release History
+- `~/aDNA/III.aDNA/MANIFEST.md` gained new `## Active Airlock-spec Consumers` section after Release History
 - 5 rows: aDNA.aDNA template stub (ADR-008, v0.2.0, 2026-05-11) + VideoForge.aDNA reference instance (v0.1 era, 2026-05-08) + CanvasForge.aDNA worked example (v0.1 era, 2026-05-08) + M08a 17-vault multilateral (v0.2.0, 2026-05-09) + node.aDNA inherited stub (v0.2.0, 2026-05-11)
 - Preamble codifies the orthogonality answer to Stanley's session-open question: wrapper governs consumer integration; airlock governs vault-to-vault interaction
 
@@ -121,4 +121,4 @@ All 12 end-of-session gates green:
 
 ## Move to history
 
-Session file moves to `~/lattice/III.aDNA/how/sessions/history/2026-05/session_stanley_20260512_iii_adna_mb8_lpwhitepaper_wrapper.md` at closeout.
+Session file moves to `~/aDNA/III.aDNA/how/sessions/history/2026-05/session_stanley_20260512_iii_adna_mb8_lpwhitepaper_wrapper.md` at closeout.

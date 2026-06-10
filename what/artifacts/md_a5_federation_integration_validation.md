@@ -15,7 +15,7 @@ governed_by:
   - what/artifacts/iii_airlock_substrate_implementation.md
   - how/airlock/AIRLOCK.md
 predecessor_validation: what/artifacts/mc5_validation_videoforge_canvasforge_v0_2.md   # v0.2 baseline; MD-A5 is its v0.3 successor
-worked_example_path: ~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md
+worked_example_path: ~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md
 ln_substrate_version_pin: "LN.aDNA pc_01 Phase A close + Phase B1 close — ADR-014 v0.1 + ADR-015 v0.1 (both accepted 2026-05-20)"
 ln_ledger_chains_observed: [stanley_l1, sws_l1, alpha_lattice_einstein]
 ln_membership_rows_walked: [wga_l1, sws_l1, kinn_l1, lmu_l2, science_stanley_l1]
@@ -35,7 +35,7 @@ MD-A5 is the validation gate that closes **Track D1** of Campaign D and is one o
 Three sub-methods compose this validation:
 
 1. **v0.2 baseline re-walked** (§3): confirm the 2026-05-08 memo still parses against the v0.3 spec's §4.1–§4.5 contract (the v0.2 surface remains in place at v0.3 — v0.3 is purely additive at §4.6 + §5). Re-uses MC-5 §5.1 16-row coverage map as the established trace; MD-A5 confirms no row regressed under v0.3.
-2. **v0.3 federation-aware deltas re-verified** (§4–§8): walk each new v0.3 surface (spec §4.6 Ed25519 preflight; spec §5 Federation-Substrate Awareness with §§5.1–5.4; spec §7.5 federation-substrate version pin) against live LN.aDNA pc_01 Phase A substrate evidence — read-back of the Tier-1 file-ledger at `~/.lattice/ledger/stanley_l1/2026-05/` (30+ events) plus the LN membership manifest at `~/lattice/LatticeNetwork.aDNA/what/network/membership/` (5 rows: wga_l1 + sws_l1 + kinn_l1 + lmu_l2 + science_stanley_l1).
+2. **v0.3 federation-aware deltas re-verified** (§4–§8): walk each new v0.3 surface (spec §4.6 Ed25519 preflight; spec §5 Federation-Substrate Awareness with §§5.1–5.4; spec §7.5 federation-substrate version pin) against live LN.aDNA pc_01 Phase A substrate evidence — read-back of the Tier-1 file-ledger at `~/.lattice/ledger/stanley_l1/2026-05/` (30+ events) plus the LN membership manifest at `~/aDNA/LatticeNetwork.aDNA/what/network/membership/` (5 rows: wga_l1 + sws_l1 + kinn_l1 + lmu_l2 + science_stanley_l1).
 3. **Zero-regression assertion** (§9): table-form check of the 9 v0.2 contract invariants (per MC-5 §5 zero-regression definition); each row marked ✅ still-satisfied under v0.3 with the v0.3 layer documented as purely additive (advisory-mode downgrade at spec §4.6 + observation-only surface at §5).
 
 **Validation grade**: documentation-grade by inspection. III is a read-only consumer of LN.aDNA (III itself emits no federation events; III does not author its own keypair). MD-A5 walks the v0.3 impl-doc pseudocode against substrate evidence and asserts contract-conformance. The first executable validator runtime lands when a federation-issuing III consumer (e.g., a future RareHarness-class Platform integration) consumes the v0.3 standard end-to-end.
@@ -46,23 +46,23 @@ Three sub-methods compose this validation:
 
 | Input | Path | Role |
 |---|---|---|
-| Worked example | `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` (164 lines; `status: open`) | The 2026-05-08 v0.1.0-era cross-forge memo; read-only at MD-A5 (no retrofit authored; deck remains at weeks-of-flexibility deadline per memo body lines 95–105) |
+| Worked example | `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` (164 lines; `status: open`) | The 2026-05-08 v0.1.0-era cross-forge memo; read-only at MD-A5 (no retrofit authored; deck remains at weeks-of-flexibility deadline per memo body lines 95–105) |
 | v0.2 baseline validation | `what/artifacts/mc5_validation_videoforge_canvasforge_v0_2.md` v0.2.0 (262 lines) | Predecessor artifact; §5.1 16-row coverage map is the established trace MD-A5 confirms still holds; §5 zero-regression definition carried forward |
 | Standard spec | `what/artifacts/iii_airlock_standard_spec.md` v0.3.0 | Normative contract under test; §4.6 Ed25519 federation signing-key verification + §5 Federation-Substrate Awareness + §7.5 federation-substrate version pin |
 | Substrate implementation | `what/artifacts/iii_airlock_substrate_implementation.md` v0.3.0 (1347 lines) | §4 Ed25519 preflight 9 sub-sections + §5 Ledger Observation Client 7 sub-sections + §6 COMPLIANCE_AUDIT Event Emission 7 sub-sections (assumes_draft direct-JSON-write workaround) |
 | AIRLOCK reference instance | `how/airlock/AIRLOCK.md` v0.3.0 | `federation_mode: enforce` + `ledger_observation: enabled` + `ln_substrate_version_pin` populated at MD-A3 close; new §Federation-Substrate Awareness section |
 | Reply-comment template | `how/templates/template_cross_vault_request_reply.md` (MC-3 vintage; MD-A2 extension at line 60) | `signature_verification_failed:<5-subreason>` enum extended at MD-A2 close 2026-05-21 |
-| LN ADR-013 | `~/lattice/LatticeNetwork.aDNA/who/governance/adr_013_federation_signing_key_infrastructure.md` v0.1 (accepted 2026-05-20) | Operator-attestation trust model; per-purpose-slot dict pattern (§b); pubkey resolution from LN membership manifest |
-| LN ADR-014 | `~/lattice/LatticeNetwork.aDNA/who/governance/adr_014_re_id_semantics_node_canonical_id_transition.md` v0.1 (accepted 2026-05-20) | Re-ID semantics + canonical-JSON discipline (§c); `MEMBERSHIP_NODE_RE_IDENTIFIED` event; idempotency mechanics |
-| LN ADR-015 | `~/lattice/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md` v0.1 (accepted 2026-05-20) | Substrate pluralism Tailscale + Nebula canonical; `transport.substrates[]` schema (§b/§d); per-substrate identity inventory; substrate-tagged event types (§c) |
-| LN membership manifest | `~/lattice/LatticeNetwork.aDNA/what/network/membership/{wga_l1, sws_l1, kinn_l1, lmu_l2, science_stanley_l1}.yaml` (5 rows; AGENTS.md sixth file is doc) | Pubkey resolution target per spec §4.6 + §5.2; canonical_id → federation_signing_pubkey monotonic-mapping check (§6) |
+| LN ADR-013 | `~/aDNA/LatticeNetwork.aDNA/who/governance/adr_013_federation_signing_key_infrastructure.md` v0.1 (accepted 2026-05-20) | Operator-attestation trust model; per-purpose-slot dict pattern (§b); pubkey resolution from LN membership manifest |
+| LN ADR-014 | `~/aDNA/LatticeNetwork.aDNA/who/governance/adr_014_re_id_semantics_node_canonical_id_transition.md` v0.1 (accepted 2026-05-20) | Re-ID semantics + canonical-JSON discipline (§c); `MEMBERSHIP_NODE_RE_IDENTIFIED` event; idempotency mechanics |
+| LN ADR-015 | `~/aDNA/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md` v0.1 (accepted 2026-05-20) | Substrate pluralism Tailscale + Nebula canonical; `transport.substrates[]` schema (§b/§d); per-substrate identity inventory; substrate-tagged event types (§c) |
+| LN membership manifest | `~/aDNA/LatticeNetwork.aDNA/what/network/membership/{wga_l1, sws_l1, kinn_l1, lmu_l2, science_stanley_l1}.yaml` (5 rows; AGENTS.md sixth file is doc) | Pubkey resolution target per spec §4.6 + §5.2; canonical_id → federation_signing_pubkey monotonic-mapping check (§6) |
 | LN Tier-1 file-ledger | `~/.lattice/ledger/stanley_l1/2026-05/` (30+ JSON events) + `sws_l1/2026-05/` + `alpha_lattice_einstein/2026-05/` | Observable read surface for §5 ledger observation contract; MEMBERSHIP_KEY_PROVISIONED + MEMBERSHIP_NODE_ADMITTED + CONNECTION_* events; `assumes_draft: true` payloads per Carry 3 EP-1 |
 
 ## §3 v0.2 baseline re-walked
 
 MC-5 §5.1 established the canonical 16-row coverage map against the 2026-05-08 worked-example memo with verdict **16/16 conformant + 2 additive deltas** (secrets_handled + idempotency_key). MD-A5 re-verifies the worked example on disk and confirms the v0.2 coverage map still holds under v0.3 — no row regressed.
 
-**Memo present at cited path** ✅ — `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` reads 164 lines (one short of MC-5 §5.1 row 4's 165-line reference; non-material — within line-count drift). Frontmatter `type: coordination`, `status: open`, `updated: 2026-05-08`. No retrofit applied since MC-5 close 2026-05-20.
+**Memo present at cited path** ✅ — `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` reads 164 lines (one short of MC-5 §5.1 row 4's 165-line reference; non-material — within line-count drift). Frontmatter `type: coordination`, `status: open`, `updated: 2026-05-08`. No retrofit applied since MC-5 close 2026-05-20.
 
 **Coverage map carry-forward**:
 
@@ -158,7 +158,7 @@ The v0.3 impl-doc §4.3 (`Pubkey resolution from LN membership manifest`, lines 
 
 | canonical_id | yaml row | schema shape | federation_signing pubkey_sha256 |
 |---|---|---|---|
-| wga_l1 | `~/lattice/LatticeNetwork.aDNA/what/network/membership/wga_l1.yaml` | per-purpose-slot per ADR-013 §b (`key.purpose: federation_signing` + `key.pubkey_sha256:`) | `a117322973ac29de6d4834fe9d086fb8c7238665e8965265af16c5040e066f1b` |
+| wga_l1 | `~/aDNA/LatticeNetwork.aDNA/what/network/membership/wga_l1.yaml` | per-purpose-slot per ADR-013 §b (`key.purpose: federation_signing` + `key.pubkey_sha256:`) | `a117322973ac29de6d4834fe9d086fb8c7238665e8965265af16c5040e066f1b` |
 | sws_l1 | `sws_l1.yaml` | per-purpose-slot per ADR-013 §b | `4ec269625bcdfd60e6df07a6275b42efe7fc43be6125c7ba7ce0b7ccfe64ab58` |
 | kinn_l1 | `kinn_l1.yaml` | per-purpose-slot per ADR-013 §b | `1725cad38c9a8be38406f265de818595ba8a922bbb2df55daea2c8e10a4046f4` |
 | lmu_l2 | `lmu_l2.yaml` | flat `signing_pubkey_sha256:` (pre-per-purpose-slot shape) | `08f1eaa24af26c120e245537d650a50191722468f3bc10082428e9365d25bedb` |
@@ -178,7 +178,7 @@ MD-A5 walks the algorithm with the 2026-05-08 worked-example memo as input:
 
 | Step | Algorithm action | Outcome for this memo |
 |---|---|---|
-| 1 | Co-federation gate — both vaults enrolled in LN membership manifest? | **FALSE** — neither VideoForge.aDNA nor CanvasForge.aDNA appears in the 5-row manifest at `~/lattice/LatticeNetwork.aDNA/what/network/membership/`. Per impl-doc §4.5 advisory-mode handling, the receiver MAY downgrade to `accepted_advisory` rather than reject. **Advisory-mode taken**; remaining steps would-be-exercised conceptually. |
+| 1 | Co-federation gate — both vaults enrolled in LN membership manifest? | **FALSE** — neither VideoForge.aDNA nor CanvasForge.aDNA appears in the 5-row manifest at `~/aDNA/LatticeNetwork.aDNA/what/network/membership/`. Per impl-doc §4.5 advisory-mode handling, the receiver MAY downgrade to `accepted_advisory` rather than reject. **Advisory-mode taken**; remaining steps would-be-exercised conceptually. |
 | 2 | Presence check of `federation_signature` + `federation_signature_key_version` in request frontmatter | Both absent. Per spec §4.6 advisory clause (lines 319–325), absent fields under advisory mode are conformant (no reject). |
 | 3 | Resolve requesting persona `iris` (VideoForge) → canonical_id | No mapping exists (VideoForge is not in the LN manifest). Resolution returns empty. Under enforce mode, this would emit `rejected` with sub-reason `pubkey_absent`; under advisory mode, it skips verification + logs the missed-resolution outcome. |
 | 4 | Pubkey resolution per §4.3 (canonical_id → `transport.substrates[*].identity.federation_signing_pubkey_sha256`) | N/A under advisory mode (step 3 returned empty). Pseudocode contract walks correctly. |
@@ -254,11 +254,11 @@ Per charter line 113 + line 119 + the v0.3 deferrals enumerated across spec §8.
 - AIRLOCK reference instance: `how/airlock/AIRLOCK.md` v0.3.0 (`federation_mode: enforce` + `ledger_observation: enabled` + `ln_substrate_version_pin`)
 - Reply-comment template: `how/templates/template_cross_vault_request_reply.md` (MC-3 vintage; MD-A2 line-60 enum extension)
 - Activation kit skill: `how/skills/skill_airlock_activation.md` v0.3.0 (authored at MD-A3 close 2026-05-22)
-- Worked example: `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` (read-only at MD-A5; `status: open` weeks-of-flexibility)
-- LN ADR-013 federation signing-key infrastructure: `~/lattice/LatticeNetwork.aDNA/who/governance/adr_013_federation_signing_key_infrastructure.md` v0.1 (accepted 2026-05-20)
-- LN ADR-014 re-ID semantics + canonical-JSON discipline: `~/lattice/LatticeNetwork.aDNA/who/governance/adr_014_re_id_semantics_node_canonical_id_transition.md` v0.1 (accepted 2026-05-20)
-- LN ADR-015 substrate pluralism (Tailscale + Nebula canonical): `~/lattice/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md` v0.1 (accepted 2026-05-20)
-- LN membership manifest (5 rows): `~/lattice/LatticeNetwork.aDNA/what/network/membership/{wga_l1, sws_l1, kinn_l1, lmu_l2, science_stanley_l1}.yaml`
+- Worked example: `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` (read-only at MD-A5; `status: open` weeks-of-flexibility)
+- LN ADR-013 federation signing-key infrastructure: `~/aDNA/LatticeNetwork.aDNA/who/governance/adr_013_federation_signing_key_infrastructure.md` v0.1 (accepted 2026-05-20)
+- LN ADR-014 re-ID semantics + canonical-JSON discipline: `~/aDNA/LatticeNetwork.aDNA/who/governance/adr_014_re_id_semantics_node_canonical_id_transition.md` v0.1 (accepted 2026-05-20)
+- LN ADR-015 substrate pluralism (Tailscale + Nebula canonical): `~/aDNA/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md` v0.1 (accepted 2026-05-20)
+- LN membership manifest (5 rows): `~/aDNA/LatticeNetwork.aDNA/what/network/membership/{wga_l1, sws_l1, kinn_l1, lmu_l2, science_stanley_l1}.yaml`
 - LN Tier-1 file-ledger (read-back source): `~/.lattice/ledger/{stanley_l1, sws_l1, alpha_lattice_einstein}/2026-05/`
 - LN Carry 3 EP-1 interop memo (assumes_draft anchor): `coord_2026_05_18_latticeprotocol_interop.md` (cited in every `assumes_draft_carry_ref` payload field)
 

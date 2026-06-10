@@ -16,7 +16,7 @@ tags: [session, iii, federation, adna_template, mb6]
 
 ## Mission
 
-Author `skill_iii_setup.md` (consumer onboarding skill for adding an `iii/` wrapper to a new vault), land it at `III.aDNA/how/skills/skill_iii_setup.md` (canonical), and publish to `.adna/how/skills/skill_iii_setup.md` (base template — public repo, additive-only per Campaign B R5). Update the workspace `~/lattice/CLAUDE.md` Framework Ecosystem section to point at the new skill and refresh the III.aDNA maturity column.
+Author `skill_iii_setup.md` (consumer onboarding skill for adding an `iii/` wrapper to a new vault), land it at `III.aDNA/how/skills/skill_iii_setup.md` (canonical), and publish to `.adna/how/skills/skill_iii_setup.md` (base template — public repo, additive-only per Campaign B R5). Update the workspace `~/aDNA/CLAUDE.md` Framework Ecosystem section to point at the new skill and refresh the III.aDNA maturity column.
 
 ## Scope
 
@@ -57,9 +57,9 @@ Author `skill_iii_setup.md` (consumer onboarding skill for adding an `iii/` wrap
 **Closed**: 2026-05-12.
 
 **Deliverables landed**:
-1. `~/lattice/III.aDNA/how/skills/skill_iii_setup.md` — 395-line canonical consumer-onboarding skill (federation_ref skeleton; packs decision table; `kind:` enum walkthrough for all 5 values per ADR-002 §1a; 10-step procedure; 4 wrapper variants; Worked Precedents table covering all 5 live MB-1..MB-5 wrappers).
-2. `~/lattice/.adna/how/skills/skill_iii_setup.md` — byte-identical published copy at adna base template (`LatticeProtocol/adna` public remote). `diff -q` clean.
-3. `~/lattice/CLAUDE.md` Framework Ecosystem section — "Consumer integration pattern" paragraph gained a pointer at the new skill; III.aDNA maturity column rewritten Genesis → Production with full closure timeline.
+1. `~/aDNA/III.aDNA/how/skills/skill_iii_setup.md` — 395-line canonical consumer-onboarding skill (federation_ref skeleton; packs decision table; `kind:` enum walkthrough for all 5 values per ADR-002 §1a; 10-step procedure; 4 wrapper variants; Worked Precedents table covering all 5 live MB-1..MB-5 wrappers).
+2. `~/aDNA/.adna/how/skills/skill_iii_setup.md` — byte-identical published copy at adna base template (`LatticeProtocol/adna` public remote). `diff -q` clean.
+3. `~/aDNA/CLAUDE.md` Framework Ecosystem section — "Consumer integration pattern" paragraph gained a pointer at the new skill; III.aDNA maturity column rewritten Genesis → Production with full closure timeline.
 4. Campaign B charter — DG-B MB-6 box ✅; mission table MB-6 row ✅; Phase Plan P3 updated; frontmatter `mb6_closed: 2026-05-12`.
 5. III.aDNA `MANIFEST.md` frontmatter `mb6_closed: 2026-05-12`.
 6. III.aDNA `STATE.md` — Current Phase summary, Campaigns table, Campaign B mission queue row, What's Working bullet, Blockers paragraph, frontmatter `last_session`, new Latest Direction § — all updated.

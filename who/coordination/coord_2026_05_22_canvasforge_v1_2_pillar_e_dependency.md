@@ -66,11 +66,11 @@ CanvasForge v1.2 Pillar F (image prompt tuning + context system) consumes the sc
 
 ## References
 
-- **Source planning campaign**: `~/lattice/CanvasForge.aDNA/how/campaigns/campaign_canvasforge_v1_2_planning/`
-- **Source planning findings § 2 Pillar E + § 1 Q3**: `~/lattice/CanvasForge.aDNA/how/campaigns/campaign_canvasforge_v1_2_planning/missions/m_v1_2_plan_01/artifacts/v1_2_planning_mission_findings.md`
-- **Pillar E mission scaffold**: `~/lattice/CanvasForge.aDNA/how/campaigns/campaign_canvasforge_v1_2/missions/mission_m_v1_2_e_hitl_rlhf_bridge.md`
-- **CanvasForge `iii/` wrapper** (existing; v0.2.0 pinned 2026-05-11): `~/lattice/CanvasForge.aDNA/iii/CLAUDE.md`
-- **III ADR-005**: `~/lattice/III.aDNA/what/decisions/adr_005_rlhf_signal_channel.md`
-- **III ADR-007 CorrectionLifecycle**: `~/lattice/III.aDNA/what/decisions/adr_007_adaptive_improvement_loop.md`
-- **III adaptive-improvement spec v0.3.0**: `~/lattice/III.aDNA/what/artifacts/iii_adaptive_improvement_loop_spec.md`
+- **Source planning campaign**: `~/aDNA/CanvasForge.aDNA/how/campaigns/campaign_canvasforge_v1_2_planning/`
+- **Source planning findings § 2 Pillar E + § 1 Q3**: `~/aDNA/CanvasForge.aDNA/how/campaigns/campaign_canvasforge_v1_2_planning/missions/m_v1_2_plan_01/artifacts/v1_2_planning_mission_findings.md`
+- **Pillar E mission scaffold**: `~/aDNA/CanvasForge.aDNA/how/campaigns/campaign_canvasforge_v1_2/missions/mission_m_v1_2_e_hitl_rlhf_bridge.md`
+- **CanvasForge `iii/` wrapper** (existing; v0.2.0 pinned 2026-05-11): `~/aDNA/CanvasForge.aDNA/iii/CLAUDE.md`
+- **III ADR-005**: `~/aDNA/III.aDNA/what/decisions/adr_005_rlhf_signal_channel.md`
+- **III ADR-007 CorrectionLifecycle**: `~/aDNA/III.aDNA/what/decisions/adr_007_adaptive_improvement_loop.md`
+- **III adaptive-improvement spec v0.3.0**: `~/aDNA/III.aDNA/what/artifacts/iii_adaptive_improvement_loop_spec.md`
 - **Re-merge rationale** (CR7+SO7): `lattice-labs/who/coordination/coord_2026_04_16_forge_split.md`

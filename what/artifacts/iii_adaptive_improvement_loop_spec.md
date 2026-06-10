@@ -187,7 +187,7 @@ Consumer vaults declare vault-specific signals under:
 
 ### §3.4 Worked example — VFL-001 re-expressed
 
-VFL-001 currently lives in `~/lattice/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl` with three ad-hoc additive fields (`last_updated`, `graduation_proposal_filed`, `graduation_proposal_path`) introduced during VideoForge self-review cycles 2026-05-11..05-12. ADR-005 retroactively normalizes those fields under the consumer namespace.
+VFL-001 currently lives in `~/aDNA/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl` with three ad-hoc additive fields (`last_updated`, `graduation_proposal_filed`, `graduation_proposal_path`) introduced during VideoForge self-review cycles 2026-05-11..05-12. ADR-005 retroactively normalizes those fields under the consumer namespace.
 
 Pre-ADR-005 shape (illustrative):
 
@@ -246,7 +246,7 @@ Post-ADR-005 normalized shape (additive only; no field rename or removal):
 
 ADR-005 §5 clause 5 specifies no retroactive backfill is required; this normalization happens on the next ACCUMULATE cycle that touches VFL-001, OR at the MD-B2 graduation ceremony, whichever fires first.
 
-> **MD-B2 resolution note (2026-05-21)**: VFL-001 + VFL-002 graduated at MD-B2 close to canonical IDs C-027 + C-028. The post-graduation canonical-only shape (carried in `iii_corrections_canonical.jsonl` lines 27 + 28) honors ADR-005 §3 rule 5 — top-level `rlhf_signal_type` + `rlhf_session_id` + `rlhf_captured_at` only; no `rlhf_consumer_namespace.*` fields cross to canonical. The VideoForge local store entries (still at `~/lattice/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl`) carry the normalized consumer-namespace fields (`rlhf_consumer_namespace.videoforge.last_updated`, `.graduation_proposal_filed`, `.graduation_proposal_path`, `.graduated_to_canonical_id`, `.graduation_note`) — this §3.4 illustrative shape is now realized in production. Canonical md5 rotated `dde2cbd88c0b45956fb22285a2a0f856` → `5adb0dfa38d9224649c3b2cba83852ae` (first rotation since founding C-001..C-026 import). See `~/lattice/III.aDNA/who/coordination/reply_2026_05_21_iii_to_videoforge_vfl_graduation_ratified.md` for ratification record.
+> **MD-B2 resolution note (2026-05-21)**: VFL-001 + VFL-002 graduated at MD-B2 close to canonical IDs C-027 + C-028. The post-graduation canonical-only shape (carried in `iii_corrections_canonical.jsonl` lines 27 + 28) honors ADR-005 §3 rule 5 — top-level `rlhf_signal_type` + `rlhf_session_id` + `rlhf_captured_at` only; no `rlhf_consumer_namespace.*` fields cross to canonical. The VideoForge local store entries (still at `~/aDNA/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl`) carry the normalized consumer-namespace fields (`rlhf_consumer_namespace.videoforge.last_updated`, `.graduation_proposal_filed`, `.graduation_proposal_path`, `.graduated_to_canonical_id`, `.graduation_note`) — this §3.4 illustrative shape is now realized in production. Canonical md5 rotated `dde2cbd88c0b45956fb22285a2a0f856` → `5adb0dfa38d9224649c3b2cba83852ae` (first rotation since founding C-001..C-026 import). See `~/aDNA/III.aDNA/who/coordination/reply_2026_05_21_iii_to_videoforge_vfl_graduation_ratified.md` for ratification record.
 
 ### §3.5 Backward-compatibility
 
@@ -433,7 +433,7 @@ This list MUST be kept current as missions land; resolution updates the row.
 
 Paper exercise; no writes to any vault's learning store performed in this verification (the verification itself proves nothing is rewritten):
 
-1. **md5 invariance check**: at MD-B1 close, `md5 -q ~/lattice/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` equalled `dde2cbd88c0b45956fb22285a2a0f856` (verified at MD-B1 close 2026-05-20T02:05Z; no writes performed that session). **At MD-B2 close 2026-05-21**, the md5 rotated to `5adb0dfa38d9224649c3b2cba83852ae` per the planned ADR-005 §4 rotation trigger (ADR-003 §3 graduation ceremony for VFL-001 + VFL-002 → C-027 + C-028). This is the **first canonical md5 rotation since the founding C-001..C-026 import**; both pre-rotation and post-rotation md5 values are recorded in the MD-B2 commit message, ADR-003 amendment-history row, STATE.md close note, and the reply memo (`who/coordination/reply_2026_05_21_iii_to_videoforge_vfl_graduation_ratified.md`).
+1. **md5 invariance check**: at MD-B1 close, `md5 -q ~/aDNA/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` equalled `dde2cbd88c0b45956fb22285a2a0f856` (verified at MD-B1 close 2026-05-20T02:05Z; no writes performed that session). **At MD-B2 close 2026-05-21**, the md5 rotated to `5adb0dfa38d9224649c3b2cba83852ae` per the planned ADR-005 §4 rotation trigger (ADR-003 §3 graduation ceremony for VFL-001 + VFL-002 → C-027 + C-028). This is the **first canonical md5 rotation since the founding C-001..C-026 import**; both pre-rotation and post-rotation md5 values are recorded in the MD-B2 commit message, ADR-003 amendment-history row, STATE.md close note, and the reply memo (`who/coordination/reply_2026_05_21_iii_to_videoforge_vfl_graduation_ratified.md`).
 2. **VFL-001 re-expression validates** against ADR-005 §2 (required-minimum) + §3 (consumer namespace). See §3.4 above for full worked example. Result: 3 required-minimum fields back-derivable from existing entry fields (`accepted: true` → `accept`; `source_review` → `rlhf_session_id` heuristic; `created` → `rlhf_captured_at` ceiling). 3 consumer-namespace fields preserve the ad-hoc VFL-001 fields with no semantic loss.
 3. **Canonical 26 entries still load**: optional `rlhf_*` fields are absent in canonical; parsers treat absence as valid per ADR-005 §5 clause 5. No retroactive backfill required.
 
@@ -504,11 +504,11 @@ Authored at III.aDNA Campaign D mission MD-B1 (2026-05-20 / 2026-05-21T02:00Z), 
 
 | Reference | Path |
 |-----------|------|
-| Campaign D charter (MD-B1 mission row) | `~/lattice/III.aDNA/how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md` |
-| Airlock standard spec v0.2 (sibling spec; shape reference) | `~/lattice/III.aDNA/what/artifacts/iii_airlock_standard_spec.md` |
-| Substrate implementation guidance v0.2 | `~/lattice/III.aDNA/what/artifacts/iii_airlock_substrate_implementation.md` |
-| Cross-vault request schema v0.2 | `~/lattice/III.aDNA/what/artifacts/iii_airlock_request_schema.yaml` |
-| Lattice yaml v1.2.2 (runtime substrate) | `~/lattice/III.aDNA/what/lattices/lattice_iii_verification_oracle.lattice.yaml` |
-| Canonical learning store (md5 `dde2cbd88c0b45956fb22285a2a0f856`) | `~/lattice/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` |
-| VFL graduation proposal (MD-B2 input) | `~/lattice/III.aDNA/who/coordination/coord_2026_05_12_vfl_graduation_proposals.md` |
-| Session-close ceremony skill (used at MD-B1 close) | `~/lattice/III.aDNA/how/skills/skill_session_close_ceremony.md` |
+| Campaign D charter (MD-B1 mission row) | `~/aDNA/III.aDNA/how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md` |
+| Airlock standard spec v0.2 (sibling spec; shape reference) | `~/aDNA/III.aDNA/what/artifacts/iii_airlock_standard_spec.md` |
+| Substrate implementation guidance v0.2 | `~/aDNA/III.aDNA/what/artifacts/iii_airlock_substrate_implementation.md` |
+| Cross-vault request schema v0.2 | `~/aDNA/III.aDNA/what/artifacts/iii_airlock_request_schema.yaml` |
+| Lattice yaml v1.2.2 (runtime substrate) | `~/aDNA/III.aDNA/what/lattices/lattice_iii_verification_oracle.lattice.yaml` |
+| Canonical learning store (md5 `dde2cbd88c0b45956fb22285a2a0f856`) | `~/aDNA/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` |
+| VFL graduation proposal (MD-B2 input) | `~/aDNA/III.aDNA/who/coordination/coord_2026_05_12_vfl_graduation_proposals.md` |
+| Session-close ceremony skill (used at MD-B1 close) | `~/aDNA/III.aDNA/how/skills/skill_session_close_ceremony.md` |

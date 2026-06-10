@@ -5,7 +5,7 @@
 #
 # Authoring mission : MC-2 (campaign_c_airlock_standard, P1, 2026-05-08)
 # Spec reference    : what/artifacts/iii_airlock_standard_spec.md §4.3
-# Worked example    : ~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md
+# Worked example    : ~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md
 #
 # When prose and schema disagree, the spec prose is normative. This file is the
 # mechanical contract; the spec is the human contract.
@@ -358,7 +358,7 @@ x-required-minimum:
       output_sink: requesting_vault/output/
 
 x-worked-example:
-  path: ~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md
+  path: ~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md
   conformance: non_conformant_by_design
   reason: |
     Authored against v0.1.0 coord-memo fallback (predates v0.2). Two known

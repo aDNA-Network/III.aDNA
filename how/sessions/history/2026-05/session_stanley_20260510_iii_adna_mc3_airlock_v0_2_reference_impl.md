@@ -38,7 +38,7 @@ This is the main release gate for Campaign C. MC-4 (substrate-enforcement implem
 - `how/airlock/AIRLOCK.md` — v0.1.0 source for verbatim entry-path text
 - `who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md` — proposal (status flip target)
 - `how/campaigns/campaign_c_airlock_standard/campaign_c_airlock_standard.md` — charter (DG-C tracking)
-- `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` — worked example (template walk; not modified)
+- `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` — worked example (template walk; not modified)
 - `how/sessions/history/2026-05/session_stanley_20260508_iii_adna_mc2_request_schema.md` — session-file precedent
 - `how/templates/template_coordination.md`, `how/templates/template_session.md` — frontmatter shape precedents
 - Git tag `v0.1.0` — verbatim-preservation diff baseline for AIRLOCK.md entry paths

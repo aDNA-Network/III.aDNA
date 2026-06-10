@@ -48,7 +48,7 @@ audit_id: pending                  # III populates on acceptance
 artifact_request:
   type: learning_store_graduation  # canonical (ADR-008 §1); registered at airlock §4.3
   source_learning_store: <path to this vault's *_iii_learning_store.jsonl>
-  candidate_target: ~/lattice/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl
+  candidate_target: ~/aDNA/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl
   ceremony_authority: ADR-003 §3 (graduation ceremony — frequency ≥ 3 + sessions ≥ 2 + acceptance true + Argus + Stanley co-ratification); add §3.6 if elevated-scrutiny (cross-fork frequency ≥ 50 → requires ≥2-vault independent evidence)
   proposed_entries: [<local_id>, ...]   # e.g. ["VFL-001", "VFL-002"]
 constraints:

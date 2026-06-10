@@ -40,7 +40,7 @@ This is a schema-authoring deliverable. No AIRLOCK.md edits (MC-3), no reply-com
 ## Source Material (read-only inputs)
 
 - `what/artifacts/iii_airlock_standard_spec.md` v0.2.0 — schema source of truth (§4.3 frontmatter contract, §4.1 lifecycle, §4.4 secrets, §4.5 idempotency)
-- `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` — validation target (worked example)
+- `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` — validation target (worked example)
 - `what/lattices/lattice_yaml_schema.json` — JSON Schema style precedent
 - `how/campaigns/campaign_c_airlock_standard/campaign_c_airlock_standard.md` — charter, DG-C criteria
 - `how/sessions/history/2026-05/session_stanley_20260508_iii_adna_mc1_airlock_standard_spec.md` — session-file format precedent

@@ -24,7 +24,7 @@ files_modified:
   - what/lattices/lattice_iii_verification_oracle.lattice.yaml
   - who/coordination/coord_2026_05_12_vfl_graduation_proposals.md
   - "(external) VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl"
-  - "(external) ~/lattice/CLAUDE.md (workspace router; not git-tracked at workspace root)"
+  - "(external) ~/aDNA/CLAUDE.md (workspace router; not git-tracked at workspace root)"
 files_created:
   - who/coordination/reply_2026_05_21_iii_to_videoforge_vfl_graduation_ratified.md
   - how/sessions/active/session_stanley_20260521_iii_adna_md_b2_vfl_graduation.md   # this file
@@ -64,7 +64,7 @@ dg_d_progress: "1/11 → 2/11"
 - **08:17Z** — Step 6: Inbound proposal `coord_2026_05_12_vfl_graduation_proposals.md` flipped — frontmatter `status: open → closed` + 7 new fields (`closed_at`, `closed_at_mission`, `disposition`, `canonical_ids_assigned`, `reply_memo`, `lifecycle_path`, `canonical_md5_before` + `canonical_md5_after`); new §10 Status Log section appended with full-paragraph 2026-05-21 closure note (cites all 8 substrate touchpoints).
 - **08:18Z** — Step 7: MD-B1 spec forward-references resolved. §3.4 receives MD-B2 resolution note (VFL graduation realized in production); §4.4 RESOLVED (ADR-003 §3.6 enforcement mechanism canonicalized); §7.2 table — 2 rows flipped ✅ (≥50 threshold + VFL graduation); §7.3 forward-references list — 2 rows flipped ✅; §8.1 md5 reference annotated with rotation event. Spec version stays 0.3.0 (editorial reconciliation only per §6.1 patch policy).
 - **08:20Z** — Step 8: Lattice yaml patch-bumped 1.2.2 → 1.2.3. Accumulate node config gains `adr_003_section_coverage: ["§3 standard ceremony", "§3.5 lifecycle scoping (added MD-B1)", "§3.6 elevated-scrutiny queue (added MD-B2)"]` + new `elevated_scrutiny_signal_emit_policy` field (additive emit policy; cross-fork aggregator scaffold deferred to MD-B4 or later). New top-level `mb2_changelog:` block authored documenting md5 rotation + PACK_DELTA_LANDED records. Patch-level per ADR-002 §3 — 6 consumer wrappers stay transparent.
-- **08:21Z** — Step 9: Charter + STATE + CLAUDE.md sync. Charter MD-B2 row ✅ COMPLETE 2026-05-21; DG-D criterion box flipped ✅; mission table updated; phase status updated (P1 partial, P2 partial). STATE.md frontmatter `updated:` + `last_session:` + `prior_session:` updated; new top-bullet MD-B2 close note prepended at Current Phase; Campaign D row in campaigns table updated. III.aDNA CLAUDE.md line 73 updated (3→5 graduated; new md5; ADR-003 §3.6 mention). Workspace `/Users/stanley/lattice/CLAUDE.md` III.aDNA row updated.
+- **08:21Z** — Step 9: Charter + STATE + CLAUDE.md sync. Charter MD-B2 row ✅ COMPLETE 2026-05-21; DG-D criterion box flipped ✅; mission table updated; phase status updated (P1 partial, P2 partial). STATE.md frontmatter `updated:` + `last_session:` + `prior_session:` updated; new top-bullet MD-B2 close note prepended at Current Phase; Campaign D row in campaigns table updated. III.aDNA CLAUDE.md line 73 updated (3→5 graduated; new md5; ADR-003 §3.6 mention). Workspace `/Users/stanley/aDNA/CLAUDE.md` III.aDNA row updated.
 - **08:22Z** — Step 10: Pre-flight grep discharge. Audit identified 25 files with old-md5 references; 22 are point-in-time historical context (session histories + historical campaign files + audit-trail amendment rows); 3 ADR/manifest files needed assertion-context update — ADR-003 §5 prose updated (5 graduated post-MD-B2), ADR-005 frontmatter `status: proposed → ratified` + amendment row 2026-05-21 added documenting rotation (semantics unchanged), MANIFEST.md release log left as-is (Campaign C release-line claim correctly historical). Pre-flight checks 13/13 green: md5 verified, entry count 28, graduated count 5, charter unflipped checkboxes 0, lattice version 1.2.3, VFL local store graduated, inbound proposal closed, reply memo exists, working tree shows 11 modified + 2 untracked III.aDNA + 1 external VideoForge.
 - **08:24Z** — Step 11: Session-close ceremony 7-step protocol. Activity log + SITREP + Next Session Prompt populated; frontmatter `status: active → completed`; `ended:` + `closed_at:` ISO timestamps added; session file move active/ → history/2026-05/ (in commit); single commit with conventional message; STATE.md refresh already landed at Step 9 (combined for efficiency per MD-B1 precedent — STATE refresh + active session move both fold into the close commit).
 
@@ -104,27 +104,27 @@ dg_d_progress: "1/11 → 2/11"
 ### Files touched
 
 **Created** (2):
-- `/Users/stanley/lattice/III.aDNA/who/coordination/reply_2026_05_21_iii_to_videoforge_vfl_graduation_ratified.md`
-- `/Users/stanley/lattice/III.aDNA/how/sessions/active/session_stanley_20260521_iii_adna_md_b2_vfl_graduation.md` (this file; moves to history/2026-05/ at commit)
+- `/Users/stanley/aDNA/III.aDNA/who/coordination/reply_2026_05_21_iii_to_videoforge_vfl_graduation_ratified.md`
+- `/Users/stanley/aDNA/III.aDNA/how/sessions/active/session_stanley_20260521_iii_adna_md_b2_vfl_graduation.md` (this file; moves to history/2026-05/ at commit)
 
 **Modified** (11 inside III.aDNA):
-- `/Users/stanley/lattice/III.aDNA/CLAUDE.md`
-- `/Users/stanley/lattice/III.aDNA/STATE.md`
-- `/Users/stanley/lattice/III.aDNA/how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md`
-- `/Users/stanley/lattice/III.aDNA/what/artifacts/iii_adaptive_improvement_loop_spec.md`
-- `/Users/stanley/lattice/III.aDNA/what/context/core_domain_packs/context_iii_inspect_procedures.md`
-- `/Users/stanley/lattice/III.aDNA/what/context/core_domain_packs/context_iii_introspect_checks.md`
-- `/Users/stanley/lattice/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl`
-- `/Users/stanley/lattice/III.aDNA/what/decisions/adr_003_learning_store_ownership.md`
-- `/Users/stanley/lattice/III.aDNA/what/decisions/adr_005_rlhf_signal_channel.md`
-- `/Users/stanley/lattice/III.aDNA/what/lattices/lattice_iii_verification_oracle.lattice.yaml`
-- `/Users/stanley/lattice/III.aDNA/who/coordination/coord_2026_05_12_vfl_graduation_proposals.md`
+- `/Users/stanley/aDNA/III.aDNA/CLAUDE.md`
+- `/Users/stanley/aDNA/III.aDNA/STATE.md`
+- `/Users/stanley/aDNA/III.aDNA/how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md`
+- `/Users/stanley/aDNA/III.aDNA/what/artifacts/iii_adaptive_improvement_loop_spec.md`
+- `/Users/stanley/aDNA/III.aDNA/what/context/core_domain_packs/context_iii_inspect_procedures.md`
+- `/Users/stanley/aDNA/III.aDNA/what/context/core_domain_packs/context_iii_introspect_checks.md`
+- `/Users/stanley/aDNA/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl`
+- `/Users/stanley/aDNA/III.aDNA/what/decisions/adr_003_learning_store_ownership.md`
+- `/Users/stanley/aDNA/III.aDNA/what/decisions/adr_005_rlhf_signal_channel.md`
+- `/Users/stanley/aDNA/III.aDNA/what/lattices/lattice_iii_verification_oracle.lattice.yaml`
+- `/Users/stanley/aDNA/III.aDNA/who/coordination/coord_2026_05_12_vfl_graduation_proposals.md`
 
 **External-vault** (1 — consumer-side ratification record):
-- `/Users/stanley/lattice/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl` (VFL-001 + VFL-002 graduated + namespace normalization per ADR-005 §3; consumer-side write authorized by VideoForge's prior `graduation_proposal_filed: true` signal — mirrors MB-3 wrapper-authoring precedent; commits in VideoForge's own next git operation, not in this III.aDNA commit)
+- `/Users/stanley/aDNA/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl` (VFL-001 + VFL-002 graduated + namespace normalization per ADR-005 §3; consumer-side write authorized by VideoForge's prior `graduation_proposal_filed: true` signal — mirrors MB-3 wrapper-authoring precedent; commits in VideoForge's own next git operation, not in this III.aDNA commit)
 
 **Workspace-router** (1 — not in any git repo at the workspace root):
-- `/Users/stanley/lattice/CLAUDE.md` — III.aDNA row updated to reflect MD-B2 + md5 rotation + 5-graduated count (operator-managed file)
+- `/Users/stanley/aDNA/CLAUDE.md` — III.aDNA row updated to reflect MD-B2 + md5 rotation + 5-graduated count (operator-managed file)
 
 ## Next Session Prompt
 

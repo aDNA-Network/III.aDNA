@@ -34,7 +34,7 @@ The III loop already captures one binary RLHF-class signal: the `accepted` boole
 
 Three forces motivate moving past binary:
 
-1. **Real ad-hoc growth in a consumer fork.** `~/lattice/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl` already carries additive fields not in the ADR-003 §4 schema: `last_updated`, `graduation_proposal_filed`, `graduation_proposal_path`. These were added during VideoForge self-review cycles 2026-05-11..05-12 with no III-side authorization — the schema-bloat risk (Campaign D R2) materializing in real time. Either we normalize the namespace or each consumer invents its own.
+1. **Real ad-hoc growth in a consumer fork.** `~/aDNA/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl` already carries additive fields not in the ADR-003 §4 schema: `last_updated`, `graduation_proposal_filed`, `graduation_proposal_path`. These were added during VideoForge self-review cycles 2026-05-11..05-12 with no III-side authorization — the schema-bloat risk (Campaign D R2) materializing in real time. Either we normalize the namespace or each consumer invents its own.
 
 2. **Binary accept/reject is too coarse for the adaptive loop.** The operator's Campaign D framing ("modular agentic + adaptive + RLHF + improvement", charter line 35) requires distinguishing accept-as-proposed, accept-with-modification, reject, and defer — at minimum. Without that distinction, MD-B2's "≥50 corrections threshold" (charter line 74) collapses to a count of `accepted: true` entries with no fidelity on partial-acceptance or modification deltas.
 

@@ -54,11 +54,11 @@ The core Five Traps (analogy, boundary, confidence, completeness, level) apply u
 
 | Trap | Description | Where It Hides | Source |
 |------|-------------|----------------|--------|
-| **Staleness trap** | Metrics or claims reference a state that has since changed. A campaign "at 80%" may have completed or stalled. | STATE.md, campaign docs, context files with old `updated` dates | `skill_session_close_ceremony.md` cascade discipline (frontmatter `updated` refresh + STATE.md prepend); workspace `~/lattice/CLAUDE.md` Standing Rule 7 "operational/campaign state lives in each project's STATE.md" |
+| **Staleness trap** | Metrics or claims reference a state that has since changed. A campaign "at 80%" may have completed or stalled. | STATE.md, campaign docs, context files with old `updated` dates | `skill_session_close_ceremony.md` cascade discipline (frontmatter `updated` refresh + STATE.md prepend); workspace `~/aDNA/CLAUDE.md` Standing Rule 7 "operational/campaign state lives in each project's STATE.md" |
 | **Orphan trap** | Wikilinks to files that no longer exist, or files that exist but are unreferenced. Breaks the knowledge graph. | All files with `[[wikilinks]]`, especially after renames or restructures | `skill_iii_review.md` Step 0 DISPATCH (path-resolution against the lattice YAML); `adr_001_module_architecture.md` (module purity — modules never read pack files directly; renames must update orchestrating skills) |
 | **Frontmatter drift** | Frontmatter fields diverge from actual file content. Status says `active` but the campaign completed weeks ago. | Campaign/mission/session files after status transitions | `adr_002_consumer_federation_contract.md` §3 (wrapper-integrity discipline — `federation_ref.version` + `pinned_at_commit` + `pinned_at` MUST all advance together at minor-bump review); `skill_session_close_ceremony.md` (status:active → status:completed flip + dg_X_outcome propagation) |
 | **Metric inflation** | Campaign summaries round up, aggregate selectively, or cite best-case numbers. "All 12 gaps closed" when 2 were deferred. | Campaign AARs, STATE.md campaign tables, DG assessments | `adr_002_consumer_federation_contract.md` §3 (review integrity at minor-bump cadence); Campaign D MD-B6 DG-D scorecard precedent (`md_b6_dg_d_scorecard.md` §3 11-criterion table with `closed_at` + `hard_invariant_touch` + `evidence_link` per row — auditable, not summarized); Campaign F DG-F scorecard `f6_dg_f_scorecard.md` extends the same shape |
-| **Cascade gap** | Information propagates incompletely through the OODA cascade. A session finding isn't reflected in the mission doc; a mission blocker isn't flagged in the campaign doc. | Session→mission→campaign chain; check `updated` dates for temporal gaps | OODA cascade primitive (workspace `~/lattice/CLAUDE.md` `## Standing Rules` §7 + `aDNA.aDNA/` standard); `skill_session_close_ceremony.md` cascade bookkeeping (the 14-canonical-application precedent through Campaigns A/B/C/D/F; STATE.md frontmatter prepend + Current Phase paragraph + Campaigns table flip in the SAME commit as the close action) |
+| **Cascade gap** | Information propagates incompletely through the OODA cascade. A session finding isn't reflected in the mission doc; a mission blocker isn't flagged in the campaign doc. | Session→mission→campaign chain; check `updated` dates for temporal gaps | OODA cascade primitive (workspace `~/aDNA/CLAUDE.md` `## Standing Rules` §7 + `aDNA.aDNA/` standard); `skill_session_close_ceremony.md` cascade bookkeeping (the 14-canonical-application precedent through Campaigns A/B/C/D/F; STATE.md frontmatter prepend + Current Phase paragraph + Campaigns table flip in the SAME commit as the close action) |
 | **Template debt** | A file was created from a template but placeholder sections were never filled in. "[Concrete outputs]" or "[TBD]" survive into production. | Mission completion summaries, campaign artifacts, context files | Campaign B AAR Change #1 — *grep-discharge habit* (`grep -rn "TBD\|placeholder\|\\[Concrete outputs\\]" .` as a session-close hygiene step before status:completed flip); `how/templates/` discipline (`template_*.md` files explicitly mark required fields with `<<>>` brackets so unsubstituted text becomes grep-detectable) |
 
 ### Application gloss for the trap library
@@ -79,7 +79,7 @@ When running III on vault objects, adopt the appropriate reader profile to calib
 - **Expects**: Internally consistent rules that don't contradict each other or CLAUDE.md standing orders
 - **Checks**: Are all referenced templates/skills/files real? Do rules have clear scope (when they apply and when they don't)? Are version stamps current?
 - **Red flags**: Rules that overlap or conflict, references to deprecated files, version stamps older than latest changes
-- **Contract source**: III root `CLAUDE.md` § Standing Rules (7 numbered rules — the doctrine reader's enforcement target); `adr_001_module_architecture.md` (module purity invariant — Rule 3 in CLAUDE.md); workspace `~/lattice/CLAUDE.md` § Standing Rules 1–8
+- **Contract source**: III root `CLAUDE.md` § Standing Rules (7 numbered rules — the doctrine reader's enforcement target); `adr_001_module_architecture.md` (module purity invariant — Rule 3 in CLAUDE.md); workspace `~/aDNA/CLAUDE.md` § Standing Rules 1–8
 
 ### Context Reader
 - **Expects**: Factual accuracy verifiable against current codebase/repo state
@@ -91,7 +91,7 @@ When running III on vault objects, adopt the appropriate reader profile to calib
 - **Expects**: Accurate snapshot of the current operational state, not a historical accumulation
 - **Checks**: Do campaign statuses match their actual files? Are "next steps" still relevant? Are blockers still blocked? Does the schwerpunkt declaration reflect actual session allocation?
 - **Red flags**: Campaigns listed as "ACTIVE" that haven't had a session in 10+ days, "next steps" pointing to completed work, stale blocker entries
-- **Contract source**: `skill_session_close_ceremony.md` (the STATE.md frontmatter-prepend + Current Phase paragraph + Campaigns table flip discipline — the 14-canonical-application precedent through Campaigns A/B/C/D and Campaign F F6); workspace `~/lattice/CLAUDE.md` Standing Rule 7 ("operational/campaign state lives in each project's STATE.md, **never in this router**")
+- **Contract source**: `skill_session_close_ceremony.md` (the STATE.md frontmatter-prepend + Current Phase paragraph + Campaigns table flip discipline — the 14-canonical-application precedent through Campaigns A/B/C/D and Campaign F F6); workspace `~/aDNA/CLAUDE.md` Standing Rule 7 ("operational/campaign state lives in each project's STATE.md, **never in this router**")
 
 ## Quality Dimensions for Vault Health
 
@@ -153,7 +153,7 @@ Internal grounding for the trap inventory + reader profiles + quality dimensions
 
 ### Workspace-level grounding
 
-10. **Workspace `~/lattice/CLAUDE.md`** § Standing Rules 1–8 — particularly Rule 7 ("router rows carry routing identity only; operational/campaign state lives in each project's STATE.md"); the inverse of which IS the STATE.md Reader's enforcement target. Cited at: Staleness trap, Cascade gap trap, Doctrine Reader profile, STATE.md Reader profile.
+10. **Workspace `~/aDNA/CLAUDE.md`** § Standing Rules 1–8 — particularly Rule 7 ("router rows carry routing identity only; operational/campaign state lives in each project's STATE.md"); the inverse of which IS the STATE.md Reader's enforcement target. Cited at: Staleness trap, Cascade gap trap, Doctrine Reader profile, STATE.md Reader profile.
 
 ### Citation ceiling rationale (principled-4)
 

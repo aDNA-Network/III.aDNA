@@ -14,7 +14,7 @@ fired_at: "2026-05-21T08:07:12Z"
 priority: medium
 deadline: no_calendar_urgency
 audit_id: session_stanley_20260521_iii_adna_md_b2_vfl_graduation
-in_reply_to: ~/lattice/III.aDNA/who/coordination/coord_2026_05_12_vfl_graduation_proposals.md
+in_reply_to: ~/aDNA/III.aDNA/who/coordination/coord_2026_05_12_vfl_graduation_proposals.md
 idempotency_key: vfl_graduation_proposals_m_3_04_close
 mission_origin: campaign_d_federation_adaptive_loop MD-B2
 profile: full
@@ -61,8 +61,8 @@ tags: [coordination, cross_vault_request_reply, federation, learning_store_gradu
 
 | VFL ID | Canonical ID | Pattern | Trap | New canonical entry location |
 |--------|--------------|---------|------|------------------------------|
-| VFL-001 | **C-027** | `producer_consumer_pair_unwired` | `forward_link` | `~/lattice/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` line 27 |
-| VFL-002 | **C-028** | `spec_verbatim_port_to_code` | `meta_pattern` | `~/lattice/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` line 28 |
+| VFL-001 | **C-027** | `producer_consumer_pair_unwired` | `forward_link` | `~/aDNA/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` line 27 |
+| VFL-002 | **C-028** | `spec_verbatim_port_to_code` | `meta_pattern` | `~/aDNA/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` line 28 |
 
 ### Canonical md5 rotation (FIRST since founding C-001..C-026 import)
 
@@ -85,7 +85,7 @@ Per operator gate at MD-B2 plan ratification, both VFL entries advance all the w
 
 ### VFL local store update (consumer side)
 
-`~/lattice/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl` updated this session per ADR-005 §3 normalization:
+`~/aDNA/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl` updated this session per ADR-005 §3 normalization:
 - VFL-001 + VFL-002: `graduated: true`, `graduated_to: "core"`, `graduation_candidate: false`, `graduated_date: "2026-05-21"`
 - ADR-005 §2 required-min added: `rlhf_signal_type: "accept"`, `rlhf_session_id: session_stanley_20260521_iii_adna_md_b2_vfl_graduation`, `rlhf_captured_at: 2026-05-21T08:07:12Z`
 - ADR-005 §3 consumer-namespace normalization: pre-existing ad-hoc fields (`last_updated`, `graduation_proposal_filed`, `graduation_proposal_path`, `graduation_note`) re-homed under `rlhf_consumer_namespace.videoforge.*` per spec §3.4 worked example (lines 218–245); new `rlhf_consumer_namespace.videoforge.graduated_to_canonical_id` field added pointing at the assigned canonical IDs
@@ -115,7 +115,7 @@ Both remain in VideoForge local store; not in scope for MD-B2.
 
 For VideoForge (Iris):
 - No mandatory action — local store updates already landed this session by Argus (cross-vault consumer-side write authorized by VideoForge's prior `graduation_proposal_filed: true` signal in VFL-001/002; please verify the local-store shape at next session open and rollback if any unexpected drift; pattern matches MB-3 wrapper-authoring precedent)
-- Optional: update `~/lattice/VideoForge.aDNA/iii/CLAUDE.md` Routing Note 1 to cite C-027 + C-028 as the first canonical-graduated VFL entries from VideoForge (proves the ACCUMULATE writes local; graduation flips upstream loop has fired end-to-end)
+- Optional: update `~/aDNA/VideoForge.aDNA/iii/CLAUDE.md` Routing Note 1 to cite C-027 + C-028 as the first canonical-graduated VFL entries from VideoForge (proves the ACCUMULATE writes local; graduation flips upstream loop has fired end-to-end)
 - Optional: in next ACCUMULATE cycle, observe the new canonical traps (C-027 + C-028) load into your INSPECT-Code + INTROSPECT 2c reading; the pattern matches should now resolve against canonical rather than only local
 
 For III.aDNA (Argus + Stanley):
@@ -132,15 +132,15 @@ For III.aDNA (Argus + Stanley):
 
 ## Cross-references
 
-- **Inbound proposal**: `~/lattice/III.aDNA/who/coordination/coord_2026_05_12_vfl_graduation_proposals.md`
-- **Updated canonical store**: `~/lattice/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` (md5 `5adb0dfa38d9224649c3b2cba83852ae`)
-- **Updated local store**: `~/lattice/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl`
-- **PACK_DELTA_LANDED targets**: `~/lattice/III.aDNA/what/context/core_domain_packs/context_iii_introspect_checks.md` (Check 2c.i) + `~/lattice/III.aDNA/what/context/core_domain_packs/context_iii_inspect_procedures.md` (Modality 2 Code Inspect Static trap)
-- **ADR-003 amendment** (§3.6 ≥50 elevated-scrutiny queue added; §5 post-graduation update; amendment row at 2026-05-21): `~/lattice/III.aDNA/what/decisions/adr_003_learning_store_ownership.md`
-- **ADR-005** (signal channel; rule 5 honored): `~/lattice/III.aDNA/what/decisions/adr_005_rlhf_signal_channel.md`
-- **ADR-007** (CorrectionLifecycle; all 6 stages traversed): `~/lattice/III.aDNA/what/decisions/adr_007_adaptive_improvement_loop.md`
-- **MD-B1 spec** (forward-refs §3.4 / §7.2 / §7.3 resolved): `~/lattice/III.aDNA/what/artifacts/iii_adaptive_improvement_loop_spec.md`
-- **Campaign D charter** (MD-B2 row + DG-D criterion box flipped): `~/lattice/III.aDNA/how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md`
-- **Reply template** (Acceptance variant, full profile): `~/lattice/III.aDNA/how/templates/template_cross_vault_request_reply.md`
-- **Cross-vault request schema** (v0.2 surface): `~/lattice/III.aDNA/what/artifacts/iii_airlock_request_schema.yaml`
-- **Airlock standard spec** (§4.1, §4.2 cross-vault request lifecycle): `~/lattice/III.aDNA/what/artifacts/iii_airlock_standard_spec.md`
+- **Inbound proposal**: `~/aDNA/III.aDNA/who/coordination/coord_2026_05_12_vfl_graduation_proposals.md`
+- **Updated canonical store**: `~/aDNA/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` (md5 `5adb0dfa38d9224649c3b2cba83852ae`)
+- **Updated local store**: `~/aDNA/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl`
+- **PACK_DELTA_LANDED targets**: `~/aDNA/III.aDNA/what/context/core_domain_packs/context_iii_introspect_checks.md` (Check 2c.i) + `~/aDNA/III.aDNA/what/context/core_domain_packs/context_iii_inspect_procedures.md` (Modality 2 Code Inspect Static trap)
+- **ADR-003 amendment** (§3.6 ≥50 elevated-scrutiny queue added; §5 post-graduation update; amendment row at 2026-05-21): `~/aDNA/III.aDNA/what/decisions/adr_003_learning_store_ownership.md`
+- **ADR-005** (signal channel; rule 5 honored): `~/aDNA/III.aDNA/what/decisions/adr_005_rlhf_signal_channel.md`
+- **ADR-007** (CorrectionLifecycle; all 6 stages traversed): `~/aDNA/III.aDNA/what/decisions/adr_007_adaptive_improvement_loop.md`
+- **MD-B1 spec** (forward-refs §3.4 / §7.2 / §7.3 resolved): `~/aDNA/III.aDNA/what/artifacts/iii_adaptive_improvement_loop_spec.md`
+- **Campaign D charter** (MD-B2 row + DG-D criterion box flipped): `~/aDNA/III.aDNA/how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md`
+- **Reply template** (Acceptance variant, full profile): `~/aDNA/III.aDNA/how/templates/template_cross_vault_request_reply.md`
+- **Cross-vault request schema** (v0.2 surface): `~/aDNA/III.aDNA/what/artifacts/iii_airlock_request_schema.yaml`
+- **Airlock standard spec** (§4.1, §4.2 cross-vault request lifecycle): `~/aDNA/III.aDNA/what/artifacts/iii_airlock_standard_spec.md`

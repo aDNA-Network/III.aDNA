@@ -41,15 +41,15 @@ Domain-specific trap library for reviewing the Lattice Protocol whitepaper acros
 ## When to Load
 
 Load alongside `core` (and optionally `mathematics`) when reviewing:
-- `~/lattice/whitepaper/whitepaper.tex` (any section)
-- `~/lattice/whitepaper/figures/*.tex` (TikZ figures)
+- `~/aDNA/whitepaper/whitepaper.tex` (any section)
+- `~/aDNA/whitepaper/figures/*.tex` (TikZ figures)
 - Appendices A-F (especially Appendix E — invention portfolio)
 - Any document making claims about the whitepaper's content or positioning
 
 ## Canonical Reference
 
 The whitepaper LaTeX source is the ground truth:
-`~/lattice/whitepaper/whitepaper.tex` (3,307 lines, v2.0.0)
+`~/aDNA/whitepaper/whitepaper.tex` (3,307 lines, v2.0.0)
 
 Protected content (do NOT propose modifications):
 - Compliance Supremum Theorem (Section 4.6)

@@ -56,7 +56,7 @@ None. This skill is guided through conversation with the user.
 
 Inform the user:
 
-> "Your `~/lattice/` workspace doesn't have a workspace-level CLAUDE.md yet. I can create one at `<parent_path>/CLAUDE.md` — it will help future agents discover your projects, create new ones from this template, and manage L0→L1 upgrades. Shall I set it up?"
+> "Your `~/aDNA/` workspace doesn't have a workspace-level CLAUDE.md yet. I can create one at `<parent_path>/CLAUDE.md` — it will help future agents discover your projects, create new ones from this template, and manage L0→L1 upgrades. Shall I set it up?"
 
 If the user declines, note the skip and proceed with normal session flow. Do not ask again in future sessions (the parent directory still won't have a CLAUDE.md, but the user has declined — record this in `who/coordination/` as a skip note so other agents don't re-trigger).
 
@@ -67,7 +67,7 @@ Scan the parent directory:
 1. **Existing projects** — list all subdirectories that contain a `CLAUDE.md` or `MANIFEST.md` file. These are aDNA projects already present in the workspace.
 2. **Infrastructure repos** — check if `latlab/` exists (indicates L1). Check if `lattice-protocol/` exists.
 3. **Compute tier** — if `latlab/` is present AND a JupyterHub process is running (check port 8000), tier is `L1`. Otherwise `L0`.
-4. **aDNA folder name** — the basename of this vault's directory (e.g., `adna` if cloned to `~/lattice/adna/`).
+4. **aDNA folder name** — the basename of this vault's directory (e.g., `adna` if cloned to `~/aDNA/adna/`).
 
 Report findings to the user:
 - "Found X existing project(s): ..."

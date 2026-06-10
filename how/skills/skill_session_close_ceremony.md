@@ -257,10 +257,10 @@ grep "^status: completed" how/campaigns/<campaign>/<campaign>.md   # expect: 1 m
 - Commit `c8ce621` — MC-4 retroactive close (canonical drift example; do not repeat)
 - Commit `8235837` — MC-4.5 SINGLE-SESSION CLOSE (canonical mitigation exemplar; self-honoring planning-class interstitial)
 - Commit `1ea1c4d` — MC-5 + DG-C CLOSE (combined-gate variant exemplar)
-- `~/lattice/aDNA.aDNA/how/campaigns/campaign_adna_serious_tool_readiness/missions/mission_adna_str_p2_m23_5_push_readiness_review.md` — cross-vault precedent for planning-class single-session shape (M2.3.5 push-readiness review)
-- `~/lattice/aDNA.aDNA/how/campaigns/campaign_adna_serious_tool_readiness/missions/artifacts/aar_m23_5_push_readiness_review.md` — M2.3.5 AAR
+- `~/aDNA/aDNA.aDNA/how/campaigns/campaign_adna_serious_tool_readiness/missions/mission_adna_str_p2_m23_5_push_readiness_review.md` — cross-vault precedent for planning-class single-session shape (M2.3.5 push-readiness review)
+- `~/aDNA/aDNA.aDNA/how/campaigns/campaign_adna_serious_tool_readiness/missions/artifacts/aar_m23_5_push_readiness_review.md` — M2.3.5 AAR
 - `how/templates/template_session.md` — session-file template (frontmatter + sections this skill operates on)
 
 ## Upstream graduation potential
 
-This skill is currently III.aDNA-canonical. The closure-discipline lesson generalizes across any aDNA vault — every vault has session files, every vault risks the same drift. A future III.aDNA v0.3+ cycle could promote `skill_session_close_ceremony.md` to `.adna/how/skills/` (the base template) via the standard upstream-contribution flow at `~/lattice/.adna/how/skills/skill_upstream_contribution.md`. Promotion candidates evaluated by: ≥ 3 in-vault canonical applications (achieved at first use post-adoption + accumulating across Campaign D sessions); zero in-skill drift findings during the trial period; explicit operator + agent co-ratification.
+This skill is currently III.aDNA-canonical. The closure-discipline lesson generalizes across any aDNA vault — every vault has session files, every vault risks the same drift. A future III.aDNA v0.3+ cycle could promote `skill_session_close_ceremony.md` to `.adna/how/skills/` (the base template) via the standard upstream-contribution flow at `~/aDNA/.adna/how/skills/skill_upstream_contribution.md`. Promotion candidates evaluated by: ≥ 3 in-vault canonical applications (achieved at first use post-adoption + accumulating across Campaign D sessions); zero in-skill drift findings during the trial period; explicit operator + agent co-ratification.

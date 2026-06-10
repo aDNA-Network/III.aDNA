@@ -67,7 +67,7 @@ Changelog entries are organized by **governance version** (primary heading). Sta
 ### Added
 - `role: template` marker in `MANIFEST.md` frontmatter — distinguishes the base template from forked projects
 - `how/skills/skill_project_fork.md` — dedicated skill for forking `adna/` into a new project directory
-- `~/lattice/` as the canonical workspace convention for L0 nodes
+- `~/aDNA/` as the canonical workspace convention for L0 nodes
 - L0 compute tier in CLAUDE.md Compute Tiers table (local knowledge architecture, no compute services)
 - Workspace convention diagram in CLAUDE.md Template Detection section
 
@@ -75,17 +75,17 @@ Changelog entries are organized by **governance version** (primary heading). Sta
 - `CLAUDE.md` v5.6→v5.7: merged "First-Run Detection" + "Workspace Bootstrap Detection" into unified "Template Detection & Project Setup" flow
 - `skill_onboarding.md` now runs exclusively in forked projects, never in the base template
 - `skill_workspace_init.md` Step 4 delegates project creation to `skill_project_fork.md`
-- All documentation updated from `~/Projects/` to `~/lattice/` as the recommended workspace root
-- `README.md` Quick Start updated with `~/lattice/` clone instructions and template-aware setup flow
-- `projects_folder_pattern.md` updated with `~/lattice/` as canonical workspace root and `role: template` design principle
+- All documentation updated from `~/Projects/` to `~/aDNA/` as the recommended workspace root
+- `README.md` Quick Start updated with `~/aDNA/` clone instructions and template-aware setup flow
+- `projects_folder_pattern.md` updated with `~/aDNA/` as canonical workspace root and `role: template` design principle
 - `workspace_claude_md.template` updated with fork preparation steps (strip `role: template`, set `agent_init`)
-- `STATE.md` next steps updated with `~/lattice/` convention
+- `STATE.md` next steps updated with `~/aDNA/` convention
 - Peripheral files updated: `skill_l1_upgrade.md`, `skill_lattice_publish.md`, `tutorial_lattice_publishing.md`, `tools/AGENTS.md`, `quest_l1_onboarding.md`
 
 ### Design decisions
 - `adna/` stays clean — never customized by onboarding. `git pull` always safe.
 - `role: template` in MANIFEST.md is the canonical detection mechanism (explicit, git-independent)
-- `~/lattice/` is a strong recommendation, not mandatory — system works in any location
+- `~/aDNA/` is a strong recommendation, not mandatory — system works in any location
 
 ---
 

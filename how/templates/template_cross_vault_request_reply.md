@@ -99,5 +99,5 @@ The Status Log row is the audit trail; the appended section is the structured re
 - **Spec — handshake protocol** (lightweight vs full profile field requirements): `what/artifacts/iii_airlock_standard_spec.md` §4.2
 - **Schema — lifecycle transitions**: `what/artifacts/iii_airlock_request_schema.yaml` `x-lifecycle-transitions`
 - **Schema — handshake profiles**: `what/artifacts/iii_airlock_request_schema.yaml` `x-handshake-profiles`
-- **Worked example** (cross-forge request memo, body sections + status log): `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`
+- **Worked example** (cross-forge request memo, body sections + status log): `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md`
 - **Campaign**: `how/campaigns/campaign_c_airlock_standard/campaign_c_airlock_standard.md`

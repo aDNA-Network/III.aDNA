@@ -54,8 +54,8 @@ Open Campaign B + Campaign C charters, then execute MB-1 in the same session.
 - `how/campaigns/campaign_a_iii_genesis/campaign_a_iii_genesis.md` (campaign file format precedent)
 - `how/sessions/history/2026-05/session_stanley_20260508_iii_adna_ma4_airlock_v0_1_0.md` (session file format precedent)
 - `who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md` (Campaign C charter input)
-- `~/lattice/lattice-labs/CLAUDE.md` (line ~223 — CanvasForge Standing Order precedent for new rule 12)
-- `~/lattice/lattice-labs/what/context/iii_domain_packs/MIGRATION_NOTE.md` (Stage 1+2 entries from MA-1/MA-2; add Stage 3)
+- `~/aDNA/lattice-labs/CLAUDE.md` (line ~223 — CanvasForge Standing Order precedent for new rule 12)
+- `~/aDNA/lattice-labs/what/context/iii_domain_packs/MIGRATION_NOTE.md` (Stage 1+2 entries from MA-1/MA-2; add Stage 3)
 
 ## Activity Log
 

@@ -11,7 +11,7 @@ updated: 2026-05-20
 last_edited_by: agent_argus
 authoring_mission: campaign_c_airlock_standard MC-5
 governed_by: what/artifacts/iii_airlock_standard_spec.md
-worked_example_path: ~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md
+worked_example_path: ~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md
 schema_validated_against: what/artifacts/iii_airlock_request_schema.yaml
 inbound_proposal_closed: who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md
 documentation_grade: true
@@ -38,25 +38,25 @@ MC-5 is the validation gate that closes Campaign C P3. It re-exercises the canon
 
 | Input | Path | Role |
 |---|---|---|
-| Worked example | `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` | The 2026-05-08 v0.1.0-era cross-forge memo; read-only |
-| Standard spec | `~/lattice/III.aDNA/what/artifacts/iii_airlock_standard_spec.md` v0.2.0 | Normative contract; §4 cross-vault requests + §5 worked-example reference |
-| Request schema (machine-readable) | `~/lattice/III.aDNA/what/artifacts/iii_airlock_request_schema.yaml` (JSON Schema Draft 2020-12) | Mechanical validation target; 9/9 self-checks at MC-2 close |
-| AIRLOCK.md reference | `~/lattice/III.aDNA/how/airlock/AIRLOCK.md` v0.2.0 | Operational entry/request surface; routes Surface Selection |
-| Substrate implementation | `~/lattice/III.aDNA/what/artifacts/iii_airlock_substrate_implementation.md` v0.2.0 (490 lines) | §2 secrets_preflight + §3 idempotency_key dedup + §4 reply-template integration; §2.5 + §3.6 sample records pre-coordinated with MC-5 dimensions |
-| Reply-comment template | `~/lattice/III.aDNA/how/templates/template_cross_vault_request_reply.md` (MC-3 vintage) | Acceptance full-profile + lightweight-profile + Rejection variants; consumes §2.2 reasons + §3.5 force_new strings |
-| Inbound proposal | `~/lattice/III.aDNA/who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md` | VideoForge 5-gap proposal; status `absorbed` at MC-3 close 2026-05-10; flipped to `closed` at MC-5 close (this artifact) |
-| MC-4.5 dossier | `~/lattice/III.aDNA/what/artifacts/mc4_5_alignment_recon_dossier.md` | §4 BASELINE recipe (followed); §3 LL+LN landscape signals (out of MC-5 scope; Campaign D territory) |
+| Worked example | `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` | The 2026-05-08 v0.1.0-era cross-forge memo; read-only |
+| Standard spec | `~/aDNA/III.aDNA/what/artifacts/iii_airlock_standard_spec.md` v0.2.0 | Normative contract; §4 cross-vault requests + §5 worked-example reference |
+| Request schema (machine-readable) | `~/aDNA/III.aDNA/what/artifacts/iii_airlock_request_schema.yaml` (JSON Schema Draft 2020-12) | Mechanical validation target; 9/9 self-checks at MC-2 close |
+| AIRLOCK.md reference | `~/aDNA/III.aDNA/how/airlock/AIRLOCK.md` v0.2.0 | Operational entry/request surface; routes Surface Selection |
+| Substrate implementation | `~/aDNA/III.aDNA/what/artifacts/iii_airlock_substrate_implementation.md` v0.2.0 (490 lines) | §2 secrets_preflight + §3 idempotency_key dedup + §4 reply-template integration; §2.5 + §3.6 sample records pre-coordinated with MC-5 dimensions |
+| Reply-comment template | `~/aDNA/III.aDNA/how/templates/template_cross_vault_request_reply.md` (MC-3 vintage) | Acceptance full-profile + lightweight-profile + Rejection variants; consumes §2.2 reasons + §3.5 force_new strings |
+| Inbound proposal | `~/aDNA/III.aDNA/who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md` | VideoForge 5-gap proposal; status `absorbed` at MC-3 close 2026-05-10; flipped to `closed` at MC-5 close (this artifact) |
+| MC-4.5 dossier | `~/aDNA/III.aDNA/what/artifacts/mc4_5_alignment_recon_dossier.md` | §4 BASELINE recipe (followed); §3 LL+LN landscape signals (out of MC-5 scope; Campaign D territory) |
 
 ## §3 Execution trace
 
 MC-5 executes by inspection — not by running an executable validator. Disk evidence is verified against the spec at every step; deviations from expected are surfaced as findings.
 
-**Step 1** — confirm worked-example memo exists at the cited path. ✅ `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` present; 165 lines; frontmatter + 10 body sections per spec §4.3 canonical shape; status log table.
+**Step 1** — confirm worked-example memo exists at the cited path. ✅ `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` present; 165 lines; frontmatter + 10 body sections per spec §4.3 canonical shape; status log table.
 
 **Step 2** — confirm worked-example frontmatter required-minimum (spec §4.3 line 221: `type`, `spec_path`, `output_sink`). ✅ All three present:
 - `type: coordination` at line 2 — **delta surfaced**: §4.3 normalizes this to `type: cross_vault_request`; the worked example uses the legacy generic `coordination` type. This is the v0.1.0 vintage; v0.2 conformance requires `type: cross_vault_request` at the top-level. **Additive delta** (matches the inbound proposal Gap 3 framing). Documented at §4 below; non-blocking under v0.2 transitional reading per spec §5.1 coverage map row 4.
-- `spec_path` body-promoted (lines 41 + 50–58): slide outline at `/Users/stanley/lattice/VideoForge.aDNA/what/context/onboarding_carly_herb_slide_outline.md` ✅ — §4.3 wants this in `artifact_request.spec_path:` frontmatter; the worked example body-promotes it. **Additive delta**: frontmatter retrofit moves this field to its canonical location without removing the body's narrative explanation.
-- `output_sink` body-promoted (lines 79–84): `/Users/stanley/lattice/VideoForge.aDNA/presentationforge/decks/` ✅ — same body-promotion delta as above.
+- `spec_path` body-promoted (lines 41 + 50–58): slide outline at `/Users/stanley/aDNA/VideoForge.aDNA/what/context/onboarding_carly_herb_slide_outline.md` ✅ — §4.3 wants this in `artifact_request.spec_path:` frontmatter; the worked example body-promotes it. **Additive delta**: frontmatter retrofit moves this field to its canonical location without removing the body's narrative explanation.
+- `output_sink` body-promoted (lines 79–84): `/Users/stanley/aDNA/VideoForge.aDNA/presentationforge/decks/` ✅ — same body-promotion delta as above.
 
 **Step 3** — confirm worked-example frontmatter optional fields present where relevant. ✅
 - `priority: medium` (line 13) ✅
@@ -119,10 +119,10 @@ The worked example was authored 2026-05-08 against the v0.1.0 coord-memo fallbac
 ```yaml
 artifact_request:
   type: deck
-  spec_path: /Users/stanley/lattice/VideoForge.aDNA/what/context/onboarding_carly_herb_slide_outline.md
-  output_sink: /Users/stanley/lattice/VideoForge.aDNA/presentationforge/decks/
-  voice_mapping: /Users/stanley/lattice/VideoForge.aDNA/presentationforge/what/context/vf_canvas_voice_mapping.yaml
-  lattice_path: /Users/stanley/lattice/VideoForge.aDNA/presentationforge/what/lattices/lattice_carly_herb_onboarding.lattice.yaml
+  spec_path: /Users/stanley/aDNA/VideoForge.aDNA/what/context/onboarding_carly_herb_slide_outline.md
+  output_sink: /Users/stanley/aDNA/VideoForge.aDNA/presentationforge/decks/
+  voice_mapping: /Users/stanley/aDNA/VideoForge.aDNA/presentationforge/what/context/vf_canvas_voice_mapping.yaml
+  lattice_path: /Users/stanley/aDNA/VideoForge.aDNA/presentationforge/what/lattices/lattice_carly_herb_onboarding.lattice.yaml
   quality_threshold: 0.75
   forbidden_registers: [R11]
 ```
@@ -259,4 +259,4 @@ Per MC-4.5 §4.2 (D1=A BASELINE default) + §5.2 (3 Campaign D candidates sketch
 - Substrate implementation: `what/artifacts/iii_airlock_substrate_implementation.md` v0.2.0
 - Reply-comment template: `how/templates/template_cross_vault_request_reply.md` (MC-3 vintage)
 - Inbound proposal: `who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md` (flipped `absorbed → closed` at MC-5 close)
-- Worked example: `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` (read-only; status `open` at memo level — independent of MC-5 close)
+- Worked example: `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` (read-only; status `open` at memo level — independent of MC-5 close)

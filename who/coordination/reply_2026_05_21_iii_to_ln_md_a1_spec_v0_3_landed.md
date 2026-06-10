@@ -14,7 +14,7 @@ fired_at: "2026-05-21T14:30:00Z"
 priority: medium
 deadline: no_calendar_urgency
 audit_id: session_stanley_20260521_iii_adna_md_a1_airlock_v0_3
-in_reply_to: ~/lattice/III.aDNA/who/coordination/coord_2026_05_20_iii_to_ln_federation_substrate_intersect.md
+in_reply_to: ~/aDNA/III.aDNA/who/coordination/coord_2026_05_20_iii_to_ln_federation_substrate_intersect.md
 mission_origin: campaign_d_federation_adaptive_loop MD-A1
 profile: full
 disposition: load_bearing_intersect_resolved
@@ -94,7 +94,7 @@ This reply confirms III has **absorbed LN's published substrate authority** (ADR
 
 - **Acknowledge** at the originating memo via `ack_at:` field-set when convenient (async per memo's own semantics; spec is self-consistent without ack)
 - **Review §5.3.1 `COMPLIANCE_AUDIT` schema** when LN Carry 3 EP-1 enum-widening prep opens — III's candidate clusters with ADR-014's `MEMBERSHIP_NODE_RE_IDENTIFIED` + ADR-015's 5 substrate-tagged candidates as a 7-candidate amendment surface at Phase 5
-- **wga_l1 as Day-1 federation pilot** — currently `~/lattice/wga.aDNA/iii/` consumer wrapper at v0.2.0; full federation-aware exercise lands at MD-A4 (wrapper minor-bump sweep) + MD-A5 (federation-integration validation); LN-side awareness of this consumer pinning may inform any LN-side validation harness LN wants to run alongside MD-A5
+- **wga_l1 as Day-1 federation pilot** — currently `~/aDNA/wga.aDNA/iii/` consumer wrapper at v0.2.0; full federation-aware exercise lands at MD-A4 (wrapper minor-bump sweep) + MD-A5 (federation-integration validation); LN-side awareness of this consumer pinning may inform any LN-side validation harness LN wants to run alongside MD-A5
 - **Confirm timing** for LN-side reading of §5.3 ledger observation contract — III's reading is read-only by contract, never writes; LN may want to surface any rate-limit or subscription-tier guidance for airlock observers at higher scale
 
 ## Follow-up actions
@@ -113,14 +113,14 @@ For III.aDNA (Argus + Stanley):
 
 ## Cross-references
 
-- **Inbound memo (load-bearing intersect ask source)**: `~/lattice/III.aDNA/who/coordination/coord_2026_05_20_iii_to_ln_federation_substrate_intersect.md`
-- **Updated spec (MD-A1 deliverable)**: `~/lattice/III.aDNA/what/artifacts/iii_airlock_standard_spec.md` v0.3.0
-- **Campaign D charter (MD-A1 row + DG-D criterion box flipped + P1 phase ✅ complete)**: `~/lattice/III.aDNA/how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md`
-- **LN ADR-014 (absorbed by reference)**: `~/lattice/LatticeNetwork.aDNA/who/governance/adr_014_re_id_semantics_node_canonical_id_transition.md`
-- **LN ADR-015 (absorbed by reference)**: `~/lattice/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md`
-- **LN ADR-013 (cited as upstream pattern for §4.6 + §5.2)**: `~/lattice/LatticeNetwork.aDNA/who/governance/adr_013_federation_signing_key_infrastructure.md`
-- **LN ADR-010 (cited as upstream pattern for §5.4)**: `~/lattice/LatticeNetwork.aDNA/who/governance/adr_010_canonical_node_id_schema_three_universes.md`
-- **LN pc_01 mission (load-bearing dependency closed 2026-05-20/21)**: `~/lattice/LatticeNetwork.aDNA/how/campaigns/campaign_alphalattice_genesis/missions/mission_pc_01_mccoy_macmini_wga_canonicalization_exemplar.md`
-- **MD-B1 sibling spec (cadence patterns this spec follows)**: `~/lattice/III.aDNA/what/artifacts/iii_adaptive_improvement_loop_spec.md`
-- **Reply template (Acceptance variant, full profile)**: `~/lattice/III.aDNA/how/templates/template_cross_vault_request_reply.md`
+- **Inbound memo (load-bearing intersect ask source)**: `~/aDNA/III.aDNA/who/coordination/coord_2026_05_20_iii_to_ln_federation_substrate_intersect.md`
+- **Updated spec (MD-A1 deliverable)**: `~/aDNA/III.aDNA/what/artifacts/iii_airlock_standard_spec.md` v0.3.0
+- **Campaign D charter (MD-A1 row + DG-D criterion box flipped + P1 phase ✅ complete)**: `~/aDNA/III.aDNA/how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md`
+- **LN ADR-014 (absorbed by reference)**: `~/aDNA/LatticeNetwork.aDNA/who/governance/adr_014_re_id_semantics_node_canonical_id_transition.md`
+- **LN ADR-015 (absorbed by reference)**: `~/aDNA/LatticeNetwork.aDNA/who/governance/adr_015_federation_substrate_pluralism_tailscale_and_nebula_canonical.md`
+- **LN ADR-013 (cited as upstream pattern for §4.6 + §5.2)**: `~/aDNA/LatticeNetwork.aDNA/who/governance/adr_013_federation_signing_key_infrastructure.md`
+- **LN ADR-010 (cited as upstream pattern for §5.4)**: `~/aDNA/LatticeNetwork.aDNA/who/governance/adr_010_canonical_node_id_schema_three_universes.md`
+- **LN pc_01 mission (load-bearing dependency closed 2026-05-20/21)**: `~/aDNA/LatticeNetwork.aDNA/how/campaigns/campaign_alphalattice_genesis/missions/mission_pc_01_mccoy_macmini_wga_canonicalization_exemplar.md`
+- **MD-B1 sibling spec (cadence patterns this spec follows)**: `~/aDNA/III.aDNA/what/artifacts/iii_adaptive_improvement_loop_spec.md`
+- **Reply template (Acceptance variant, full profile)**: `~/aDNA/III.aDNA/how/templates/template_cross_vault_request_reply.md`
 - **Airlock standard spec §9.5 cross-references** (now lists LN ADRs + LN pc_01 mission + MD-B1 sibling artifact + ADR-005/-007 sibling deliverables + both outbound coord memos from charter)

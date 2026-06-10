@@ -40,7 +40,7 @@ This is a documentation deliverable. No AIRLOCK.md edits (MC-3), no schema YAML 
 - `how/campaigns/campaign_c_airlock_standard/campaign_c_airlock_standard.md` — charter, DG-C criteria, mission table
 - `who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md` — VF inbound proposal, 5 gaps, schema source
 - `how/airlock/AIRLOCK.md` v0.1.0 — entry-path content the spec generalizes from
-- `~/lattice/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` — worked example
+- `~/aDNA/CanvasForge.aDNA/who/coordination/coord_2026_05_08_videoforge_requests_carly_herb_deck.md` — worked example
 - `what/decisions/adr_002_consumer_federation_contract.md` — federation-pin + version-policy reference (§3 minor/locked/patch)
 - `how/sessions/history/2026-05/session_stanley_20260508_iii_adna_mb1_lattice_labs_wrapper.md` — session-file format precedent
 

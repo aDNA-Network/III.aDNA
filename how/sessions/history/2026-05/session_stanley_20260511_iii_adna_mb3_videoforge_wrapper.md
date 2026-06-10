@@ -38,16 +38,16 @@ Execute MB-3 (Campaign B P2 advance, parallel-eligible with MC-4). Distinct from
 
 ## Source Material (read-only inputs)
 
-- `/Users/stanley/lattice/III.aDNA/who/coordination/coord_2026_05_11_videoforge_iii_wrapper_authoring.md` — the v0.2-conformant inbound request memo (the thing being accepted)
-- `/Users/stanley/lattice/VideoForge.aDNA/iii/CLAUDE.md` (115 lines; federation_ref + active campaigns + local extensions + routing notes + cross-references)
-- `/Users/stanley/lattice/VideoForge.aDNA/iii/MANIFEST.md` (79 lines; identity + dependency matrix + local extensions + entry points + directory tree)
-- `/Users/stanley/lattice/VideoForge.aDNA/iii/what/context/videoforge_iii_domain_pack.md` (149 lines; 8-section bridge pack)
-- `/Users/stanley/lattice/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl` (0 bytes)
-- `/Users/stanley/lattice/III.aDNA/how/templates/template_cross_vault_request_reply.md` — full-profile Acceptance template (first live use)
-- `/Users/stanley/lattice/III.aDNA/what/artifacts/iii_airlock_request_schema.yaml` — JSON Schema Draft 2020-12 (mechanical validation)
-- `/Users/stanley/lattice/III.aDNA/what/decisions/adr_002_consumer_federation_contract.md` — federation contract; §1 wrapper schema; §3 version policy; §6 modality-agnostic core
-- `/Users/stanley/lattice/III.aDNA/what/decisions/adr_003_learning_store_ownership.md` — §2 local-target write rule; §3 graduation protocol
-- `/Users/stanley/lattice/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md` — MB-3 row authority; R3 risk row text
+- `/Users/stanley/aDNA/III.aDNA/who/coordination/coord_2026_05_11_videoforge_iii_wrapper_authoring.md` — the v0.2-conformant inbound request memo (the thing being accepted)
+- `/Users/stanley/aDNA/VideoForge.aDNA/iii/CLAUDE.md` (115 lines; federation_ref + active campaigns + local extensions + routing notes + cross-references)
+- `/Users/stanley/aDNA/VideoForge.aDNA/iii/MANIFEST.md` (79 lines; identity + dependency matrix + local extensions + entry points + directory tree)
+- `/Users/stanley/aDNA/VideoForge.aDNA/iii/what/context/videoforge_iii_domain_pack.md` (149 lines; 8-section bridge pack)
+- `/Users/stanley/aDNA/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl` (0 bytes)
+- `/Users/stanley/aDNA/III.aDNA/how/templates/template_cross_vault_request_reply.md` — full-profile Acceptance template (first live use)
+- `/Users/stanley/aDNA/III.aDNA/what/artifacts/iii_airlock_request_schema.yaml` — JSON Schema Draft 2020-12 (mechanical validation)
+- `/Users/stanley/aDNA/III.aDNA/what/decisions/adr_002_consumer_federation_contract.md` — federation contract; §1 wrapper schema; §3 version policy; §6 modality-agnostic core
+- `/Users/stanley/aDNA/III.aDNA/what/decisions/adr_003_learning_store_ownership.md` — §2 local-target write rule; §3 graduation protocol
+- `/Users/stanley/aDNA/III.aDNA/how/campaigns/campaign_b_iii_federation/campaign_b_iii_federation.md` — MB-3 row authority; R3 risk row text
 - MB-1 + MB-2 wrappers — worked precedents
 - MB-2 session file at `how/sessions/history/2026-05/session_stanley_20260510_iii_adna_mb2_siteforge_wrapper.md` — session structure template
 
@@ -82,7 +82,7 @@ All gates pass per plan § Verification:
 4. **R3 risk closed** ✅ — charter risk register R3 row shows `MED — MITIGATED 2026-05-11` with materialization paragraph naming bridge_pack provenance + verbatim mitigation citation at `iii/CLAUDE.md:53`.
 5. **v0.2 cross-vault request surface validated end-to-end** ✅ — first inbound (III.aDNA-receiving) v0.2 memo traversed `open → accepted → rendering → shipped → closed`. Reply-comment template `template_cross_vault_request_reply.md` exercised once (full-profile). Strengthens Campaign C MC-5 validation case — MC-5 will validate the outbound surface (VideoForge → CanvasForge); MB-3 has now validated the inbound surface.
 6. **No drift in canonical content** ✅ — `md5 -q what/context/core_domain_packs/iii_corrections_canonical.jsonl` → `dde2cbd88c0b45956fb22285a2a0f856` (invariant). `git tag -l` returns only `v0.1.0` and `v0.2.0` (no new tag). `git rev-parse 'v0.2.0^{commit}'` → `246124d4176a564df0df2823d6d3bbeba51f9d0a` (unchanged).
-7. **Boundary discipline maintained** ✅ — `git status` shows no modifications under `/Users/stanley/lattice/VideoForge.aDNA/`; only III.aDNA-side files touched (MANIFEST.md + STATE.md + Campaign B charter + coord memo + this session file). VideoForge-side observations recorded as non-gating, not changes.
+7. **Boundary discipline maintained** ✅ — `git status` shows no modifications under `/Users/stanley/aDNA/VideoForge.aDNA/`; only III.aDNA-side files touched (MANIFEST.md + STATE.md + Campaign B charter + coord memo + this session file). VideoForge-side observations recorded as non-gating, not changes.
 
 ## Outputs
 

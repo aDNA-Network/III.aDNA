@@ -8,8 +8,8 @@ agent: agent_argus
 mission: VisualDNA-Coord-Intake
 mission_class: coord_touch   # cross-vault lite-ping intake + brief reply; non-campaign, non-gating
 campaign: null   # not a campaign mission
-inbound_coord: ~/lattice/III.aDNA/who/coordination/coord_2026_05_28_visualdna_review_iii_integration_v1_1.md
-outbound_reply: ~/lattice/III.aDNA/who/coordination/reply_2026_05_28_iii_to_visualdna_lite_ack.md
+inbound_coord: ~/aDNA/III.aDNA/who/coordination/coord_2026_05_28_visualdna_review_iii_integration_v1_1.md
+outbound_reply: ~/aDNA/III.aDNA/who/coordination/reply_2026_05_28_iii_to_visualdna_lite_ack.md
 plan_file: /Users/stanley/.claude/plans/please-read-the-claude-md-dazzling-beacon.md
 prior_session: session_stanley_20260528_iii_adna_mx1_vault_maintenance_pack
 disposition: acknowledge + track-defer-to-VisualDNA-v1.0-GA + signal absorption-via-graduation pathway
@@ -43,9 +43,9 @@ Non-gating; single-session; no campaign tag; no DG ceremony; no annotated git ta
 - **From**: VisualDNA.aDNA (Pygmalion); transmitted 2026-05-28
 - **Disposition declared**: `notification + v1.1 integration consideration request (no immediate ack required; non-binding)`
 - **Sibling-framework parallel pings** (do NOT co-coordinate per Framework.aDNA independence):
-  - `~/lattice/ContextCompass.aDNA/who/coordination/coord_2026_05_28_visualdna_review_bundle_compactness.md`
-  - `~/lattice/VAASLattice.aDNA/who/coordination/coord_2026_05_28_visualdna_review_cross_consumer_drift.md`
-- **Anchor**: `~/lattice/VisualDNA.aDNA/what/research/brand_character_digital_twin_synthesis.md` v1.0.0 (published 2026-05-28)
+  - `~/aDNA/ContextCompass.aDNA/who/coordination/coord_2026_05_28_visualdna_review_bundle_compactness.md`
+  - `~/aDNA/VAASLattice.aDNA/who/coordination/coord_2026_05_28_visualdna_review_cross_consumer_drift.md`
+- **Anchor**: `~/aDNA/VisualDNA.aDNA/what/research/brand_character_digital_twin_synthesis.md` v1.0.0 (published 2026-05-28)
 - **Architectural context**: III is **already load-bearing-by-reference** — VisualDNA's `spec_visualdna_airlock.md` (DRAFT_OUTLINE, v0.1.0) adapts III airlock standard v0.3.0
 
 ## Read context (Phase 1)
@@ -53,11 +53,11 @@ Non-gating; single-session; no campaign tag; no DG ceremony; no annotated git ta
 | Read | Path |
 |---|---|
 | Inbound coord (full) | `who/coordination/coord_2026_05_28_visualdna_review_iii_integration_v1_1.md` |
-| VisualDNA CLAUDE.md + STATE.md headline | `~/lattice/VisualDNA.aDNA/CLAUDE.md` + `~/lattice/VisualDNA.aDNA/STATE.md` |
-| VisualDNA anchor dossier | `~/lattice/VisualDNA.aDNA/what/research/brand_character_digital_twin_synthesis.md` |
-| VisualDNA home coord (fanout authoring side) | `~/lattice/VisualDNA.aDNA/who/coordination/coord_2026_05_28_execution_trigger_fired.md` |
-| VisualDNA visual-airlock spec (load-bearing on III v0.3.0) | `~/lattice/VisualDNA.aDNA/what/artifacts/spec_visualdna_airlock.md` |
-| First production bundle (substrate + schema flavor) | `~/lattice/ScienceStanley.aDNA/what/visual_dna/characters/stanley/stanley.yaml` |
+| VisualDNA CLAUDE.md + STATE.md headline | `~/aDNA/VisualDNA.aDNA/CLAUDE.md` + `~/aDNA/VisualDNA.aDNA/STATE.md` |
+| VisualDNA anchor dossier | `~/aDNA/VisualDNA.aDNA/what/research/brand_character_digital_twin_synthesis.md` |
+| VisualDNA home coord (fanout authoring side) | `~/aDNA/VisualDNA.aDNA/who/coordination/coord_2026_05_28_execution_trigger_fired.md` |
+| VisualDNA visual-airlock spec (load-bearing on III v0.3.0) | `~/aDNA/VisualDNA.aDNA/what/artifacts/spec_visualdna_airlock.md` |
+| First production bundle (substrate + schema flavor) | `~/aDNA/ScienceStanley.aDNA/what/visual_dna/characters/stanley/stanley.yaml` |
 | III lite-ping absorbed-only precedent | `who/coordination/coord_2026_05_08_airlock_v0_2_videoforge_findings.md` |
 | III heavyweight reply shape model | `who/coordination/reply_2026_05_21_iii_to_videoforge_vfl_graduation_ratified.md` |
 | Existing canvas_visual pack (orthogonal artifact class confirmation) | `what/context/core_domain_packs/context_iii_canvas_visual.md` |
@@ -91,7 +91,7 @@ Per operator gate at plan ratification: **brief-acknowledge reply** with frontma
 | Consumer wrappers touched | 0 | 0 | **ZERO** |
 | MANIFEST.md edited | no | no | **UNTOUCHED** |
 | III root CLAUDE.md edited | no | no | **UNTOUCHED** |
-| Workspace router `~/lattice/CLAUDE.md` edited | no | no | **UNTOUCHED** |
+| Workspace router `~/aDNA/CLAUDE.md` edited | no | no | **UNTOUCHED** |
 | Production pin | `v0.4.1` (MX-1) | `v0.4.1` | unchanged |
 | Git tag cut | no | no | **NO** |
 | Git push to remote | no | (operator-discretionary) | held |

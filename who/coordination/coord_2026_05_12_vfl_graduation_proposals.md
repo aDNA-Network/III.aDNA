@@ -14,7 +14,7 @@ closed_at: "2026-05-21T08:07:12Z"
 closed_at_mission: campaign_d_federation_adaptive_loop MD-B2
 disposition: accept_both
 canonical_ids_assigned: ["C-027", "C-028"]
-reply_memo: ~/lattice/III.aDNA/who/coordination/reply_2026_05_21_iii_to_videoforge_vfl_graduation_ratified.md
+reply_memo: ~/aDNA/III.aDNA/who/coordination/reply_2026_05_21_iii_to_videoforge_vfl_graduation_ratified.md
 lifecycle_path: ["open", "accepted", "absorbed", "closed"]
 canonical_md5_before: "dde2cbd88c0b45956fb22285a2a0f856"
 canonical_md5_after: "5adb0dfa38d9224649c3b2cba83852ae"
@@ -24,8 +24,8 @@ audit_id: session_M_3_04_2026_05_12_iii_adna_vfl_graduation
 artifact_request:
   type: learning_store_graduation
   vfl_ids: ["VFL-001", "VFL-002"]
-  source_learning_store: ~/lattice/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl
-  candidate_target: ~/lattice/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl
+  source_learning_store: ~/aDNA/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl
+  candidate_target: ~/aDNA/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl
   ceremony_authority: ADR-003 § 3 at III.aDNA (graduation ceremony — frequency ≥ 3 + sessions ≥ 2 + acceptance true + Argus + Stanley co-ratification)
 constraints:
   max_revisions: 2
@@ -48,12 +48,12 @@ tags: [coordination, cross_vault_request, federation, learning_store_graduation,
 
 ## 1. TL;DR
 
-VideoForge.aDNA (Iris) has closed mission **M_3_04 EngagementScorer** with its **third III.aDNA self-review** under ADR 007 § D11 (per `~/lattice/VideoForge.aDNA/how/missions/artifacts/m_3_04_iii_self_review.md`). Two local-learning-store entries now meet ADR-003 § 3 graduation criteria (frequency ≥ 3 across ≥ 2 sessions, acceptance true):
+VideoForge.aDNA (Iris) has closed mission **M_3_04 EngagementScorer** with its **third III.aDNA self-review** under ADR 007 § D11 (per `~/aDNA/VideoForge.aDNA/how/missions/artifacts/m_3_04_iii_self_review.md`). Two local-learning-store entries now meet ADR-003 § 3 graduation criteria (frequency ≥ 3 across ≥ 2 sessions, acceptance true):
 
 - **VFL-001** (`producer_consumer_pair_unwired`): frequency 3 (M_3_02 + M_3_03 + M_3_04)
 - **VFL-002** (`spec_verbatim_port_to_code`): frequency 3 (M_3_02 + M_3_03 + M_3_04)
 
-Both patterns are **modality-agnostic** (apply to any aDNA-style vault where a producer module emits structured fields ahead of consumer wiring, OR where a vault-side spec is ported into runtime code as canonical source-of-truth) and are candidates for promotion to `~/lattice/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` per the ADR-003 § 3 ceremony.
+Both patterns are **modality-agnostic** (apply to any aDNA-style vault where a producer module emits structured fields ahead of consumer wiring, OR where a vault-side spec is ported into runtime code as canonical source-of-truth) and are candidates for promotion to `~/aDNA/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` per the ADR-003 § 3 ceremony.
 
 No calendar urgency — VideoForge does not block on graduation. Pick this up alongside III.aDNA Campaign C absorption when scheduling permits. The local learning-store entries continue to function under their current local IDs (VFL-001 / VFL-002); graduation simply makes them available to other consumer vaults via the canonical store.
 
@@ -65,7 +65,7 @@ VideoForge has now completed **three full III.aDNA self-reviews under ADR 007 §
 - M_3_03 HookStrengthScorer Session 2 close 2026-05-12 → second self-review
 - M_3_04 EngagementScorer Session 2 close 2026-05-12 → **third self-review** (this mission)
 
-Each self-review applied the canonical 7 introspect checks (2a-2g per `~/lattice/III.aDNA/what/context/core_domain_packs/context_iii_introspect_checks.md`) + the modality-specific inspect-code + inspect-text passes + ACCUMULATE writes to the local learning store at `~/lattice/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl`.
+Each self-review applied the canonical 7 introspect checks (2a-2g per `~/aDNA/III.aDNA/what/context/core_domain_packs/context_iii_introspect_checks.md`) + the modality-specific inspect-code + inspect-text passes + ACCUMULATE writes to the local learning store at `~/aDNA/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl`.
 
 VFL-001 + VFL-002 are now at frequency 3 across 3 distinct sessions with acceptance true on each instance. Per ADR-003 § 3 at III.aDNA:
 
@@ -149,13 +149,13 @@ For completeness, the other two entries in the VideoForge local learning store:
 To verify the graduation claims, Argus may:
 
 1. **Read the three M_3_0x self-review artifacts**:
-   - `~/lattice/VideoForge.aDNA/how/missions/artifacts/m_3_02_iii_self_review.md`
-   - `~/lattice/VideoForge.aDNA/how/missions/artifacts/m_3_03_iii_self_review.md`
-   - `~/lattice/VideoForge.aDNA/how/missions/artifacts/m_3_04_iii_self_review.md`
-2. **Check the local learning store**: `~/lattice/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl` (4 entries; VFL-001 + VFL-002 at frequency 3 with `graduation_proposal_filed: true`).
+   - `~/aDNA/VideoForge.aDNA/how/missions/artifacts/m_3_02_iii_self_review.md`
+   - `~/aDNA/VideoForge.aDNA/how/missions/artifacts/m_3_03_iii_self_review.md`
+   - `~/aDNA/VideoForge.aDNA/how/missions/artifacts/m_3_04_iii_self_review.md`
+2. **Check the local learning store**: `~/aDNA/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl` (4 entries; VFL-001 + VFL-002 at frequency 3 with `graduation_proposal_filed: true`).
 3. **Cross-reference the three INSPECT-Code passes** (§ 3a of each self-review) for the spec citations underpinning VFL-002 instances.
 4. **Cross-reference the three INTROSPECT 2c Structural Completeness passes** (§ 4.2c of each self-review) for the producer-consumer-pair-unwired findings underpinning VFL-001 instances.
-5. **If Argus deems the patterns substrate-worthy**, draft canonical entries in `~/lattice/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` and request Stanley co-ratification.
+5. **If Argus deems the patterns substrate-worthy**, draft canonical entries in `~/aDNA/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl` and request Stanley co-ratification.
 
 VideoForge stands ready to amend either learning-store entry if Argus requests revisions before graduation.
 
@@ -177,15 +177,15 @@ All three are acceptable to VideoForge. No calendar urgency.
 
 ## 9. Cross-references
 
-- **Local learning store**: `~/lattice/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl`
-- **Three self-review artifacts**: `m_3_02_iii_self_review.md` + `m_3_03_iii_self_review.md` + `m_3_04_iii_self_review.md` (at `~/lattice/VideoForge.aDNA/how/missions/artifacts/`)
-- **iii/ wrapper authoring memo (MB-3 proposal)**: `~/lattice/III.aDNA/who/coordination/coord_2026_05_11_videoforge_iii_wrapper_authoring.md`
-- **ADR 007 § D3 (authoring authority for iii/ wrapper)**: `~/lattice/VideoForge.aDNA/what/decisions/adr_007_autonomous_build_sprint_validate.md`
-- **ADR-003 § 3 at III.aDNA (graduation ceremony)**: `~/lattice/III.aDNA/what/decisions/adr_003_learning_store_ownership.md`
-- **Canonical learning store** (target after graduation): `~/lattice/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl`
-- **iii/ CLAUDE.md routing note 1 (ACCUMULATE local; graduation flips upstream)**: `~/lattice/VideoForge.aDNA/iii/CLAUDE.md`
-- **M_3_04 mission stub**: `~/lattice/VideoForge.aDNA/how/campaigns/campaign_videoforge_genesis/missions/mission_M_3_04_engagement_scorer.md`
-- **M_3_04 session file**: `~/lattice/VideoForge.aDNA/how/sessions/active/session_M_3_04_2026_05_12.md` (archived to `history/2026-05/` at Session 2 close)
+- **Local learning store**: `~/aDNA/VideoForge.aDNA/iii/what/context/videoforge_iii_learning_store.jsonl`
+- **Three self-review artifacts**: `m_3_02_iii_self_review.md` + `m_3_03_iii_self_review.md` + `m_3_04_iii_self_review.md` (at `~/aDNA/VideoForge.aDNA/how/missions/artifacts/`)
+- **iii/ wrapper authoring memo (MB-3 proposal)**: `~/aDNA/III.aDNA/who/coordination/coord_2026_05_11_videoforge_iii_wrapper_authoring.md`
+- **ADR 007 § D3 (authoring authority for iii/ wrapper)**: `~/aDNA/VideoForge.aDNA/what/decisions/adr_007_autonomous_build_sprint_validate.md`
+- **ADR-003 § 3 at III.aDNA (graduation ceremony)**: `~/aDNA/III.aDNA/what/decisions/adr_003_learning_store_ownership.md`
+- **Canonical learning store** (target after graduation): `~/aDNA/III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl`
+- **iii/ CLAUDE.md routing note 1 (ACCUMULATE local; graduation flips upstream)**: `~/aDNA/VideoForge.aDNA/iii/CLAUDE.md`
+- **M_3_04 mission stub**: `~/aDNA/VideoForge.aDNA/how/campaigns/campaign_videoforge_genesis/missions/mission_M_3_04_engagement_scorer.md`
+- **M_3_04 session file**: `~/aDNA/VideoForge.aDNA/how/sessions/active/session_M_3_04_2026_05_12.md` (archived to `history/2026-05/` at Session 2 close)
 - **Predecessor coord memo (MB-3 wrapper request)**: `coord_2026_05_11_videoforge_iii_wrapper_authoring.md` (status: open)
 - **Predecessor coord memo (airlock-v0.2 findings)**: `coord_2026_05_08_airlock_v0_2_videoforge_findings.md` (status: closed)
 
@@ -194,4 +194,4 @@ All three are acceptable to VideoForge. No calendar urgency.
 | Date | Transition | Note |
 |------|-----------|------|
 | 2026-05-12 | open | Memo filed by Iris at VideoForge M_3_04 close; awaiting Argus + Stanley co-ratification per ADR-003 §3 ceremony. No calendar urgency; pickup alongside III.aDNA Campaign C absorption when scheduling permits. |
-| 2026-05-21 | open → accepted → absorbed → closed | Argus + Stanley co-ratified VFL-001 + VFL-002 graduation at MD-B2 close. Disposition per VFL proposal §8 option (a) accept_both. Canonical IDs assigned: **C-027** (`producer_consumer_pair_unwired`, trap `forward_link`) + **C-028** (`spec_verbatim_port_to_code`, trap `meta_pattern`). Canonical jsonl md5 rotated `dde2cbd88c0b45956fb22285a2a0f856` → `5adb0dfa38d9224649c3b2cba83852ae` — **first rotation since founding C-001..C-026 import**. PACK_DELTA_LANDED transitions fired same session per operator gate at MD-B2 plan ratification: C-027 → `~/lattice/III.aDNA/what/context/core_domain_packs/context_iii_introspect_checks.md` Check 2c.i Static trap; C-028 → `~/lattice/III.aDNA/what/context/core_domain_packs/context_iii_inspect_procedures.md` Modality 2 Code Inspect Static trap. VideoForge local store updated: VFL-001 + VFL-002 `graduated: true`, `graduated_to: "core"`, `graduation_candidate: false`; ad-hoc fields normalized under `rlhf_consumer_namespace.videoforge.*` per ADR-005 §3 + spec §3.4 worked example (`last_updated`, `graduation_proposal_filed`, `graduation_proposal_path`, `graduation_note` re-homed); new `rlhf_consumer_namespace.videoforge.graduated_to_canonical_id` field added pointing at C-027 / C-028. Reply memo: `who/coordination/reply_2026_05_21_iii_to_videoforge_vfl_graduation_ratified.md`. ADR-003 amended (§3.6 added — ≥50 corrections elevated-scrutiny queue with ≥2-vault evidence requirement; §5 graduation count 3 → 5). MD-B1 spec forward-references §3.4 / §7.2 / §7.3 resolved this commit. VFL-003 + VFL-004 untouched per VFL proposal §5 (not graduation candidates at this close). All 3 ADR-007 §1 CorrectionLifecycle transitions (GRADUATION_PROPOSED → GRADUATION_RATIFIED → PACK_DELTA_LANDED) fired single-session per operator gate. |
+| 2026-05-21 | open → accepted → absorbed → closed | Argus + Stanley co-ratified VFL-001 + VFL-002 graduation at MD-B2 close. Disposition per VFL proposal §8 option (a) accept_both. Canonical IDs assigned: **C-027** (`producer_consumer_pair_unwired`, trap `forward_link`) + **C-028** (`spec_verbatim_port_to_code`, trap `meta_pattern`). Canonical jsonl md5 rotated `dde2cbd88c0b45956fb22285a2a0f856` → `5adb0dfa38d9224649c3b2cba83852ae` — **first rotation since founding C-001..C-026 import**. PACK_DELTA_LANDED transitions fired same session per operator gate at MD-B2 plan ratification: C-027 → `~/aDNA/III.aDNA/what/context/core_domain_packs/context_iii_introspect_checks.md` Check 2c.i Static trap; C-028 → `~/aDNA/III.aDNA/what/context/core_domain_packs/context_iii_inspect_procedures.md` Modality 2 Code Inspect Static trap. VideoForge local store updated: VFL-001 + VFL-002 `graduated: true`, `graduated_to: "core"`, `graduation_candidate: false`; ad-hoc fields normalized under `rlhf_consumer_namespace.videoforge.*` per ADR-005 §3 + spec §3.4 worked example (`last_updated`, `graduation_proposal_filed`, `graduation_proposal_path`, `graduation_note` re-homed); new `rlhf_consumer_namespace.videoforge.graduated_to_canonical_id` field added pointing at C-027 / C-028. Reply memo: `who/coordination/reply_2026_05_21_iii_to_videoforge_vfl_graduation_ratified.md`. ADR-003 amended (§3.6 added — ≥50 corrections elevated-scrutiny queue with ≥2-vault evidence requirement; §5 graduation count 3 → 5). MD-B1 spec forward-references §3.4 / §7.2 / §7.3 resolved this commit. VFL-003 + VFL-004 untouched per VFL proposal §5 (not graduation candidates at this close). All 3 ADR-007 §1 CorrectionLifecycle transitions (GRADUATION_PROPOSED → GRADUATION_RATIFIED → PACK_DELTA_LANDED) fired single-session per operator gate. |
