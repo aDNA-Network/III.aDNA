@@ -1,0 +1,35 @@
+# III.aDNA/git/.gitleaks.toml — per-graph scan override (extends the Git.aDNA baseline)
+#
+# Applied at the Git.aDNA P6 Wave 2 public-flip gate (2026-06-22, session_stanley_20260622_git_p6_wave2_iii_canvas).
+#
+# WHY: a full-history gitleaks scan of III.aDNA (72 commits) returned 10 `generic-api-key` hits —
+# ALL confirmed FALSE-POSITIVES at the Wave-2 gate. Two families:
+#   (a) 7× the schema FIELD NAME "idempotency_key" in coordination/validation/session prose
+#       (who/coordination/*.md + .aggregation/*.jsonl + what/artifacts/*.md + how/sessions/history/*.md).
+#       The matched value is a human-readable session-ceremony key (e.g. "vfl_graduation_proposals_m_3_04_close"),
+#       an audit-trail reference — NOT a credential (ADR-003 ceremony-key class; the Molecules verdict-enum precedent).
+#   (b) 3× generic-api-key matches on minified variable assignments (Or.Tokens / eo.VALID_TOKENS / i.FourKeyMap)
+#       inside VENDORED third-party Obsidian community-plugin bundles
+#       (.obsidian/plugins/{obsidian-tasks-plugin,termy}/main.js). Bundled editor tooling, no aDNA credential.
+# There is NO secret and NOTHING to rotate.
+#
+# Scopes a TIGHT allowlist to those two surfaces so III's pre-push hook (ADR-011 D2) and the
+# full-history gate pass cleanly without weakening the fleet baseline. "local config wins."
+# regexTarget = "match": the field name "idempotency_key" is matched against the finding's matched
+# TEXT (not the extracted secret value), so a real secret elsewhere in these files would still fire.
+
+title = "III.aDNA git-ops scan (extends aDNA baseline)"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "III.aDNA — idempotency_key field-name prose + vendored Obsidian-plugin minified JS (no live secrets)"
+regexTarget = "match"
+paths = [
+  '''(^|/)\.obsidian/plugins/(obsidian-tasks-plugin|termy)/main\.js$''',   # vendored 3rd-party minified bundles — not credential stores
+]
+regexes = [
+  '''idempotency_key''',          # schema FIELD NAME in coord/spec/session prose — the value is an audit ceremony-key, not a secret
+]
+# Real provider PATs are NOT allowlisted.
