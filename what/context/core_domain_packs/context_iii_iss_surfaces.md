@@ -9,6 +9,9 @@ last_edited_by: agent_argus
 tags: [context_guide, iii-review, traps, iss_surfaces, operator_decision_gates, rlhf, decision_ux, campaign_g, operation_atrium]
 banner: "who/assets/banners/banner_context_guide.jpg"
 icon: layout
+fair:
+  keywords: [iii-review, iss-surfaces, operator-decision-gates, decision-ux, rlhf, trap-library]
+  license: Apache-2.0
 boundary_posture: boundary_preserving   # Markdown trap definitions only — reviews the ISS contract surface on disk; NEVER renders, re-renders, or runs a gate; no ISS runtime in III; no audit runtime
 authored_by_campaign: campaign_g_consolidation   # G1 (ANCHOR); spec at what/artifacts/g0_iss_pack_revision_spec.md
 governed_by: [adr_028_iss_architecture, adr_029_iss_standard_touch, adr_005_rlhf_signal_channel, adr_007_adaptive_improvement_loop, adr_002_consumer_federation_contract]

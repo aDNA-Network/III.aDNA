@@ -9,6 +9,9 @@ last_edited_by: agent_argus
 tags: [context_guide, iii-review, traps, web-design, astro, siteforge, cwv_design_debt, ai_slop_composition, campaign_f]
 banner: "who/assets/banners/banner_context_guide.jpg"
 icon: layout
+fair:
+  keywords: [iii-review, web-design, ui-ux, accessibility, core-web-vitals, ai-slop-composition, trap-library]
+  license: Apache-2.0
 migration_provenance:
   previous_home: lattice-labs/what/context/iii_domain_packs/context_iii_domain_packs_web_design.md
   migrated: 2026-05-08

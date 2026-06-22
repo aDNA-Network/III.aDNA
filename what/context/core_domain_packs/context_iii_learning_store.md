@@ -10,6 +10,9 @@ last_edited_by: agent_argus
 tags: [context, iii-review, learning-store, corrections, calibration, vaas, rlhf, adaptive_loop, adr_005, adr_007]
 banner: "who/assets/banners/banner_context_guide.jpg"
 icon: database
+fair:
+  keywords: [iii-review, learning-store, corrections, calibration, graduation, rlhf]
+  license: Apache-2.0
 migration_provenance:
   previous_home: lattice-labs/what/context/iii_domain_packs/context_iii_learning_store.md
   migrated: 2026-05-08
@@ -234,5 +237,5 @@ The `source_diversity` rubric (`adr_007_adaptive_improvement_loop.md` §3 + `how
 
 - [[how/skills/skill_iii_review|III Review Skill]] — the procedure that reads and writes corrections
 - `what/context/core_domain_packs/` — graduation target for high-frequency corrections (the canonical domain packs live in this directory; see the per-pack file naming `context_iii_<domain>.md`)
-- [[what/context/vaas_review/context_vaas_technical_review|VaaS Technical Review]] — corrections list design pattern (Section 2.3)
+- `what/context/vaas_review/context_vaas_technical_review` (VaaS Technical Review) — corrections-list design pattern (Section 2.3). **Unresolvable in-vault** (predecessor `lattice-labs` artifact; not migrated to III.aDNA — link de-wikified to a plain path to avoid a dangling reference; restore as a wikilink if/when the source is migrated).
 - [[what/lattices/lattice_iii_verification_oracle|III Verification Oracle Lattice]] — composable VaaS node definition

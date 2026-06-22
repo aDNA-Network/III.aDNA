@@ -138,10 +138,11 @@ Pre-defined context assemblies for multi-disciplinary tasks. See `context_recipe
 | Topic | Subtopics | Total Tokens | Avg Quality | Status |
 |-------|-----------|-------------|-------------|--------|
 | prompt_engineering | 7 | ~21,200 | 4.2 | active |
-| adna_core | 10 | ~29,500 | 4.2 | active |
+| adna_core | 13 | ~29,500 | 4.2 | active |
 | lattice_basics | 2 | ~6,000 | 4.0 | active |
 | object_standards | 1 | ~3,200 | 3.8 | active |
 | claude_code (Claude Code runtime) | 4 | ~10,000 | — | active |
+| core_domain_packs (III's own flagship pack library — load via the pack, not blindly) | 8 | — | 4.0–4.17 | active |
 
 ## Load/Skip Decision
 

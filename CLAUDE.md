@@ -83,7 +83,7 @@ III.aDNA/
 │   │   ├── module_iii_improve.md
 │   │   └── module_iii_accumulate.md
 │   └── lattices/
-│       └── lattice_iii_verification_oracle.lattice.yaml   # v1.1.0 composable oracle
+│       └── lattice_iii_verification_oracle.lattice.yaml   # v1.2.6 composable oracle
 ├── who/
 │   └── governance/
 │       ├── CHARTER.md
