@@ -4,14 +4,17 @@ type: campaign
 title: "Campaign G — Consolidation & ISS-Surface III Pack (Operation Atrium)"
 codename: "Operation Atrium"
 owner: stanley
-status: active           # OPENED at DP-1 2026-05-29; DP-2 ratified; G1 landed (DP-3 ratified 2026-05-30); G2 COMPLETE 2026-05-30; G3 (ISS candidate ledger + DP-4 candidates-only) COMPLETE 2026-05-30; G4 (v0.5.0 minor bump + ADR-002 §3 wrapper sweep; 3 carriers re-pinned, ISS-adopter invite fired) COMPLETE 2026-05-31; G5 pending
-phase: G4
+status: completed        # OPENED at DP-1 2026-05-29; G1-G4 closed 2026-05-30/31; G5 validation GO 2026-06-23; G6 DG-G 11/11 CLOSE 2026-06-23 — annotated v0.5.0 tag cut at close commit
+phase: G6
+dg_g_closed: 2026-06-23
+dg_g_outcome: GO
+release_tag: "v0.5.0"
 mission_count: 7         # G0..G6
 estimated_sessions: 7
 estimation_class: calibrated_against_campaign_f
 priority: high
 created: 2026-05-29
-updated: 2026-05-31       # G4 close — III v0.4.1→v0.5.0 DECLARED (commit 0f06aa6; tag deferred to G6) + ADR-002 §3 sweep (VideoForge ab5b178 + CanvasForge 3ebd55a + wga cfc5d7e @ v0.5.0; SiteForge/LPWhitepaper/lattice-labs + 4 non-tracked DEFERRED) + ISS-adopter invite FIRED; canonical jsonl md5 INVARIANT; lattice 1.2.6; zero new III ADR
+updated: 2026-06-23       # G6 DG-G 11/11 CLOSE — G5 validation GO (6/6 recommended residue axes caught across 3/3 live adopters; negative control clean) + DG-G scorecard + AAR inline + annotated v0.5.0 tag at close commit; canonical jsonl md5 INVARIANT (5adb0dfa…/28); lattice 1.2.6; zero new III ADR (count stays 7)
 last_edited_by: agent_argus
 authored_by_mission: plan_campaign_g_consolidation_charter
 predecessor: campaign_web_design_deep_review   # Campaign F (Operation Tell); v0.4.0
@@ -107,16 +110,16 @@ graduation ceremony for C-029 (→ T4); `learning_store` deepening (→ T3); aud
 ### Phase G5 — Validation (inspection-grade)
 | Mission | Title | Sessions | Deps | Status |
 |---|---|---|---|---|
-| G5 | Inspection-grade validation on live ISS adopters | 1 | G4 | pending |
+| G5 | Inspection-grade validation on live ISS adopters | 1 | G4 | ✅ **CLOSED 2026-06-23 — VERDICT GO** — `missions/g5_validation_20260623.md`; 6/6 recommended L3 residue axes caught across **3 of 3** live adopters (≥2-of-3 bar exceeded); negative control clean; `zero_regression_confirmed: true` |
 
-**Exit gate:** `g5_validation_*.md` (5-section, MX-1/`md_b5` shape) — re-inspect ISS gates against the landed pack: each recommended residue caught with pack-line citation + negative control clean (zero new FPs); `zero_regression_confirmed: true`. **Targets: ZenZachary (rendered-gate residue, richest) + MoleculeForge (output-JSON exemplar) + WilhelmAI (config exemplar)** — recommend ≥2 of 3.
+**Exit gate:** `g5_validation_*.md` (MX-1/`md_b5` shape) — re-inspect ISS gates against the landed pack: each recommended residue caught with pack-line citation + negative control clean (zero new FPs); `zero_regression_confirmed: true`. **Targets: ZenZachary (rendered-gate residue, richest) + MoleculeForge/Molecules (output-JSON exemplar) + WilhelmAI (config exemplar)** — recommend ≥2 of 3. ✅ **MET** — `how/campaigns/campaign_g_consolidation/missions/g5_validation_20260623.md`: **VERDICT GO**. The G5 corpus had grown materially since G0 (Molecules `p6_1`+`sc_*`; ZenZachary ~13 answered P1 gates; WilhelmAI `p6_3`+`lh0` 2026-06-23) — upgrading **Trap 4** (RLHF-completeness; `rlhf_reviewer_persona` absent though top-level `persona` known) from 1-vault to **3-vault** and **Trap 7** (confidence; no confidence on an IRREVERSIBLE `lh0` security-model signoff + charter ratification) to **2-vault**, plus an honest new **Trap 1** observation (`decision_significance` rendered in HTML but dropped from output JSON, WilhelmAI `lh0`). All caught with exact pack-line citations. Held a11y candidates 6/8/9 **negative-control clean** (SiteForge primitives cover the surface — zero new FPs on the richer rendered-gate corpus). DG-G crit **9 satisfied**.
 
 ### Phase G6 — DG-G + AAR + Tag
 | Mission | Title | Sessions | Deps | Status |
 |---|---|---|---|---|
-| G6 | DG-G gate + AAR + annotated `v0.5.0` tag + cascade bookkeeping | 1 | G5 | pending |
+| G6 | DG-G gate + AAR + annotated `v0.5.0` tag + cascade bookkeeping | 1 | G5 | ✅ **CLOSED 2026-06-23 — DG-G 11/11** — `missions/g6_dg_g_scorecard.md`; AAR §13 inline; cascade complete; annotated `v0.5.0` tag cut at close commit |
 
-**Exit gate:** DG-G 11/11; `g6_dg_g_scorecard.md` (10-section, `f6_dg_f` shape); AAR populated inline; cascade (STATE.md + root CLAUDE.md Campaign State + MANIFEST + workspace router production-pin); annotated `v0.5.0` tag at close commit; `status: completed`.
+**Exit gate:** DG-G 11/11; `g6_dg_g_scorecard.md` (10-section, `f6_dg_f` shape); AAR populated inline; cascade (STATE.md + root CLAUDE.md Campaign State + MANIFEST + workspace router production-pin); annotated `v0.5.0` tag at close commit; `status: completed`. ✅ **MET** — `how/campaigns/campaign_g_consolidation/missions/g6_dg_g_scorecard.md` (10-section, 11-criterion table; `zero_regression_confirmed: true`; closing assertion "DG-G 11/11 CONFIRMED. Campaign G end-to-end shipped at v0.5.0."); AAR populated inline at §13 below; cascade complete (STATE.md frontmatter + Current Phase; root CLAUDE.md Campaign State; MANIFEST Version + Release-History v0.5.0 row already carried from G4; workspace router `~/aDNA/CLAUDE.md` III-row production pin v0.4.0→v0.5.0 — router is outside any git repo, Berthier handles); annotated `v0.5.0` tag cut at close commit. Hard invariants HELD: canonical jsonl md5 `5adb0dfa…`/28 INVARIANT; lattice 1.2.6; zero new III ADR (count stays 7). DG-G crit **11 satisfied**.
 
 ## §6 Decision Points
 
@@ -126,8 +129,8 @@ graduation ceremony for C-029 (→ T4); `learning_store` deepening (→ T3); aud
 | DP-2 | G0 close | Ratify trap selection (≥5 from 9) + T3 re-scope + adopter-landscape scope (include ZenZachary?) + coord-memo firing set | ✅ **CLEARED 2026-05-29** — trap set **6 core {1,2,3,4,5,7}** (a11y 6/8 evaluated at G1 re-inspection, added iff confirmed); **T3 KEEP** as polish (G2); ZenZachary **INCLUDED** as primary G5 validation corpus; coord-firing set = **SiteForge + VisualDNA** (ISS-adopters + LiteratureForge HELD, own cadence) |
 | DP-3 | G1 close | Ratify landed trap set + a11y-trap inclusion (6/8) | ✅ **CLEARED 2026-05-30** — operator "let's continue" ratifies the 6 landed traps {1,2,3,4,5,7} + composite 4.00 + a11y Traps 6/8 held-as-candidates (evidence-locked from the G1 ZenZachary re-inspection) |
 | DP-4 | G3 | **Conditional graduation** — fire C-029 IF consumer proposal present (canonical md5 rotation gate) ELSE candidates-only | ✅ **CLEARED 2026-05-30 — candidates-only** (verified: no consumer-vault C-029 proposal — aggregation index = 2 VideoForge seeds only, zero C-029; MoleculeForge local store 0 bytes; VisualDNA pre-v1.0-GA). Canonical md5 `5adb0dfa…`/28 **INVARIANT**; C-029 stays in `f3_correction_candidates.md`. The charter R2-expected outcome; operator-ratified at close. Evidence: `g3_iss_candidate_ledger.md` §DP-4 |
-| DP-5 | G6 | DG-G GO/NO-GO | pending |
-| DP-6 | G6 | Cut annotated `v0.5.0` tag | pending |
+| DP-5 | G6 | DG-G GO/NO-GO | ✅ **GO 2026-06-23** — DG-G 11/11 (scorecard `missions/g6_dg_g_scorecard.md`); G5 validation VERDICT GO (6/6 recommended residue axes caught across 3/3 live adopters; negative control clean) is the load-bearing crit-9 evidence |
+| DP-6 | G6 | Cut annotated `v0.5.0` tag | ✅ **CUT 2026-06-23** — annotated `v0.5.0` tag at the G6 close commit (F4/v0.4.0 precedent: declared at G4 `0f06aa6`, tagged at the DG-G close commit, NOT at the declaration commit); local only, push operator-gated |
 
 ## §7 Decision Gate DG-G (11 criteria — all must pass)
 
@@ -139,9 +142,11 @@ graduation ceremony for C-029 (→ T4); `learning_store` deepening (→ T3); aud
 6. **DP-4 graduation disposition resolved**: IF consumer proposal → C-029 graduated (canonical md5 ROTATED, provenance documented) ELSE candidates-only (canonical md5 INVARIANT). Either path satisfies the criterion. *(G3)*
 7. III v0.4.1 → **v0.5.0** minor bump (MANIFEST Version + Release-History row). *(G4)*
 8. ADR-002 §3 wrapper sweep fired; ISS-adopter + `learning_store` carriers re-pinned (or explicitly deferred per own cadence). *(G4)*
-9. Inspection-grade validation (G5): recommended residues caught with pack-line citations + negative control clean; `zero_regression_confirmed: true`. *(G5)*
-10. **Zero new III ADR** (count stays 7: 000+001+002+003+005+007+008); ADR-009 disposition REJECTED recorded. *(G0/G6)*
-11. DG-G scorecard (10-section) + AAR inline + annotated `v0.5.0` tag; cascade bookkeeping complete. *(G6)*
+9. Inspection-grade validation (G5): recommended residues caught with pack-line citations + negative control clean; `zero_regression_confirmed: true`. *(G5)* ✅ **MET** — `missions/g5_validation_20260623.md` VERDICT GO; 6/6 recommended L3 residue axes caught across 3/3 live adopters; negative control clean.
+10. **Zero new III ADR** (count stays 7: 000+001+002+003+005+007+008); ADR-009 disposition REJECTED recorded. *(G0/G6)* ✅ **MET** — III-authored ADR count stays 7 (the 3 extra `adr_*.md` in `what/decisions/` are template-inherited base-standard ADRs, not III-authored — see scorecard §6 note); ADR-009 REJECTED at G0.
+11. DG-G scorecard (10-section) + AAR inline + annotated `v0.5.0` tag; cascade bookkeeping complete. *(G6)* ✅ **MET** — `missions/g6_dg_g_scorecard.md` + §13 AAR inline + annotated `v0.5.0` tag at close commit + full cascade.
+
+**DG-G 11/11 — GO 2026-06-23.**
 
 ## §8 Risk Register
 
@@ -183,8 +188,73 @@ Structurally models on `campaign_web_design_deep_review.md` (Campaign F), which 
 
 ## §12 Completion Summary
 
-*(populated at G6 close)*
+**Campaign G ("Operation Atrium") shipped end-to-end at `v0.5.0`, DG-G 11/11, 2026-06-23.** Boundary-preserving
+consolidation push anchored on net-new III coverage of ISS operator-decision-gate quality, delivered across four
+IN tracks:
+
+- **T1 (anchor) — ISS-surface pack.** `context_iii_iss_surfaces.md` landed (G1) with **6 traps** {decision-frame,
+  persona-voice, evidence-lede, RLHF-completeness, option-set bias, confidence}; composite **4.00**; a11y
+  candidates 6/8 + gate-path candidate 9 held with honest evidence labels. Pack count 7→8.
+- **T2 — audit-ingest seam.** `g0_audit_ingest_schema_note.md` (draft→reference v1.0.0) wired load-bearing into
+  web_design Trap-6; lattice oracle 1.2.5→**1.2.6** (iss_surfaces registered). Boundary held — doc + one worked
+  example, no runtime, no validator.
+- **T3 — learning_store deepening.** `## Sources & Citations` 5-cluster MX-1 replay; `source_diversity` 3→4;
+  composite 3.83→**4.00**; canonical jsonl INVARIANT.
+- **T4 — conditional graduation.** DP-4 resolved **candidates-only** (no consumer-vault C-029 proposal); canonical
+  md5 `5adb0dfa…`/28 INVARIANT — the sole non-invariant gate held INVARIANT.
+
+**Release:** III `v0.4.1 → v0.5.0` (declared G4 at MANIFEST `0f06aa6`; annotated tag cut at the G6 close commit per
+F4/v0.4.0 precedent). ADR-002 §3 wrapper sweep: VideoForge `ab5b178` + CanvasForge `3ebd55a` + wga `cfc5d7e`
+@ v0.5.0; SiteForge/LPWhitepaper→LatticeProtocol/lattice-labs deferred per own cadence; ISS-adopter validation
+invite fired.
+
+**Validation (G5):** VERDICT GO — 6/6 recommended L3 residue axes caught across **3 of 3** live adopters
+(ZenZachary + Molecules + WilhelmAI; ≥2-of-3 bar exceeded); Trap 4 upgraded to 3-vault + Trap 7 to 2-vault on
+live evidence as the adopters' corpus grew since G0; held a11y candidates negative-control clean.
+
+**Hard invariants end-to-end:** canonical jsonl md5 `5adb0dfa38d9224649c3b2cba83852ae` (28) INVARIANT across all
+of G0..G6; **zero new III ADR** (III-authored count stays 7; ADR-009 REJECTED at G0); boundary held (no ISS
+runtime, no III audit runtime, no SiteForge encroachment).
+
+Scorecard: `missions/g6_dg_g_scorecard.md` (10-section; 11-criterion table). Validation:
+`missions/g5_validation_20260623.md`.
 
 ## §13 Campaign AAR
 
-*(populated inline at G6 close — Worked / Didn't / Finding / Change / Follow-up, per Campaign A-F precedent)*
+*Full AAR authored inline in the DG-G scorecard `missions/g6_dg_g_scorecard.md` §11 (Worked / Didn't / Finding /
+Change / Follow-up); restated here per Campaign A-F precedent.*
+
+**Worked:** (1) the operator-locked semantic boundary made every mission decision crisp — zero scope drift across
+four IN tracks; (2) substrate-grounded trap authoring (land from the contract surface even at 1-vault live
+evidence) meant the pack was *ready* before adopters had multi-vault outputs; (3) the G0 prediction came true —
+multi-vault confirmation accrued as the adopters' corpus grew from 1 completed output to ~20 across 3 vaults by
+G5; (4) candidates-only / DP-4 kept the canonical md5 invariant; (5) the negative control proved the traps are
+judgments, not linters; (6) the F6 10-section/11-criterion scorecard shape transferred 1:1.
+
+**Didn't / surprised:** (1) the richest corpus was ZenZachary, not MoleculeForge — recon adopter-landscape
+vigilance paid off twice (G0 + G5); (2) a genuinely new residue surfaced at G5 — `decision_significance` rendered
+correctly in HTML but dropped from the captured output JSON (WilhelmAI `lh0`), owned by Trap 1 at the
+output-completeness layer; (3) the MoleculeForge→Molecules rename required naming both to stay honest (back-compat
+symlink active).
+
+**Finding:** a substrate-grounded pack can be authored ahead of multi-vault live evidence and then validated as
+the evidence arrives. The ISS residue clustered exactly where recon predicted (RLHF-completeness #4 + confidence
+#7 strongest), and the highest-value live instances were *consequential* gates (a charter ratification + an
+IRREVERSIBLE security-model signoff) captured with no confidence and no `rlhf_reviewer_persona` — the most
+important decisions were the ones losing the most training signal, precisely the residue the pack was built to
+catch.
+
+**Change (next consolidation campaign):** (1) verify the card's adopter-landscape against the filesystem at recon
+*and* at validation; (2) author traps from the contract surface where substrate-strong even at 1-vault, labeling
+evidence strength honestly; (3) hold thin-but-grounded axes as candidates rather than force-landing; (4) at
+validation run the inverse (negative-control) test on the held candidates, not just the positive test on the
+landed traps; (5) keep the canonical jsonl invariant unless a consumer-vault proposal arrives (candidates + ISS
+trap-axes land into the pack, not the canonical store); (6) cut the annotated tag at the DG close commit, not the
+declaration commit.
+
+**Follow-up:** (1) ISS-C6/C8/C9 → pack when template-local a11y residue actualizes; (2) Trap 2 (persona-voice)
+live actualization watch; (3) C-029 graduation (2-vault SS+wga) at the next natural-frequency gate via a
+consumer-vault ADR-008 proposal; (4) `vault_maintenance` pack revision (MD-B4 §8 carry); (5) audit-ingest seam
+construction (v0.5+; future Platform.aDNA); (6) ISS-adopter wrapper `packs_used` opt-in at own cadence;
+(7) Campaign E (generalized writing-III) gated on LiteratureForge forge-BUILD, re-points the LatticeProtocol
+(ex-LPWhitepaper) wrapper.
