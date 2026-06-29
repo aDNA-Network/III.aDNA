@@ -1,13 +1,13 @@
 ---
 type: state
 created: 2026-05-07
-updated: 2026-06-23
+updated: 2026-06-29
 last_edited_by: agent_argus
 status: active
 persona: argus
 pattern_category: framework
-last_session: session_stanley_20260623_iii_adna_campaign_g_g5_g6_dg_g_close_v0_5_0_tag
-tags: [state, governance, iii, argus, framework, campaign_g_closed, iii_v0_5_0_tagged]
+last_session: session_stanley_20260629_iii_adna_campaign_h_touchstone_planning
+tags: [state, governance, iii, argus, framework, campaign_h_draft, iii_v0_5_0_tagged]
 ---
 
 # III.aDNA — Operational State
@@ -17,7 +17,11 @@ tags: [state, governance, iii, argus, framework, campaign_g_closed, iii_v0_5_0_t
 
 ## ⏭ Current Phase (read first)
 
-**Campaign G ("Operation Atrium") — ✅ CLOSED 2026-06-23 — DG-G 11/11; `v0.5.0` annotated tag CUT.** Boundary-preserving consolidation push anchored on net-new III coverage of **ISS operator-decision-gate** quality. III stayed semantic end-to-end (no ISS/audit runtime — SiteForge owns audit execution + library). No campaign open; next is **Campaign E** (forward-seeded; gated on LiteratureForge.aDNA forge-BUILD).
+**Campaign H ("Operation Touchstone") — 📝 DRAFT, awaiting DP-1.** Graduate the **III-campaign pattern** — the strategic Construct→Review→Improve scope tier piloted by aDNA.aDNA's Operation Looking Glass — into canonical III.aDNA capability on a `v0.5.0→v0.6.0` minor bump: a new **`skill_iii_campaign`** (anchor) + the **`representation_coherence`** pack (canonical-conditional) + the **`claim_tracer`** persona (candidate) + the doctrines + III-core improvements from the pilot's primitive-gaps. **H0 authored 2026-06-29** (Argus ack + planning mission + DRAFT charter + 3 `h0_*` graduation specs); **opens only at the DP-1 operator gate** (Standing Rule 7). Boundary: **graduation-inbound** (the pilot's artifacts stay read-only in aDNA.aDNA — no cross-vault writes); canonical jsonl **INVARIANT** (the pack/persona graduate *as* pack/persona, not as learning-store corrections). Handoff acked → `who/coordination/coord_2026_06_29_argus_ack_iii_campaign_handoff.md`. Charter: `how/campaigns/campaign_h_iii_campaign_pattern/` (`status: draft`); planning mission: `how/missions/plan_campaign_h_iii_campaign_pattern.md`.
+
+---
+
+**Predecessor — Campaign G ("Operation Atrium") — ✅ CLOSED 2026-06-23 — DG-G 11/11; `v0.5.0` annotated tag CUT.** Boundary-preserving consolidation push anchored on net-new III coverage of **ISS operator-decision-gate** quality. III stayed semantic end-to-end (no ISS/audit runtime — SiteForge owns audit execution + library). (Campaign E — generalized writing-III — remains forward-seeded, gated on LiteratureForge.aDNA forge-BUILD.)
 
 - **G1–G4 ✅** — ISS pack (6 traps; composite 4.00) + learning_store deepening (sd 3→4; composite 4.00) + audit-ingest seam (lattice 1.2.5→**1.2.6**) + ISS candidate ledger (ISS-C6/C8/C9) + DP-4 candidates-only + III `v0.4.1→v0.5.0` DECLARED (MANIFEST `0f06aa6`) + ADR-002 §3 sweep (VideoForge `ab5b178` + CanvasForge `3ebd55a` + wga `cfc5d7e` @ v0.5.0) + ISS-adopter invite fired.
 - **G5 ✅ — VERDICT GO** (`how/campaigns/campaign_g_consolidation/missions/g5_validation_20260623.md`) — 6/6 recommended L3 residue axes caught across **3 of 3** live adopters (ZenZachary + Molecules + WilhelmAI; ≥2-of-3 bar exceeded). Corpus grew since G0: **Trap 4** (RLHF-completeness — `rlhf_reviewer_persona` absent though top-level `persona` known) upgraded 1-vault→**3-vault**; **Trap 7** (confidence — none on an IRREVERSIBLE `lh0` security-model signoff + charter ratification) → **2-vault**; honest new **Trap 1** observation (`decision_significance` in HTML but dropped from output JSON). Held a11y candidates 6/8/9 **negative-control clean** (zero new FPs). `zero_regression_confirmed: true`.
@@ -35,6 +39,7 @@ Charter: `how/campaigns/campaign_g_consolidation/` (`status: completed`).
 | D: Federation-Aware Airlock v0.3 + RLHF/Adaptive Loop | D1 federation-aware airlock v0.3 + D2 RLHF/adaptive-improvement loop | ✅ **CLOSED 2026-05-25** — DG-D 11/11 (`v0.3.0` annotated tag) |
 | F: Web-Design Deep-Review ("Operation Tell") | Boundary-preserving deep-review/improve of the `web_design` pack | ✅ **CLOSED 2026-05-27** — DG-F 11/11 (`v0.4.0` annotated tag; composite 4.00→4.17) |
 | G: Consolidation & ISS-Surface Pack ("Operation Atrium") | v0.4.1→v0.5.0; net-new ISS operator-decision-gate coverage | ✅ **CLOSED 2026-06-23** — DG-G 11/11 (`v0.5.0` annotated tag at G6 close commit; G5 validation GO — 6/6 residue axes across 3/3 adopters; negative control clean) |
+| H: Graduate the III-Campaign Pattern ("Operation Touchstone") | v0.5.0→v0.6.0; graduate `skill_iii_campaign` + `representation_coherence` pack + `claim_tracer` persona (from the Looking Glass pilot) | 📝 **DRAFT 2026-06-29** — H0 authored; opens at DP-1 |
 | E: Generalized writing-III | Re-points LPWhitepaper `federation_ref` | ⏸ **forward-seeded** — opens when LiteratureForge.aDNA reaches its forge-BUILD phase (MD-X2 §6) |
 
 ## 🎯 Current invariants / pin
@@ -48,10 +53,11 @@ Charter: `how/campaigns/campaign_g_consolidation/` (`status: completed`).
 
 ## ⛔ Blockers
 
-None. Campaign G CLOSED end-to-end (DG-G 11/11; `v0.5.0` tagged). No campaign open. Next is **Campaign E** (generalized writing-III), forward-seeded and gated on LiteratureForge.aDNA forge-BUILD. Operator-gated tails: `git push` of the v0.5.0 commits + tag (local-only today); workspace-router III-row pin edit (done, but `~/aDNA/CLAUDE.md` is outside any git repo — Berthier handles).
+None blocking. **Campaign H ("Operation Touchstone") is DRAFT — awaiting the DP-1 operator gate** to open (Standing Rule 7); H0 authored 2026-06-29 (no canonical mutation — production pin `v0.5.0`, canonical jsonl md5 `5adb0dfa…`/28, ADR count 7 all UNCHANGED). Campaign G CLOSED end-to-end (DG-G 11/11; `v0.5.0` tagged). Operator-gated tails: `git push` of the v0.5.0 commits + tag (local-only) **and** the new Campaign H H0 commit; workspace-router III-row pin (Berthier handles).
 
 ## 👁 Watch
 
+- **Campaign H DP-1** — the DRAFT charter (`how/campaigns/campaign_h_iii_campaign_pattern/`) opens to `active` only at the operator gate; all H1+ work (graduate the `representation_coherence` pack [canonical-conditional] + `claim_tracer` persona, build `skill_iii_campaign`, the `v0.6.0` bump) is gated. **DP-2** (reviewer-bench: establish `who/reviewers/` vs map onto the reviewer-orchestra) + **DP-3** (scope-ladder: build atop `skill_iii_review`) are the open structural decisions. Rosetta→Argus handoff acked (`who/coordination/coord_2026_06_29_argus_ack_iii_campaign_handoff.md`); the source memo's ack checkboxes await Rosetta-side reconciliation in aDNA.aDNA.
 - **`v0.5.0` push** — local commits + annotated tag await operator `git push` per workspace standing rules (HEAD will sit ahead of `origin/main`).
 - **ISS candidates** — `ISS-C6`/`C8`/`C9` (G3 ledger; substrate-grounded, latent) land into the ISS pack (NOT the canonical jsonl) when template-local a11y residue actualizes; G5 negative-control re-confirmed all three held correctly on the richer corpus. Trap 2 (persona-voice) live actualization still watched (EGL-4 latent).
 - **Graduation carry** — C-029 (2-vault SS+wga) at next natural-frequency gate; C-030..C-033 await 2nd-vault evidence; G-era correction candidates remain candidates-only (canonical md5 invariant).
