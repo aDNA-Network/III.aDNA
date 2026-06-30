@@ -28,7 +28,7 @@ Ratified — 2026-05-07 (Stanley, Chief Steward)
 
 ## Context
 
-The III learning store (`iii_corrections.jsonl`) accumulates recurring failure patterns from review cycles. Since migration to III.aDNA, the canonical store lives at `III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl`. However, multiple consumers accumulate local corrections in their own vault's `iii/what/context/<vault>_iii_learning_store.jsonl`.
+The III learning store (`iii_corrections.jsonl`) accumulates recurring failure patterns from review cycles. Since migration to III.aDNA, the canonical store lives at `III.aDNA/what/context/core_domain_packs/iii_corrections_canonical.jsonl`. However, multiple consumers accumulate local corrections in their own vault's `how/federation/iii/what/context/<vault>_iii_learning_store.jsonl`.
 
 This creates an ownership question: which store is authoritative? When should local corrections graduate to the canonical store? Who approves?
 
@@ -44,7 +44,7 @@ Every consumer's local `iii_learning_store.jsonl` is a **downstream fork**. Loca
 
 ### 2. Per-vault local stores
 
-Consumers maintain a local store at `iii/what/context/<vault>_iii_learning_store.jsonl`. Format is identical to the canonical store schema. Local store accumulation happens during normal ACCUMULATE phase per skill_iii_review.md Step 3b.
+Consumers maintain a local store at `how/federation/iii/what/context/<vault>_iii_learning_store.jsonl`. Format is identical to the canonical store schema. Local store accumulation happens during normal ACCUMULATE phase per skill_iii_review.md Step 3b.
 
 On load: a consumer session loads both the canonical store (≤ 50 entries) AND the local store (≤ 20 entries). Local entries take precedence if pattern names conflict (consumer knows its domain better).
 

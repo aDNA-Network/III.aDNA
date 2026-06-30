@@ -20,6 +20,8 @@ tags: [adr, federation, consumer, iii]
 
 Ratified — 2026-05-07 (Stanley, Chief Steward)
 
+> **Placement note (ADR-045, aDNA.aDNA, 2026-06-30):** Consumer `iii/` wrappers are now placed at `<consumer_vault>/how/federation/iii/` (not at vault root); the wrapper structure and `federation_ref` schema below are unchanged, and upstream III canonical paths (`~/aDNA/III.aDNA/...`) are unaffected.
+
 ## Context
 
 Multiple vaults already consume III capabilities informally — lattice-labs via skill path, SiteForge via embedded domain pack, VideoForge via ADR-006 operation catalog. This informal consumption creates:
@@ -33,11 +35,11 @@ The SiteForge consumer wrapper pattern (from `sf_consumer_wrapper_spec.md`) is t
 
 ### 1. Consumer wrapper structure
 
-Consumer vaults create an `iii/` lightweight wrapper directory:
+Consumer vaults create a `how/federation/iii/` lightweight wrapper directory:
 
 ```
 consumer_vault.aDNA/
-└── iii/
+└── how/federation/iii/
     ├── CLAUDE.md                              # Required: federation_ref + consumer config
     └── what/context/                          # Optional: consumer-specific extensions
         ├── <vault>_iii_domain_pack.md         # Vault-specific trap pack (recommended)
@@ -47,7 +49,7 @@ consumer_vault.aDNA/
 
 ### 2. `federation_ref` schema (III-specific)
 
-Required fields in consumer `iii/CLAUDE.md`:
+Required fields in consumer `how/federation/iii/CLAUDE.md`:
 
 ```yaml
 federation_ref:
@@ -76,11 +78,11 @@ The `kind:` field discriminates the structural role of each `local_extension` en
 
 | `kind:` | Role | Introduced at | Example |
 |---------|------|--------------|---------|
-| `domain_pack` | Consumer-specific trap pack extending (not replacing) canonical packs. Subject to graduation ceremony per ADR-003 §3 if domain-general. | MB-1 (lattice-labs KINN brand-voice pack) | `path: ~/aDNA/lattice-labs/iii/what/context/context_iii_kinn_branding.md` |
+| `domain_pack` | Consumer-specific trap pack extending (not replacing) canonical packs. Subject to graduation ceremony per ADR-003 §3 if domain-general. | MB-1 (lattice-labs KINN brand-voice pack) | `path: ~/aDNA/lattice-labs/how/federation/iii/what/context/context_iii_kinn_branding.md` |
 | `reviewer_registry` | YAML registry of named voices for multi-voice review composition (e.g., Voice Critic / Design / UX / SEO / Brand). Consumed by `module_iii_semantic_reviewer` (composite_reference) or an equivalent consumer-side orchestrator. | MB-2 (SiteForge 5-voice registry) | `path: ~/aDNA/SiteForge.aDNA/what/context/siteforge/siteforge_reviewers.yaml` |
-| `bridge_pack` | Pointer-only domain pack that bridges III canonical procedures to a consumer-specific operation catalog or ADR-defined operation set. **Carries `not_graduating_to_canonical: true`** per ADR-002 §6 modality-agnostic-core boundary. Consumer-side only; never absorbed into core. | MB-3 (VideoForge ADR-006 catalog bridge), reused at MB-4 (CanvasForge canvas pack) | `path: ~/aDNA/VideoForge.aDNA/iii/what/context/videoforge_iii_domain_pack.md` |
+| `bridge_pack` | Pointer-only domain pack that bridges III canonical procedures to a consumer-specific operation catalog or ADR-defined operation set. **Carries `not_graduating_to_canonical: true`** per ADR-002 §6 modality-agnostic-core boundary. Consumer-side only; never absorbed into core. | MB-3 (VideoForge ADR-006 catalog bridge), reused at MB-4 (CanvasForge canvas pack) | `path: ~/aDNA/VideoForge.aDNA/how/federation/iii/what/context/videoforge_iii_domain_pack.md` |
 | `local_skill` | Consumer-specific review skill that composes multi-voice voice definitions + modality-specific dispatch logic. **Does not replace** the canonical III skill at `federation_ref.source_skill`; supplies consumer-side orchestration the canonical skill cannot know. | MB-4 (CanvasForge 5-voice canvas review skill) | `path: ~/aDNA/CanvasForge.aDNA/how/skills/skill_canvas_iii_review.md` |
-| `learning_store_local` | Per-vault JSONL fork of the canonical learning store. ACCUMULATE writes target this file (never canonical). Schema per ADR-003 §4. Required for any consumer that runs ACCUMULATE cycles. | MB-1 (lattice-labs local store); now in all 5 wrappers | `path: ~/aDNA/wga.aDNA/iii/what/context/wga_iii_learning_store.jsonl` |
+| `learning_store_local` | Per-vault JSONL fork of the canonical learning store. ACCUMULATE writes target this file (never canonical). Schema per ADR-003 §4. Required for any consumer that runs ACCUMULATE cycles. | MB-1 (lattice-labs local store); now in all 5 wrappers | `path: ~/aDNA/wga.aDNA/how/federation/iii/what/context/wga_iii_learning_store.jsonl` |
 
 **Extension policy**:
 
@@ -100,7 +102,7 @@ The `kind:` field discriminates the structural role of each `local_extension` en
 ### 4. Core pack loading protocol
 
 When a consumer session invokes III review:
-1. Load consumer `iii/CLAUDE.md` to determine `packs_used`
+1. Load consumer `how/federation/iii/CLAUDE.md` to determine `packs_used`
 2. For each declared pack, load from `III.aDNA/what/context/core_domain_packs/<pack_name>.md`
 3. Load `iii_corrections_canonical.jsonl` (always; caps at 50 entries per token budget)
 4. Load any `local_extensions` declared in consumer's federation_ref
@@ -108,7 +110,7 @@ When a consumer session invokes III review:
 
 ### 5. Consumer-specific domain packs
 
-Consumer packs extend the core packs; they do not replace them. Format: follow the domain pack schema from `context_iii_learning_store.md` (trap format: `name`, `description`, `signal`, `fix`). Consumer packs live in the consumer vault's `iii/what/context/` directory and are NOT part of III.aDNA canonical packs.
+Consumer packs extend the core packs; they do not replace them. Format: follow the domain pack schema from `context_iii_learning_store.md` (trap format: `name`, `description`, `signal`, `fix`). Consumer packs live in the consumer vault's `how/federation/iii/what/context/` directory and are NOT part of III.aDNA canonical packs.
 
 Graduation path: when a consumer-pack trap accumulates frequency ≥ 3 with acceptance ≥ 80% across multiple consumer vaults, the trap is a candidate for promotion to III.aDNA core. This requires ADR-003 graduation ceremony PR.
 
@@ -116,14 +118,14 @@ Graduation path: when a consumer-pack trap accumulates frequency ≥ 3 with acce
 
 - Never copy or embed III skill/module files into the consumer vault
 - Never modify the canonical learning store (`iii_corrections_canonical.jsonl`) directly — use ADR-003 PR process
-- Never hard-code III core paths in campaign/session files — always route through `iii/CLAUDE.md` federation_ref
+- Never hard-code III core paths in campaign/session files — always route through `how/federation/iii/CLAUDE.md` federation_ref
 
 ### 7. Existing consumer migration path
 
 Pre-existing informal consumers migrate to this pattern in Campaign B:
-1. Create `iii/CLAUDE.md` with federation_ref pinned at III.aDNA v0.1.0
-2. Move vault-local III context into `iii/what/context/` as consumer extensions
-3. Add forward stub in the vault's existing III context path pointing to `iii/CLAUDE.md`
+1. Create `how/federation/iii/CLAUDE.md` with federation_ref pinned at III.aDNA v0.1.0
+2. Move vault-local III context into `how/federation/iii/what/context/` as consumer extensions
+3. Add forward stub in the vault's existing III context path pointing to `how/federation/iii/CLAUDE.md`
 4. Verify active campaigns can resolve III context via the new path
 
 ## Consequences
