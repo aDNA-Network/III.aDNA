@@ -1,0 +1,18 @@
+# III.aDNA homepage descriptor — Operation Hearthlight P4 (pilot wave, 2026-06-29).
+# Schema = build_home.py DESCRIPTOR_KEYS only. Visual DNA (house `framework`) → visual_dna.yaml at P4.
+# framework class defaults to the document profile (content-forward). argus_panoptes → framework house.
+persona: argus_panoptes
+display_name: "III"
+tagline: "framework — the Inspect / Introspect / Improve quality standard"
+greeting: "Argus watches the quality loop — reviews and federation live below"
+
+banner:
+  path: who/assets/banners/banner_argus.png
+  alt: "Argus Panoptes"
+
+key_systems:
+  - {title: "III review", sub: "the inspect→introspect→improve skill", href: "how/skills/skill_iii_review.md"}
+  - {title: "Airlock standard", sub: "campaign C — the airlock context standard", href: "how/campaigns/campaign_c_airlock_standard/campaign_c_airlock_standard.md"}
+  - {title: "Federation adaptive loop", sub: "campaign D — cross-lattice III federation", href: "how/campaigns/campaign_d_federation_adaptive_loop/campaign_d_federation_adaptive_loop.md"}
+
+updated: 2026-06-29
